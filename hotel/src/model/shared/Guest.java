@@ -41,6 +41,7 @@ public class Guest {
 
 	public void setName(String name) {
 		this.name = name;
+		setId();
 	}
 
 	public LocalDate getBirthDate() {
@@ -49,6 +50,7 @@ public class Guest {
 
 	public void setBirthDate(LocalDate birthDate) {
 		this.birthDate = birthDate;
+		setId();
 	}
 
 	public String getMobileNum() {
@@ -65,6 +67,7 @@ public class Guest {
 
 	public void setPassNum(String passNum) {
 		this.passNum = passNum;
+		setId();
 	}
 
 	public String getAddress() {

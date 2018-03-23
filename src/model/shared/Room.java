@@ -2,15 +2,17 @@ package model.shared;
 
 import java.util.ArrayList;
 
-import model.shared.Bed.Size;
+import model.shared.Bed.BedSize;
 
 public class Room {
-
-	private String id;
-	private String address;
+	private static int count = 0;
+	public enum RoomSize { SMALL, MEDIUM, BIG }
+	public enum RoomLocation { VAXJO, KALMAR }
+	private int roomId;
+	private RoomLocation roomLocation;
 	private int roomNum;
 	private int maxGuestCapacity;
-	private float size;
+	private RoomSize roomSize;
 	private int qualityLev = 3; // the minimal quality level is 3, the costs will be calculated in the
 								// reservation class
 	private boolean airCon;
@@ -26,40 +28,38 @@ public class Room {
 
 	}
 
-	public Room(ArrayList<Bed> beds, String address, int roomNum, int size, boolean airCon, boolean balcony,
+	public Room(ArrayList<Bed> beds, RoomLocation roomLocation, int roomNum, RoomSize roomSize, boolean airCon, boolean balcony,
 			boolean view, boolean smoking, boolean adjoinable) {
 
+		this.roomId = ++count;
 		this.beds = beds;
-		this.address = address;
+		this.roomLocation = roomLocation;
 		this.roomNum = roomNum;
-		this.size = size;
+		this.roomSize = roomSize;
 		this.airCon = airCon;
 		this.balcony = balcony;
 		this.view = view;
 		this.smoking = smoking;
 		this.adjoinable = adjoinable;
-
-		setId();
 		setQualityLev();
-		setMaxGuestCapacity();
+		calculateMaxGuestCapacity();
 
 	}
 
-	public String getId() {
-		return id;
+	public int getId() {
+		return roomId;
 	}
 
-	public void setId() {
-		this.id = this.address + "-" + this.roomNum;
+	public void setId (int roomId) {
+		this.roomId = roomId;
+	}
+	
+	public RoomLocation getAddress() {
+		return roomLocation;
 	}
 
-	public String getAddress() {
-		return address;
-	}
-
-	public void setAddress(String address) {
-		this.address = address;
-		setId();
+	public void setAddress(RoomLocation roomLocation) {
+		this.roomLocation = roomLocation;
 	}
 
 	public int getRoomNum() {
@@ -68,53 +68,60 @@ public class Room {
 
 	public void setRoomNum(int roomNum) {
 		this.roomNum = roomNum;
-		setId();
 	}
 
 	public int getMaxGuestCapacity() {
 		return maxGuestCapacity;
 	}
+	
+	public void setMaxGuestCapacity(int maxGuestCapacity) {
+		this.maxGuestCapacity = maxGuestCapacity;
+	}
 
 	// set the max guest capacity of the room depends on the beds size
-	public void setMaxGuestCapacity() {
-		for (Bed a : beds) {
-			if (a.getSize() == Size.SINGLE)
+	public void calculateMaxGuestCapacity() {
+		for (Bed bed : beds) {
+			if (bed.getSize() == BedSize.SINGLE)
 				maxGuestCapacity++;
-			else if (a.getSize() == Size.DOUBLE)
+			else if (bed.getSize() == BedSize.DOUBLE)
 				maxGuestCapacity += 2;
 		}
 	}
 
-	public float getSize() {
-		return size;
+	public RoomSize getRoomSize() {
+		return roomSize;
 	}
 
-	public void setSize(float size) {
-		this.size = size;
+	public void setRoomSize(RoomSize roomSize) {
+		this.roomSize = roomSize;
 		setQualityLev();
 	}
 
 	public int getQualityLev() {
 		return qualityLev;
 	}
+	
+	public void setQualityLev(int qualityLev) {
+		this.qualityLev = qualityLev;
+	}
 
 	// set the quality level depends on the room size , air conditioner, balcony,
 	// and view
 	// TODO should modify it for the adjoin ability
 	public void setQualityLev() {
-		if (size > 9 && size <= 16)
+		if (roomSize == RoomSize.MEDIUM)
 			qualityLev++;
-		if (size > 16)
+		if (roomSize == RoomSize.BIG)
 			qualityLev += 2;
-		if (isAirCon())
+		if (hasAirCon())
 			qualityLev++;
-		if (isBalcony())
+		if (hasBalcony())
 			qualityLev++;
-		if (isView())
+		if (hasView())
 			qualityLev++;
 	}
 
-	public boolean isAirCon() {
+	public boolean hasAirCon() {
 		return airCon;
 	}
 
@@ -123,7 +130,7 @@ public class Room {
 		setQualityLev();
 	}
 
-	public boolean isBalcony() {
+	public boolean hasBalcony() {
 		return balcony;
 	}
 
@@ -132,7 +139,7 @@ public class Room {
 		setQualityLev();
 	}
 
-	public boolean isView() {
+	public boolean hasView() {
 		return view;
 	}
 
@@ -175,17 +182,17 @@ public class Room {
 
 	public void setBedsList(ArrayList<Bed> beds) {
 		this.beds = beds;
-		setMaxGuestCapacity();
+		calculateMaxGuestCapacity();
 	}
 
 	public void addBed(Bed bed) {
 		this.beds.add(bed);
-		setMaxGuestCapacity();
+		calculateMaxGuestCapacity();
 	}
 
 	public void removeBed(Bed bed) {
 		this.beds.remove(bed);
-		setMaxGuestCapacity();
+		calculateMaxGuestCapacity();
 	}
 
 }

@@ -2,23 +2,23 @@ package model.shared;
 
 public class Bed {
 
-	public enum Size { SINGLE, DOUBLE }
+	public enum BedSize { SINGLE, DOUBLE }
 
-	private Size size ;
+	private BedSize bedSize ;
 	
 	public Bed () {
 		
 	}
 	
-	public Bed (Size size) {
-		this.setSize(size);
+	public Bed (BedSize bedSize) {
+		this.setSize(bedSize);
 	}
 
-	public Size getSize() {
-		return size;
+	public BedSize getSize() {
+		return bedSize;
 	}
 
-	public void setSize(Size size) {
-		this.size = size;
+	public void setSize(BedSize bedSize) {
+		this.bedSize = bedSize;
 	}
 }

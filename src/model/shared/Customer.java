@@ -3,6 +3,8 @@ package model.shared;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+import model.shared.Reservation.ReservationStatus;
+
 public class Customer {
 	public enum IdentificationType { PERSONAL_NUMBER, PASS_NUMBER }
 	
@@ -18,12 +20,8 @@ public class Customer {
 	private String email;
 	private String description;
 	private ArrayList <Reservation> reservationsList = new ArrayList<Reservation>();
-	private ArrayList <Bill> billsList = new ArrayList<Bill>();
+	//private ArrayList <Bill> billsList = new ArrayList<Bill>();
 	
-
-	public Customer() {
-		
-	}
 
 	public Customer(String name, LocalDate birthDate, String mobileNum, IdentificationType identificationType,String identificationNumber, String address, String nationality,
 			String email, String description) {
@@ -37,6 +35,14 @@ public class Customer {
 		this.nationality = nationality;
 		this.email = email;
 		this.description = description;
+	}
+	
+	public void addReservation(ArrayList<Room> roomList, float discount, String description) {
+		Reservation reservation = new Reservation(ReservationStatus.PENDING, this.getCostomerId(), roomList, discount, description );
+		reservationsList.add(reservation);
+		for (Room room : roomList) {
+			room.setAvailable(false);
+		}
 	}
 
 	public static int getCount() {
@@ -135,12 +141,12 @@ public class Customer {
 		this.reservationsList = reservationsList;
 	}
 
-	public ArrayList<Bill> getBillsList() {
+	/*public ArrayList<Bill> getBillsList() {
 		return billsList;
 	}
 
 	public void setBillsList(ArrayList<Bill> billsList) {
 		this.billsList = billsList;
-	}
+	}*/
 
 }

@@ -16,25 +16,20 @@ public class Room {
 	private int qualityLev = 3; // the minimal quality level is 3, the costs will be calculated in the
 								// reservation class
 	private float rate;
-	private float discount;
 	private boolean airCon;
 	private boolean balcony;
 	private boolean view;
 	private boolean smoking;
-	private boolean adjoinable;
+	private boolean suite;
 	private boolean available;
-	private ArrayList<Bed> beds = new ArrayList<Bed>();
+	private ArrayList<Bed> bedsList = new ArrayList<Bed>();
 	
 
-	public Room() {
-
-	}
-
 	public Room(ArrayList<Bed> beds, RoomLocation roomLocation, int roomNum, RoomSize roomSize, boolean airCon, boolean balcony,
-			boolean view, boolean smoking, boolean adjoinable) {
+			boolean view, boolean smoking, boolean isSuite) {
 
 		this.roomId = ++count;
-		this.beds = beds;
+		this.bedsList = beds;
 		this.roomLocation = roomLocation;
 		this.roomNum = roomNum;
 		this.roomSize = roomSize;
@@ -42,10 +37,11 @@ public class Room {
 		this.balcony = balcony;
 		this.view = view;
 		this.smoking = smoking;
-		this.adjoinable = adjoinable;
-		setQualityLev();
-		calculateMaxGuestCapacity();
-
+		this.suite = isSuite;
+		if (!isSuite) {
+			calculateQualityLev();
+			calculateMaxGuestCapacity();
+		}
 	}
 
 	public int getRoomId() {
@@ -56,11 +52,11 @@ public class Room {
 		this.roomId = roomId;
 	}
 	
-	public RoomLocation getAddress() {
+	public RoomLocation getRoomLocation() {
 		return roomLocation;
 	}
 
-	public void setAddress(RoomLocation roomLocation) {
+	public void setRoomLocation(RoomLocation roomLocation) {
 		this.roomLocation = roomLocation;
 	}
 
@@ -82,10 +78,10 @@ public class Room {
 
 	// set the max guest capacity of the room depends on the beds size
 	public void calculateMaxGuestCapacity() {
-		for (Bed bed : beds) {
-			if (bed.getSize() == BedSize.SINGLE)
+		for (Bed bed : bedsList) {
+			if (bed.getBedSize() == BedSize.SINGLE)
 				maxGuestCapacity++;
-			else if (bed.getSize() == BedSize.DOUBLE)
+			else if (bed.getBedSize() == BedSize.DOUBLE)
 				maxGuestCapacity += 2;
 		}
 	}
@@ -96,7 +92,7 @@ public class Room {
 
 	public void setRoomSize(RoomSize roomSize) {
 		this.roomSize = roomSize;
-		setQualityLev();
+		calculateQualityLev();
 	}
 
 	public int getQualityLev() {
@@ -105,22 +101,25 @@ public class Room {
 	
 	public void setQualityLev(int qualityLev) {
 		this.qualityLev = qualityLev;
+		calculateRate();
 	}
 
 	// set the quality level depends on the room size , air conditioner, balcony,
 	// and view
 	// TODO should modify it for the adjoin ability
-	public void setQualityLev() {
+	public void calculateQualityLev() {
 		if (roomSize == RoomSize.MEDIUM)
 			qualityLev++;
 		if (roomSize == RoomSize.BIG)
 			qualityLev += 2;
-		if (hasAirCon())
+		if (isAirCon())
 			qualityLev++;
-		if (hasBalcony())
+		if (isBalcony())
 			qualityLev++;
-		if (hasView())
+		if (isView())
 			qualityLev++;
+		
+		calculateRate();
 	}
 	
 	public float getRate() {
@@ -131,48 +130,35 @@ public class Room {
 		this.rate = rate;
 	}
 	
-	public float getDiscount() {
-		return discount;
+	public void calculateRate() {
+		this.rate = getQualityLev() * 10;
 	}
 
-	public void setDiscount(float discount) {
-		if (discount < 0) {
-			this.discount = 0;
-		}
-		else if (discount > 100) {
-			this.discount = 100;
-		}
-		else {
-			this.discount = discount;
-		}
-		
-	}
-
-	public boolean hasAirCon() {
+	public boolean isAirCon() {
 		return airCon;
 	}
 
 	public void setAirCon(boolean airCon) {
 		this.airCon = airCon;
-		setQualityLev();
+		calculateQualityLev();
 	}
 
-	public boolean hasBalcony() {
+	public boolean isBalcony() {
 		return balcony;
 	}
 
 	public void setBalcony(boolean balcony) {
 		this.balcony = balcony;
-		setQualityLev();
+		calculateQualityLev();
 	}
 
-	public boolean hasView() {
+	public boolean isView() {
 		return view;
 	}
 
 	public void setView(boolean view) {
 		this.view = view;
-		setQualityLev();
+		calculateQualityLev();
 	}
 
 	public boolean isSmoking() {
@@ -183,12 +169,12 @@ public class Room {
 		this.smoking = smoking;
 	}
 
-	public boolean isAdjoinable() {
-		return adjoinable;
+	public boolean isSuite() {
+		return suite;
 	}
 
-	public void setAdjoinable(boolean adjoinable) {
-		this.adjoinable = adjoinable;
+	public void setSuite(boolean adjoinable) {
+		this.suite = adjoinable;
 	}
 
 	public boolean isAvailable() {
@@ -200,25 +186,25 @@ public class Room {
 	}
 
 	public ArrayList<Bed> getBedsList() {
-		return beds;
+		return bedsList;
 	}
 
 	public int getBedsNum() {
-		return this.beds.size();
+		return this.bedsList.size();
 	}
 
 	public void setBedsList(ArrayList<Bed> beds) {
-		this.beds = beds;
+		this.bedsList = beds;
 		calculateMaxGuestCapacity();
 	}
 
 	public void addBed(Bed bed) {
-		this.beds.add(bed);
+		this.bedsList.add(bed);
 		calculateMaxGuestCapacity();
 	}
 
 	public void removeBed(Bed bed) {
-		this.beds.remove(bed);
+		this.bedsList.remove(bed);
 		calculateMaxGuestCapacity();
 	}
 

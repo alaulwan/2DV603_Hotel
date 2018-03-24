@@ -1,6 +1,7 @@
 package model.shared;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class Customer {
 	public enum IdentificationType { PERSONAL_NUMBER, PASS_NUMBER }
@@ -16,6 +17,9 @@ public class Customer {
 	private String nationality;
 	private String email;
 	private String description;
+	private ArrayList <Reservation> reservationsList = new ArrayList<Reservation>();
+	private ArrayList <Bill> billsList = new ArrayList<Bill>();
+	
 
 	public Customer() {
 		
@@ -33,6 +37,14 @@ public class Customer {
 		this.nationality = nationality;
 		this.email = email;
 		this.description = description;
+	}
+
+	public static int getCount() {
+		return count;
+	}
+
+	public static void setCount(int count) {
+		Customer.count = count;
 	}
 
 	public int getCostomerId() {
@@ -113,6 +125,22 @@ public class Customer {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public ArrayList<Reservation> getReservationsList() {
+		return reservationsList;
+	}
+
+	public void setReservationsList(ArrayList<Reservation> reservationsList) {
+		this.reservationsList = reservationsList;
+	}
+
+	public ArrayList<Bill> getBillsList() {
+		return billsList;
+	}
+
+	public void setBillsList(ArrayList<Bill> billsList) {
+		this.billsList = billsList;
 	}
 
 }

@@ -15,6 +15,8 @@ public class Room {
 	private RoomSize roomSize;
 	private int qualityLev = 3; // the minimal quality level is 3, the costs will be calculated in the
 								// reservation class
+	private float rate;
+	private float discount;
 	private boolean airCon;
 	private boolean balcony;
 	private boolean view;
@@ -46,11 +48,11 @@ public class Room {
 
 	}
 
-	public int getId() {
+	public int getRoomId() {
 		return roomId;
 	}
 
-	public void setId (int roomId) {
+	public void setRoomId (int roomId) {
 		this.roomId = roomId;
 	}
 	
@@ -119,6 +121,31 @@ public class Room {
 			qualityLev++;
 		if (hasView())
 			qualityLev++;
+	}
+	
+	public float getRate() {
+		return rate;
+	}
+
+	public void setRate(float rate) {
+		this.rate = rate;
+	}
+	
+	public float getDiscount() {
+		return discount;
+	}
+
+	public void setDiscount(float discount) {
+		if (discount < 0) {
+			this.discount = 0;
+		}
+		else if (discount > 100) {
+			this.discount = 100;
+		}
+		else {
+			this.discount = discount;
+		}
+		
 	}
 
 	public boolean hasAirCon() {

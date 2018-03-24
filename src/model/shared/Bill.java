@@ -2,21 +2,34 @@ package model.shared;
 
 import java.util.ArrayList;
 
+import model.shared.Service.ServiceType;
+
 public class Bill {
-	private static int count = 0;
 	private int billId;
+	private int customerId;
+	private String customerName;
 	private ArrayList <Service> serviceList = new ArrayList<Service>();
 
-	public Bill() {
-		
+	public Bill(int billId,int customerId, String customerName, float price, int numberOfRooms, float discount, String descraption) {
+		Service reserveService = new Service (ServiceType.RESERVATION, price, numberOfRooms, discount, descraption);
+		serviceList.add(reserveService);
+		this.setBillId(billId);
 	}
-	
-	public static int getCount() {
-		return count;
+
+	public int getCustomerId() {
+		return customerId;
 	}
-	
-	public static void setCount(int count) {
-		Bill.count = count;
+
+	public void setCustomerId(int customerId) {
+		this.customerId = customerId;
+	}
+
+	public String getCustomerName() {
+		return customerName;
+	}
+
+	public void setCustomerName(String customerName) {
+		this.customerName = customerName;
 	}
 
 	public int getBillId() {

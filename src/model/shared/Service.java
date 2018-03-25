@@ -11,6 +11,10 @@ public class Service {
 	private float discount;
 	private String descraption;
 	
+	public Service() {
+		
+	}
+
 	public Service(ServiceType serviceType, float price, int piecesNumber, float discount, String descraption ) {
 		this.setServiceId(++count);
 		this.setServiceType(serviceType);

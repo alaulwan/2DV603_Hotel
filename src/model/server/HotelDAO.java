@@ -5,7 +5,7 @@ import java.io.File;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
-
+import javax.xml.bind.Unmarshaller;
 import model.shared.Hotel;
 
 public class HotelDAO {
@@ -27,6 +27,18 @@ public class HotelDAO {
 		} catch (JAXBException e) {
 			e.printStackTrace();
 		}
+	}
+
+	public Hotel xmlSave() {
+		try {
+			JAXBContext context = JAXBContext.newInstance(Hotel.class);
+			Unmarshaller un = context.createUnmarshaller();
+			Hotel hotel = (Hotel) un.unmarshal(new File("src/model/server/hotel.xml"));
+			return hotel;
+		} catch (JAXBException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 }

@@ -1,7 +1,6 @@
 package model.shared;
 
 import java.util.ArrayList;
-
 import model.shared.Bed.BedSize;
 
 public class Room {
@@ -15,15 +14,20 @@ public class Room {
 	private RoomSize roomSize;
 	private int qualityLev = 3; // the minimal quality level is 3, the costs will be calculated in the
 								// reservation class
+	private boolean suite;
 	private float rate;
 	private boolean airCon;
 	private boolean balcony;
 	private boolean view;
 	private boolean smoking;
-	private boolean suite;
+	
 	private boolean available;
+	
 	private ArrayList<Bed> bedsList = new ArrayList<Bed>();
 	
+	public Room() {
+		
+	}
 
 	public Room(ArrayList<Bed> beds, RoomLocation roomLocation, int roomNum, RoomSize roomSize, boolean airCon, boolean balcony,
 			boolean view, boolean smoking, boolean isSuite) {
@@ -85,6 +89,14 @@ public class Room {
 				maxGuestCapacity += 2;
 		}
 	}
+	
+	public boolean isSuite() {
+		return suite;
+	}
+
+	public void setSuite(boolean suite) {
+		this.suite = suite;
+	}
 
 	public RoomSize getRoomSize() {
 		return roomSize;
@@ -108,6 +120,7 @@ public class Room {
 	// and view
 	// TODO should modify it for the adjoin ability
 	public void calculateQualityLev() {
+		qualityLev=3;
 		if (roomSize == RoomSize.MEDIUM)
 			qualityLev++;
 		if (roomSize == RoomSize.BIG)
@@ -140,7 +153,8 @@ public class Room {
 
 	public void setAirCon(boolean airCon) {
 		this.airCon = airCon;
-		calculateQualityLev();
+		if (!isSuite())
+			calculateQualityLev();
 	}
 
 	public boolean isBalcony() {
@@ -167,14 +181,6 @@ public class Room {
 
 	public void setSmoking(boolean smoking) {
 		this.smoking = smoking;
-	}
-
-	public boolean isSuite() {
-		return suite;
-	}
-
-	public void setSuite(boolean adjoinable) {
-		this.suite = adjoinable;
 	}
 
 	public boolean isAvailable() {

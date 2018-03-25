@@ -2,6 +2,8 @@ package model.shared;
 
 import java.util.ArrayList;
 
+import javax.xml.bind.annotation.XmlElement;
+
 public class Reservation {
 	private static int count = 0;
 	private int reservationId;
@@ -9,22 +11,27 @@ public class Reservation {
 	private ReservationStatus reservationStatus;
 	private int customerId;
 	private String customerName;
-	private ArrayList <Room> roomList;
-	private int roomId;
 	private float price;
 	private float discount;
 	private Bill bill;
+	
+	@XmlElement(name = "roomIdList")
+	private ArrayList <String> roomIdList;
+	
+	public Reservation() {
+		
+	}
 	
 	public Reservation(ReservationStatus reservationStatus, int customerId, ArrayList <Room> roomList, float discount, String description ) {
 		this.setReservationId(++count);
 		this.setReservationStatus(reservationStatus);
 		this.setCustomerId(customerId);
-		this.setRoomList(roomList);
-		this.calculatePrice();
+		this.setRoomIdList(roomList);
+		this.calculatePrice(roomList);
 		this.setBill(new Bill(reservationId, this.customerId, this.customerName, price, roomList.size(), discount, ""));
 	}
 
-	private void calculatePrice() {
+	private void calculatePrice(ArrayList <Room> roomList) {
 		price = 0;
 		for (Room room : roomList)
 			price = room.getRate();
@@ -62,14 +69,6 @@ public class Reservation {
 		this.customerName = customerName;
 	}
 
-	public int getRoomId() {
-		return roomId;
-	}
-
-	public void setRoomId(int roomId) {
-		this.roomId = roomId;
-	}
-
 	public static int getCount() {
 		return count;
 	}
@@ -94,12 +93,14 @@ public class Reservation {
 		this.discount = discount;
 	}
 
-	public ArrayList<Room> getRoomList() {
-		return roomList;
+	public ArrayList<String> getRoomIdList() {
+		return roomIdList;
 	}
 
-	public void setRoomList(ArrayList<Room> roomList) {
-		this.roomList = roomList;
+	public void setRoomIdList(ArrayList<Room> roomList) {
+		this.roomIdList = new ArrayList<String>();
+		for (Room room : roomList)
+			this.roomIdList.add(room.getRoomId()+"");
 	}
 
 	public Bill getBill() {

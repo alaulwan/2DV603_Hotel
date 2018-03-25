@@ -10,10 +10,16 @@ public class Bill {
 	private String customerName;
 	private ArrayList <Service> serviceList = new ArrayList<Service>();
 
+	public Bill() {
+		
+	}
+
 	public Bill(int billId,int customerId, String customerName, float price, int numberOfRooms, float discount, String descraption) {
 		Service reserveService = new Service (ServiceType.RESERVATION, price, numberOfRooms, discount, descraption);
 		serviceList.add(reserveService);
 		this.setBillId(billId);
+		this.customerId = customerId;
+		this.customerName=customerName;
 	}
 
 	public int getCustomerId() {

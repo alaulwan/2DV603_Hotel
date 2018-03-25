@@ -2,7 +2,6 @@ package model.shared;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-
 import model.shared.Reservation.ReservationStatus;
 
 public class Customer {
@@ -11,7 +10,7 @@ public class Customer {
 	private static int count = 0;
 	private int costomerId;
 	private String name;
-	private LocalDate birthDate;
+	private String birthDate;
 	private String mobileNum;
 	private IdentificationType identificationType;
 	private String identificationNumber;
@@ -22,12 +21,15 @@ public class Customer {
 	private ArrayList <Reservation> reservationsList = new ArrayList<Reservation>();
 	//private ArrayList <Bill> billsList = new ArrayList<Bill>();
 	
+	public Customer() {
+		
+	}
 
 	public Customer(String name, LocalDate birthDate, String mobileNum, IdentificationType identificationType,String identificationNumber, String address, String nationality,
 			String email, String description) {
 		this.setCostomerId(++count);
 		this.name = name;
-		this.birthDate = birthDate;
+		this.setBirthDate(birthDate);
 		this.mobileNum = mobileNum;
 		this.identificationType = identificationType;
 		this.identificationNumber = identificationNumber;
@@ -69,12 +71,20 @@ public class Customer {
 		this.name = name;
 	}
 
-	public LocalDate getBirthDate() {
+	public String getBirthDate() {
 		return birthDate;
 	}
 
-	public void setBirthDate(LocalDate birthDate) {
+	public void setBirthDate(String birthDate) {
 		this.birthDate = birthDate;
+	}
+	
+	public LocalDate birthDateToLocaleDate() {
+		return LocalDate.parse(birthDate);
+	}
+	
+	public void setBirthDate(LocalDate birthDate) {
+		this.birthDate = birthDate.toString();
 	}
 
 	public String getMobileNum() {
@@ -150,3 +160,5 @@ public class Customer {
 	}*/
 
 }
+
+

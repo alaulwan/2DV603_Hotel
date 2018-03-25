@@ -2,14 +2,35 @@ package model.shared;
 
 import java.util.ArrayList;
 
-
 public class Suite extends Room {
 	
 	private ArrayList<Room> roomsList = new ArrayList<Room>();
 	
+	public Suite() {
+		
+	}
+	
 	public Suite (int roomNum, ArrayList<Room> roomsList) {
 		super(null, null, roomNum, null, false, false,
 				false, false, true);
+		this.setRoomsList(roomsList);
+		CalculateBidsList();
+		CalculateRoomLocation();
+		CalculateRoomSize();
+		CalculateAirCon();
+		CalculateBalcony();
+		CalculateView();
+		CalculateSmoking();
+		calculateQualityLev();
+		calculateRate();
+		super.calculateMaxGuestCapacity();
+	}
+
+	public ArrayList<Room> getRoomsList() {
+		return roomsList;
+	}
+
+	public void setRoomsList(ArrayList<Room> roomsList) {
 		this.roomsList = roomsList;
 		CalculateBidsList();
 		CalculateRoomLocation();
@@ -88,10 +109,13 @@ public class Suite extends Room {
 
 	@Override
 	public void calculateQualityLev() {
-		int qualityLev=0;
-		for (Room room : roomsList)
-			qualityLev += room.getQualityLev();
-		 super.setQualityLev(qualityLev/roomsList.size());
+		if (roomsList.size()>0) {
+			int qualityLev=0;
+			for (Room room : roomsList)
+				qualityLev += room.getQualityLev();
+			 super.setQualityLev(qualityLev/roomsList.size());
+		}
+		
 	}
 
 	@Override

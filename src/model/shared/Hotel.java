@@ -20,6 +20,9 @@ public class Hotel {
 	@XmlElement(name = "roomsList")
 	private ArrayList <Room> roomsList = new ArrayList <Room>();
 	
+	@XmlElement(name = "suitesList")
+	private ArrayList <Suite> suitesList = new ArrayList <Suite>();
+	
 	// private ArrayList <Reservation> reservationsList = new ArrayList <Reservation>();
 	// private ArrayList <Bill> billsList = new ArrayList <Bill>();
 	
@@ -67,6 +70,7 @@ public class Hotel {
 		customer3.addReservation(new ArrayList<Room>(Arrays.asList(suite1)), 0, "Pa reservation");
 		
 		customersList.addAll(new ArrayList<Customer> (Arrays.asList(customer1, customer1, customer1)));
-		roomsList.addAll(new ArrayList<Room> (Arrays.asList(R1, R2, suite1, suite2)));
+		roomsList.addAll(new ArrayList<Room> (Arrays.asList(R1, R2)));
+		suitesList.addAll(new ArrayList<Suite> (Arrays.asList(suite1, suite2)));
 	}
 }

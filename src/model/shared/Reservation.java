@@ -1,8 +1,6 @@
 package model.shared;
 
-import java.util.ArrayList;
-
-import javax.xml.bind.annotation.XmlElement;
+import java.time.LocalDate;
 
 public class Reservation {
 	private static int count = 0;
@@ -11,30 +9,23 @@ public class Reservation {
 	private ReservationStatus reservationStatus;
 	private int customerId;
 	private String customerName;
+	private String checkInDate;
+	private String checkOutDate;
 	private float price;
-	private float discount;
 	private Bill bill;
-	
-	@XmlElement(name = "roomIdList")
-	private ArrayList <String> roomIdList;
+	private int roomId;
 	
 	public Reservation() {
 		
 	}
 	
-	public Reservation(ReservationStatus reservationStatus, int customerId, ArrayList <Room> roomList, float discount, String description ) {
+	public Reservation(ReservationStatus reservationStatus, int customerId, int roomId, float roomPrice, float discount, String description ) {
 		this.setReservationId(++count);
 		this.setReservationStatus(reservationStatus);
 		this.setCustomerId(customerId);
-		this.setRoomIdList(roomList);
-		this.calculatePrice(roomList);
-		this.setBill(new Bill(reservationId, this.customerId, this.customerName, price, roomList.size(), discount, ""));
-	}
-
-	private void calculatePrice(ArrayList <Room> roomList) {
-		price = 0;
-		for (Room room : roomList)
-			price = room.getRate();
+		this.setRoomId(roomId);
+		this.setPrice(roomPrice);
+		this.setBill(new Bill(reservationId, this.customerId, this.customerName, price, discount, ""));
 	}
 
 	public int getReservationId() {
@@ -69,6 +60,37 @@ public class Reservation {
 		this.customerName = customerName;
 	}
 
+	public String getCheckInDate() {
+		return checkInDate;
+	}
+
+	public void setCheckInDate(String checkInDate) {
+		this.checkInDate = checkInDate;
+	}
+	public LocalDate checkInDateAsLocalDate() {
+		return LocalDate.parse(checkInDate);
+	}
+	
+	public void setCheckInDate(LocalDate checkInDate) {
+		this.checkInDate = checkInDate.toString();
+	}
+
+	public String getCheckOutDate() {
+		return checkOutDate;
+	}
+
+	public void setCheckOutDate(String checkOutDate) {
+		this.checkOutDate = checkOutDate;
+	}
+	
+	public LocalDate checkOutDateAsLocalDate() {
+		return LocalDate.parse(checkOutDate);
+	}
+	
+	public void setCheckOutDate(LocalDate checkOutDate) {
+		this.checkOutDate = checkOutDate.toString();
+	}
+
 	public static int getCount() {
 		return count;
 	}
@@ -85,22 +107,12 @@ public class Reservation {
 		this.price = price;
 	}
 
-	public float getDiscount() {
-		return discount;
+	public int getRoomId() {
+		return roomId;
 	}
 
-	public void setDiscount(float discount) {
-		this.discount = discount;
-	}
-
-	public ArrayList<String> getRoomIdList() {
-		return roomIdList;
-	}
-
-	public void setRoomIdList(ArrayList<Room> roomList) {
-		this.roomIdList = new ArrayList<String>();
-		for (Room room : roomList)
-			this.roomIdList.add(room.getRoomId()+"");
+	public void setRoomId(int roomId) {
+		this.roomId = roomId;
 	}
 
 	public Bill getBill() {

@@ -14,8 +14,8 @@ public class Bill {
 		
 	}
 
-	public Bill(int billId,int customerId, String customerName, float price, int numberOfRooms, float discount, String descraption) {
-		Service reserveService = new Service (ServiceType.RESERVATION, price, numberOfRooms, discount, descraption);
+	public Bill(int billId,int customerId, String customerName, float price, float discount, String descraption) {
+		Service reserveService = new Service (ServiceType.RESERVATION, price, 1, discount, descraption);
 		serviceList.add(reserveService);
 		this.setBillId(billId);
 		this.customerId = customerId;

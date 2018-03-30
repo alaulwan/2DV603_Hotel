@@ -8,9 +8,11 @@ public class Customer {
 	public enum IdentificationType { PERSONAL_NUMBER, PASS_NUMBER }
 	
 	private static int count = 0;
-	private int costomerId;
+	private int customerId;
 	private String name;
 	private String birthDate;
+	public enum Gender { MALE, FEMALE }
+	private Gender gender;
 	private String mobileNum;
 	private IdentificationType identificationType;
 	private String identificationNumber;
@@ -25,11 +27,12 @@ public class Customer {
 		
 	}
 
-	public Customer(String name, LocalDate birthDate, String mobileNum, IdentificationType identificationType,String identificationNumber, String address, String nationality,
+	public Customer(String name, LocalDate birthDate, Gender gender, String mobileNum, IdentificationType identificationType,String identificationNumber, String address, String nationality,
 			String email, String description) {
-		this.setCostomerId(++count);
+		this.setCustomerId(++count);
 		this.name = name;
 		this.setBirthDate(birthDate);
+		this.gender = gender;
 		this.mobileNum = mobileNum;
 		this.identificationType = identificationType;
 		this.identificationNumber = identificationNumber;
@@ -39,12 +42,23 @@ public class Customer {
 		this.description = description;
 	}
 	
-	public void addReservation(ArrayList<Room> roomList, float discount, String description) {
-		Reservation reservation = new Reservation(ReservationStatus.PENDING, this.getCostomerId(), roomList, discount, description );
+	public void addReservation(int roomId, float roomPrice, float discount, String description) {
+		Reservation reservation = new Reservation(ReservationStatus.PENDING, this.getCustomerId(), roomId, roomPrice, discount, description );
 		reservationsList.add(reservation);
-		for (Room room : roomList) {
-			room.setAvailable(false);
-		}
+	}
+	
+	public void updateCustomerInfo (String name, LocalDate birthDate, Gender gender, String mobileNum, IdentificationType identificationType,String identificationNumber, String address, String nationality,
+			String email, String description) {
+		this.name = name;
+		this.setBirthDate(birthDate);
+		this.gender = gender;
+		this.mobileNum = mobileNum;
+		this.identificationType = identificationType;
+		this.identificationNumber = identificationNumber;
+		this.address = address;
+		this.nationality = nationality;
+		this.email = email;
+		this.description = description;
 	}
 
 	public static int getCount() {
@@ -55,12 +69,12 @@ public class Customer {
 		Customer.count = count;
 	}
 
-	public int getCostomerId() {
-		return costomerId;
+	public int getCustomerId() {
+		return customerId;
 	}
 
-	public void setCostomerId(int costomerId) {
-		this.costomerId = costomerId;
+	public void setCustomerId(int customerId) {
+		this.customerId = customerId;
 	}
 
 	public String getName() {
@@ -85,6 +99,14 @@ public class Customer {
 	
 	public void setBirthDate(LocalDate birthDate) {
 		this.birthDate = birthDate.toString();
+	}
+
+	public Gender getGender() {
+		return gender;
+	}
+
+	public void setGender(Gender gender) {
+		this.gender = gender;
 	}
 
 	public String getMobileNum() {

@@ -3,16 +3,16 @@
     <customersList>
         <address>Vaxjo</address>
         <birthDate>1982-01-01</birthDate>
-        <costomerId>1</costomerId>
+        <customerId>1</customerId>
         <description>student</description>
         <email>a@a.a</email>
+        <gender>MALE</gender>
         <identificationNumber>1111111</identificationNumber>
         <identificationType>PASS_NUMBER</identificationType>
         <mobileNum>076970</mobileNum>
         <name>Alaa Al</name>
         <nationality>Syr</nationality>
         <reservationsList>
-            <roomIdList>1</roomIdList>
             <bill>
                 <billId>1</billId>
                 <customerId>1</customerId>
@@ -26,25 +26,25 @@
                 </serviceList>
             </bill>
             <customerId>1</customerId>
-            <discount>0.0</discount>
             <price>60.0</price>
             <reservationId>1</reservationId>
             <reservationStatus>PENDING</reservationStatus>
+            <roomId>1</roomId>
         </reservationsList>
     </customersList>
     <customersList>
         <address>Vaxjo</address>
         <birthDate>1982-01-01</birthDate>
-        <costomerId>1</costomerId>
+        <customerId>1</customerId>
         <description>student</description>
         <email>a@a.a</email>
+        <gender>MALE</gender>
         <identificationNumber>1111111</identificationNumber>
         <identificationType>PASS_NUMBER</identificationType>
         <mobileNum>076970</mobileNum>
         <name>Alaa Al</name>
         <nationality>Syr</nationality>
         <reservationsList>
-            <roomIdList>1</roomIdList>
             <bill>
                 <billId>1</billId>
                 <customerId>1</customerId>
@@ -58,25 +58,25 @@
                 </serviceList>
             </bill>
             <customerId>1</customerId>
-            <discount>0.0</discount>
             <price>60.0</price>
             <reservationId>1</reservationId>
             <reservationStatus>PENDING</reservationStatus>
+            <roomId>1</roomId>
         </reservationsList>
     </customersList>
     <customersList>
         <address>Vaxjo</address>
         <birthDate>1982-01-01</birthDate>
-        <costomerId>1</costomerId>
+        <customerId>1</customerId>
         <description>student</description>
         <email>a@a.a</email>
+        <gender>MALE</gender>
         <identificationNumber>1111111</identificationNumber>
         <identificationType>PASS_NUMBER</identificationType>
         <mobileNum>076970</mobileNum>
         <name>Alaa Al</name>
         <nationality>Syr</nationality>
         <reservationsList>
-            <roomIdList>1</roomIdList>
             <bill>
                 <billId>1</billId>
                 <customerId>1</customerId>
@@ -90,10 +90,10 @@
                 </serviceList>
             </bill>
             <customerId>1</customerId>
-            <discount>0.0</discount>
             <price>60.0</price>
             <reservationId>1</reservationId>
             <reservationStatus>PENDING</reservationStatus>
+            <roomId>1</roomId>
         </reservationsList>
     </customersList>
     <roomsList>

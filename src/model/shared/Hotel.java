@@ -8,29 +8,75 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import model.shared.Bed.BedSize;
+import model.shared.Customer.Gender;
 import model.shared.Customer.IdentificationType;
 import model.shared.Room.RoomLocation;
 import model.shared.Room.RoomSize;
 
 @XmlRootElement(name = "Hotel")
 public class Hotel {
-	@XmlElement(name = "customersList")
 	private ArrayList <Customer> customersList = new ArrayList <Customer>(); 
 	
-	@XmlElement(name = "roomsList")
 	private ArrayList <Room> roomsList = new ArrayList <Room>();
 	
-	@XmlElement(name = "suitesList")
 	private ArrayList <Suite> suitesList = new ArrayList <Suite>();
 	
 	// private ArrayList <Reservation> reservationsList = new ArrayList <Reservation>();
 	// private ArrayList <Bill> billsList = new ArrayList <Bill>();
 	
 	public Hotel() {
-		defaultHotel();
+		
+	}
+	
+	public void addCustomer (Customer custumer){
+		this.customersList.add(custumer);
+	}
+	
+	public Customer getCustomerById (int customerId){
+		for (Customer custumer : customersList) {
+			if (custumer.getCustomerId() == customerId) {
+				return custumer;
+			}
+		}
+		return null;
+	}
+	
+	public boolean isCustomerExists (int customerId) {
+		for (Customer custumer : customersList) {
+			if (custumer.getCustomerId() == customerId) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	
+
+	public ArrayList<Customer> getCustomersList() {
+		return customersList;
 	}
 
-	private void defaultHotel() {
+	public void setCustomersList(ArrayList<Customer> customersList) {
+		this.customersList = customersList;
+	}
+
+	public ArrayList<Room> getRoomsList() {
+		return roomsList;
+	}
+
+	public void setRoomsList(ArrayList<Room> roomsList) {
+		this.roomsList = roomsList;
+	}
+
+	public ArrayList<Suite> getSuitesList() {
+		return suitesList;
+	}
+
+	public void setSuitesList(ArrayList<Suite> suitesList) {
+		this.suitesList = suitesList;
+	}
+
+	public void defaultHotel() {
 		Bed  bed1R1 = new Bed(BedSize.SINGLE);
 		Room R1 = new Room (new ArrayList<Bed>(Arrays.asList(bed1R1)), RoomLocation.VAXJO, 1, RoomSize.MEDIUM, false, true,
 				true, false, false);
@@ -56,18 +102,18 @@ public class Hotel {
 				true, false, false);
 		Suite suite2 = new Suite(4, new ArrayList<Room>(Arrays.asList(S1Ra, S1Rb)));
 		
-		Customer customer1 = new Customer("Alaa Al", LocalDate.of(1982, 01, 01), "076970", IdentificationType.PASS_NUMBER, "1111111", "Vaxjo", "Syr",
+		Customer customer1 = new Customer("Alaa Al", LocalDate.of(1982, 01, 01), Gender.MALE, "076970", IdentificationType.PASS_NUMBER, "1111111", "Vaxjo", "Syr",
 				"a@a.a", "student");
 		
-		Customer customer2 = new Customer("Basem mo", LocalDate.of(1992, 05, 05), "0732323", IdentificationType.PASS_NUMBER, "2222222", "Vaxjo", "Syr",
+		Customer customer2 = new Customer("Basem mo", LocalDate.of(1992, 05, 05), Gender.MALE,"0732323", IdentificationType.PASS_NUMBER, "2222222", "Vaxjo", "Syr",
 				"b@b.b", "student");
 		
-		Customer customer3 = new Customer("Paul", LocalDate.of(1987, 10, 10), "0732323", IdentificationType.PASS_NUMBER, "3333333", "Vaxjo", "???",
+		Customer customer3 = new Customer("Paul", LocalDate.of(1987, 10, 10), Gender.MALE,"0732323", IdentificationType.PASS_NUMBER, "3333333", "Vaxjo", "???",
 				"p@p.p", "student");
 		
-		customer1.addReservation(new ArrayList<Room>(Arrays.asList(R1)), 0, "Al reservation");
-		customer2.addReservation(new ArrayList<Room>(Arrays.asList(R2)), 0, "Ba reservation");
-		customer3.addReservation(new ArrayList<Room>(Arrays.asList(suite1)), 0, "Pa reservation");
+		customer1.addReservation(R1.getRoomId(), R1.getRate(), 0, "Al reservation");
+		customer2.addReservation(R2.getRoomId(), R2.getRate(), 0, "Ba reservation");
+		customer3.addReservation(suite1.getRoomId(), suite1.getRate(), 0, "Pa reservation");
 		
 		customersList.addAll(new ArrayList<Customer> (Arrays.asList(customer1, customer1, customer1)));
 		roomsList.addAll(new ArrayList<Room> (Arrays.asList(R1, R2)));

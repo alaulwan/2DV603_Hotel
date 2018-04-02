@@ -4,11 +4,11 @@ import java.util.ArrayList;
 
 import model.shared.Reservation;
 
-public class roomIdReservationsFilter implements ReservationsFilter {
-	
+public class RoomIdReservationsFilter implements ReservationsFilter {
+	private static final long serialVersionUID = 1L;
 	private int roomId;
 	
-	public roomIdReservationsFilter(int customerId) {
+	public RoomIdReservationsFilter(int customerId) {
 		this.roomId = customerId;
 	}
 	

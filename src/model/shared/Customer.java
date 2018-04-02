@@ -1,10 +1,12 @@
 package model.shared;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import model.shared.Reservation.ReservationStatus;
 
-public class Customer {
+public class Customer implements Serializable{
+	private static final long serialVersionUID = 1L;
 	public enum IdentificationType { PERSONAL_NUMBER, PASS_NUMBER }
 	
 	private static int count = 0;

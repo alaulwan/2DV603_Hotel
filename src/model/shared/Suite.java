@@ -3,7 +3,7 @@ package model.shared;
 import java.util.ArrayList;
 
 public class Suite extends Room {
-	
+	private static final long serialVersionUID = 1L;
 	private ArrayList<Room> roomsList = new ArrayList<Room>();
 	
 	public Suite() {

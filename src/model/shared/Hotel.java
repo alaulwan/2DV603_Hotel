@@ -1,10 +1,9 @@
 package model.shared;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
-
-import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import model.shared.Bed.BedSize;
@@ -14,7 +13,8 @@ import model.shared.Room.RoomLocation;
 import model.shared.Room.RoomSize;
 
 @XmlRootElement(name = "Hotel")
-public class Hotel {
+public class Hotel implements Serializable{
+	private static final long serialVersionUID = 1L;
 	private ArrayList <Customer> customersList = new ArrayList <Customer>(); 
 	
 	private ArrayList <Room> roomsList = new ArrayList <Room>();
@@ -74,6 +74,28 @@ public class Hotel {
 
 	public void setSuitesList(ArrayList<Suite> suitesList) {
 		this.suitesList = suitesList;
+	}
+	
+	public ArrayList<Room> getRoomsAndSuitesList() {
+		ArrayList<Room> allRoomsAndSuits = new ArrayList<Room> ();
+		allRoomsAndSuits.addAll(roomsList);
+		allRoomsAndSuits.addAll(suitesList);
+		return allRoomsAndSuits;
+	}
+	
+	public ArrayList<Reservation> getReservationsList() {
+		ArrayList<Reservation> reservationsList = new ArrayList<Reservation> ();
+		for (Customer c : customersList)
+			reservationsList.addAll(c.getReservationsList());
+		return reservationsList;
+	}
+	
+	public ArrayList<Bill> getBillsList() {
+		ArrayList<Reservation> reservationsList = getReservationsList();
+		ArrayList<Bill> billsList = new ArrayList<Bill>();
+		for (Reservation r : reservationsList)
+			billsList.add(r.getBill());
+		return billsList;
 	}
 
 	public void defaultHotel() {

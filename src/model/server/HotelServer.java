@@ -8,16 +8,18 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 
+import org.json.JSONException;
+
 import com.google.gson.*;
 
 public class HotelServer {
-	public HotelDAO DAO = new HotelDAO();;
-	private Hotel hotel = new Hotel();
+	public HotelDAO DAO = new HotelDAO();
+	public static Hotel hotel = new Hotel();
 	
 	public static final int BUFSIZE = 1024;
 	public static final int MYPORT = 4444;
 	
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws IOException, JSONException {
 		HotelServer hotelServer = new HotelServer();
 		hotelServer.test();
 		
@@ -29,19 +31,16 @@ public class HotelServer {
 		 {
 			/* Create Socket and wait for a client */
 			Socket socket = serverSocket.accept();
-
 			/* Create a thread for each client */
 			HotelServerThread httpServerThread = new HotelServerThread(socket, BUFSIZE);
 			httpServerThread.start();
+			
 		}
 	}
 	
 	public void load () {
 		hotel = DAO.xmlLoad ();
 	}
-	
-	
-	
 	
 	public void test (){
 		hotel.defaultHotel();
@@ -65,7 +64,6 @@ public class HotelServer {
 		@SuppressWarnings("unchecked")
 		ArrayList<Customer> cl = gson.fromJson(jArr, ArrayList.class);
 		String jArr2 = gson.toJson(hotel3.getCustomersList());
-		System.out.println(jArr);
 		System.out.println(jArr.equals(jArr2));
 	}
 	

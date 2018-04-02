@@ -1,9 +1,11 @@
 package model.shared;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import model.shared.Bed.BedSize;
 
-public class Room {
+public class Room implements Serializable {
+	private static final long serialVersionUID = 1L;
 	private static int count = 0;
 	public enum RoomSize { SMALL, MEDIUM, BIG }
 	public enum RoomLocation { VAXJO, KALMAR }

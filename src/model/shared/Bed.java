@@ -1,7 +1,9 @@
 package model.shared;
 
-public class Bed {
+import java.io.Serializable;
 
+public class Bed implements Serializable{
+	private static final long serialVersionUID = 1L;
 	public enum BedSize { SINGLE, DOUBLE }
 	private static int count = 0;
 	private int bedId;

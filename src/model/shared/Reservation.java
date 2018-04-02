@@ -1,8 +1,10 @@
 package model.shared;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Reservation {
+public class Reservation implements Serializable{
+	private static final long serialVersionUID = 1L;
 	private static int count = 0;
 	private int reservationId;
 	public enum ReservationStatus { PENDING, CHECKED_IN, CHECKED_OUT, CANCELED }

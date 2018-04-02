@@ -1,6 +1,9 @@
 package model.shared;
 
-public class Service {
+import java.io.Serializable;
+
+public class Service implements Serializable{
+	private static final long serialVersionUID = 1L;
 	public enum ServiceType { RESERVATION, ITEM, CLEANING }
 	
 	private static int count = 0;

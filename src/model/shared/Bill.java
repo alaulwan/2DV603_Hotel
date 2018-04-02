@@ -1,10 +1,12 @@
 package model.shared;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import model.shared.Service.ServiceType;
 
-public class Bill {
+public class Bill implements Serializable{
+	private static final long serialVersionUID = 1L;
 	private int billId;
 	private int customerId;
 	private String customerName;

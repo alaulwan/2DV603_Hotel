@@ -7,7 +7,8 @@ import model.shared.Reservation;
 import model.shared.Reservation.ReservationStatus;
 import model.shared.Room;
 
-public class ChekInOutDateRoomsFilter implements roomsFilter {
+public class ChekInOutDateRoomsFilter implements RoomsFilter {
+	private static final long serialVersionUID = 1L;
 	private LocalDate checkInDate;
 	private LocalDate checkOutDate;
 	

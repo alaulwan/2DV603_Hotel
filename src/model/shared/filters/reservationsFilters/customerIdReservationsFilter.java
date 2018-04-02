@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import model.shared.Reservation;
 
 public class customerIdReservationsFilter implements ReservationsFilter {
-	
+	private static final long serialVersionUID = 1L;
 	private int customerId;
 	
 	public customerIdReservationsFilter(int customerId) {

@@ -97,6 +97,16 @@ public class Hotel implements Serializable{
 			billsList.add(r.getBill());
 		return billsList;
 	}
+	
+	public Room getRoomById(int roomId) {
+		for (Room r : roomsList)
+			if (r.getRoomId() == roomId)
+				return r;
+		for (Suite s : suitesList)
+			if (s.getRoomId() == roomId)
+				return s;
+		return null;
+	}
 
 	public void defaultHotel() {
 		Bed  bed1R1 = new Bed(BedSize.SINGLE);
@@ -133,12 +143,14 @@ public class Hotel implements Serializable{
 		Customer customer3 = new Customer("Paul", LocalDate.of(1987, 10, 10), Gender.MALE,"0732323", IdentificationType.PASS_NUMBER, "3333333", "Vaxjo", "???",
 				"p@p.p", "student");
 		
-		customer1.addReservation(R1.getRoomId(), R1.getRate(), 0, "Al reservation");
-		customer2.addReservation(R2.getRoomId(), R2.getRate(), 0, "Ba reservation");
-		customer3.addReservation(suite1.getRoomId(), suite1.getRate(), 0, "Pa reservation");
+		customer1.addReservation(R1.getRoomId(), R1.getRoomNum(), R1.getRoomLocation(),R1.getRate(), 0, "Al reservation");
+		customer2.addReservation(R2.getRoomId(), R2.getRoomNum(), R2.getRoomLocation(), R2.getRate(), 0, "Ba reservation");
+		customer3.addReservation(suite1.getRoomId(), suite1.getRoomNum(), suite1.getRoomLocation(), suite1.getRate(), 0, "Pa reservation");
 		
 		customersList.addAll(new ArrayList<Customer> (Arrays.asList(customer1, customer1, customer1)));
 		roomsList.addAll(new ArrayList<Room> (Arrays.asList(R1, R2)));
 		suitesList.addAll(new ArrayList<Suite> (Arrays.asList(suite1, suite2)));
 	}
+
+	
 }

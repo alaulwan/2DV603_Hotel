@@ -1,21 +1,20 @@
 package model.shared.filters.reservationsFilters;
 
 import java.util.ArrayList;
-
 import model.shared.Reservation;
 
-public class RoomIdReservationsFilter implements ReservationsFilter {
+public class RoomNumReservationsFilter implements ReservationsFilter {
 	private static final long serialVersionUID = 1L;
-	private int roomId;
+	private int roomNum;
 	
-	public RoomIdReservationsFilter(int customerId) {
-		this.roomId = customerId;
+	public RoomNumReservationsFilter(int roomNum) {
+		this.roomNum = roomNum;
 	}
 	
 	@Override
 	public ArrayList<Reservation> applyReservationsFilter(ArrayList<Reservation> reservationsList) {
 		for (int i=0; i< reservationsList.size(); i++) {
-			if(reservationsList.get(i).getRoomId() != roomId) {
+			if(reservationsList.get(i).getRoomNumber() != roomNum) {
 				reservationsList.remove(i);
 				i--;
 			}

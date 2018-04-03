@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import model.shared.Reservation.ReservationStatus;
+import model.shared.Room.RoomLocation;
 
 public class Customer implements Serializable{
 	private static final long serialVersionUID = 1L;
@@ -44,8 +45,8 @@ public class Customer implements Serializable{
 		this.description = description;
 	}
 	
-	public void addReservation(int roomId, float roomPrice, float discount, String description) {
-		Reservation reservation = new Reservation(ReservationStatus.PENDING, this.getCustomerId(), roomId, roomPrice, discount, description );
+	public void addReservation(int roomId, int roomNumber, RoomLocation roomLocation, float roomPrice, float discount, String description) {
+		Reservation reservation = new Reservation(ReservationStatus.PENDING, this.getCustomerId(), roomId, roomNumber, roomLocation, roomPrice, discount, description );
 		reservationsList.add(reservation);
 	}
 	

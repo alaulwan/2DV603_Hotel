@@ -31,6 +31,7 @@ public class ChekInOutDateRoomsFilter implements RoomsFilter {
 				if (roomList.get(i).getRoomId() == roomId) {
 					roomList.remove(i);
 					i--;
+					break;
 				}	
 			}
 		}

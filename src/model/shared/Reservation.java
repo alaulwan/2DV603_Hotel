@@ -3,6 +3,8 @@ package model.shared;
 import java.io.Serializable;
 import java.time.LocalDate;
 
+import model.shared.Room.RoomLocation;
+
 public class Reservation implements Serializable{
 	private static final long serialVersionUID = 1L;
 	private static int count = 0;
@@ -16,16 +18,21 @@ public class Reservation implements Serializable{
 	private float price;
 	private Bill bill;
 	private int roomId;
+	private int roomNumber;
+	private RoomLocation roomLocation;
+	
 	
 	public Reservation() {
 		
 	}
 	
-	public Reservation(ReservationStatus reservationStatus, int customerId, int roomId, float roomPrice, float discount, String description ) {
+	public Reservation(ReservationStatus reservationStatus, int customerId, int roomId, int roomNumber, RoomLocation roomLocation, float roomPrice, float discount, String description ) {
 		this.setReservationId(++count);
 		this.setReservationStatus(reservationStatus);
 		this.setCustomerId(customerId);
 		this.setRoomId(roomId);
+		this.setRoomNumber(roomNumber);
+		this.setRoomLocation(roomLocation);
 		this.setPrice(roomPrice);
 		this.setBill(new Bill(reservationId, this.customerId, this.customerName, price, discount, ""));
 	}
@@ -115,6 +122,22 @@ public class Reservation implements Serializable{
 
 	public void setRoomId(int roomId) {
 		this.roomId = roomId;
+	}
+
+	public int getRoomNumber() {
+		return roomNumber;
+	}
+
+	public void setRoomNumber(int roomNumber) {
+		this.roomNumber = roomNumber;
+	}
+
+	public RoomLocation getRoomLocation() {
+		return roomLocation;
+	}
+
+	public void setRoomLocation(RoomLocation roomLocation) {
+		this.roomLocation = roomLocation;
 	}
 
 	public Bill getBill() {

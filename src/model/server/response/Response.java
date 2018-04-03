@@ -4,11 +4,12 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.io.Serializable;
-import java.util.ArrayList;
-
-import model.shared.Room;
 
 public class Response implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	public String textTSend="";
 	public Object object;
 	

@@ -30,6 +30,8 @@
             <reservationId>1</reservationId>
             <reservationStatus>PENDING</reservationStatus>
             <roomId>1</roomId>
+            <roomLocation>VAXJO</roomLocation>
+            <roomNumber>1</roomNumber>
         </reservationsList>
     </customersList>
     <customersList>
@@ -62,6 +64,8 @@
             <reservationId>1</reservationId>
             <reservationStatus>PENDING</reservationStatus>
             <roomId>1</roomId>
+            <roomLocation>VAXJO</roomLocation>
+            <roomNumber>1</roomNumber>
         </reservationsList>
     </customersList>
     <customersList>
@@ -94,6 +98,8 @@
             <reservationId>1</reservationId>
             <reservationStatus>PENDING</reservationStatus>
             <roomId>1</roomId>
+            <roomLocation>VAXJO</roomLocation>
+            <roomNumber>1</roomNumber>
         </reservationsList>
     </customersList>
     <roomsList>

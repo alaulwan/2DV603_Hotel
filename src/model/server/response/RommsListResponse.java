@@ -7,6 +7,10 @@ import model.shared.Room;
 import model.shared.filters.roomsFilters.RoomsFilter;
 
 public class RommsListResponse extends Response {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	public ArrayList <Room> roomList;
 	
 	public RommsListResponse (ArrayList <RoomsFilter> roomsFilterList) {

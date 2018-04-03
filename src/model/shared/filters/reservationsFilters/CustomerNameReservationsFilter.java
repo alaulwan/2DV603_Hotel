@@ -3,23 +3,24 @@ package model.shared.filters.reservationsFilters;
 import java.util.ArrayList;
 import model.shared.Reservation;
 
-public class customerIdReservationsFilter implements ReservationsFilter {
+public class CustomerNameReservationsFilter implements ReservationsFilter {
 	private static final long serialVersionUID = 1L;
-	private int customerId;
+	private String [] customerName;
 	
-	public customerIdReservationsFilter(int customerId) {
-		this.customerId = customerId;
+	public CustomerNameReservationsFilter(String customerName) {
+		this.customerName = customerName.split("\\s+");
 	}
 	
 	@Override
 	public ArrayList<Reservation> applyReservationsFilter(ArrayList<Reservation> reservationsList) {
 		for (int i=0; i< reservationsList.size(); i++) {
-			if(reservationsList.get(i).getCustomerId() != customerId) {
-				reservationsList.remove(i);
-				i--;
+			for (String name : customerName) {
+				if(!reservationsList.get(i).getCustomerName().contains(name)) {
+					reservationsList.remove(i);
+					i--;
+				}
 			}
 		}
 		return reservationsList;
 	}
-
 }

@@ -7,9 +7,6 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
-
-import org.json.JSONException;
-
 import com.google.gson.*;
 
 public class HotelServer {
@@ -19,7 +16,7 @@ public class HotelServer {
 	public static final int BUFSIZE = 1024;
 	public static final int MYPORT = 4444;
 	
-	public static void main(String[] args) throws IOException, JSONException {
+	public static void main(String[] args) throws IOException {
 		HotelServer hotelServer = new HotelServer();
 		hotelServer.test();
 		

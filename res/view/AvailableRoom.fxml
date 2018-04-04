@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<HBox xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.client.AvailableRoomController">
+   <children>
+      <GridPane fx:id="roomsGrid" alignment="CENTER" hgap="10.0" prefHeight="700.0" prefWidth="600.0" vgap="10.0">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <padding>
+            <Insets bottom="10.0" left="10.0" top="20.0" />
+         </padding>
+         <children>
+            <Pane id="Klm_room100_Pane" fx:id="roomPin" style="-fx-background-color: Green;">
+               <children>
+                  <Label fx:id="roomNumber" layoutX="30.0" layoutY="60.0" text="Room 100" />
+                  <Label id="Vxo_room101_StatusLbl" fx:id="status" layoutX="33.0" layoutY="36.0" text="Available" />
+               </children>
+            </Pane>
+         </children>
+      </GridPane>
+      <GridPane hgap="20.0" prefHeight="700.0" prefWidth="500.0" vgap="20.0">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="216.8887939453125" minWidth="10.0" prefWidth="199.111083984375" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="324.44451904296875" minWidth="10.0" prefWidth="200.888916015625" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints maxHeight="225.40000762939454" minHeight="10.0" prefHeight="145.40000762939454" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="289.60004272460935" minHeight="10.0" prefHeight="203.4" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="179.99997558593753" minHeight="10.0" prefHeight="104.20000000000005" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <VBox prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Label text="Rooms">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <GridPane alignment="CENTER_LEFT" style="-: Black;" VBox.vgrow="ALWAYS">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="176.111083984375" minWidth="10.0" prefWidth="150.0" />
+                      <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="98.7777099609375" minWidth="10.0" prefWidth="50.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Label text="Total: " />
+                        <Label id="Vxo_totalRooms_Lbl" fx:id="totalRoomCounter" layoutX="10.0" layoutY="23.0" text="0" GridPane.columnIndex="1" />
+                        <Label text="Occupied:" GridPane.rowIndex="1" />
+                        <Label id="Vxo_occupiedRooms_Lbl" fx:id="occupiedRoomCounter" layoutX="115.0" layoutY="23.0" text="0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Label text="Available: " GridPane.rowIndex="2" />
+                        <Label id="Vxo_availableRooms_Lbl" fx:id="availableRoomCounter" layoutX="10.0" layoutY="23.0" text="0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                     </children>
+                  </GridPane>
+               </children>
+            </VBox>
+            <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
+               <children>
+                  <Label text="Guests: ">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <GridPane alignment="CENTER_LEFT" style="-: Black;" VBox.vgrow="ALWAYS">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="150.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="50.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <Label text="Total: " />
+                        <Label id="Vxo_totalGuests_Lbl" fx:id="totalGuestCounter" layoutX="10.0" layoutY="23.0" text="0" GridPane.columnIndex="1" />
+                        <Label text="Male: " GridPane.rowIndex="1" />
+                        <Label id="Vxo_maleGuests_Lbl" fx:id="maleGuestCounter" layoutX="115.0" layoutY="23.0" text="0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Label text="Female: " GridPane.rowIndex="2" />
+                        <Label id="Vxo_femaleGuests_Lbl" fx:id="femaleGuestCounter" layoutX="10.0" layoutY="23.0" text="0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                     </children>
+                  </GridPane>
+               </children>
+            </VBox>
+            <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <children>
+                  <Label text="Checking In / Out">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <GridPane alignment="CENTER_LEFT" prefHeight="115.0" prefWidth="222.0" style="-: Black;">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="150.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="50.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <Label text="Check in Today: " />
+                        <Label id="Vxo_CheckInToday_Lbl" fx:id="checkInCounter" layoutX="10.0" layoutY="23.0" text="0" GridPane.columnIndex="1" />
+                        <Label text="Check out Today: " GridPane.rowIndex="1" />
+                        <Label id="Vxo_CheckOutToday_Lbl" fx:id="checkOutCounter" layoutX="115.0" layoutY="23.0" text="0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                     </children>
+                  </GridPane>
+               </children>
+            </VBox>
+            <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnSpan="2" GridPane.rowIndex="2">
+               <children>
+                  <Label text="Legend: ">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <GridPane alignment="CENTER" prefHeight="52.0" prefWidth="361.0" VBox.vgrow="ALWAYS">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Pane prefHeight="14.0" prefWidth="360.0" style="-fx-background-color: Green;" />
+                        <Label alignment="CENTER" contentDisplay="CENTER" text="Available" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
+                        <Pane layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: Red;" GridPane.rowIndex="1" />
+                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="189.0" layoutY="15.0" text="Occupied" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
+                        <Pane layoutX="10.0" layoutY="62.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: Orange;" GridPane.rowIndex="2" />
+                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="202.0" layoutY="66.0" text="Check Out" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
+                     </children>
+                  </GridPane>
+               </children>
+            </VBox>
+            <VBox prefHeight="213.0" prefWidth="170.0" GridPane.rowIndex="1">
+               <children>
+                  <Label text="Available Beds">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <GridPane alignment="CENTER_LEFT" prefHeight="114.0" prefWidth="218.0" style="-: Black;">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="150.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="50.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <Label text="Single:" />
+                        <Label id="Klm_CheckInToday_Lbl" fx:id="singleBedCounter" layoutX="10.0" layoutY="23.0" text="0" GridPane.columnIndex="1" />
+                        <Label text="Double:" GridPane.rowIndex="1" />
+                        <Label id="Klm_CheckOutToday_Lbl" fx:id="doubleBedCounter" layoutX="115.0" layoutY="23.0" text="0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                     </children>
+                  </GridPane>
+               </children>
+            </VBox>
+         </children>
+         <padding>
+            <Insets bottom="10.0" left="20.0" right="20.0" top="20.0" />
+         </padding>
+      </GridPane>
+   </children>
+</HBox>

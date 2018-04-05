@@ -4,12 +4,15 @@ import javafx.scene.Scene;
 import javafx.scene.control.ChoiceDialog;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import model.client.HotelClient;
+import model.client.ServerAPI;
+import model.shared.Hotel;
 import model.shared.Room.RoomLocation;
 import view.client.RootLayoutController;
 
 public class HotelMain extends Application{
 	
-	public RoomLocation location ;
+	private HotelClient hotelClient = new HotelClient();
 	
 	public static void main(String[] args) {
 		launch(args);
@@ -27,13 +30,13 @@ public class HotelMain extends Application{
 		if (! result.isPresent()) {
 			System.exit(0);
 		} else {
-			location = result.get() ;
+			ServerAPI.location = result.get() ;
 		}
 		
 		RootLayoutController root = new RootLayoutController();
 		
 		
-		Scene mainScene = new Scene(root.showWindow());
+		Scene mainScene = new Scene(root.getParentPane());
 		primaryStage.setOnCloseRequest(onExitCloseEverything -> System.exit(0));
 		primaryStage.setScene(mainScene);
 		

@@ -132,7 +132,7 @@ public class Hotel implements Serializable{
 		Bed  bed2S2Rb = new Bed(BedSize.SINGLE);
 		Room S2Rb = new Room (new ArrayList<Bed>(Arrays.asList(bed1S2Rb, bed2S2Rb)), RoomLocation.VAXJO, 0, RoomSize.MEDIUM, false, true,
 				true, false, false);
-		Suite suite2 = new Suite(4, new ArrayList<Room>(Arrays.asList(S1Ra, S1Rb)));
+		Suite suite2 = new Suite(4, new ArrayList<Room>(Arrays.asList(S2Ra, S2Rb)));
 		
 		Customer customer1 = new Customer("Alaa Al", LocalDate.of(1982, 01, 01), Gender.MALE, "076970", IdentificationType.PASS_NUMBER, "1111111", "Vaxjo", "Syr",
 				"a@a.a", "student");

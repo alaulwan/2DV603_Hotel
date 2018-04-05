@@ -3,16 +3,17 @@ package model.client;
 import java.util.ArrayList;
 
 import model.shared.Room;
+import model.shared.Room.RoomLocation;
 import model.shared.filters.roomsFilters.MinCabacityRoomsFilter;
 import model.shared.filters.roomsFilters.RoomsFilter;
 
 public class HotelClient {
-	private ArrayList <Room> roomList;
-	private ServerAPI API;
+	private static ArrayList <Room> roomList;
 	
-	public static void main(String[] args) {
-		HotelClient hClient = new HotelClient();
-		hClient.getAllRooms();
+	public static ServerAPI API = new ServerAPI();
+	
+	public HotelClient() {
+		//getAllRooms();
 	}
 	
 	private void getAllRooms() {
@@ -23,8 +24,4 @@ public class HotelClient {
 		System.out.println(roomList.size());
 	}
 
-	public HotelClient () {
-		API = new ServerAPI();
-		
-	}
 }

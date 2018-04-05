@@ -1,7 +1,11 @@
 package view.client;
 
-import javafx.fxml.FXML;
+import java.io.File;
+import java.io.IOException;
 
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 
 import javafx.scene.control.Label;
@@ -57,5 +61,15 @@ public class SearchRoomController {
 	private Button nextButton;
 	@FXML
 	private Button cancelButton;
+	
+	private final String SEARCH_ROOM_LAYOUT = "res/view/SearchRoom.fxml";
+	
+	public Parent getParentPane() throws IOException {
+		FXMLLoader loader = new FXMLLoader();
+		loader.setController(this);
+		loader.setLocation(new File(SEARCH_ROOM_LAYOUT).toURI().toURL());
+		Parent rootLayout = (Parent) loader.load();
+		return rootLayout;
+	}
 
 }

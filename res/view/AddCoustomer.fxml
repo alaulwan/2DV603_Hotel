@@ -11,7 +11,7 @@
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="645.0" prefWidth="612.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="library.assistant.ui.addbook.BookAddController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="645.0" prefWidth="612.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Button fx:id="cancelButton" layoutX="460.0" layoutY="582.0" mnemonicParsing="false" text="Cancel" />
       <Button fx:id="saveButton" layoutX="533.0" layoutY="582.0" mnemonicParsing="false" text="Save" />

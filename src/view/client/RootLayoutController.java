@@ -40,20 +40,21 @@ public class RootLayoutController {
 	private Button exitButton;
 
 	private final String ROOT_LAYOUT = "res/view/RootLayout.fxml";
-	private final String AVAILABLE_ROOM_LAYOUT = "res/view/AvailableRoom.fxml";
-	private final String RESERVATION_LIST_LAYOUT = "res/view/ReservationsList.fxml";
-	private final String CUSTOMER_LIST_LAYOUT = "res/view/CustomerList.fxml";
-	private final String SEARCH_ROOM_LAYOUT = "res/view/SearchRoom.fxml";
+	private AvailableRoomController availableRoomController = new AvailableRoomController();
+	private ReservationsListController reservationsListController = new ReservationsListController();
+	private CustomerListController customerListController = new CustomerListController();
+	private SearchRoomController searchRoomController = new SearchRoomController();
+	
 
 	@FXML
 	public void initialize() throws IOException {
-		availableRoomsTab.setContent(loadLayout(AVAILABLE_ROOM_LAYOUT));
-		reservationsListTab.setContent(loadLayout(RESERVATION_LIST_LAYOUT));
-		customerListTab.setContent(loadLayout(CUSTOMER_LIST_LAYOUT));
+		availableRoomsTab.setContent(availableRoomController.getParentPane());
+		reservationsListTab.setContent(reservationsListController.getParentPane());
+		customerListTab.setContent(customerListController.getParentPane());
 
 		newReservationButton.setOnMouseClicked(createEvent -> {
 			try {
-				Scene mainScene = new Scene(loadLayout(SEARCH_ROOM_LAYOUT));
+				Scene mainScene = new Scene(searchRoomController.getParentPane());
 				Stage stage = new Stage();
 				stage.setScene(mainScene);
 				stage.setTitle("Create a new timeline");
@@ -81,11 +82,11 @@ public class RootLayoutController {
 	
 	}
 
-	public Parent showWindow() throws IOException {
+	public Parent getParentPane() throws IOException {
 		FXMLLoader loader = new FXMLLoader();
 		loader.setController(this);
 		loader.setLocation(new File(ROOT_LAYOUT).toURI().toURL());
-		Parent rootLayout = loader.load();
+		Parent rootLayout = (Parent) loader.load();
 		return rootLayout;
 	}
 

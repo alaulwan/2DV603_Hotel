@@ -206,18 +206,22 @@
         <available>false</available>
         <balcony>true</balcony>
         <bedsList>
-            <bedId>3</bedId>
+            <bedId>5</bedId>
             <bedSize>DOUBLE</bedSize>
         </bedsList>
         <bedsList>
-            <bedId>4</bedId>
+            <bedId>6</bedId>
             <bedSize>SINGLE</bedSize>
         </bedsList>
-        <maxGuestCapacity>6</maxGuestCapacity>
+        <bedsList>
+            <bedId>7</bedId>
+            <bedSize>SINGLE</bedSize>
+        </bedsList>
+        <maxGuestCapacity>8</maxGuestCapacity>
         <qualityLev>6</qualityLev>
         <rate>90.0</rate>
         <roomId>8</roomId>
-        <roomLocation>KALMAR</roomLocation>
+        <roomLocation>VAXJO</roomLocation>
         <roomNum>4</roomNum>
         <roomSize>MEDIUM</roomSize>
         <smoking>false</smoking>
@@ -228,14 +232,14 @@
             <available>false</available>
             <balcony>true</balcony>
             <bedsList>
-                <bedId>3</bedId>
+                <bedId>5</bedId>
                 <bedSize>DOUBLE</bedSize>
             </bedsList>
             <maxGuestCapacity>2</maxGuestCapacity>
             <qualityLev>6</qualityLev>
             <rate>60.0</rate>
-            <roomId>3</roomId>
-            <roomLocation>KALMAR</roomLocation>
+            <roomId>6</roomId>
+            <roomLocation>VAXJO</roomLocation>
             <roomNum>0</roomNum>
             <roomSize>MEDIUM</roomSize>
             <smoking>false</smoking>
@@ -247,14 +251,18 @@
             <available>false</available>
             <balcony>true</balcony>
             <bedsList>
-                <bedId>4</bedId>
+                <bedId>6</bedId>
                 <bedSize>SINGLE</bedSize>
             </bedsList>
-            <maxGuestCapacity>1</maxGuestCapacity>
+            <bedsList>
+                <bedId>7</bedId>
+                <bedSize>SINGLE</bedSize>
+            </bedsList>
+            <maxGuestCapacity>2</maxGuestCapacity>
             <qualityLev>6</qualityLev>
             <rate>60.0</rate>
-            <roomId>4</roomId>
-            <roomLocation>KALMAR</roomLocation>
+            <roomId>7</roomId>
+            <roomLocation>VAXJO</roomLocation>
             <roomNum>0</roomNum>
             <roomSize>MEDIUM</roomSize>
             <smoking>false</smoking>

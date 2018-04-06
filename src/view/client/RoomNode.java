@@ -39,7 +39,7 @@ public class RoomNode extends StackPane {
 			rectangle = new Rectangle(125, 125, Color.LIGHTGREEN);
 			break;
 		case CHEKIN_TODAY:
-			rectangle = new Rectangle(125, 125, Color.LIGHTGREEN);
+			rectangle = new Rectangle(125, 125, Color.ORANGE);
 			break;
 		case CHECKOUT_TODAY:
 			rectangle = new Rectangle(125, 125, Color.SKYBLUE);

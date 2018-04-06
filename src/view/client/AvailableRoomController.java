@@ -56,9 +56,9 @@ public class AvailableRoomController implements Controller {
 			roomsList = ServerAPI.getRoomsList(roomsFilterList);
 		}
 		for (int i=0; i< roomsList.size(); i++) {
-			StackPane sP = new StackPane ();
-			sP.setStyle("-fx-background-color: " + "RED");
-			roomsGrid.add(sP, i%4 , i/4);
+			RoomNode rM = new RoomNode (roomsList.get(i)) ;
+			System.out.println(roomsList.get(i).getRoomNum());
+			roomsGrid.add(rM, i%4 , i/4);
 		}
 		
 	}

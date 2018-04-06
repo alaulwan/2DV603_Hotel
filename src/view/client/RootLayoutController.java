@@ -57,7 +57,7 @@ public class RootLayoutController {
 				Scene mainScene = new Scene(searchRoomController.getParentPane());
 				Stage stage = new Stage();
 				stage.setScene(mainScene);
-				stage.setTitle("Create a new timeline");
+				stage.setTitle("Search for a room...");
 				stage.showAndWait();
 			} catch (IOException e) {
 				e.printStackTrace();

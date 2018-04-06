@@ -147,9 +147,18 @@ public class Hotel implements Serializable{
 		customer2.addReservation(R2.getRoomId(), R2.getRoomNum(), R2.getRoomLocation(), R2.getRate(), 0, "Ba reservation");
 		customer3.addReservation(suite1.getRoomId(), suite1.getRoomNum(), suite1.getRoomLocation(), suite1.getRate(), 0, "Pa reservation");
 		
+		Room R3 = new Room (new ArrayList<Bed>(Arrays.asList(bed1R1)), RoomLocation.VAXJO, 3, RoomSize.MEDIUM, false, true,
+				true, false, false);
+		Room R4 = new Room (new ArrayList<Bed>(Arrays.asList(bed1R1)), RoomLocation.VAXJO, 4, RoomSize.MEDIUM, false, true,
+				true, false, false);
+		Room R5 = new Room (new ArrayList<Bed>(Arrays.asList(bed1R1)), RoomLocation.VAXJO, 5, RoomSize.MEDIUM, false, true,
+				true, false, false);
+		Room R6 = new Room (new ArrayList<Bed>(Arrays.asList(bed1R1)), RoomLocation.VAXJO, 6, RoomSize.MEDIUM, false, true,
+				true, false, false);
 		customersList.addAll(new ArrayList<Customer> (Arrays.asList(customer1, customer1, customer1)));
-		roomsList.addAll(new ArrayList<Room> (Arrays.asList(R1, R2)));
+		roomsList.addAll(new ArrayList<Room> (Arrays.asList(R1, R2,R3,R4,R5,R6)));
 		suitesList.addAll(new ArrayList<Suite> (Arrays.asList(suite1, suite2)));
+		R1.setAvailable(true);
 	}
 
 	

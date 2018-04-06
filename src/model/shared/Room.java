@@ -9,6 +9,8 @@ public class Room implements Serializable {
 	private static int count = 0;
 	public enum RoomSize { SMALL, MEDIUM, BIG }
 	public enum RoomLocation { VAXJO, KALMAR }
+	public enum RoomStatus { AVAILABLE, OCCUPIED,CHEKIN_TODAY, CHECKOUT_TODAY }
+	private RoomStatus RoomStatus;
 	private int roomId;
 	private RoomLocation roomLocation;
 	private int roomNum;
@@ -23,7 +25,6 @@ public class Room implements Serializable {
 	private boolean view;
 	private boolean smoking;
 	
-	private boolean available;
 	
 	private ArrayList<Bed> bedsList = new ArrayList<Bed>();
 	
@@ -58,6 +59,14 @@ public class Room implements Serializable {
 		this.roomId = roomId;
 	}
 	
+	public RoomStatus getRoomStatus() {
+		return RoomStatus;
+	}
+
+	public void setRoomStatus(RoomStatus roomStatus) {
+		RoomStatus = roomStatus;
+	}
+
 	public RoomLocation getRoomLocation() {
 		return roomLocation;
 	}
@@ -183,14 +192,6 @@ public class Room implements Serializable {
 
 	public void setSmoking(boolean smoking) {
 		this.smoking = smoking;
-	}
-
-	public boolean isAvailable() {
-		return available;
-	}
-
-	public void setAvailable(boolean available) {
-		this.available = available;
 	}
 
 	public ArrayList<Bed> getBedsList() {

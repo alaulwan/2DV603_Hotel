@@ -45,8 +45,8 @@ public class Customer implements Serializable{
 		this.description = description;
 	}
 	
-	public void addReservation(int roomId, int roomNumber, RoomLocation roomLocation, float roomPrice, float discount, String description) {
-		Reservation reservation = new Reservation(ReservationStatus.PENDING, this.getCustomerId(), roomId, roomNumber, roomLocation, roomPrice, discount, description );
+	public void addReservation(int roomId, int roomNumber, RoomLocation roomLocation, LocalDate checkInDate, LocalDate checkOutDate,float roomPrice, float discount, String description) {
+		Reservation reservation = new Reservation(ReservationStatus.PENDING, this.getCustomerId(), roomId, roomNumber, roomLocation, checkInDate, checkOutDate, roomPrice, discount, description );
 		reservationsList.add(reservation);
 	}
 	

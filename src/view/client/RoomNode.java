@@ -1,8 +1,6 @@
 package view.client;
 
 import java.io.IOException;
-import java.util.ArrayList;
-
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -15,10 +13,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import model.shared.Bed;
 import model.shared.Room;
-import model.shared.Room.RoomLocation;
-import model.shared.Room.RoomSize;
 import model.shared.Suite;
 
 public class RoomNode extends StackPane {
@@ -39,17 +34,22 @@ public class RoomNode extends StackPane {
 		Rectangle rectangle;
 		String roomType = (room.isSuite() == true ? "Suite " : "Room ");
 
-		if (room.isAvailable()) {
-			rectangle = new Rectangle(125, 125, Color.GREEN);
-			StackPane.setAlignment(rectangle, Pos.CENTER);
-			text = new Text("\n Available \n \n  " + roomType + room.getRoomNum());
-
-		} else {
-			rectangle = new Rectangle(125, 125, Color.RED);
-			StackPane.setAlignment(rectangle, Pos.CENTER);
-
-			text = new Text("\n Occupied \n \n  " + roomType + room.getRoomNum());
+		switch (room.getRoomStatus()) {
+		case AVAILABLE: 
+			rectangle = new Rectangle(125, 125, Color.LIGHTGREEN);
+			break;
+		case CHEKIN_TODAY:
+			rectangle = new Rectangle(125, 125, Color.LIGHTGREEN);
+			break;
+		case CHECKOUT_TODAY:
+			rectangle = new Rectangle(125, 125, Color.SKYBLUE);
+			break;
+		default:
+			rectangle = new Rectangle(125, 125, Color.ORANGERED);
 		}
+		
+		StackPane.setAlignment(rectangle, Pos.CENTER);
+		text = new Text("\n " + room.getRoomStatus() + " \n \n  " + roomType + room.getRoomNum());
 
 		Font font = new Font("SansSerif", 16);
 		text.setFont(font);
@@ -84,10 +84,8 @@ public class RoomNode extends StackPane {
 		String inf_balcony = "Balcony: " + (room.isBalcony() == true ? "Yes" : "No");
 		String inf_view = "View: " + (room.isView() == true ? "Yes" : "No");
 		String inf_smoking = "Smoking: " + (room.isSmoking() == true ? "Yes" : "No");
-
 		String roomType = (room.isSuite() == true ? "\nSuite " : "\nRoom ");
 		String suitRoomNum = "";
-		
 		if (room.isSuite())
 			suitRoomNum = "\nSuite Rooms No.: " + ((Suite) room).getNumberOfRooms() ; 
 		
@@ -95,8 +93,6 @@ public class RoomNode extends StackPane {
 				+ room.getRoomSize().toString() + "\nBeds No.: " + room.getBedsNum() + "\nMax Guests No.: "
 				+ room.getMaxGuestCapacity() + "\nQuality Level: " + room.getQualityLev() + "\n" + inf_smoking + "\n"
 				+ inf_airCon + "\n" + inf_view + "\n" + inf_balcony;
-		
-			
 
 		tooltip.setWrapText(true);
 		tooltip.setText(inf_string);

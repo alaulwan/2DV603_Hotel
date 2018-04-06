@@ -26,13 +26,15 @@ public class Reservation implements Serializable{
 		
 	}
 	
-	public Reservation(ReservationStatus reservationStatus, int customerId, int roomId, int roomNumber, RoomLocation roomLocation, float roomPrice, float discount, String description ) {
+	public Reservation(ReservationStatus reservationStatus, int customerId, int roomId, int roomNumber, RoomLocation roomLocation, LocalDate checkInDate, LocalDate checkOutDate,float roomPrice, float discount, String description ) {
 		this.setReservationId(++count);
 		this.setReservationStatus(reservationStatus);
 		this.setCustomerId(customerId);
 		this.setRoomId(roomId);
 		this.setRoomNumber(roomNumber);
 		this.setRoomLocation(roomLocation);
+		this.setCheckInDate(checkInDate);
+		this.setCheckOutDate(checkOutDate);
 		this.setPrice(roomPrice);
 		this.setBill(new Bill(reservationId, this.customerId, this.customerName, price, discount, ""));
 	}

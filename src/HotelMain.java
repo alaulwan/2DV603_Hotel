@@ -4,15 +4,11 @@ import javafx.scene.Scene;
 import javafx.scene.control.ChoiceDialog;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import model.client.HotelClient;
 import model.client.ServerAPI;
-import model.shared.Hotel;
 import model.shared.Room.RoomLocation;
 import view.client.RootLayoutController;
 
 public class HotelMain extends Application{
-	
-	private HotelClient hotelClient = new HotelClient();
 	
 	public static void main(String[] args) {
 		launch(args);

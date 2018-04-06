@@ -7,9 +7,9 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+
 
 <HBox xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
@@ -38,7 +38,7 @@
          </columnConstraints>
          <rowConstraints>
             <RowConstraints maxHeight="225.40000762939454" minHeight="10.0" prefHeight="145.40000762939454" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="289.60004272460935" minHeight="10.0" prefHeight="203.4" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="289.60004272460935" minHeight="10.0" prefHeight="203.4" />
             <RowConstraints maxHeight="179.99997558593753" minHeight="10.0" prefHeight="104.20000000000005" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
@@ -49,7 +49,7 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <GridPane alignment="CENTER_LEFT" style="-: Black;" VBox.vgrow="ALWAYS">
+                  <GridPane alignment="CENTER_LEFT" style="-: Black;">
                     <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" maxWidth="176.111083984375" minWidth="10.0" prefWidth="150.0" />
                       <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="98.7777099609375" minWidth="10.0" prefWidth="50.0" />
@@ -77,7 +77,7 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <GridPane alignment="CENTER_LEFT" style="-: Black;" VBox.vgrow="ALWAYS">
+                  <GridPane alignment="CENTER_LEFT" style="-: Black;">
                      <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="150.0" />
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="50.0" />
@@ -139,14 +139,17 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Pane prefHeight="14.0" prefWidth="360.0" style="-fx-background-color: Green;" />
+                        <Pane prefHeight="14.0" prefWidth="299.0" style="-fx-background-color: LIGHTGREEN;" />
                         <Label alignment="CENTER" contentDisplay="CENTER" text="Available" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
-                        <Pane layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: Red;" GridPane.rowIndex="1" />
+                        <Pane layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: ORANGERED;" GridPane.rowIndex="1" />
                         <Label alignment="CENTER" contentDisplay="CENTER" layoutX="189.0" layoutY="15.0" text="Occupied" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
                         <Pane layoutX="10.0" layoutY="62.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: Orange;" GridPane.rowIndex="2" />
-                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="202.0" layoutY="66.0" text="Check Out" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
+                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="202.0" layoutY="66.0" text="Check In Today" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
+                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: SKYBLUE;" GridPane.rowIndex="3" />
+                        <Label alignment="CENTER" contentDisplay="CENTER" text="Check Out Today" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
                      </children>
                   </GridPane>
                </children>

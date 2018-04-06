@@ -10,10 +10,7 @@ import javafx.scene.Parent;
 import javafx.scene.control.Label;
 
 import javafx.scene.layout.GridPane;
-
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
-import model.client.HotelClient;
 import model.client.ServerAPI;
 import model.shared.Room;
 import model.shared.filters.roomsFilters.RoomsFilter;

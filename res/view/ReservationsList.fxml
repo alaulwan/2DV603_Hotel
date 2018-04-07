@@ -6,7 +6,7 @@
 
 <AnchorPane xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <TableView fx:id="reservationsList" prefHeight="400.0" prefWidth="853.6" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <TableView fx:id="reservationsList" prefHeight="400.0" prefWidth="853.6" tableMenuButtonVisible="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <columns>
           <TableColumn fx:id="idCol" maxWidth="400.0" prefWidth="56.00000077486038" text="ID" />
           <TableColumn fx:id="roomCol" maxWidth="400.0" prefWidth="132.79998397827148" text="Room" />

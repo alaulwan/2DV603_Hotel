@@ -25,8 +25,8 @@
                     <serviceType>RESERVATION</serviceType>
                 </serviceList>
             </bill>
-            <checkInDate>2018-04-06</checkInDate>
-            <checkOutDate>2018-04-11</checkOutDate>
+            <checkInDate>2018-04-07</checkInDate>
+            <checkOutDate>2018-04-12</checkOutDate>
             <customerId>1</customerId>
             <price>60.0</price>
             <reservationId>1</reservationId>
@@ -61,8 +61,8 @@
                     <serviceType>RESERVATION</serviceType>
                 </serviceList>
             </bill>
-            <checkInDate>2018-04-05</checkInDate>
-            <checkOutDate>2018-04-11</checkOutDate>
+            <checkInDate>2018-04-06</checkInDate>
+            <checkOutDate>2018-04-12</checkOutDate>
             <customerId>2</customerId>
             <price>60.0</price>
             <reservationId>2</reservationId>
@@ -97,8 +97,8 @@
                     <serviceType>RESERVATION</serviceType>
                 </serviceList>
             </bill>
-            <checkInDate>2018-04-05</checkInDate>
-            <checkOutDate>2018-04-06</checkOutDate>
+            <checkInDate>2018-04-06</checkInDate>
+            <checkOutDate>2018-04-07</checkOutDate>
             <customerId>3</customerId>
             <price>90.0</price>
             <reservationId>3</reservationId>

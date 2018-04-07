@@ -1,26 +1,21 @@
 package view.client;
 
-import java.io.IOException;
-import javafx.event.EventHandler;
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.control.Tooltip;
-import javafx.scene.input.MouseButton;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 import model.shared.Room;
 import model.shared.Suite;
 
 public class RoomNode extends StackPane {
 
 	Room room = new Room();
+	Color color = Color.LIGHTGREEN;
 	private Tooltip tooltip = new Tooltip();
-	ReservationsListController reservationsListController = new ReservationsListController();
+	public Rectangle rectangle;
 
 	public RoomNode(Room room) {
 		this.room = room;
@@ -31,7 +26,6 @@ public class RoomNode extends StackPane {
 	private void setRoomLayout() {
 
 		Text text;
-		Rectangle rectangle;
 		String roomType = (room.isSuite() == true ? "Suite " : "Room ");
 
 		switch (room.getRoomStatus()) {
@@ -59,23 +53,6 @@ public class RoomNode extends StackPane {
 
 		setTooltip();
 		Tooltip.install(this, tooltip);
-
-		this.setOnMouseClicked(new EventHandler<MouseEvent>() {
-			@Override
-			public void handle(MouseEvent event) {
-				if (event.getButton() == MouseButton.PRIMARY && event.getClickCount() == 2) {
-					try {
-						Scene mainScene = new Scene(reservationsListController.getParentPane());
-						Stage stage = new Stage();
-						stage.setScene(mainScene);
-						stage.setTitle("Reservations List");
-						stage.showAndWait();
-					} catch (IOException e) {
-						e.printStackTrace();
-					}
-				}
-			}
-		});
 
 	}
 

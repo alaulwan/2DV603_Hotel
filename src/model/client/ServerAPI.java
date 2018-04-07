@@ -2,6 +2,7 @@ package model.client;
 
 import java.util.ArrayList;
 import model.shared.Connection;
+import model.shared.Reservation;
 import model.shared.Room;
 import model.shared.Room.RoomLocation;
 import model.shared.filters.roomsFilters.LocationRoomsFilter;
@@ -34,6 +35,19 @@ public class ServerAPI {
 		c.close();
 		
 		return roomList;
+	}
+	
+	public static ArrayList <Reservation> getReservationsList (ArrayList<Reservation> filterList) {
+		Request request = new ReservationsListRequest (filterList);
+		request.requestType = RequestType.GET_ROOMS;
+		Connection c = new Connection();
+		c.send(request);
+		
+		@SuppressWarnings("unchecked")
+		ArrayList <Room> roomList = (ArrayList<Room>) c.receiveObject ();
+		c.close();
+		
+		return null;
 	}
 
 }

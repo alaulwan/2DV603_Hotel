@@ -13,7 +13,7 @@
         <tabs>
           <Tab fx:id="availableRoomsTab" text="Available Rooms" />
             <Tab fx:id="reservationsListTab" text="Reservations List" />
-            <Tab fx:id="customerListTab" text="Guests List" />
+            <Tab fx:id="customerListTab" text="Customers List" />
         </tabs>
       </TabPane>
    </bottom>

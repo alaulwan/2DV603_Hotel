@@ -28,8 +28,8 @@ public class Hotel implements Serializable{
 		
 	}
 	
-	public void addCustomer (Customer custumer){
-		this.customersList.add(custumer);
+	public void addCustomer (Customer customer){
+		this.customersList.add(customer);
 	}
 	
 	public Customer getCustomerById (int customerId){
@@ -143,9 +143,9 @@ public class Hotel implements Serializable{
 		Customer customer3 = new Customer("Paul", LocalDate.of(1987, 10, 10), Gender.MALE,"0732323", IdentificationType.PASS_NUMBER, "3333333", "Vaxjo", "???",
 				"p@p.p", "student");
 		
-		customer1.addReservation(R1.getRoomId(), R1.getRoomNum(), R1.getRoomLocation(),LocalDate.now(), LocalDate.now().plusDays(5),R1.getRate(), 0, "Al reservation");
-		customer2.addReservation(R2.getRoomId(), R2.getRoomNum(), R2.getRoomLocation(), LocalDate.now().minusDays(1), LocalDate.now().plusDays(5), R2.getRate(), 0, "Ba reservation");
-		customer3.addReservation(suite2.getRoomId(), suite2.getRoomNum(), suite2.getRoomLocation(), LocalDate.now().minusDays(1), LocalDate.now(), suite2.getRate(), 0, "Pa reservation");
+		customer1.addReservation(R1.getRoomId(), R1.getRoomNum(), R1.getRoomLocation(),LocalDate.now(), LocalDate.now().plusDays(5),R1.getRate(), 0, 2, "Al reservation");
+		customer2.addReservation(R2.getRoomId(), R2.getRoomNum(), R2.getRoomLocation(), LocalDate.now().minusDays(1), LocalDate.now().plusDays(5), R2.getRate(), 0, 1 , "Ba reservation");
+		customer3.addReservation(suite2.getRoomId(), suite2.getRoomNum(), suite2.getRoomLocation(), LocalDate.now().minusDays(1), LocalDate.now(), suite2.getRate(), 0, 4 ,"Pa reservation");
 		
 		Room R3 = new Room (new ArrayList<Bed>(Arrays.asList(bed1R1)), RoomLocation.VAXJO, 3, RoomSize.MEDIUM, false, true,
 				true, false, false);

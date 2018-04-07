@@ -27,23 +27,29 @@ public class RoomNode extends StackPane {
 
 		Text text;
 		String roomType = (room.isSuite() == true ? "Suite " : "Room ");
+		String roomStatus ;
 
 		switch (room.getRoomStatus()) {
 		case AVAILABLE: 
 			rectangle = new Rectangle(125, 125, Color.LIGHTGREEN);
+			roomStatus = "\n Available  \n \n  ";
 			break;
 		case CHEKIN_TODAY:
 			rectangle = new Rectangle(125, 125, Color.ORANGE);
+			roomStatus = "\n Check-in Today \n \n        ";
 			break;
 		case CHECKOUT_TODAY:
 			rectangle = new Rectangle(125, 125, Color.SKYBLUE);
+			roomStatus = "\n Check-out Today  \n \n        ";
 			break;
 		default:
+			roomStatus = "\n Occupied  \n \n  ";
 			rectangle = new Rectangle(125, 125, Color.ORANGERED);
 		}
 		
+		
 		StackPane.setAlignment(rectangle, Pos.CENTER);
-		text = new Text("\n " + room.getRoomStatus() + " \n \n  " + roomType + room.getRoomNum());
+		text = new Text(roomStatus + roomType + room.getRoomNum());
 
 		Font font = new Font("SansSerif", 16);
 		text.setFont(font);

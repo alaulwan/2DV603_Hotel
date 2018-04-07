@@ -2,6 +2,7 @@ package model.server.response;
 
 import model.shared.requests.Request;
 import model.shared.requests.Request.RequestType;
+import model.shared.requests.ReservationsListRequest;
 import model.shared.requests.RoomsListRequest;
 
 public class ResponseFactory {
@@ -17,6 +18,10 @@ public class ResponseFactory {
 		
 		if (recievedRequest.requestType == RequestType.GET_ROOMS) {
 			response = new RommsListResponse(((RoomsListRequest)recievedRequest).rFilList);
+		}
+		else if (recievedRequest.requestType == RequestType.GET_RESERVATIONS){
+			response = new ReservationsListResponse(((ReservationsListRequest)recievedRequest).reservationsFilterList);
+			
 		}
 		
 		return response;

@@ -3,7 +3,6 @@ package view.client;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -12,26 +11,25 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import model.shared.Customer;
 import model.shared.Hotel;
-import model.shared.Reservation;
 import javafx.scene.Parent;
 import javafx.scene.control.TableColumn;
 
-@SuppressWarnings("rawtypes")
+
 public class CustomerListController implements Controller{
 	@FXML
-	private TableView customersTableView;
+	private TableView<Customer> customersTableView;
 	@FXML
-	private TableColumn idCol;
+	private TableColumn<Customer, Integer> idCol;
 	@FXML
-	private TableColumn nameCol;
+	private TableColumn <Customer, String> nameCol;
 	@FXML
-	private TableColumn phoneNumberCol;
+	private TableColumn<Customer, String>  phoneNumberCol;
 	@FXML
-	private TableColumn passCol;
+	private TableColumn<Customer, String>  passCol;
 	@FXML
-	private TableColumn roomsNumberCol;
+	private TableColumn<Customer, Integer> roomsNumberCol;
 	@FXML
-	private TableColumn reservationsNumberCol;
+	private TableColumn <Customer, Integer> reservationsNumberCol;
 	
 	private final String CUSTOMER_LIST_LAYOUT = "res/view/CustomerList.fxml";
 	
@@ -41,13 +39,13 @@ public class CustomerListController implements Controller{
 		hotel.defaultHotel();
 		ArrayList<Customer> customersArray = hotel.getCustomersList();
 		
-		ObservableList data = FXCollections.observableList(customersArray);
+		ObservableList<Customer> data = FXCollections.observableList(customersArray);
 		customersTableView.setItems(data);
 		
-		idCol.setCellValueFactory(new PropertyValueFactory("customerId"));
-		nameCol.setCellValueFactory(new PropertyValueFactory("name"));
-		phoneNumberCol.setCellValueFactory(new PropertyValueFactory("mobileNum"));
-		passCol.setCellValueFactory(new PropertyValueFactory("identificationNumber"));
+		idCol.setCellValueFactory(new PropertyValueFactory<Customer, Integer> ("customerId"));
+		nameCol.setCellValueFactory(new PropertyValueFactory<Customer, String> ("name"));
+		phoneNumberCol.setCellValueFactory(new PropertyValueFactory<Customer, String> ("mobileNum"));
+		passCol.setCellValueFactory(new PropertyValueFactory<Customer, String> ("identificationNumber"));
 		
 //		ArrayList <String> roomsNum = new ArrayList <String>() ;
 //		ArrayList <String> reservationsNum = new ArrayList <String>() ;
@@ -70,8 +68,8 @@ public class CustomerListController implements Controller{
 
 			
 		
-		roomsNumberCol.setCellValueFactory(new PropertyValueFactory("rooms"));
-		reservationsNumberCol.setCellValueFactory(new PropertyValueFactory("reservationsCounter"));
+		roomsNumberCol.setCellValueFactory(new PropertyValueFactory<Customer, Integer> ("rooms"));
+		reservationsNumberCol.setCellValueFactory(new PropertyValueFactory<Customer, Integer> ("reservationsCounter"));
 		
 
 		

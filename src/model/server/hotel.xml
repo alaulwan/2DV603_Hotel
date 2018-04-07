@@ -16,6 +16,7 @@
             <bill>
                 <billId>1</billId>
                 <customerId>1</customerId>
+                <customerName>Alaa Al</customerName>
                 <serviceList>
                     <descraption></descraption>
                     <discount>0.0</discount>
@@ -28,6 +29,9 @@
             <checkInDate>2018-04-07</checkInDate>
             <checkOutDate>2018-04-12</checkOutDate>
             <customerId>1</customerId>
+            <customerName>Alaa Al</customerName>
+            <discription>Al reservation</discription>
+            <guestsNumber>2</guestsNumber>
             <price>60.0</price>
             <reservationId>1</reservationId>
             <reservationStatus>PENDING</reservationStatus>
@@ -35,6 +39,7 @@
             <roomLocation>VAXJO</roomLocation>
             <roomNumber>1</roomNumber>
         </reservationsList>
+        <rooms>1</rooms>
     </customersList>
     <customersList>
         <address>Vaxjo</address>
@@ -52,6 +57,7 @@
             <bill>
                 <billId>2</billId>
                 <customerId>2</customerId>
+                <customerName>Basem mo</customerName>
                 <serviceList>
                     <descraption></descraption>
                     <discount>0.0</discount>
@@ -64,6 +70,9 @@
             <checkInDate>2018-04-06</checkInDate>
             <checkOutDate>2018-04-12</checkOutDate>
             <customerId>2</customerId>
+            <customerName>Basem mo</customerName>
+            <discription>Ba reservation</discription>
+            <guestsNumber>1</guestsNumber>
             <price>60.0</price>
             <reservationId>2</reservationId>
             <reservationStatus>PENDING</reservationStatus>
@@ -71,6 +80,7 @@
             <roomLocation>VAXJO</roomLocation>
             <roomNumber>2</roomNumber>
         </reservationsList>
+        <rooms>2</rooms>
     </customersList>
     <customersList>
         <address>Vaxjo</address>
@@ -88,6 +98,7 @@
             <bill>
                 <billId>3</billId>
                 <customerId>3</customerId>
+                <customerName>Paul</customerName>
                 <serviceList>
                     <descraption></descraption>
                     <discount>0.0</discount>
@@ -100,13 +111,44 @@
             <checkInDate>2018-04-06</checkInDate>
             <checkOutDate>2018-04-07</checkOutDate>
             <customerId>3</customerId>
+            <customerName>Paul</customerName>
+            <discription>Pa reservation kalmar</discription>
+            <guestsNumber>4</guestsNumber>
             <price>90.0</price>
             <reservationId>3</reservationId>
+            <reservationStatus>PENDING</reservationStatus>
+            <roomId>5</roomId>
+            <roomLocation>KALMAR</roomLocation>
+            <roomNumber>3</roomNumber>
+        </reservationsList>
+        <reservationsList>
+            <bill>
+                <billId>4</billId>
+                <customerId>3</customerId>
+                <customerName>Paul</customerName>
+                <serviceList>
+                    <descraption></descraption>
+                    <discount>0.0</discount>
+                    <piecesNumber>1</piecesNumber>
+                    <price>90.0</price>
+                    <serviceId>4</serviceId>
+                    <serviceType>RESERVATION</serviceType>
+                </serviceList>
+            </bill>
+            <checkInDate>2018-04-06</checkInDate>
+            <checkOutDate>2018-04-07</checkOutDate>
+            <customerId>3</customerId>
+            <customerName>Paul</customerName>
+            <discription>Pa reservation vaxjo</discription>
+            <guestsNumber>4</guestsNumber>
+            <price>90.0</price>
+            <reservationId>4</reservationId>
             <reservationStatus>PENDING</reservationStatus>
             <roomId>8</roomId>
             <roomLocation>VAXJO</roomLocation>
             <roomNumber>4</roomNumber>
         </reservationsList>
+        <rooms>34, </rooms>
     </customersList>
     <roomsList>
         <airCon>false</airCon>
@@ -240,7 +282,7 @@
         <roomLocation>KALMAR</roomLocation>
         <roomNum>3</roomNum>
         <roomSize>MEDIUM</roomSize>
-        <roomStatus>AVAILABLE</roomStatus>
+        <roomStatus>CHECKOUT_TODAY</roomStatus>
         <smoking>false</smoking>
         <suite>true</suite>
         <view>true</view>

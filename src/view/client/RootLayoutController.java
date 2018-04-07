@@ -2,6 +2,7 @@ package view.client;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Optional;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,6 +14,10 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.layout.HBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import model.client.ServerAPI;
+import model.shared.filters.reservationsFilters.LocationReservationsFilter;
+import model.shared.filters.reservationsFilters.ReservationsFilter;
+import model.shared.filters.reservationsFilters.StatusReservationsFilter;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.Tab;
 
@@ -72,6 +77,20 @@ public class RootLayoutController {
 			} 
 		});
 	
+	}
+	
+	@FXML
+	private void imprtReservationsList() {
+		ArrayList<ReservationsFilter> reservationsFilterList = new ArrayList<ReservationsFilter> ();
+		LocationReservationsFilter locationReservationsFilter = new LocationReservationsFilter (ServerAPI.location);
+		StatusReservationsFilter statusReservationsFilter = new StatusReservationsFilter(true, true, false, false);
+		reservationsFilterList.add(locationReservationsFilter);
+		reservationsFilterList.add(statusReservationsFilter);
+		
+		if (reservationsListTab.isSelected()){
+			reservationsListController.reservationArray = ServerAPI.getReservationsList(reservationsFilterList);
+			reservationsListController.initialize();
+		}
 	}
 
 	public Parent getParentPane() throws IOException {

@@ -12,7 +12,7 @@
       <TabPane fx:id="tabPane" prefHeight="700.0" prefWidth="1000.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
         <tabs>
           <Tab fx:id="availableRoomsTab" text="Available Rooms" />
-            <Tab fx:id="reservationsListTab" text="Reservations List" />
+            <Tab fx:id="reservationsListTab" onSelectionChanged="#imprtReservationsList" text="Reservations List" />
             <Tab fx:id="customerListTab" text="Customers List" />
         </tabs>
       </TabPane>

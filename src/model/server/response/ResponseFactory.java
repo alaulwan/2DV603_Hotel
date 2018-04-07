@@ -1,5 +1,6 @@
 package model.server.response;
 
+import model.shared.requests.CustomersListRequest;
 import model.shared.requests.Request;
 import model.shared.requests.Request.RequestType;
 import model.shared.requests.ReservationsListRequest;
@@ -21,6 +22,10 @@ public class ResponseFactory {
 		}
 		else if (recievedRequest.requestType == RequestType.GET_RESERVATIONS){
 			response = new ReservationsListResponse(((ReservationsListRequest)recievedRequest).reservationsFilterList);
+			
+		}
+		else if (recievedRequest.requestType == RequestType.GET_USERS){
+			response = new CustomersListResponse(((CustomersListRequest)recievedRequest).customersFilterList);
 			
 		}
 		

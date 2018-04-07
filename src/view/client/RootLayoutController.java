@@ -15,6 +15,9 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.client.ServerAPI;
+import model.shared.filters.customersFilters.CustomersFilter;
+import model.shared.filters.customersFilters.ReservationLocationCustomersFilter;
+import model.shared.filters.customersFilters.ReservationStatusCustumersFilter;
 import model.shared.filters.reservationsFilters.LocationReservationsFilter;
 import model.shared.filters.reservationsFilters.ReservationsFilter;
 import model.shared.filters.reservationsFilters.StatusReservationsFilter;
@@ -90,6 +93,20 @@ public class RootLayoutController {
 		if (reservationsListTab.isSelected()){
 			reservationsListController.reservationArray = ServerAPI.getReservationsList(reservationsFilterList);
 			reservationsListController.initialize();
+		}
+	}
+	
+	@FXML
+	private void imprtCustomersList() {
+		ArrayList<CustomersFilter> customersFilterList = new ArrayList<CustomersFilter> ();
+		ReservationLocationCustomersFilter reservationLocationCustomersFilter = new ReservationLocationCustomersFilter (ServerAPI.location);
+		ReservationStatusCustumersFilter reservationStatusCustumersFilter = new ReservationStatusCustumersFilter(true, true, false, false);
+		customersFilterList.add(reservationStatusCustumersFilter);
+		customersFilterList.add(reservationLocationCustomersFilter);
+		
+		if (customerListTab.isSelected()){
+			customerListController.customersArray = ServerAPI.getCustomersList(customersFilterList);
+			customerListController.initialize();
 		}
 	}
 

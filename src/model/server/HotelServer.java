@@ -98,9 +98,11 @@ public class HotelServer {
 		
 		Gson gson = new GsonBuilder().create();
 		String j = gson.toJson(hotel);
+		//System.out.println(j);
 		
 		Hotel hotel2 = DAO.xmlLoad ();
 		String j2 = gson.toJson(hotel2);
+		//System.out.println(j2);
 		
 		Hotel hotel3 = gson.fromJson(j, Hotel.class);
 		String j3 = gson.toJson(hotel3);

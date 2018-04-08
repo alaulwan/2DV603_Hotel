@@ -45,7 +45,7 @@ public class Reservation implements Serializable {
 		this.setRoomLocation(roomLocation);
 		this.setCheckInDate(checkInDate);
 		this.setCheckOutDate(checkOutDate);
-		this.setTotalDays(checkInDate , checkOutDate);
+		this.calculateTotalDays(checkInDate , checkOutDate);
 		this.setPrice(roomPrice);
 		this.setGuestsNumber(guestsNumber);
 		this.setDiscription(description);
@@ -175,8 +175,12 @@ public class Reservation implements Serializable {
 	public int getTotalDays() {
 		return totalDays;
 	}
+	
+	public void setTotalDays(int totalDays) {
+		this.totalDays =totalDays;
+	}
 
-	public void setTotalDays(LocalDate checkInDate , LocalDate checkOutDate) {
+	public void calculateTotalDays(LocalDate checkInDate , LocalDate checkOutDate) {
 		this.totalDays = (int) ChronoUnit.DAYS.between(checkInDate, checkOutDate);
 	}
 

@@ -24,8 +24,8 @@ public class Customer implements Serializable{
 	private String email;
 	private String description;
 	private ArrayList <Reservation> reservationsList = new ArrayList<Reservation>();
-	private int reservationsCounter ;
-	private String rooms = "" ;
+	//private int reservationsCounter ;
+	//private String rooms = "" ;
 	//private ArrayList <Bill> billsList = new ArrayList<Bill>();
 	
 	public Customer() {
@@ -50,11 +50,11 @@ public class Customer implements Serializable{
 	public void addReservation(int roomId, int roomNumber, RoomLocation roomLocation, LocalDate checkInDate, LocalDate checkOutDate,float roomPrice, float discount,int guestsNumber,  String description) {
 		Reservation reservation = new Reservation(ReservationStatus.PENDING, this.getCustomerId(), this.getName() , roomId, roomNumber, roomLocation, checkInDate, checkOutDate, roomPrice, discount, guestsNumber , description );
 		reservationsList.add(reservation);
-		reservationsCounter ++ ;
+		/*reservationsCounter ++ ;
 		if (reservationsCounter == 1 )
 			setRooms(getRooms() + Integer.toString(roomNumber)) ;
 		else 
-			setRooms(getRooms() + Integer.toString(roomNumber) +", ") ;
+			setRooms(getRooms() + Integer.toString(roomNumber) +", ") ;*/
 	}
 	
 	public void updateCustomerInfo (String name, LocalDate birthDate, Gender gender, String mobileNum, IdentificationType identificationType,String identificationNumber, String address, String nationality,
@@ -186,24 +186,45 @@ public class Customer implements Serializable{
 
 	public void setReservationsList(ArrayList<Reservation> reservationsList) {
 		this.reservationsList = reservationsList;
-		this.setReservationsCounter();
+		//this.setReservationsCounter();
+	}
+	
+	public String getCurrentReservedRooms() {
+		String rooms="";
+		int reservationsCounter=0;
+		for (Reservation res : reservationsList) {
+			if (res.getReservationStatus()==ReservationStatus.PENDING || res.getReservationStatus()==ReservationStatus.CHECKED_IN) {
+				reservationsCounter++;
+				rooms += (reservationsCounter==1? "":", ") + res.getRoomNumber();
+			}
+		}
+		return rooms;
+	}
+	public int getCurrentReservedNumbers() {
+		int reservationsCounter=0;
+		for (Reservation res : reservationsList) {
+			if (res.getReservationStatus()==ReservationStatus.PENDING || res.getReservationStatus()==ReservationStatus.CHECKED_IN) {
+				reservationsCounter++;
+			}
+		}
+		return reservationsCounter;
 	}
 
-	public int getReservationsCounter() {
+	/*public int getReservationsCounter() {
 		return reservationsCounter;
 	}
 	
 	public void setReservationsCounter() {
 		this.reservationsCounter = getReservationsList().size();
-	}
+	}*/
 
-	public String getRooms() {
+	/*public String getRooms() {
 		return rooms;
 	}
 
 	public void setRooms(String rooms) {
 		this.rooms = rooms;
-	}
+	}*/
 	
 	/*public ArrayList<Bill> getBillsList() {
 		return billsList;

@@ -26,7 +26,7 @@ public class CustomerListController implements Controller{
 	@FXML
 	private TableColumn<Customer, String>  passCol;
 	@FXML
-	private TableColumn<Customer, Integer> roomsNumberCol;
+	private TableColumn<Customer, String> roomsNumberCol;
 	@FXML
 	private TableColumn <Customer, Integer> reservationsNumberCol;
 	
@@ -63,11 +63,8 @@ public class CustomerListController implements Controller{
 //			customersTableView.setItems(data1);
 //			ObservableList data2 = FXCollections.observableList(reservationsNum);
 //			customersTableView.setItems(data2);
-
-				
-			
-			roomsNumberCol.setCellValueFactory(new PropertyValueFactory<Customer, Integer> ("rooms"));
-			reservationsNumberCol.setCellValueFactory(new PropertyValueFactory<Customer, Integer> ("reservationsCounter"));
+			roomsNumberCol.setCellValueFactory(new PropertyValueFactory<Customer, String> ("currentReservedRooms"));
+			reservationsNumberCol.setCellValueFactory(new PropertyValueFactory<Customer, Integer> ("currentReservedNumbers"));
 			
 		}
 	}

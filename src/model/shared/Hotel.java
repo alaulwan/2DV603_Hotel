@@ -9,8 +9,10 @@ import javax.xml.bind.annotation.XmlRootElement;
 import model.shared.Bed.BedSize;
 import model.shared.Customer.Gender;
 import model.shared.Customer.IdentificationType;
+import model.shared.Reservation.ReservationStatus;
 import model.shared.Room.RoomLocation;
 import model.shared.Room.RoomSize;
+import model.shared.Room.RoomStatus;
 
 @XmlRootElement(name = "Hotel")
 public class Hotel implements Serializable{
@@ -50,7 +52,55 @@ public class Hotel implements Serializable{
 		return false;
 	}
 	
+	public Reservation getReservationById (int reservationId) {
+		ArrayList <Reservation> reservationsList = this.getReservationsList();
+		for (Reservation res : reservationsList) {
+			if (res.getReservationId() == reservationId)
+				return res;
+		}
+		return null;
+	}
 	
+	public boolean chekInReservation (int reservationId) {
+		Reservation res = this.getReservationById(reservationId);
+		if (res == null)
+			return false;
+		this.getRoomById(res.getRoomId()).setRoomStatus(RoomStatus.OCCUPIED);
+		res.checkIn();
+		return true;
+	}
+	
+	public boolean chekOutReservation (int reservationId) {
+		Reservation res = this.getReservationById(reservationId);
+		if (res == null)
+			return false;
+		this.getRoomById(res.getRoomId()).setRoomStatus(RoomStatus.AVAILABLE);
+		res.checkOut();
+		return true;
+	}
+	
+	public boolean cancelReservation (int reservationId) {
+		Reservation res = this.getReservationById(reservationId);
+		if (res == null)
+			return false;
+		if (LocalDate.now().isAfter(res.checkInDateAsLocalDate()))
+			this.getRoomById(res.getRoomId()).setRoomStatus(RoomStatus.AVAILABLE);
+		res.cancel();
+		return true;
+	}
+	
+	public boolean deleteReservation (int reservationId) {
+		boolean canceled=false;
+		boolean deleted=false;
+		Reservation res = this.getReservationById(reservationId);
+		if (res == null || res.getReservationStatus()!= ReservationStatus.PENDING)
+			return false;
+		canceled = this.cancelReservation(reservationId);
+		if (canceled) {
+			deleted = this.getCustomerById(res.getCustomerId()).getReservationsList().remove(res);
+		}
+		return deleted; 
+	}
 
 	public ArrayList<Customer> getCustomersList() {
 		return customersList;

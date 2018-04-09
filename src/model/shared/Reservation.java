@@ -2,8 +2,9 @@ package model.shared;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
+import java.time.Period;
 
+import model.shared.Bill.PayStatus;
 import model.shared.Room.RoomLocation;
 
 public class Reservation implements Serializable {
@@ -27,7 +28,6 @@ public class Reservation implements Serializable {
 	private RoomLocation roomLocation;
 	private int guestsNumber;
 	private String discription;
-	private int totalDays ;
 
 	public Reservation() {
 		
@@ -45,11 +45,50 @@ public class Reservation implements Serializable {
 		this.setRoomLocation(roomLocation);
 		this.setCheckInDate(checkInDate);
 		this.setCheckOutDate(checkOutDate);
-		this.calculateTotalDays(checkInDate , checkOutDate);
 		this.setPrice(roomPrice);
 		this.setGuestsNumber(guestsNumber);
 		this.setDiscription(description);
-		this.setBill(new Bill(reservationId, this.customerId, this.customerName, price, discount, ""));
+		String reservationDescription = roomLocation + " Room: "+ roomNumber +  " Days: " + getTotalDays();
+		this.setBill(new Bill(reservationId, this.customerId, this.customerName, price*getTotalDays(), discount, reservationDescription));
+	}
+	
+	public boolean checkIn() {
+		this.setReservationStatus(ReservationStatus.CHECKED_IN);
+		return true;
+	}
+	
+	public boolean checkOut() {
+		this.setReservationStatus(ReservationStatus.CHECKED_OUT);
+		if (LocalDate.now().isBefore(this.checkOutDateAsLocalDate())) {
+			this.setCheckOutDate(LocalDate.now().plusDays(1));
+			String reservationDescription = roomLocation + " Room: "+ roomNumber +  " Days: " + getTotalDays();
+			bill.getServiceList().get(0).setDescraption(reservationDescription);
+			bill.getServiceList().get(0).setPrice(price* this.getTotalDays());
+		}
+		return true;
+	}
+	
+	public boolean cancel() {
+		this.setReservationStatus(ReservationStatus.CANCELED);
+		String reservationDescription ="";
+		int cancelPeriod = Period.between(LocalDate.now(), this.checkInDateAsLocalDate()).getDays();
+		if (cancelPeriod > 1) {
+			bill.getServiceList().remove(0);
+			bill.setPayStatus(PayStatus.PAYED);
+			return true;
+		}
+		else if (cancelPeriod == 1) {
+			this.setCheckOutDate(this.checkInDateAsLocalDate().plusDays(1));
+			reservationDescription = roomLocation + " Room: "+ roomNumber +  "Canceled less than 24H";
+		}
+		else if (cancelPeriod < 1) {
+			this.setCheckOutDate(this.checkInDateAsLocalDate().plusDays(2));
+			reservationDescription = roomLocation + " Room: "+ roomNumber +  "Customer did not chekin";
+		}
+		bill.getServiceList().get(0).setDescraption(reservationDescription);
+		bill.getServiceList().get(0).setPrice(price* this.getTotalDays());
+
+		return true;
 	}
 
 	public int getReservationId() {
@@ -173,15 +212,9 @@ public class Reservation implements Serializable {
 	}
 
 	public int getTotalDays() {
-		return totalDays;
-	}
-	
-	public void setTotalDays(int totalDays) {
-		this.totalDays =totalDays;
-	}
-
-	public void calculateTotalDays(LocalDate checkInDate , LocalDate checkOutDate) {
-		this.totalDays = (int) ChronoUnit.DAYS.between(checkInDate, checkOutDate);
+		int period = Period.between(this.checkInDateAsLocalDate(), this.checkOutDateAsLocalDate()).getDays();
+		if (period ==0) period=1;
+		return period;
 	}
 
 	public Bill getBill() {

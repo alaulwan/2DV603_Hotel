@@ -3,15 +3,29 @@ package view.client;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Optional;
+
+import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.util.Callback;
 import model.shared.Customer;
+import model.shared.Reservation;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.ContextMenu;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableRow;
 
 
 public class CustomerListController implements Controller{
@@ -35,7 +49,80 @@ public class CustomerListController implements Controller{
 	public ArrayList<Customer> customersArray;
 	
 	@FXML
-	public void initialize() {
+	public void initialize() {		
+		setData () ;
+
+		customersTableView.setRowFactory(
+			    new Callback<TableView<Customer>, TableRow<Customer>>() {
+			  @Override
+			  public TableRow<Customer> call(TableView<Customer> tableView) {
+			    final TableRow<Customer> row = new TableRow<>();
+			    final ContextMenu menu = new ContextMenu();
+			    MenuItem mi1 = new MenuItem("Edit");
+					mi1.setOnAction((ActionEvent event) -> {
+						Customer selectedItem = customersTableView.getSelectionModel().getSelectedItem();
+//						System.out.println(selectedItem.getCustomerName());
+						try {
+							SearchRoomController searchRoomController = new SearchRoomController();
+							Scene mainScene = new Scene(searchRoomController.getParentPane());
+							Stage stage = new Stage();
+							stage.setScene(mainScene);
+							stage.setTitle("Search for a room...");
+							stage.showAndWait();
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
+					});
+				
+					MenuItem mi2 = new MenuItem("View reservations");
+					mi2.setOnAction((ActionEvent event) -> {
+						Customer selectedItem = customersTableView.getSelectionModel().getSelectedItem();
+						
+						try {
+							ReservationsListController c = new ReservationsListController();
+
+							Scene mainScene = new Scene(c.getParentPane());
+							Stage stage = new Stage();
+							stage.setScene(mainScene);
+							stage.setTitle("Search for a room...");
+							stage.showAndWait();
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
+						
+					});
+					
+				MenuItem mi3 = new MenuItem("Delete");
+				mi3.setOnAction((ActionEvent event) -> {
+					Customer selectedItem = customersTableView.getSelectionModel().getSelectedItem();
+					
+					Alert closeConfirmation = new Alert(Alert.AlertType.CONFIRMATION,
+							"Are you sure you want to delete ?");
+					closeConfirmation.setHeaderText("Confirm removal");
+					closeConfirmation.initModality(Modality.APPLICATION_MODAL);
+					Stage stage = (Stage) closeConfirmation.getDialogPane().getScene().getWindow();
+					Optional<ButtonType> result = closeConfirmation.showAndWait();
+					if (result.isPresent()) {
+						
+					}
+				});
+				
+				
+				
+			    menu.getItems().addAll(mi1, mi2, mi3);
+
+			    // only display context menu for non-null items:
+			    row.contextMenuProperty().bind(
+			      Bindings.when(Bindings.isNotNull(row.itemProperty()))
+			      .then(menu)
+			      .otherwise((ContextMenu)null));
+			    return row;
+			  }
+			});
+		
+	}
+	
+	private void setData() {
 		if (customersArray!= null) {
 			ObservableList<Customer> data = FXCollections.observableList(customersArray);
 			customersTableView.setItems(data);
@@ -44,31 +131,11 @@ public class CustomerListController implements Controller{
 			nameCol.setCellValueFactory(new PropertyValueFactory<Customer, String> ("name"));
 			phoneNumberCol.setCellValueFactory(new PropertyValueFactory<Customer, String> ("mobileNum"));
 			passCol.setCellValueFactory(new PropertyValueFactory<Customer, String> ("identificationNumber"));
-			
-//			ArrayList <String> roomsNum = new ArrayList <String>() ;
-//			ArrayList <String> reservationsNum = new ArrayList <String>() ;
-
-//			for(int c=0 ; c<customersArray.size(); c++) {
-//				ArrayList <Reservation> reservationsList = customersArray.get(c).getReservationsList();
-//				String rooms ="";
-////				String reservations = Integer.toString(reservationsList.size()) ;
-//				for (int r = 0 ; r<reservationsList.size() ; r++ ) {
-//					rooms += Integer.toString(reservationsList.get(r).getRoomNumber()) + ", ";
-//				}
-//				roomsNum.add(rooms);
-////				reservationsNum.add(reservations);
-//			}
-				
-//			ObservableList data1 = FXCollections.observableList(roomsNum);
-//			customersTableView.setItems(data1);
-//			ObservableList data2 = FXCollections.observableList(reservationsNum);
-//			customersTableView.setItems(data2);
 			roomsNumberCol.setCellValueFactory(new PropertyValueFactory<Customer, String> ("currentReservedRooms"));
-			reservationsNumberCol.setCellValueFactory(new PropertyValueFactory<Customer, Integer> ("currentReservedNumbers"));
-			
-		}
+			reservationsNumberCol.setCellValueFactory(new PropertyValueFactory<Customer, Integer> ("currentReservedNumbers"));	
+		}		
 	}
-	
+
 	public Parent getParentPane() throws IOException {
 		FXMLLoader loader = new FXMLLoader();
 		loader.setController(this);

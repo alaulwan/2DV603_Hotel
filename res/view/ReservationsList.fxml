@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane minHeight="-Infinity" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <TableView fx:id="reservationsList" prefHeight="400.0" prefWidth="853.6" tableMenuButtonVisible="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <TableView fx:id="reservationsList" layoutY="31.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="395.0" prefWidth="852.0" tableMenuButtonVisible="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="34.0">
         <columns>
           <TableColumn fx:id="idCol" maxWidth="400.0" prefWidth="56.00000077486038" text="ID" />
           <TableColumn fx:id="roomCol" maxWidth="400.0" prefWidth="132.79998397827148" text="Room" />
@@ -20,5 +24,20 @@
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </TableView>
+      <HBox fx:id="hbox" layoutX="457.0" layoutY="3.0" prefHeight="25.0" prefWidth="365.0" AnchorPane.bottomAnchor="399.0" AnchorPane.leftAnchor="457.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="3.0">
+         <children>
+            <TextField fx:id="searchName" prefHeight="25.0" prefWidth="150.0" promptText="Search by Name" />
+            <TextField fx:id="searchRoomNumber" prefHeight="25.0" prefWidth="149.0" promptText="Search by Room Number">
+               <HBox.margin>
+                  <Insets left="3.0" />
+               </HBox.margin>
+            </TextField>
+            <CheckBox fx:id="viewAllBox" mnemonicParsing="false" text="View all">
+               <HBox.margin>
+                  <Insets left="3.0" top="3.0" />
+               </HBox.margin>
+            </CheckBox>
+         </children>
+      </HBox>
    </children>
 </AnchorPane>

@@ -1,12 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 
 <AnchorPane xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <TableView fx:id="customersTableView" fixedCellSize="0.0" prefHeight="400.0" prefWidth="900.0" tableMenuButtonVisible="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <HBox layoutX="648.0" layoutY="1.0" prefHeight="33.0" prefWidth="252.0">
+         <children>
+            <TextField fx:id="searchName" prefHeight="25.0" prefWidth="170.0" promptText="Search by Name" >
+               <HBox.margin>
+                  <Insets top="3.0" />
+               </HBox.margin>
+            </TextField>
+            <CheckBox fx:id="viewAllBox" layoutX="10.0" layoutY="5.0" mnemonicParsing="false" text="View all">
+               <HBox.margin>
+                  <Insets left="3.0" top="6.0" />
+               </HBox.margin>
+            </CheckBox>
+         </children>
+      </HBox>
+      <TableView fx:id="customersTableView" fixedCellSize="0.0" layoutY="33.0" prefHeight="367.0" prefWidth="900.0" tableMenuButtonVisible="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="33.0">
          <columns>
             <TableColumn fx:id="idCol" maxWidth="400.0" prefWidth="56.79995805025101" text="ID" />
             <TableColumn fx:id="nameCol" maxWidth="400.0" minWidth="50.0" prefWidth="195.20000839233398" text="Name" />

@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 
-<BorderPane prefHeight="792.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane prefHeight="810.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <bottom>
       <TabPane fx:id="tabPane" prefHeight="700.0" prefWidth="1000.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
         <tabs>
@@ -18,19 +18,19 @@
       </TabPane>
    </bottom>
    <top>
-      <HBox fx:id="buttonBox" prefHeight="54.0" prefWidth="1000.0" BorderPane.alignment="CENTER">
+      <HBox fx:id="buttonBox" prefHeight="110.0" prefWidth="1000.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="newReservationButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="120.0" text="New Reservation">
+            <Button fx:id="newReservationButton" mnemonicParsing="false" prefHeight="110.0" prefWidth="110.0" text="New Reservation">
                <HBox.margin>
                   <Insets right="5.0" />
                </HBox.margin>
             </Button>
-            <Button fx:id="checkinButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="120.0" text="Check In">
+            <Button fx:id="checkinButton" mnemonicParsing="false" prefHeight="110.0" prefWidth="110.0" text="Check In">
                <HBox.margin>
                   <Insets right="5.0" />
                </HBox.margin>
             </Button>
-            <Button fx:id="exitButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="120.0" text="Exit">
+            <Button fx:id="exitButton" mnemonicParsing="false" prefHeight="110.0" prefWidth="110.0" text="Exit">
                <HBox.margin>
                   <Insets right="5.0" />
                </HBox.margin>

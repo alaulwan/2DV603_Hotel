@@ -63,11 +63,11 @@ public class CustomerListController implements Controller{
 						Customer selectedItem = customersTableView.getSelectionModel().getSelectedItem();
 //						System.out.println(selectedItem.getCustomerName());
 						try {
-							SearchRoomController searchRoomController = new SearchRoomController();
-							Scene mainScene = new Scene(searchRoomController.getParentPane());
+							AddCustomerController addCustomerController = new AddCustomerController();
+							Scene mainScene = new Scene(addCustomerController.getParentPane());
 							Stage stage = new Stage();
 							stage.setScene(mainScene);
-							stage.setTitle("Search for a room...");
+							stage.setTitle("Edit the customer information");
 							stage.showAndWait();
 						} catch (IOException e) {
 							e.printStackTrace();
@@ -80,11 +80,13 @@ public class CustomerListController implements Controller{
 						
 						try {
 							ReservationsListController c = new ReservationsListController();
-
 							Scene mainScene = new Scene(c.getParentPane());
+							
+							c.searchName.setVisible(false);
+
 							Stage stage = new Stage();
 							stage.setScene(mainScene);
-							stage.setTitle("Search for a room...");
+							stage.setTitle("Reservations List");
 							stage.showAndWait();
 						} catch (IOException e) {
 							e.printStackTrace();
@@ -106,8 +108,6 @@ public class CustomerListController implements Controller{
 						
 					}
 				});
-				
-				
 				
 			    menu.getItems().addAll(mi1, mi2, mi3);
 

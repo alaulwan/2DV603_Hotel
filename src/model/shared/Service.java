@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class Service implements Serializable{
 	private static final long serialVersionUID = 1L;
-	public enum ServiceType { RESERVATION, ITEM, CLEANING }
+	public enum ServiceType { RESERVATION, RESTURANT, GYM, PARKING, CLEANING }
 	
 	private static int count = 0;
 	private int serviceId;

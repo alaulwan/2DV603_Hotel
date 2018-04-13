@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
+
 import javax.xml.bind.annotation.XmlRootElement;
 
 import model.shared.Bed.BedSize;
@@ -194,6 +195,7 @@ public class Hotel implements Serializable{
 				"p@p.p", "student");
 		
 		customer1.addReservation(R1.getRoomId(), R1.getRoomNum(), R1.getRoomLocation(),LocalDate.now(), LocalDate.now().plusDays(5),R1.getRate(), 0, 2, "Al reservation");
+		customer1.addReservation(R1.getRoomId(), R1.getRoomNum(), R1.getRoomLocation(),LocalDate.now().minusDays(10), LocalDate.now().minusDays(5),R1.getRate(), 0, 2, "Old Al reservation");
 		customer2.addReservation(R2.getRoomId(), R2.getRoomNum(), R2.getRoomLocation(), LocalDate.now().minusDays(1), LocalDate.now().plusDays(5), R2.getRate(), 0, 1 , "Ba reservation");
 		customer3.addReservation(suite1.getRoomId(), suite1.getRoomNum(), suite1.getRoomLocation(), LocalDate.now().minusDays(1), LocalDate.now(), suite1.getRate(), 0, 4 ,"Pa reservation kalmar");
 		customer3.addReservation(suite2.getRoomId(), suite2.getRoomNum(), suite2.getRoomLocation(), LocalDate.now().minusDays(1), LocalDate.now(), suite2.getRate(), 0, 4 ,"Pa reservation vaxjo");

@@ -15,7 +15,7 @@ public class CustomerNameReservationsFilter implements ReservationsFilter {
 	public ArrayList<Reservation> applyReservationsFilter(ArrayList<Reservation> reservationsList) {
 		for (int i=0; i< reservationsList.size(); i++) {
 			for (String name : customerName) {
-				if(!reservationsList.get(i).getCustomerName().contains(name)) {
+				if(!reservationsList.get(i).getCustomerName().toLowerCase().contains(name.toLowerCase())) {
 					reservationsList.remove(i);
 					i--;
 				}

@@ -16,7 +16,12 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 import model.client.ServerAPI;
+import model.shared.Reservation;
 import model.shared.Room;
+import model.shared.filters.reservationsFilters.LocationReservationsFilter;
+import model.shared.filters.reservationsFilters.ReservationsFilter;
+import model.shared.filters.reservationsFilters.RoomNumReservationsFilter;
+import model.shared.filters.reservationsFilters.StatusReservationsFilter;
 import model.shared.filters.roomsFilters.RoomsFilter;
 
 public class AvailableRoomController implements Controller {
@@ -75,7 +80,7 @@ public class AvailableRoomController implements Controller {
 					selectedRoomNode.rectangle.setStroke(Paint.valueOf("GRAY"));
 			});
 			
-			rM.setOnMouseClicked((MouseEvent t) -> {
+			rM.setOnMousePressed((MouseEvent t) -> {
 				if (selectedRoomNode != null)
 					selectedRoomNode.rectangle.setStroke(paint);
 				selectedRoomNode = rM;
@@ -83,7 +88,10 @@ public class AvailableRoomController implements Controller {
 				if (t.getButton() == MouseButton.PRIMARY && t.getClickCount() == 2) {
 					ReservationsListController reservationsListController = new ReservationsListController();
 					try {
+						reservationsListController.reservationArray = imprtReservationsListByRoomNum(rM.room.getRoomNum());
+						System.out.print(reservationsListController.reservationArray.size());
 						Scene mainScene = new Scene(reservationsListController.getParentPane());
+						
 						Stage stage = new Stage();
 						stage.setScene(mainScene);
 						stage.setTitle("Reservations List");
@@ -95,6 +103,19 @@ public class AvailableRoomController implements Controller {
 			});
 		}
 		
+	}
+	
+	@FXML
+	private ArrayList<Reservation> imprtReservationsListByRoomNum(int roomNum) {
+		ArrayList<ReservationsFilter> reservationsFilterList = new ArrayList<ReservationsFilter> ();
+		LocationReservationsFilter locationReservationsFilter = new LocationReservationsFilter (ServerAPI.location);
+		StatusReservationsFilter statusReservationsFilter = new StatusReservationsFilter(true, true, false, false);
+		RoomNumReservationsFilter roomNumReservationsFilter = new RoomNumReservationsFilter (roomNum);
+		reservationsFilterList.add(locationReservationsFilter);
+		reservationsFilterList.add(statusReservationsFilter);
+		reservationsFilterList.add(roomNumReservationsFilter);
+		
+		return ServerAPI.getReservationsList(reservationsFilterList);
 	}
 	
 	public Parent getParentPane() throws IOException {

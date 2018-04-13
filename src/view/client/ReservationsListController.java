@@ -21,7 +21,13 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Callback;
+import model.client.ServerAPI;
 import model.shared.Reservation;
+import model.shared.filters.reservationsFilters.CustomerNameReservationsFilter;
+import model.shared.filters.reservationsFilters.LocationReservationsFilter;
+import model.shared.filters.reservationsFilters.ReservationsFilter;
+import model.shared.filters.reservationsFilters.RoomNumReservationsFilter;
+import model.shared.filters.reservationsFilters.StatusReservationsFilter;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -138,7 +144,60 @@ public class ReservationsListController implements Controller{
 			});
 	}
 	
+	@FXML
+	public void viewHistoryChecked() {
+		ArrayList<ReservationsFilter> reservationsFilterList = new ArrayList<ReservationsFilter> ();
+		LocationReservationsFilter locationReservationsFilter = new LocationReservationsFilter (ServerAPI.location);
+		StatusReservationsFilter statusReservationsFilter = new StatusReservationsFilter(true, true, true, true);
+		reservationsFilterList.add(locationReservationsFilter);
+		reservationsFilterList.add(statusReservationsFilter);
+		this.reservationArray= ServerAPI.getReservationsList(reservationsFilterList);
+		searchCustomerNameFieldChange();
+	}
 	
+	@FXML
+	public void searchCustomerNameFieldChange() {
+		ArrayList<Reservation> reservationsArray = new ArrayList<Reservation> (this.reservationArray);
+		applyCustomerNameFilter (reservationsArray);
+		applyRoomNumFilter (reservationsArray);
+	}
+	
+	@FXML
+	public void searchRoomNumFieldChange() {
+		ArrayList<Reservation> reservationsArray = new ArrayList<Reservation> (this.reservationArray);
+		applyCustomerNameFilter (reservationsArray);
+		applyRoomNumFilter (reservationsArray);
+	}
+	
+	public void applyCustomerNameFilter(ArrayList<Reservation> reservationsArray){
+		String customerName = searchName.getText();
+		CustomerNameReservationsFilter customerNameReservationsFilter = new CustomerNameReservationsFilter(customerName);
+		customerNameReservationsFilter.applyReservationsFilter(reservationsArray);
+		ObservableList<Reservation> data = FXCollections.observableList(reservationsArray);
+		reservationsList.setItems(data);
+		System.out.println(data.size());
+	}
+	
+	
+	public void applyRoomNumFilter(ArrayList<Reservation> reservationsArray){
+		if (searchRoomNumber.getText().isEmpty()) {
+			ObservableList<Reservation> data = FXCollections.observableList(reservationsArray);
+			reservationsList.setItems(data);
+		}
+		else {
+			int roomNum = 0;
+			try {
+				roomNum = Integer.parseInt(searchRoomNumber.getText());
+			}catch (Exception e){
+				return;
+			}
+			RoomNumReservationsFilter roomNumReservationsFilter = new RoomNumReservationsFilter(roomNum);
+			roomNumReservationsFilter.applyReservationsFilter(reservationsArray);
+			ObservableList<Reservation> data = FXCollections.observableList(reservationsArray);
+			reservationsList.setItems(data);
+		}
+		
+	}
 	
 	public Parent getParentPane() throws IOException {
 		FXMLLoader loader = new FXMLLoader();

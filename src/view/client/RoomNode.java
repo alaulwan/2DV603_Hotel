@@ -51,7 +51,7 @@ public class RoomNode extends StackPane {
 		StackPane.setAlignment(rectangle, Pos.CENTER);
 		text = new Text(roomStatus + roomType + room.getRoomNum());
 
-		Font font = new Font("SansSerif", 16);
+		Font font = new Font("SansSerif", 15);
 		text.setFont(font);
 		text.setFill(Color.BLACK);
 		StackPane.setAlignment(text, Pos.TOP_CENTER);

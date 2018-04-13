@@ -18,6 +18,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Callback;
@@ -50,11 +51,13 @@ public class ReservationsListController implements Controller{
 	@FXML
 	private TableColumn<Reservation, Integer> totalDaysCol;
 	@FXML
-	private CheckBox viewAllBox ;
+	public CheckBox viewAllBox ;
 	@FXML
-	private TextField searchName ;
+	public HBox hbox ;
 	@FXML
-	private TextField searchRoomNumber ;
+	public TextField searchName ;
+	@FXML
+	public TextField searchRoomNumber ;
 	
 	private final String RESERVATION_LIST_LAYOUT = "res/view/ReservationsList.fxml";
 	public ArrayList<Reservation> reservationArray; 
@@ -99,6 +102,17 @@ public class ReservationsListController implements Controller{
 				MenuItem mi4 = new MenuItem("Add service");
 				mi4.setOnAction((ActionEvent event) -> {
 					Reservation selectedItem = reservationsList.getSelectionModel().getSelectedItem();
+					
+					try {
+						AddServiceController addServiceController = new AddServiceController();
+						Scene mainScene = new Scene(addServiceController.getParentPane());
+						Stage stage = new Stage();
+						stage.setScene(mainScene);
+						stage.setTitle("Add Service");
+						stage.showAndWait();
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
 				});
 				
 				MenuItem mi5 = new MenuItem("View bill");

@@ -63,7 +63,7 @@
             <guestsNumber>2</guestsNumber>
             <price>60.0</price>
             <reservationId>2</reservationId>
-            <reservationStatus>PENDING</reservationStatus>
+            <reservationStatus>CHECKED_OUT</reservationStatus>
             <roomId>1</roomId>
             <roomLocation>VAXJO</roomLocation>
             <roomNumber>1</roomNumber>

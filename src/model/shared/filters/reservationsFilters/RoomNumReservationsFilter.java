@@ -14,8 +14,6 @@ public class RoomNumReservationsFilter implements ReservationsFilter {
 	@Override
 	public ArrayList<Reservation> applyReservationsFilter(ArrayList<Reservation> reservationsList) {
 		for (int i=0; i< reservationsList.size(); i++) {
-			System.out.println(reservationsList.get(i).getRoomNumber());
-			System.out.println(roomNum);
 			if(reservationsList.get(i).getRoomNumber() != roomNum) {
 				reservationsList.remove(i);
 				i--;

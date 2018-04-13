@@ -162,7 +162,13 @@ public class ReservationsListController implements Controller{
 	public void viewHistoryChecked() {
 		ArrayList<ReservationsFilter> reservationsFilterList = new ArrayList<ReservationsFilter> ();
 		LocationReservationsFilter locationReservationsFilter = new LocationReservationsFilter (ServerAPI.location);
-		StatusReservationsFilter statusReservationsFilter = new StatusReservationsFilter(true, true, true, true);
+		StatusReservationsFilter statusReservationsFilter;
+		if (viewAllBox.isSelected()) {
+			statusReservationsFilter = new StatusReservationsFilter(true, true, true, true);
+		}
+		else {
+			statusReservationsFilter = new StatusReservationsFilter(true, true, false, false);
+		}
 		reservationsFilterList.add(locationReservationsFilter);
 		reservationsFilterList.add(statusReservationsFilter);
 		this.reservationArray= ServerAPI.getReservationsList(reservationsFilterList);

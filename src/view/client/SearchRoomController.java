@@ -21,7 +21,6 @@ import javafx.scene.control.CheckBox;
 
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory.IntegerSpinnerValueFactory;
-import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.control.DatePicker;
 
@@ -34,7 +33,6 @@ import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 import model.client.ServerAPI;
 import model.shared.Room;
-import model.shared.Customer.IdentificationType;
 import model.shared.Room.RoomLocation;
 import model.shared.filters.roomsFilters.ChekInOutDateRoomsFilter;
 import model.shared.filters.roomsFilters.LocationRoomsFilter;
@@ -82,7 +80,6 @@ public class SearchRoomController {
 	private Button cancelButton;
 	
 	private final String SEARCH_ROOM_LAYOUT = "res/view/SearchRoom.fxml";
-	private ArrayList <RoomsFilter> roomsFilterList;
 	private ArrayList <Room> roomsList;
 	private RoomNode selectedRoomNode;
 	

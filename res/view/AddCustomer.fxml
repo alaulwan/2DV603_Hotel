@@ -43,8 +43,8 @@
          </toggleGroup>
       </RadioButton>
       <RadioButton fx:id="femaleBox" layoutX="227.0" layoutY="233.0" mnemonicParsing="false" text="Female" toggleGroup="$genderBox" />
-      <ComboBox fx:id="customersNameList" editable="true" layoutX="161.0" layoutY="22.0" prefHeight="26.0" prefWidth="192.0" promptText="Choose a customer" />
-      <ToggleButton fx:id="newCustomerButton" layoutX="375.0" layoutY="22.0" mnemonicParsing="false" text="New Customer" />
+      <ComboBox fx:id="customersNameList" editable="true" layoutX="161.0" layoutY="22.0" onAction="#comboBoxCustomerSelected" onKeyReleased="#comboBoxCustomerTyped" prefHeight="26.0" prefWidth="192.0" promptText="Choose a customer" />
+      <ToggleButton fx:id="newCustomerButton" layoutX="375.0" layoutY="22.0" mnemonicParsing="false" onAction="#newCustomerBtn" text="New Customer" />
       <Label fx:id="existingCustomerLabel" layoutX="35.0" layoutY="30.0" text="Existing Customer" />
    </children>
 </AnchorPane>

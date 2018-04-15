@@ -185,13 +185,13 @@ public class Hotel implements Serializable{
 				true, false, false);
 		Suite suite2 = new Suite(4, new ArrayList<Room>(Arrays.asList(S2Ra, S2Rb)));
 		
-		Customer customer1 = new Customer("Alaa Al", LocalDate.of(1982, 01, 01), Gender.MALE, "076970", IdentificationType.PASS_NUMBER, "1111111", "Vaxjo", "Syr",
+		Customer customer1 = new Customer("Alaa Al", LocalDate.of(1982, 01, 01), Gender.MALE, "076970", IdentificationType.PASS_NUMBER, "1111111", "Card5555555", "Vaxjo", "Syr",
 				"a@a.a", "student");
 		
-		Customer customer2 = new Customer("Basem mo", LocalDate.of(1992, 05, 05), Gender.MALE,"0732323", IdentificationType.PASS_NUMBER, "2222222", "Vaxjo", "Syr",
+		Customer customer2 = new Customer("Basem mo", LocalDate.of(1992, 05, 05), Gender.MALE,"0732323", IdentificationType.PASS_NUMBER, "2222222", "Card22222", "Vaxjo", "Syr",
 				"b@b.b", "student");
 		
-		Customer customer3 = new Customer("Paul", LocalDate.of(1987, 10, 10), Gender.MALE,"0732323", IdentificationType.PASS_NUMBER, "3333333", "Vaxjo", "???",
+		Customer customer3 = new Customer("Paul", LocalDate.of(1987, 10, 10), Gender.MALE,"0732323", IdentificationType.PASS_NUMBER, "3333333", "Card11111111", "Vaxjo", "???",
 				"p@p.p", "student");
 		
 		customer1.addReservation(R1.getRoomId(), R1.getRoomNum(), R1.getRoomLocation(),LocalDate.now(), LocalDate.now().plusDays(5),R1.getRate(), 0, 2, "Al reservation");
@@ -201,9 +201,9 @@ public class Hotel implements Serializable{
 		customer3.addReservation(suite1.getRoomId(), suite1.getRoomNum(), suite1.getRoomLocation(), LocalDate.now().minusDays(1), LocalDate.now(), suite1.getRate(), 0, 4 ,"Pa reservation kalmar");
 		customer3.addReservation(suite2.getRoomId(), suite2.getRoomNum(), suite2.getRoomLocation(), LocalDate.now().minusDays(1), LocalDate.now(), suite2.getRate(), 0, 4 ,"Pa reservation vaxjo");
 		
-		Room R3 = new Room (new ArrayList<Bed>(Arrays.asList(bed1R1)), RoomLocation.VAXJO, 3, RoomSize.MEDIUM, false, true,
+		Room R3 = new Room (new ArrayList<Bed>(Arrays.asList(bed1R1, bed1R2)), RoomLocation.VAXJO, 3, RoomSize.MEDIUM, false, true,
 				true, false, false);
-		Room R4 = new Room (new ArrayList<Bed>(Arrays.asList(bed1R1)), RoomLocation.VAXJO, 4, RoomSize.MEDIUM, false, true,
+		Room R4 = new Room (new ArrayList<Bed>(Arrays.asList(bed1R1, bed1R2)), RoomLocation.VAXJO, 4, RoomSize.MEDIUM, false, true,
 				true, false, false);
 		Room R5 = new Room (new ArrayList<Bed>(Arrays.asList(bed1R1)), RoomLocation.VAXJO, 5, RoomSize.MEDIUM, false, true,
 				true, false, false);

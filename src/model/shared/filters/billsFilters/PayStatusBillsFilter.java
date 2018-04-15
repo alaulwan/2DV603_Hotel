@@ -21,12 +21,15 @@ public class PayStatusBillsFilter implements BillsFilter {
 	
 	@Override
 	public ArrayList<Bill> applyBillsFilter(ArrayList<Bill> billsList) {
-		for (int i=0; i< billsList.size(); i++) {
-			if (billsList.get(i).getPayStatus() != payStatus) {
-				billsList.remove(i);
-				i--;
+		if (payStatus!=null) {
+			for (int i=0; i< billsList.size(); i++) {
+				if (billsList.get(i).getPayStatus() != payStatus) {
+					billsList.remove(i);
+					i--;
+				}
 			}
 		}
+		
 		return billsList;
 	}
 

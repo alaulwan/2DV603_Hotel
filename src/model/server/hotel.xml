@@ -3,15 +3,16 @@
     <customersList>
         <address>Vaxjo</address>
         <birthDate>1982-01-01</birthDate>
+        <creditCardNum>Card5555555</creditCardNum>
         <customerId>1</customerId>
         <description>student</description>
         <email>a@a.a</email>
         <gender>MALE</gender>
         <identificationNumber>1111111</identificationNumber>
         <identificationType>PASS_NUMBER</identificationType>
-        <mobileNum>076970</mobileNum>
         <name>Alaa Al</name>
         <nationality>Syr</nationality>
+        <phoneNum>076970</phoneNum>
         <reservationsList>
             <bill>
                 <billId>1</billId>
@@ -27,8 +28,8 @@
                     <serviceType>RESERVATION</serviceType>
                 </serviceList>
             </bill>
-            <checkInDate>2018-04-13</checkInDate>
-            <checkOutDate>2018-04-18</checkOutDate>
+            <checkInDate>2018-04-15</checkInDate>
+            <checkOutDate>2018-04-20</checkOutDate>
             <customerId>1</customerId>
             <customerName>Alaa Al</customerName>
             <discription>Al reservation</discription>
@@ -55,8 +56,8 @@
                     <serviceType>RESERVATION</serviceType>
                 </serviceList>
             </bill>
-            <checkInDate>2018-04-03</checkInDate>
-            <checkOutDate>2018-04-08</checkOutDate>
+            <checkInDate>2018-04-05</checkInDate>
+            <checkOutDate>2018-04-10</checkOutDate>
             <customerId>1</customerId>
             <customerName>Alaa Al</customerName>
             <discription>Old Al reservation</discription>
@@ -72,15 +73,16 @@
     <customersList>
         <address>Vaxjo</address>
         <birthDate>1992-05-05</birthDate>
+        <creditCardNum>Card22222</creditCardNum>
         <customerId>2</customerId>
         <description>student</description>
         <email>b@b.b</email>
         <gender>MALE</gender>
         <identificationNumber>2222222</identificationNumber>
         <identificationType>PASS_NUMBER</identificationType>
-        <mobileNum>0732323</mobileNum>
         <name>Basem mo</name>
         <nationality>Syr</nationality>
+        <phoneNum>0732323</phoneNum>
         <reservationsList>
             <bill>
                 <billId>3</billId>
@@ -96,8 +98,8 @@
                     <serviceType>RESERVATION</serviceType>
                 </serviceList>
             </bill>
-            <checkInDate>2018-04-12</checkInDate>
-            <checkOutDate>2018-04-18</checkOutDate>
+            <checkInDate>2018-04-14</checkInDate>
+            <checkOutDate>2018-04-20</checkOutDate>
             <customerId>2</customerId>
             <customerName>Basem mo</customerName>
             <discription>Ba reservation</discription>
@@ -113,15 +115,16 @@
     <customersList>
         <address>Vaxjo</address>
         <birthDate>1987-10-10</birthDate>
+        <creditCardNum>Card11111111</creditCardNum>
         <customerId>3</customerId>
         <description>student</description>
         <email>p@p.p</email>
         <gender>MALE</gender>
         <identificationNumber>3333333</identificationNumber>
         <identificationType>PASS_NUMBER</identificationType>
-        <mobileNum>0732323</mobileNum>
         <name>Paul</name>
         <nationality>???</nationality>
+        <phoneNum>0732323</phoneNum>
         <reservationsList>
             <bill>
                 <billId>4</billId>
@@ -137,8 +140,8 @@
                     <serviceType>RESERVATION</serviceType>
                 </serviceList>
             </bill>
-            <checkInDate>2018-04-12</checkInDate>
-            <checkOutDate>2018-04-13</checkOutDate>
+            <checkInDate>2018-04-14</checkInDate>
+            <checkOutDate>2018-04-15</checkOutDate>
             <customerId>3</customerId>
             <customerName>Paul</customerName>
             <discription>Pa reservation kalmar</discription>
@@ -165,8 +168,8 @@
                     <serviceType>RESERVATION</serviceType>
                 </serviceList>
             </bill>
-            <checkInDate>2018-04-12</checkInDate>
-            <checkOutDate>2018-04-13</checkOutDate>
+            <checkInDate>2018-04-14</checkInDate>
+            <checkOutDate>2018-04-15</checkOutDate>
             <customerId>3</customerId>
             <customerName>Paul</customerName>
             <discription>Pa reservation vaxjo</discription>
@@ -193,7 +196,6 @@
         <roomLocation>VAXJO</roomLocation>
         <roomNum>1</roomNum>
         <roomSize>MEDIUM</roomSize>
-        <roomStatus>CHEKIN_TODAY</roomStatus>
         <smoking>false</smoking>
         <suite>false</suite>
         <view>true</view>
@@ -212,7 +214,6 @@
         <roomLocation>VAXJO</roomLocation>
         <roomNum>2</roomNum>
         <roomSize>MEDIUM</roomSize>
-        <roomStatus>OCCUPIED</roomStatus>
         <smoking>false</smoking>
         <suite>false</suite>
         <view>true</view>
@@ -224,14 +225,17 @@
             <bedId>1</bedId>
             <bedSize>SINGLE</bedSize>
         </bedsList>
-        <maxGuestCapacity>1</maxGuestCapacity>
+        <bedsList>
+            <bedId>2</bedId>
+            <bedSize>DOUBLE</bedSize>
+        </bedsList>
+        <maxGuestCapacity>3</maxGuestCapacity>
         <qualityLev>6</qualityLev>
         <rate>60.0</rate>
         <roomId>9</roomId>
         <roomLocation>VAXJO</roomLocation>
         <roomNum>3</roomNum>
         <roomSize>MEDIUM</roomSize>
-        <roomStatus>AVAILABLE</roomStatus>
         <smoking>false</smoking>
         <suite>false</suite>
         <view>true</view>
@@ -243,14 +247,17 @@
             <bedId>1</bedId>
             <bedSize>SINGLE</bedSize>
         </bedsList>
-        <maxGuestCapacity>1</maxGuestCapacity>
+        <bedsList>
+            <bedId>2</bedId>
+            <bedSize>DOUBLE</bedSize>
+        </bedsList>
+        <maxGuestCapacity>3</maxGuestCapacity>
         <qualityLev>6</qualityLev>
         <rate>60.0</rate>
         <roomId>10</roomId>
         <roomLocation>VAXJO</roomLocation>
         <roomNum>4</roomNum>
         <roomSize>MEDIUM</roomSize>
-        <roomStatus>AVAILABLE</roomStatus>
         <smoking>false</smoking>
         <suite>false</suite>
         <view>true</view>
@@ -269,7 +276,6 @@
         <roomLocation>VAXJO</roomLocation>
         <roomNum>5</roomNum>
         <roomSize>MEDIUM</roomSize>
-        <roomStatus>AVAILABLE</roomStatus>
         <smoking>false</smoking>
         <suite>false</suite>
         <view>true</view>
@@ -288,7 +294,6 @@
         <roomLocation>VAXJO</roomLocation>
         <roomNum>6</roomNum>
         <roomSize>MEDIUM</roomSize>
-        <roomStatus>AVAILABLE</roomStatus>
         <smoking>false</smoking>
         <suite>false</suite>
         <view>true</view>
@@ -311,7 +316,6 @@
         <roomLocation>KALMAR</roomLocation>
         <roomNum>3</roomNum>
         <roomSize>MEDIUM</roomSize>
-        <roomStatus>CHECKOUT_TODAY</roomStatus>
         <smoking>false</smoking>
         <suite>true</suite>
         <view>true</view>
@@ -374,7 +378,6 @@
         <roomLocation>VAXJO</roomLocation>
         <roomNum>4</roomNum>
         <roomSize>MEDIUM</roomSize>
-        <roomStatus>CHECKOUT_TODAY</roomStatus>
         <smoking>false</smoking>
         <suite>true</suite>
         <view>true</view>

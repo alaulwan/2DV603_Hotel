@@ -54,32 +54,38 @@ public class RootLayoutController {
 		availableRoomsTab.setContent(availableRoomController.getParentPane());
 		reservationsListTab.setContent(reservationsListController.getParentPane());
 		customerListTab.setContent(customerListController.getParentPane());
-
-		newReservationButton.setOnMouseClicked(createEvent -> {
-			try {
-				Scene mainScene = new Scene(searchRoomController.getParentPane());
-				Stage stage = new Stage();
-				stage.setScene(mainScene);
-				stage.setTitle("Search for a room...");
-				stage.showAndWait();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-
-		});
-
-		exitButton.setOnAction(exitAppEvent -> {
-			Alert closeConfirmation = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to exit?");
-			closeConfirmation.setHeaderText("Confirm Exit");
-			closeConfirmation.initModality(Modality.APPLICATION_MODAL);
-			
-			Optional<ButtonType> closeResponse = closeConfirmation.showAndWait();
-			if (ButtonType.OK.equals(closeResponse.get())) {
-				System.exit(0);
-
-			} 
-		});
 	
+	}
+	
+	@FXML
+	public void newReservation() {
+		try {
+			Scene mainScene = new Scene(searchRoomController.getParentPane());
+			Stage stage = new Stage();
+			stage.setScene(mainScene);
+			stage.setTitle("Search for a room...");
+			stage.showAndWait();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@FXML
+	public void checkIn() {
+		
+	}
+	
+	@FXML
+	public void exit() {
+		Alert closeConfirmation = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to exit?");
+		closeConfirmation.setHeaderText("Confirm Exit");
+		closeConfirmation.initModality(Modality.APPLICATION_MODAL);
+		
+		Optional<ButtonType> closeResponse = closeConfirmation.showAndWait();
+		if (ButtonType.OK.equals(closeResponse.get())) {
+			System.exit(0);
+
+		} 
 	}
 	
 	@FXML

@@ -25,13 +25,21 @@ public class HotelServer {
 	public static final int BUFSIZE = 1024;
 	public static final int MYPORT = 4444;
 	
-	public static void main(String[] args) throws IOException {
+	@SuppressWarnings("resource")
+	public static void main(String[] args) throws IOException{
 		HotelServer hotelServer = new HotelServer();
-		hotelServer.test();
+		
 		
 		/* Create Server Socket */
-		@SuppressWarnings("resource")
-		ServerSocket serverSocket = new ServerSocket(MYPORT);
+		ServerSocket serverSocket=null;
+		try {
+			serverSocket = new ServerSocket(MYPORT);
+		}catch (Exception e) {
+			System.err.println("The port is token.");
+			System.exit(0);
+		}
+		hotelServer.test();
+		
 		System.out.println("Hotel Server is Running on the port: " + MYPORT + ", Buffer Size: " + BUFSIZE);
 		while (true)
 		 {
@@ -90,10 +98,6 @@ public class HotelServer {
 	
 	public void test (){
 		hotel.defaultHotel();
-		
-		RoomsStatusUpdater RoomsStatusUpdater = new RoomsStatusUpdater();
-		RoomsStatusUpdater.start();
-		
 		DAO.xmlSave (hotel);
 		
 		Gson gson = new GsonBuilder().create();
@@ -114,6 +118,9 @@ public class HotelServer {
 		
 		String jArr2 = gson.toJson(hotel3.getCustomersList());
 		System.out.println(jArr.equals(jArr2));
+		
+		RoomsStatusUpdater RoomsStatusUpdater = new RoomsStatusUpdater();
+		RoomsStatusUpdater.start();
 	}
 	
 }

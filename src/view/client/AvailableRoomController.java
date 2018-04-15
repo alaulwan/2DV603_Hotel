@@ -64,48 +64,12 @@ public class AvailableRoomController implements Controller {
 		}
 		
 		for (int i=0; i< roomsList.size(); i++) {
-			RoomNode rM = new RoomNode (roomsList.get(i)) ;
-			roomsGrid.add(rM, i%4 , i/4);
-			
-			Paint paint = rM.rectangle.getStroke();
-			rM.rectangle.setStrokeWidth(rM.rectangle.getHeight()/15);
-			
-			rM.setOnMouseEntered((MouseEvent t) -> {
-				if (!rM.equals(selectedRoomNode))
-					rM.rectangle.setStroke(Paint.valueOf("LIGHTGRAY"));
-			});
-			rM.setOnMouseExited((MouseEvent t) -> {
-				rM.rectangle.setStroke(paint);
-				if (selectedRoomNode != null)
-					selectedRoomNode.rectangle.setStroke(Paint.valueOf("GRAY"));
-			});
-			
-			rM.setOnMousePressed((MouseEvent t) -> {
-				if (selectedRoomNode != null)
-					selectedRoomNode.rectangle.setStroke(paint);
-				selectedRoomNode = rM;
-				selectedRoomNode.rectangle.setStroke(Paint.valueOf("GRAY"));
-				if (t.getButton() == MouseButton.PRIMARY && t.getClickCount() == 2) {
-					ReservationsListController reservationsListController = new ReservationsListController();
-					try {
-						reservationsListController.reservationArray = imprtReservationsListByRoomNum(rM.room.getRoomNum());
-						System.out.print(reservationsListController.reservationArray.size());
-						Scene mainScene = new Scene(reservationsListController.getParentPane());
-						
-						Stage stage = new Stage();
-						stage.setScene(mainScene);
-						stage.setTitle("Reservations List");
-						stage.showAndWait();
-					} catch (IOException e) {
-						e.printStackTrace();
-					}
-				}
-			});
+			RoomNode roomNode = new RoomNode (roomsList.get(i)) ;
+			roomsGrid.add(roomNode, i%4 , i/4);
+			setRoomNodemouseAction(roomNode);
 		}
-		
 	}
 	
-	@FXML
 	private ArrayList<Reservation> imprtReservationsListByRoomNum(int roomNum) {
 		ArrayList<ReservationsFilter> reservationsFilterList = new ArrayList<ReservationsFilter> ();
 		LocationReservationsFilter locationReservationsFilter = new LocationReservationsFilter (ServerAPI.location);
@@ -116,6 +80,43 @@ public class AvailableRoomController implements Controller {
 		reservationsFilterList.add(roomNumReservationsFilter);
 		
 		return ServerAPI.getReservationsList(reservationsFilterList);
+	}
+	
+	private void setRoomNodemouseAction(RoomNode roomNode) {
+		Paint paint = roomNode.rectangle.getStroke();
+		roomNode.rectangle.setStrokeWidth(roomNode.rectangle.getHeight()/15);
+		
+		roomNode.setOnMouseEntered((MouseEvent t) -> {
+			if (!roomNode.equals(selectedRoomNode))
+				roomNode.rectangle.setStroke(Paint.valueOf("LIGHTGRAY"));
+		});
+		roomNode.setOnMouseExited((MouseEvent t) -> {
+			roomNode.rectangle.setStroke(paint);
+			if (selectedRoomNode != null)
+				selectedRoomNode.rectangle.setStroke(Paint.valueOf("GRAY"));
+		});
+		
+		roomNode.setOnMousePressed((MouseEvent t) -> {
+			if (selectedRoomNode != null)
+				selectedRoomNode.rectangle.setStroke(paint);
+			selectedRoomNode = roomNode;
+			selectedRoomNode.rectangle.setStroke(Paint.valueOf("GRAY"));
+			if (t.getButton() == MouseButton.PRIMARY && t.getClickCount() == 2) {
+				ReservationsListController reservationsListController = new ReservationsListController();
+				try {
+					reservationsListController.reservationArray = imprtReservationsListByRoomNum(roomNode.room.getRoomNum());
+					Scene mainScene = new Scene(reservationsListController.getParentPane());
+					
+					Stage stage = new Stage();
+					stage.setScene(mainScene);
+					stage.setTitle("Reservations List");
+					stage.showAndWait();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		});
+		
 	}
 	
 	public Parent getParentPane() throws IOException {

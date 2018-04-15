@@ -20,17 +20,17 @@
    <top>
       <HBox fx:id="buttonBox" prefHeight="110.0" prefWidth="1000.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="newReservationButton" mnemonicParsing="false" prefHeight="110.0" prefWidth="110.0" text="New Reservation">
+            <Button fx:id="newReservationButton" mnemonicParsing="false" onAction="#newReservation" prefHeight="110.0" prefWidth="110.0" text="New Reservation">
                <HBox.margin>
                   <Insets right="5.0" />
                </HBox.margin>
             </Button>
-            <Button fx:id="checkinButton" mnemonicParsing="false" prefHeight="110.0" prefWidth="110.0" text="Check In">
+            <Button fx:id="checkinButton" mnemonicParsing="false" onAction="#checkIn" prefHeight="110.0" prefWidth="110.0" text="Check In">
                <HBox.margin>
                   <Insets right="5.0" />
                </HBox.margin>
             </Button>
-            <Button fx:id="exitButton" mnemonicParsing="false" prefHeight="110.0" prefWidth="110.0" text="Exit">
+            <Button fx:id="exitButton" mnemonicParsing="false" onAction="#exit" prefHeight="110.0" prefWidth="110.0" text="Exit">
                <HBox.margin>
                   <Insets right="5.0" />
                </HBox.margin>

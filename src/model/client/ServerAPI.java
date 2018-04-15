@@ -1,15 +1,19 @@
 package model.client;
 
 import java.util.ArrayList;
+
+import model.shared.Bill;
 import model.shared.Connection;
 import model.shared.Customer;
 import model.shared.Reservation;
 import model.shared.Room;
 import model.shared.Room.RoomLocation;
+import model.shared.filters.billsFilters.BillsFilter;
 import model.shared.filters.customersFilters.CustomersFilter;
 import model.shared.filters.reservationsFilters.ReservationsFilter;
 import model.shared.filters.roomsFilters.LocationRoomsFilter;
 import model.shared.filters.roomsFilters.RoomsFilter;
+import model.shared.requests.BillsListRequest;
 import model.shared.requests.CustomersListRequest;
 import model.shared.requests.Request;
 import model.shared.requests.Request.RequestType;
@@ -66,6 +70,19 @@ public class ServerAPI {
 		c.close();
 		
 		return CustomersList;
+	}
+	
+	public static ArrayList <Bill> getBillsList (ArrayList<BillsFilter> BillsFilterList) {
+		Request request = new BillsListRequest (BillsFilterList);
+		request.requestType = RequestType.GET_BILLS;
+		Connection c = new Connection();
+		c.send(request);
+		
+		@SuppressWarnings("unchecked")
+		ArrayList <Bill> billsList = (ArrayList<Bill>) c.receiveObject ();
+		c.close();
+		
+		return billsList;
 	}
 
 }

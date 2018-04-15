@@ -4,25 +4,25 @@ import java.util.ArrayList;
 import model.shared.Reservation;
 import model.shared.Room;
 
-public class ViewSmoBalAirRoomsFilter implements RoomsFilter {
+public class AirViewBalSmoRoomsFilter implements RoomsFilter {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	public boolean airCon;
-	public boolean balcony;
 	public boolean view;
+	public boolean balcony;
 	public boolean smoking;
 	
-	public ViewSmoBalAirRoomsFilter () {
+	public AirViewBalSmoRoomsFilter () {
 		
 	}
 	
-	public ViewSmoBalAirRoomsFilter (boolean view, boolean smoking, boolean balcony, boolean airCon) {
-		this.view = view;
-		this.smoking = smoking;
-		this.balcony = balcony;
+	public AirViewBalSmoRoomsFilter (boolean airCon, boolean view, boolean balcony, boolean smoking) {
 		this.airCon = airCon;
+		this.view = view;
+		this.balcony = balcony;
+		this.smoking = smoking;
 	}
 	
 	@Override

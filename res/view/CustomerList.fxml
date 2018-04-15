@@ -12,12 +12,12 @@
    <children>
       <HBox layoutX="648.0" layoutY="1.0" prefHeight="33.0" prefWidth="252.0">
          <children>
-            <TextField fx:id="searchName" prefHeight="25.0" prefWidth="170.0" promptText="Search by Name" >
+            <TextField fx:id="searchName" onKeyReleased="#apllyAllChosenFilters" prefHeight="25.0" prefWidth="170.0" promptText="Search by Name">
                <HBox.margin>
                   <Insets top="3.0" />
                </HBox.margin>
             </TextField>
-            <CheckBox fx:id="viewAllBox" layoutX="10.0" layoutY="5.0" mnemonicParsing="false" text="View all">
+            <CheckBox fx:id="viewAllBox" layoutX="10.0" layoutY="5.0" mnemonicParsing="false" onAction="#viewHistoryChecked" text="View History">
                <HBox.margin>
                   <Insets left="3.0" top="6.0" />
                </HBox.margin>

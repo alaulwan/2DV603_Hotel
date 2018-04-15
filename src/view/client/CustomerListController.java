@@ -12,15 +12,29 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.HBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Callback;
+import model.client.ServerAPI;
 import model.shared.Customer;
+import model.shared.Reservation;
+import model.shared.filters.billsFilters.BillsFilter;
+import model.shared.filters.customersFilters.CustomersFilter;
+import model.shared.filters.customersFilters.NameCustomersFilter;
+import model.shared.filters.customersFilters.ReservationLocationCustomersFilter;
+import model.shared.filters.customersFilters.ReservationStatusCustumersFilter;
+import model.shared.filters.reservationsFilters.CustomerNameReservationsFilter;
+import model.shared.filters.reservationsFilters.LocationReservationsFilter;
+import model.shared.filters.reservationsFilters.ReservationsFilter;
+import model.shared.filters.reservationsFilters.StatusReservationsFilter;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
@@ -42,6 +56,10 @@ public class CustomerListController implements Controller{
 	private TableColumn<Customer, String> roomsNumberCol;
 	@FXML
 	private TableColumn <Customer, Integer> reservationsNumberCol;
+	@FXML
+	public CheckBox viewAllBox ;
+	@FXML
+	public TextField searchName ;
 	
 	private final String CUSTOMER_LIST_LAYOUT = "res/view/CustomerList.fxml";
 	
@@ -50,7 +68,64 @@ public class CustomerListController implements Controller{
 	@FXML
 	public void initialize() {		
 		setData () ;
+		setContextMenu();
 
+		
+		
+	}
+	
+	
+
+	private void setData() {
+		if (customersArray!= null) {
+			ObservableList<Customer> data = FXCollections.observableList(customersArray);
+			customersTableView.setItems(data);
+			
+			idCol.setCellValueFactory(new PropertyValueFactory<Customer, Integer> ("customerId"));
+			nameCol.setCellValueFactory(new PropertyValueFactory<Customer, String> ("name"));
+			phoneNumberCol.setCellValueFactory(new PropertyValueFactory<Customer, String> ("mobileNum"));
+			passCol.setCellValueFactory(new PropertyValueFactory<Customer, String> ("identificationNumber"));
+			roomsNumberCol.setCellValueFactory(new PropertyValueFactory<Customer, String> ("currentReservedRooms"));
+			reservationsNumberCol.setCellValueFactory(new PropertyValueFactory<Customer, Integer> ("currentReservedNumbers"));	
+		}		
+	}
+	
+	@FXML
+	public void viewHistoryChecked() {
+		ArrayList<CustomersFilter> customersFilterList = new ArrayList<CustomersFilter> ();
+		ReservationLocationCustomersFilter reservationLocationCustomersFilter = new ReservationLocationCustomersFilter (ServerAPI.location);
+		ReservationStatusCustumersFilter reservationStatusCustumersFilter;
+		
+		if (viewAllBox.isSelected()) {
+			reservationStatusCustumersFilter = new ReservationStatusCustumersFilter(true, true, true, true);
+		}
+		else {
+			reservationStatusCustumersFilter = new ReservationStatusCustumersFilter(true, true, false, false);
+		}
+		
+		customersFilterList.add(reservationStatusCustumersFilter);
+		customersFilterList.add(reservationLocationCustomersFilter);
+		
+		this.customersArray = ServerAPI.getCustomersList(customersFilterList);
+		
+		apllyAllChosenFilters();
+	}
+	
+	@FXML
+	public void apllyAllChosenFilters() {
+		ArrayList<Customer> customorsArray = new ArrayList<Customer> (this.customersArray);
+		applyCustomerNameFilter (customorsArray);
+	}
+	
+	public void applyCustomerNameFilter(ArrayList<Customer> customorsArray){
+		String customerName = searchName.getText();
+		NameCustomersFilter nameCustomersFilter = new NameCustomersFilter(customerName);
+		nameCustomersFilter.applyCustomersFilter(customorsArray);
+		ObservableList<Customer> data = FXCollections.observableList(customorsArray);
+		customersTableView.setItems(data);
+	}
+	
+	private void setContextMenu() {
 		customersTableView.setRowFactory(
 			    new Callback<TableView<Customer>, TableRow<Customer>>() {
 			  @Override
@@ -60,9 +135,9 @@ public class CustomerListController implements Controller{
 			    MenuItem mi1 = new MenuItem("Edit");
 					mi1.setOnAction((ActionEvent event) -> {
 						Customer selectedItem = customersTableView.getSelectionModel().getSelectedItem();
-//						System.out.println(selectedItem.getCustomerName());
 						try {
 							AddCustomerController addCustomerController = new AddCustomerController();
+							addCustomerController.currentCustomer = selectedItem;
 							Scene mainScene = new Scene(addCustomerController.getParentPane());
 							Stage stage = new Stage();
 							stage.setScene(mainScene);
@@ -119,20 +194,6 @@ public class CustomerListController implements Controller{
 			  }
 			});
 		
-	}
-	
-	private void setData() {
-		if (customersArray!= null) {
-			ObservableList<Customer> data = FXCollections.observableList(customersArray);
-			customersTableView.setItems(data);
-			
-			idCol.setCellValueFactory(new PropertyValueFactory<Customer, Integer> ("customerId"));
-			nameCol.setCellValueFactory(new PropertyValueFactory<Customer, String> ("name"));
-			phoneNumberCol.setCellValueFactory(new PropertyValueFactory<Customer, String> ("mobileNum"));
-			passCol.setCellValueFactory(new PropertyValueFactory<Customer, String> ("identificationNumber"));
-			roomsNumberCol.setCellValueFactory(new PropertyValueFactory<Customer, String> ("currentReservedRooms"));
-			reservationsNumberCol.setCellValueFactory(new PropertyValueFactory<Customer, Integer> ("currentReservedNumbers"));	
-		}		
 	}
 
 	public Parent getParentPane() throws IOException {

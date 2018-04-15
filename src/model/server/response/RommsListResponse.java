@@ -17,7 +17,7 @@ public class RommsListResponse extends Response {
 		roomList = HotelServer.hotel.getRoomsAndSuitesList();
 		if (roomsFilterList != null) {
 			for (RoomsFilter filter : roomsFilterList) {
-				filter.applyRoomsFilter(roomList, null);
+				filter.applyRoomsFilter(roomList, HotelServer.hotel.getReservationsList());
 			}
 		}
 		super.object = roomList;

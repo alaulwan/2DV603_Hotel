@@ -9,20 +9,22 @@ import model.shared.Room.RoomLocation;
 public class Customer implements Serializable{
 	private static final long serialVersionUID = 1L;
 	public enum IdentificationType { PERSONAL_NUMBER, PASS_NUMBER }
+	public enum Gender { MALE, FEMALE }
 	
 	private static int count = 0;
 	private int customerId;
 	private String name;
 	private String birthDate;
-	public enum Gender { MALE, FEMALE }
 	private Gender gender;
-	private String mobileNum;
+	private String phoneNum;
 	private IdentificationType identificationType;
 	private String identificationNumber;
+	private String creditCardNum;
 	private String address;
 	private String nationality;
 	private String email;
 	private String description;
+	
 	private ArrayList <Reservation> reservationsList = new ArrayList<Reservation>();
 	//private int reservationsCounter ;
 	//private String rooms = "" ;
@@ -32,15 +34,16 @@ public class Customer implements Serializable{
 		
 	}
 
-	public Customer(String name, LocalDate birthDate, Gender gender, String mobileNum, IdentificationType identificationType,String identificationNumber, String address, String nationality,
+	public Customer(String name, LocalDate birthDate, Gender gender, String mobileNum, IdentificationType identificationType,String identificationNumber, String creditCardNum, String address, String nationality,
 			String email, String description) {
 		this.setCustomerId(++count);
 		this.name = name;
 		this.setBirthDate(birthDate);
 		this.gender = gender;
-		this.mobileNum = mobileNum;
+		this.phoneNum = mobileNum;
 		this.identificationType = identificationType;
 		this.identificationNumber = identificationNumber;
+		this.setCreditCardNum(creditCardNum);
 		this.address = address;
 		this.nationality = nationality;
 		this.email = email;
@@ -62,7 +65,7 @@ public class Customer implements Serializable{
 		this.name = name;
 		this.setBirthDate(birthDate);
 		this.gender = gender;
-		this.mobileNum = mobileNum;
+		this.phoneNum = mobileNum;
 		this.identificationType = identificationType;
 		this.identificationNumber = identificationNumber;
 		this.address = address;
@@ -124,12 +127,12 @@ public class Customer implements Serializable{
 		this.gender = gender;
 	}
 
-	public String getMobileNum() {
-		return mobileNum;
+	public String getPhoneNum() {
+		return phoneNum;
 	}
 
-	public void setMobileNum(String mobileNum) {
-		this.mobileNum = mobileNum;
+	public void setPhoneNum(String mobileNum) {
+		this.phoneNum = mobileNum;
 	}
 
 	public IdentificationType getIdentificationType() {
@@ -146,6 +149,14 @@ public class Customer implements Serializable{
 
 	public void setIdentificationNumber(String identificationNumber) {
 		this.identificationNumber = identificationNumber;
+	}
+
+	public String getCreditCardNum() {
+		return creditCardNum;
+	}
+
+	public void setCreditCardNum(String creditCardNum) {
+		this.creditCardNum = creditCardNum;
 	}
 
 	public String getAddress() {

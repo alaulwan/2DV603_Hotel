@@ -82,7 +82,6 @@ public class ReservationsListController implements Controller{
 			    MenuItem mi1 = new MenuItem("Edit");
 					mi1.setOnAction((ActionEvent event) -> {
 						Reservation selectedItem = reservationsList.getSelectionModel().getSelectedItem();
-//						System.out.println(selectedItem.getCustomerName());
 						try {
 							SearchRoomController searchRoomController = new SearchRoomController();
 							Scene mainScene = new Scene(searchRoomController.getParentPane());
@@ -172,18 +171,11 @@ public class ReservationsListController implements Controller{
 		reservationsFilterList.add(locationReservationsFilter);
 		reservationsFilterList.add(statusReservationsFilter);
 		this.reservationArray= ServerAPI.getReservationsList(reservationsFilterList);
-		searchCustomerNameFieldChange();
+		apllyAllChosenFilters();
 	}
 	
 	@FXML
-	public void searchCustomerNameFieldChange() {
-		ArrayList<Reservation> reservationsArray = new ArrayList<Reservation> (this.reservationArray);
-		applyCustomerNameFilter (reservationsArray);
-		applyRoomNumFilter (reservationsArray);
-	}
-	
-	@FXML
-	public void searchRoomNumFieldChange() {
+	public void apllyAllChosenFilters() {
 		ArrayList<Reservation> reservationsArray = new ArrayList<Reservation> (this.reservationArray);
 		applyCustomerNameFilter (reservationsArray);
 		applyRoomNumFilter (reservationsArray);
@@ -195,7 +187,6 @@ public class ReservationsListController implements Controller{
 		customerNameReservationsFilter.applyReservationsFilter(reservationsArray);
 		ObservableList<Reservation> data = FXCollections.observableList(reservationsArray);
 		reservationsList.setItems(data);
-		System.out.println(data.size());
 	}
 	
 	

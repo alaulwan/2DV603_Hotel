@@ -26,8 +26,8 @@
       </TableView>
       <HBox fx:id="hbox" layoutX="457.0" layoutY="3.0" prefHeight="25.0" prefWidth="365.0" AnchorPane.bottomAnchor="399.0" AnchorPane.leftAnchor="457.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="3.0">
          <children>
-            <TextField fx:id="searchName" onKeyReleased="#searchCustomerNameFieldChange" prefHeight="25.0" prefWidth="150.0" promptText="Search by Name" />
-            <TextField fx:id="searchRoomNumber" onKeyReleased="#searchRoomNumFieldChange" prefHeight="25.0" prefWidth="149.0" promptText="Search by Room Number">
+            <TextField fx:id="searchName" onKeyReleased="#apllyAllChosenFilters" prefHeight="25.0" prefWidth="150.0" promptText="Search by Name" />
+            <TextField fx:id="searchRoomNumber" onKeyReleased="#apllyAllChosenFilters" prefHeight="25.0" prefWidth="149.0" promptText="Search by Room Number">
                <HBox.margin>
                   <Insets left="3.0" />
                </HBox.margin>

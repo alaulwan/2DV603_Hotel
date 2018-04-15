@@ -18,6 +18,7 @@ public class CustomerNameReservationsFilter implements ReservationsFilter {
 				if(!reservationsList.get(i).getCustomerName().toLowerCase().contains(name.toLowerCase())) {
 					reservationsList.remove(i);
 					i--;
+					break;
 				}
 			}
 		}

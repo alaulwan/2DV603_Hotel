@@ -14,6 +14,7 @@
           <Tab fx:id="availableRoomsTab" text="Available Rooms" />
             <Tab fx:id="reservationsListTab" onSelectionChanged="#imprtReservationsList" text="Reservations List" />
             <Tab fx:id="customerListTab" onSelectionChanged="#imprtCustomersList" text="Customers List" />
+            <Tab fx:id="billsListTab" onSelectionChanged="#imprtBillsList" text="Bills List" />
         </tabs>
       </TabPane>
    </bottom>
@@ -26,6 +27,11 @@
                </HBox.margin>
             </Button>
             <Button fx:id="checkinButton" mnemonicParsing="false" onAction="#checkIn" prefHeight="110.0" prefWidth="110.0" text="Check In">
+               <HBox.margin>
+                  <Insets right="5.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="checkoutButton" mnemonicParsing="false" onAction="#checkOut" prefHeight="110.0" prefWidth="110.0" text="Check Out">
                <HBox.margin>
                   <Insets right="5.0" />
                </HBox.margin>

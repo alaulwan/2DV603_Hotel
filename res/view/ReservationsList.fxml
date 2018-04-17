@@ -12,7 +12,7 @@
    <children>
       <TableView fx:id="reservationsList" layoutY="31.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="395.0" prefWidth="852.0" tableMenuButtonVisible="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="34.0">
         <columns>
-          <TableColumn fx:id="idCol" maxWidth="400.0" prefWidth="56.00000077486038" text="ID" />
+          <TableColumn fx:id="idCol" maxWidth="400.0" prefWidth="20.0" text="ID" />
           <TableColumn fx:id="roomCol" maxWidth="400.0" prefWidth="132.79998397827148" text="Room" />
             <TableColumn fx:id="nameCol" maxWidth="400.0" prefWidth="85.0" text="Name" />
             <TableColumn fx:id="guestNoCol" maxWidth="400.0" prefWidth="136.79998779296875" text="No. of  Guest" />
@@ -24,15 +24,15 @@
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </TableView>
-      <HBox fx:id="hbox" layoutX="457.0" layoutY="3.0" prefHeight="25.0" prefWidth="365.0" AnchorPane.bottomAnchor="399.0" AnchorPane.leftAnchor="457.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="3.0">
+      <HBox fx:id="hbox" layoutX="448.0" layoutY="1.0" prefHeight="27.0" prefWidth="430.0" AnchorPane.bottomAnchor="401.0" AnchorPane.leftAnchor="422.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="1.0">
          <children>
-            <TextField fx:id="searchName" onKeyReleased="#apllyAllChosenFilters" prefHeight="25.0" prefWidth="150.0" promptText="Search by Name" />
+            <TextField fx:id="searchName" onKeyReleased="#apllyAllChosenFilters" prefHeight="25.0" prefWidth="149.0" promptText="Search by Name" />
             <TextField fx:id="searchRoomNumber" onKeyReleased="#apllyAllChosenFilters" prefHeight="25.0" prefWidth="149.0" promptText="Search by Room Number">
                <HBox.margin>
                   <Insets left="3.0" />
                </HBox.margin>
             </TextField>
-            <CheckBox fx:id="viewAllBox" mnemonicParsing="false" onAction="#viewHistoryChecked" text="View History">
+            <CheckBox fx:id="viewAllBox" mnemonicParsing="false" onAction="#viewHistoryChecked" prefHeight="17.0" prefWidth="129.0" text="View History">
                <HBox.margin>
                   <Insets left="3.0" top="3.0" />
                </HBox.margin>

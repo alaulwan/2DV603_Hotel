@@ -11,38 +11,38 @@
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="645.0" prefWidth="612.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="645.0" prefWidth="620.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Button fx:id="cancelButton" layoutX="460.0" layoutY="582.0" mnemonicParsing="false" onMouseClicked="#cancel" text="Cancel" />
-      <Button fx:id="saveButton" layoutX="533.0" layoutY="582.0" mnemonicParsing="false" text="Save" />
+      <Button fx:id="cancelButton" layoutX="468.0" layoutY="583.0" mnemonicParsing="false" onMouseClicked="#cancel" text="Cancel" />
+      <Button fx:id="saveButton" layoutX="548.0" layoutY="582.0" mnemonicParsing="false" text="Save" />
       <Label layoutX="29.0" layoutY="250.0" text="Address" />
       <TextField fx:id="nationalityBox" layoutX="29.0" layoutY="358.0" maxHeight="-Infinity" maxWidth="-Infinity" />
       <Label layoutX="31.0" layoutY="78.0" text="Name" />
-      <TextField fx:id="creditCardNumberBox" layoutX="383.0" layoutY="199.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="150.0" />
-      <TextField fx:id="nameBox" layoutX="29.0" layoutY="106.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="174.0" promptText="Name" />
+      <TextField fx:id="creditCardNumberBox" layoutX="383.0" layoutY="197.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="150.0" />
+      <TextField fx:id="nameBox" layoutX="29.0" layoutY="106.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="174.0" />
       <Label layoutX="220.0" layoutY="74.0" text="Phone Number" />
       <TextField fx:id="phoneNumberBox" layoutX="220.0" layoutY="106.0" maxHeight="-Infinity" maxWidth="-Infinity" />
       <Label layoutX="384.0" layoutY="166.0" text="Credit Card Number" />
-      <TextField fx:id="emailBox" layoutX="383.0" layoutY="106.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="206.0" />
+      <TextField fx:id="emailBox" layoutX="419.0" layoutY="106.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="206.0" />
       <TextField fx:id="guestsNameBox" layoutX="135.0" layoutY="408.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="453.0" />
-      <DatePicker fx:id="birthDateBox" layoutX="24.0" layoutY="199.0" />
+      <DatePicker fx:id="birthDateBox" layoutX="24.0" layoutY="197.0" />
       <Label layoutX="29.0" layoutY="166.0" text="Birth Date" />
       <Label fx:id="guestsNameLabel" layoutX="28.0" layoutY="412.0" text="Guest Names" />
       <TextField fx:id="idNumberBox" layoutX="384.0" layoutY="358.0" />
-      <Label layoutX="384.0" layoutY="74.0" text="E-mail Address" />
+      <Label layoutX="422.0" layoutY="74.0" text="E-mail Address" />
       <TextField fx:id="addressBox" layoutX="29.0" layoutY="278.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="394.0" />
       <Label layoutX="27.0" layoutY="329.0" text="Nationality" />
-      <Label layoutX="220.0" layoutY="166.0" text="Gender" />
+      <Label layoutX="266.0" layoutY="166.0" text="Gender" />
       <ChoiceBox fx:id="identificationType" layoutX="383.0" layoutY="325.0" prefWidth="150.0" />
-      <Label layoutX="270.0" layoutY="329.0" text="Identification Type" />
+      <Label layoutX="321.0" layoutY="329.0" text="ID Type" />
       <Label layoutX="26.0" layoutY="457.0" text="Description" />
       <TextField fx:id="descriptionBox" alignment="TOP_LEFT" layoutX="135.0" layoutY="457.0" prefHeight="109.0" prefWidth="453.0" />
-      <RadioButton fx:id="maleBox" layoutX="227.0" layoutY="203.0" mnemonicParsing="false" text="Male">
+      <RadioButton fx:id="maleBox" layoutX="264.0" layoutY="196.0" mnemonicParsing="false" text="Male">
          <toggleGroup>
             <ToggleGroup fx:id="genderBox" />
          </toggleGroup>
       </RadioButton>
-      <RadioButton fx:id="femaleBox" layoutX="227.0" layoutY="233.0" mnemonicParsing="false" text="Female" toggleGroup="$genderBox" />
+      <RadioButton fx:id="femaleBox" layoutX="264.0" layoutY="226.0" mnemonicParsing="false" text="Female" toggleGroup="$genderBox" />
       <ComboBox fx:id="customersNameList" editable="true" layoutX="161.0" layoutY="22.0" onAction="#comboBoxCustomerSelected" onKeyReleased="#comboBoxCustomerTyped" prefHeight="26.0" prefWidth="192.0" promptText="Choose a customer" />
       <ToggleButton fx:id="newCustomerButton" layoutX="375.0" layoutY="22.0" mnemonicParsing="false" onAction="#newCustomerBtn" text="New Customer" />
       <Label fx:id="existingCustomerLabel" layoutX="35.0" layoutY="30.0" text="Existing Customer" />

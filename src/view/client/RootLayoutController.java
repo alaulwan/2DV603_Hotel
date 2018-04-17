@@ -34,11 +34,15 @@ public class RootLayoutController {
 	@FXML
 	private Tab customerListTab;
 	@FXML
+	private Tab billsListTab;
+	@FXML
 	private HBox buttonBox;
 	@FXML
 	private Button newReservationButton;
 	@FXML
 	private Button checkinButton;
+	@FXML
+	private Button checkoutButton;
 	@FXML
 	private Button exitButton;
 
@@ -46,6 +50,8 @@ public class RootLayoutController {
 	private AvailableRoomController availableRoomController = new AvailableRoomController();
 	private ReservationsListController reservationsListController = new ReservationsListController();
 	private CustomerListController customerListController = new CustomerListController();
+	private BillsListController billsListController = new BillsListController();
+
 	private SearchRoomController searchRoomController = new SearchRoomController();
 	
 
@@ -54,7 +60,7 @@ public class RootLayoutController {
 		availableRoomsTab.setContent(availableRoomController.getParentPane());
 		reservationsListTab.setContent(reservationsListController.getParentPane());
 		customerListTab.setContent(customerListController.getParentPane());
-	
+		billsListTab.setContent(billsListController.getParentPane());
 	}
 	
 	@FXML
@@ -62,6 +68,10 @@ public class RootLayoutController {
 		try {
 			Scene mainScene = new Scene(searchRoomController.getParentPane());
 			Stage stage = new Stage();
+			stage.setMinWidth(720);
+			stage.setMinHeight(620);
+			stage.setMaxWidth(720);
+			stage.setMaxHeight(620);
 			stage.setScene(mainScene);
 			stage.setTitle("Search for a room...");
 			stage.showAndWait();
@@ -72,6 +82,11 @@ public class RootLayoutController {
 	
 	@FXML
 	public void checkIn() {
+		
+	}
+	
+	@FXML
+	public void checkOut() {
 		
 	}
 	
@@ -114,6 +129,10 @@ public class RootLayoutController {
 			customerListController.customersArray = ServerAPI.getCustomersList(customersFilterList);
 			customerListController.initialize();
 		}
+	}
+	
+	@FXML
+	private void imprtBillsList() {
 	}
 
 	public Parent getParentPane() throws IOException {

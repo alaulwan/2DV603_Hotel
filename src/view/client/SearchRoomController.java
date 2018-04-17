@@ -107,10 +107,13 @@ public class SearchRoomController {
 			AddCustomerController c = new AddCustomerController();
 
 			Scene mainScene = new Scene(c.getParentPane());
-
 			Stage stage = new Stage();
+			stage.setMinWidth(650);
+			stage.setMinHeight(680);
+			stage.setMaxWidth(650);
+			stage.setMaxHeight(680);
 			stage.setScene(mainScene);
-			stage.setTitle("Search for a room...");
+			stage.setTitle("Add Customer Info.");
 			stage.show();
 			((Stage) nextButton.getScene().getWindow()).close();
 

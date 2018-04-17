@@ -67,8 +67,8 @@
             <Spinner fx:id="suiteRoomsNumberBox" GridPane.columnIndex="1" GridPane.rowIndex="4" />
          </children>
       </GridPane>
-      <Button fx:id="searchButton" layoutX="577.0" layoutY="539.0" mnemonicParsing="false" onAction="#searchRooms" text="Search" />
-      <Button fx:id="nextButton" layoutX="638.0" layoutY="539.0" mnemonicParsing="false" onAction="#nextToEnterCustomerInformation" text="Next &gt;" />
-      <Button fx:id="cancelButton" layoutX="514.0" layoutY="539.0" mnemonicParsing="false" onAction="#cancel" text="Cancel" />
+      <Button fx:id="searchButton" layoutX="552.0" layoutY="529.0" mnemonicParsing="false" onAction="#searchRooms" text="Search" />
+      <Button fx:id="nextButton" layoutX="622.0" layoutY="529.0" mnemonicParsing="false" onAction="#nextToEnterCustomerInformation" text="Next &gt;" />
+      <Button fx:id="cancelButton" layoutX="480.0" layoutY="529.0" mnemonicParsing="false" onAction="#cancel" text="Cancel" />
    </children>
 </AnchorPane>

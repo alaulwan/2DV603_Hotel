@@ -10,14 +10,14 @@
 
 <AnchorPane xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <HBox layoutX="648.0" layoutY="1.0" prefHeight="33.0" prefWidth="252.0">
+      <HBox layoutX="671.0" layoutY="2.0" prefHeight="33.0" prefWidth="286.0">
          <children>
             <TextField fx:id="searchName" onKeyReleased="#apllyAllChosenFilters" prefHeight="25.0" prefWidth="170.0" promptText="Search by Name">
                <HBox.margin>
                   <Insets top="3.0" />
                </HBox.margin>
             </TextField>
-            <CheckBox fx:id="viewAllBox" layoutX="10.0" layoutY="5.0" mnemonicParsing="false" onAction="#viewHistoryChecked" text="View History">
+            <CheckBox fx:id="viewAllBox" layoutX="10.0" layoutY="5.0" mnemonicParsing="false" onAction="#viewHistoryChecked" prefHeight="17.0" prefWidth="115.0" text="View History">
                <HBox.margin>
                   <Insets left="3.0" top="6.0" />
                </HBox.margin>

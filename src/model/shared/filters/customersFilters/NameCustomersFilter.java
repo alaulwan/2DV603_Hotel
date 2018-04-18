@@ -2,9 +2,7 @@ package model.shared.filters.customersFilters;
 
 import java.util.ArrayList;
 
-import model.shared.Bill;
 import model.shared.Customer;
-import model.shared.filters.billsFilters.BillsFilter;
 
 public class NameCustomersFilter implements CustomersFilter {
 

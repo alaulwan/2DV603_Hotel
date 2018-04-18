@@ -14,7 +14,7 @@
           <Tab fx:id="availableRoomsTab" text="Available Rooms" />
             <Tab fx:id="reservationsListTab" onSelectionChanged="#imprtReservationsList" text="Reservations List" />
             <Tab fx:id="customerListTab" onSelectionChanged="#imprtCustomersList" text="Customers List" />
-            <Tab fx:id="billsListTab" onSelectionChanged="#imprtBillsList" text="Bills List" />
+            <Tab fx:id="billsListTab" onSelectionChanged="#importBillsList" text="Bills List" />
         </tabs>
       </TabPane>
    </bottom>

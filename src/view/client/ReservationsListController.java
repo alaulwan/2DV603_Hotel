@@ -14,6 +14,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -62,97 +63,18 @@ public class ReservationsListController implements Controller{
 	public TextField searchRoomNumber ;
 	
 	private final String RESERVATION_LIST_LAYOUT = "res/view/ReservationsList.fxml";
-	public ArrayList<Reservation> reservationArray; 
+	public ArrayList<Reservation> reservationArray;
+	public Reservation selectedReservation;
 
 	
 	@FXML
 	public void initialize() {		
 		setData () ;
-		
-		reservationsList.setRowFactory(
-			    new Callback<TableView<Reservation>, TableRow<Reservation>>() {
-			  @Override
-			  public TableRow<Reservation> call(TableView<Reservation> tableView) {
-			    final TableRow<Reservation> row = new TableRow<>();
-			    final ContextMenu menu = new ContextMenu();
-			    MenuItem mi1 = new MenuItem("Edit");
-					mi1.setOnAction((ActionEvent event) -> {
-						Reservation selectedItem = reservationsList.getSelectionModel().getSelectedItem();
-						try {
-							SearchRoomController searchRoomController = new SearchRoomController();
-							Scene mainScene = new Scene(searchRoomController.getParentPane());
-							Stage stage = new Stage();
-							stage.setScene(mainScene);
-							stage.setTitle("Search for a room...");
-							stage.showAndWait();
-						} catch (IOException e) {
-							e.printStackTrace();
-						}
-					});
-
-				MenuItem mi2 = new MenuItem("Check-in");
-				mi2.setOnAction((ActionEvent event) -> {
-					Reservation selectedItem = reservationsList.getSelectionModel().getSelectedItem();
-				});
-				
-				MenuItem mi3 = new MenuItem("Check-out");
-				mi3.setOnAction((ActionEvent event) -> {
-					Reservation selectedItem = reservationsList.getSelectionModel().getSelectedItem();
-				});
-				
-				MenuItem mi4 = new MenuItem("Add service");
-				mi4.setOnAction((ActionEvent event) -> {
-					Reservation selectedItem = reservationsList.getSelectionModel().getSelectedItem();
-					
-					try {
-						AddServiceController addServiceController = new AddServiceController();
-						Scene mainScene = new Scene(addServiceController.getParentPane());
-						Stage stage = new Stage();
-						stage.setScene(mainScene);
-						stage.setTitle("Add Service");
-						stage.showAndWait();
-					} catch (IOException e) {
-						e.printStackTrace();
-					}
-				});
-				
-				MenuItem mi5 = new MenuItem("View bill");
-				mi5.setOnAction((ActionEvent event) -> {
-					Reservation selectedItem = reservationsList.getSelectionModel().getSelectedItem();
-				});
-				
-				MenuItem mi6 = new MenuItem("Delete");
-				mi6.setOnAction((ActionEvent event) -> {
-					Reservation selectedItem = reservationsList.getSelectionModel().getSelectedItem();
-					
-					Alert closeConfirmation = new Alert(Alert.AlertType.CONFIRMATION,
-							"Are you sure you want to delete ?");
-					closeConfirmation.setHeaderText("Confirm removal");
-					closeConfirmation.initModality(Modality.APPLICATION_MODAL);
-					Stage stage = (Stage) closeConfirmation.getDialogPane().getScene().getWindow();
-					Optional<ButtonType> result = closeConfirmation.showAndWait();
-					if (result.isPresent()) {
-						
-					}
-				});
-				
-				MenuItem mi7 = new MenuItem("Cancel");
-				mi7.setOnAction((ActionEvent event) -> {
-					Reservation selectedItem = reservationsList.getSelectionModel().getSelectedItem();
-				});
-				
-			    menu.getItems().addAll(mi1, mi2, mi3, mi4, mi5, mi6, mi7);
-
-			    // only display context menu for non-null items:
-			    row.contextMenuProperty().bind(
-			      Bindings.when(Bindings.isNotNull(row.itemProperty()))
-			      .then(menu)
-			      .otherwise((ContextMenu)null));
-			    return row;
-			  }
-			});
+		setContextMenu();
 	}
 	
+	
+
 	@FXML
 	public void viewHistoryChecked() {
 		ArrayList<ReservationsFilter> reservationsFilterList = new ArrayList<ReservationsFilter> ();
@@ -228,6 +150,91 @@ public class ReservationsListController implements Controller{
 			checkOutCol.setCellValueFactory(new PropertyValueFactory<Reservation, String>("checkOutDate"));
 			totalDaysCol.setCellValueFactory(new PropertyValueFactory<Reservation, Integer>("totalDays"));
 		}
+	}
+	
+	private void setContextMenu() {
+		reservationsList.setRowFactory(
+			    new Callback<TableView<Reservation>, TableRow<Reservation>>() {
+			  @Override
+			  public TableRow<Reservation> call(TableView<Reservation> tableView) {
+			    final TableRow<Reservation> row = new TableRow<>();
+			    row.setOnMousePressed((MouseEvent t) -> {
+			    	selectedReservation= reservationsList.getSelectionModel().getSelectedItem();
+			    });
+			    final ContextMenu menu = new ContextMenu();
+			    MenuItem mi1 = new MenuItem("Edit");
+					mi1.setOnAction((ActionEvent event) -> {
+						try {
+							SearchRoomController searchRoomController = new SearchRoomController();
+							Scene mainScene = new Scene(searchRoomController.getParentPane());
+							Stage stage = new Stage();
+							stage.setScene(mainScene);
+							stage.setTitle("Search for a room...");
+							stage.showAndWait();
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
+					});
+
+				MenuItem mi2 = new MenuItem("Check-in");
+				mi2.setOnAction((ActionEvent event) -> {
+					
+				});
+				
+				MenuItem mi3 = new MenuItem("Check-out");
+				mi3.setOnAction((ActionEvent event) -> {
+
+				});
+				
+				MenuItem mi4 = new MenuItem("Add service");
+				mi4.setOnAction((ActionEvent event) -> {
+					
+					try {
+						AddServiceController addServiceController = new AddServiceController();
+						Scene mainScene = new Scene(addServiceController.getParentPane());
+						Stage stage = new Stage();
+						stage.setScene(mainScene);
+						stage.setTitle("Add Service");
+						stage.showAndWait();
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+				});
+				
+				MenuItem mi5 = new MenuItem("View bill");
+				mi5.setOnAction((ActionEvent event) -> {
+
+				});
+				
+				MenuItem mi6 = new MenuItem("Delete");
+				mi6.setOnAction((ActionEvent event) -> {
+					
+					Alert closeConfirmation = new Alert(Alert.AlertType.CONFIRMATION,
+							"Are you sure you want to delete ?");
+					closeConfirmation.setHeaderText("Confirm removal");
+					closeConfirmation.initModality(Modality.APPLICATION_MODAL);
+					Stage stage = (Stage) closeConfirmation.getDialogPane().getScene().getWindow();
+					Optional<ButtonType> result = closeConfirmation.showAndWait();
+					if (result.isPresent()) {
+						
+					}
+				});
+				
+				MenuItem mi7 = new MenuItem("Cancel");
+				mi7.setOnAction((ActionEvent event) -> {
+
+				});
+				
+			    menu.getItems().addAll(mi1, mi2, mi3, mi4, mi5, mi6, mi7);
+
+			    // only display context menu for non-null items:
+			    row.contextMenuProperty().bind(
+			      Bindings.when(Bindings.isNotNull(row.itemProperty()))
+			      .then(menu)
+			      .otherwise((ContextMenu)null));
+			    return row;
+			  }
+			});		
 	}
 
 }

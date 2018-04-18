@@ -18,7 +18,7 @@
                 <billId>1</billId>
                 <customerId>1</customerId>
                 <customerName>Alaa Al</customerName>
-                <payStatus>UNPAIED</payStatus>
+                <payStatus>UNPAID</payStatus>
                 <serviceList>
                     <descraption>VAXJO Room: 1 Days: 5</descraption>
                     <discount>0.0</discount>
@@ -26,6 +26,14 @@
                     <price>300.0</price>
                     <serviceId>1</serviceId>
                     <serviceType>RESERVATION</serviceType>
+                </serviceList>
+                <serviceList>
+                    <descraption>Pepsi</descraption>
+                    <discount>0.0</discount>
+                    <piecesNumber>2</piecesNumber>
+                    <price>5.0</price>
+                    <serviceId>3</serviceId>
+                    <serviceType>RESTURANT</serviceType>
                 </serviceList>
             </bill>
             <checkInDate>2018-04-18</checkInDate>
@@ -46,7 +54,7 @@
                 <billId>2</billId>
                 <customerId>1</customerId>
                 <customerName>Alaa Al</customerName>
-                <payStatus>UNPAIED</payStatus>
+                <payStatus>PAID</payStatus>
                 <serviceList>
                     <descraption>VAXJO Room: 1 Days: 5</descraption>
                     <discount>0.0</discount>
@@ -54,6 +62,14 @@
                     <price>300.0</price>
                     <serviceId>2</serviceId>
                     <serviceType>RESERVATION</serviceType>
+                </serviceList>
+                <serviceList>
+                    <descraption>CocaCola</descraption>
+                    <discount>0.0</discount>
+                    <piecesNumber>2</piecesNumber>
+                    <price>5.0</price>
+                    <serviceId>4</serviceId>
+                    <serviceType>RESTURANT</serviceType>
                 </serviceList>
             </bill>
             <checkInDate>2018-04-08</checkInDate>
@@ -88,13 +104,13 @@
                 <billId>3</billId>
                 <customerId>2</customerId>
                 <customerName>Basem mo</customerName>
-                <payStatus>UNPAIED</payStatus>
+                <payStatus>UNPAID</payStatus>
                 <serviceList>
                     <descraption>VAXJO Room: 2 Days: 6</descraption>
                     <discount>0.0</discount>
                     <piecesNumber>1</piecesNumber>
                     <price>360.0</price>
-                    <serviceId>3</serviceId>
+                    <serviceId>5</serviceId>
                     <serviceType>RESERVATION</serviceType>
                 </serviceList>
             </bill>
@@ -130,13 +146,13 @@
                 <billId>4</billId>
                 <customerId>3</customerId>
                 <customerName>Paul</customerName>
-                <payStatus>UNPAIED</payStatus>
+                <payStatus>UNPAID</payStatus>
                 <serviceList>
                     <descraption>KALMAR Room: 3 Days: 1</descraption>
                     <discount>0.0</discount>
                     <piecesNumber>1</piecesNumber>
                     <price>90.0</price>
-                    <serviceId>4</serviceId>
+                    <serviceId>6</serviceId>
                     <serviceType>RESERVATION</serviceType>
                 </serviceList>
             </bill>
@@ -158,13 +174,13 @@
                 <billId>5</billId>
                 <customerId>3</customerId>
                 <customerName>Paul</customerName>
-                <payStatus>UNPAIED</payStatus>
+                <payStatus>UNPAID</payStatus>
                 <serviceList>
                     <descraption>VAXJO Room: 4 Days: 1</descraption>
                     <discount>0.0</discount>
                     <piecesNumber>1</piecesNumber>
                     <price>90.0</price>
-                    <serviceId>5</serviceId>
+                    <serviceId>7</serviceId>
                     <serviceType>RESERVATION</serviceType>
                 </serviceList>
             </bill>

@@ -10,7 +10,7 @@ public class Bill implements Serializable{
 	private int billId;
 	private int customerId;
 	private String customerName;
-	public enum PayStatus {PAYED, UNPAIED}
+	public enum PayStatus {PAID, UNPAID}
 	private PayStatus payStatus;
 	private ArrayList <Service> serviceList = new ArrayList<Service>();
 
@@ -24,7 +24,7 @@ public class Bill implements Serializable{
 		this.setBillId(billId);
 		this.customerId = customerId;
 		this.customerName=customerName;
-		this.payStatus = PayStatus.UNPAIED;
+		this.payStatus = PayStatus.UNPAID;
 	}
 
 	public int getCustomerId() {
@@ -65,6 +65,23 @@ public class Bill implements Serializable{
 
 	public void setServiceList(ArrayList <Service> serviceList) {
 		this.serviceList = serviceList;
+	}
+	
+	public float getTotalPrice() {
+		float totalPrice =0;
+		for (Service service : serviceList) {
+			totalPrice += service.getTotalPrice();
+		}
+		return totalPrice;
+	}
+	
+	public void addService(Service service) {
+		this.serviceList.add(service);
+	}
+	
+	public void addService(ServiceType serviceType, float price, int piecesNumber, float discount, String descraption ) {
+		Service service = new Service (serviceType, price, piecesNumber, discount, descraption);
+		this.addService(service);
 	}
 
 }

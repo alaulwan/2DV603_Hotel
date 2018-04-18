@@ -15,6 +15,9 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.client.ServerAPI;
+import model.shared.Bill.PayStatus;
+import model.shared.filters.billsFilters.BillsFilter;
+import model.shared.filters.billsFilters.PayStatusBillsFilter;
 import model.shared.filters.customersFilters.CustomersFilter;
 import model.shared.filters.customersFilters.ReservationLocationCustomersFilter;
 import model.shared.filters.customersFilters.ReservationStatusCustumersFilter;
@@ -132,7 +135,15 @@ public class RootLayoutController {
 	}
 	
 	@FXML
-	private void imprtBillsList() {
+	private void importBillsList() {
+		ArrayList<BillsFilter> billsFilterList = new ArrayList<BillsFilter> ();
+		PayStatusBillsFilter payStatusBillsFilter = new PayStatusBillsFilter (PayStatus.UNPAID);
+		billsFilterList.add(payStatusBillsFilter);
+		
+		if (billsListTab.isSelected()){
+			billsListController.billsArray = ServerAPI.getBillsList(billsFilterList);
+			billsListController.initialize();
+		}
 	}
 
 	public Parent getParentPane() throws IOException {

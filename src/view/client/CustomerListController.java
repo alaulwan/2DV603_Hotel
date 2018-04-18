@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Optional;
-
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -14,13 +13,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import model.client.ServerAPI;
 import model.shared.Customer;
 import model.shared.Reservation;
-import model.shared.filters.billsFilters.BillsFilter;
 import model.shared.filters.customersFilters.CustomersFilter;
 import model.shared.filters.customersFilters.NameCustomersFilter;
 import model.shared.filters.customersFilters.ReservationLocationCustomersFilter;
@@ -63,14 +62,12 @@ public class CustomerListController implements Controller{
 	private final String CUSTOMER_LIST_LAYOUT = "res/view/CustomerList.fxml";
 	
 	public ArrayList<Customer> customersArray;
+	private Customer selectedCustomer;
 	
 	@FXML
 	public void initialize() {		
 		setData () ;
 		setContextMenu();
-
-		
-		
 	}
 	
 	
@@ -124,19 +121,44 @@ public class CustomerListController implements Controller{
 		customersTableView.setItems(data);
 	}
 	
+	
+	
+	private ArrayList<Reservation> importReservationsListByCustumer(String customerName) {
+		ArrayList<ReservationsFilter> reservationsFilterList = new ArrayList<ReservationsFilter> ();
+		LocationReservationsFilter locationReservationsFilter = new LocationReservationsFilter (ServerAPI.location);
+		StatusReservationsFilter statusReservationsFilter = new StatusReservationsFilter(true, true, false, false);
+		CustomerNameReservationsFilter customerNameReservationsFilter = new CustomerNameReservationsFilter (customerName);
+		reservationsFilterList.add(locationReservationsFilter);
+		reservationsFilterList.add(statusReservationsFilter);
+		reservationsFilterList.add(customerNameReservationsFilter);
+		
+		return ServerAPI.getReservationsList(reservationsFilterList);
+	}
+
+	public Parent getParentPane() throws IOException {
+		FXMLLoader loader = new FXMLLoader();
+		loader.setController(this);
+		loader.setLocation(new File(CUSTOMER_LIST_LAYOUT).toURI().toURL());
+		Parent rootLayout = (Parent) loader.load();
+		return rootLayout;
+	}
+	
 	private void setContextMenu() {
 		customersTableView.setRowFactory(
 			    new Callback<TableView<Customer>, TableRow<Customer>>() {
 			  @Override
 			  public TableRow<Customer> call(TableView<Customer> tableView) {
 			    final TableRow<Customer> row = new TableRow<>();
+			    row.setOnMousePressed((MouseEvent t) -> {
+			    	selectedCustomer = customersTableView.getSelectionModel().getSelectedItem();
+			    });
+			    
 			    final ContextMenu menu = new ContextMenu();
 			    MenuItem mi1 = new MenuItem("Edit");
 					mi1.setOnAction((ActionEvent event) -> {
-						Customer selectedItem = customersTableView.getSelectionModel().getSelectedItem();
 						try {
 							AddCustomerController addCustomerController = new AddCustomerController();
-							addCustomerController.currentCustomer = selectedItem;
+							addCustomerController.currentCustomer = selectedCustomer;
 							Scene mainScene = new Scene(addCustomerController.getParentPane());
 							Stage stage = new Stage();
 							stage.setScene(mainScene);
@@ -149,14 +171,13 @@ public class CustomerListController implements Controller{
 				
 					MenuItem mi2 = new MenuItem("View reservations");
 					mi2.setOnAction((ActionEvent event) -> {
-						Customer selectedItem = customersTableView.getSelectionModel().getSelectedItem();
-						
+						ReservationsListController reservationsListController = new ReservationsListController();
 						try {
-							ReservationsListController c = new ReservationsListController();
-							Scene mainScene = new Scene(c.getParentPane());
+							reservationsListController.reservationArray = importReservationsListByCustumer(selectedCustomer.getName());
 							
-							c.searchName.setVisible(false);
-
+							Scene mainScene = new Scene(reservationsListController.getParentPane());
+							reservationsListController.searchName.setText(selectedCustomer.getName());
+							reservationsListController.searchName.setVisible(false);
 							Stage stage = new Stage();
 							stage.setScene(mainScene);
 							stage.setTitle("Reservations List");
@@ -164,12 +185,10 @@ public class CustomerListController implements Controller{
 						} catch (IOException e) {
 							e.printStackTrace();
 						}
-						
 					});
 					
 				MenuItem mi3 = new MenuItem("Delete");
 				mi3.setOnAction((ActionEvent event) -> {
-					Customer selectedItem = customersTableView.getSelectionModel().getSelectedItem();
 					
 					Alert closeConfirmation = new Alert(Alert.AlertType.CONFIRMATION,
 							"Are you sure you want to delete ?");
@@ -193,14 +212,6 @@ public class CustomerListController implements Controller{
 			  }
 			});
 		
-	}
-
-	public Parent getParentPane() throws IOException {
-		FXMLLoader loader = new FXMLLoader();
-		loader.setController(this);
-		loader.setLocation(new File(CUSTOMER_LIST_LAYOUT).toURI().toURL());
-		Parent rootLayout = (Parent) loader.load();
-		return rootLayout;
 	}
 
 }

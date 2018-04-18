@@ -101,7 +101,7 @@ public class Service implements Serializable{
 	}
 	
 	public float getTotalPrice() {
-		return price * piecesNumber * discount;
+		return price * piecesNumber * (1-discount);
 	}
 
 }

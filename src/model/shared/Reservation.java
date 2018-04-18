@@ -74,7 +74,7 @@ public class Reservation implements Serializable {
 		int cancelPeriod = Period.between(LocalDate.now(), this.checkInDateAsLocalDate()).getDays();
 		if (cancelPeriod > 1) {
 			bill.getServiceList().remove(0);
-			bill.setPayStatus(PayStatus.PAYED);
+			bill.setPayStatus(PayStatus.PAID);
 			return true;
 		}
 		else if (cancelPeriod == 1) {

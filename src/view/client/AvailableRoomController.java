@@ -70,7 +70,7 @@ public class AvailableRoomController implements Controller {
 		}
 	}
 	
-	private ArrayList<Reservation> imprtReservationsListByRoomNum(int roomNum) {
+	private ArrayList<Reservation> importReservationsListByRoomNum(int roomNum) {
 		ArrayList<ReservationsFilter> reservationsFilterList = new ArrayList<ReservationsFilter> ();
 		LocationReservationsFilter locationReservationsFilter = new LocationReservationsFilter (ServerAPI.location);
 		StatusReservationsFilter statusReservationsFilter = new StatusReservationsFilter(true, true, false, false);
@@ -104,9 +104,11 @@ public class AvailableRoomController implements Controller {
 			if (t.getButton() == MouseButton.PRIMARY && t.getClickCount() == 2) {
 				ReservationsListController reservationsListController = new ReservationsListController();
 				try {
-					reservationsListController.reservationArray = imprtReservationsListByRoomNum(roomNode.room.getRoomNum());
-					Scene mainScene = new Scene(reservationsListController.getParentPane());
+					reservationsListController.reservationArray = importReservationsListByRoomNum(roomNode.room.getRoomNum());
 					
+					Scene mainScene = new Scene(reservationsListController.getParentPane());
+					reservationsListController.searchRoomNumber.setText(roomNode.room.getRoomNum()+"");
+					reservationsListController.searchRoomNumber.setVisible(false);
 					Stage stage = new Stage();
 					stage.setScene(mainScene);
 					stage.setTitle("Reservations List");

@@ -23,7 +23,7 @@ public class HotelDAO {
 
 			// Write to System.out for debugging
 			// m.marshal(dao, System.out);
-			File file = new File("src/model/server/" + fileName);
+			File file = new File("res/DataBase/" + fileName);
 			// Write to File
 			// File file = new File(url.toURI());
 			m.marshal(hotel, file);
@@ -41,7 +41,7 @@ public class HotelDAO {
 		try {
 			JAXBContext context = JAXBContext.newInstance(Hotel.class);
 			Unmarshaller un = context.createUnmarshaller();
-			Hotel hotel = (Hotel) un.unmarshal(new File("src/model/server/" + fileName));
+			Hotel hotel = (Hotel) un.unmarshal(new File("res/DataBase/" + fileName));
 			return hotel;
 		} catch (JAXBException e) {
 			e.printStackTrace();

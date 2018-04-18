@@ -21,6 +21,7 @@ public class Connection {
 	private int BUFSIZE = 1024;
 	private final int MYPORT = 0;
 	private String RemoteIP = "127.0.0.1";
+	//private String RemoteIP = "94.46.42.40";
 	private int RemotePort = 4444;
 	
 	private SocketAddress localBindPoint;

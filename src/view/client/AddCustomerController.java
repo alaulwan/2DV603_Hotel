@@ -103,6 +103,7 @@ public class AddCustomerController implements Controller {
 	@FXML
 	public void newCustomerBtn() {
 		clearFields();
+		currentCustomer=null;
 		setEditable(newCustomerButton.isSelected());
 	}
 	

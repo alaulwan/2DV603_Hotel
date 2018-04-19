@@ -2,6 +2,8 @@ package model.server.response;
 
 import model.shared.requests.BillsListRequest;
 import model.shared.requests.CustomersListRequest;
+import model.shared.requests.PostRequest;
+import model.shared.requests.PutRequest;
 import model.shared.requests.Request;
 import model.shared.requests.Request.RequestType;
 import model.shared.requests.ReservationsListRequest;
@@ -18,7 +20,13 @@ public class ResponseFactory {
 	public Response getResponse() {
 		response=null;
 		
-		if (recievedRequest.requestType == RequestType.GET_ROOMS) {
+		if (recievedRequest.requestType == RequestType.PUT) {
+			response = new PutResponse(((PutRequest)recievedRequest).Object);
+		}
+		else if (recievedRequest.requestType == RequestType.POST) {
+			response = new PostResponse(((PostRequest)recievedRequest).Object, ((PostRequest)recievedRequest).Id);
+		}
+		else if (recievedRequest.requestType == RequestType.GET_ROOMS) {
 			response = new RommsListResponse(((RoomsListRequest)recievedRequest).rFilList);
 		}
 		else if (recievedRequest.requestType == RequestType.GET_RESERVATIONS){

@@ -52,7 +52,7 @@ public class AvailableRoomController implements Controller {
 	
 	private final String AVAILABLE_ROOM_LAYOUT = "res/view/AvailableRoom.fxml";
 	private ArrayList <RoomsFilter> roomsFilterList;
-	private ArrayList <Room> roomsList;
+	public ArrayList <Room> roomsList;
 	private RoomNode selectedRoomNode;
 	
 	@FXML
@@ -62,7 +62,9 @@ public class AvailableRoomController implements Controller {
 		else {
 			roomsList = ServerAPI.getRoomsList(roomsFilterList);
 		}
-		
+		if (roomsGrid!=null && roomsGrid.getChildren()!= null) {
+			roomsGrid.getChildren().removeAll(roomsGrid.getChildren());
+		}
 		for (int i=0; i< roomsList.size(); i++) {
 			RoomNode roomNode = new RoomNode (roomsList.get(i)) ;
 			roomsGrid.add(roomNode, i%4 , i/4);

@@ -78,9 +78,14 @@ public class RootLayoutController {
 			stage.setScene(mainScene);
 			stage.setTitle("Search for a room...");
 			stage.showAndWait();
+			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		imprtRoomsList();
+		imprtReservationsList();
+		imprtCustomersList();
+		importBillsList();
 	}
 	
 	@FXML
@@ -106,15 +111,22 @@ public class RootLayoutController {
 		} 
 	}
 	
+	
+	@FXML
+	private void imprtRoomsList() {
+		if (availableRoomController.roomsList!=null && availableRoomsTab.isSelected()){
+			availableRoomController.initialize();
+		}
+	}
+	
 	@FXML
 	private void imprtReservationsList() {
-		ArrayList<ReservationsFilter> reservationsFilterList = new ArrayList<ReservationsFilter> ();
-		LocationReservationsFilter locationReservationsFilter = new LocationReservationsFilter (ServerAPI.location);
-		StatusReservationsFilter statusReservationsFilter = new StatusReservationsFilter(true, true, false, false);
-		reservationsFilterList.add(locationReservationsFilter);
-		reservationsFilterList.add(statusReservationsFilter);
-		
 		if (reservationsListTab.isSelected()){
+			ArrayList<ReservationsFilter> reservationsFilterList = new ArrayList<ReservationsFilter> ();
+			LocationReservationsFilter locationReservationsFilter = new LocationReservationsFilter (ServerAPI.location);
+			StatusReservationsFilter statusReservationsFilter = new StatusReservationsFilter(true, true, false, false);
+			reservationsFilterList.add(locationReservationsFilter);
+			reservationsFilterList.add(statusReservationsFilter);
 			reservationsListController.reservationArray = ServerAPI.getReservationsList(reservationsFilterList);
 			reservationsListController.initialize();
 		}
@@ -122,13 +134,14 @@ public class RootLayoutController {
 	
 	@FXML
 	private void imprtCustomersList() {
-		ArrayList<CustomersFilter> customersFilterList = new ArrayList<CustomersFilter> ();
-		ReservationLocationCustomersFilter reservationLocationCustomersFilter = new ReservationLocationCustomersFilter (ServerAPI.location);
-		ReservationStatusCustumersFilter reservationStatusCustumersFilter = new ReservationStatusCustumersFilter(true, true, false, false);
-		customersFilterList.add(reservationStatusCustumersFilter);
-		customersFilterList.add(reservationLocationCustomersFilter);
 		
 		if (customerListTab.isSelected()){
+			ArrayList<CustomersFilter> customersFilterList = new ArrayList<CustomersFilter> ();
+			ReservationLocationCustomersFilter reservationLocationCustomersFilter = new ReservationLocationCustomersFilter (ServerAPI.location);
+			ReservationStatusCustumersFilter reservationStatusCustumersFilter = new ReservationStatusCustumersFilter(true, true, false, false);
+			customersFilterList.add(reservationStatusCustumersFilter);
+			customersFilterList.add(reservationLocationCustomersFilter);
+			
 			customerListController.customersArray = ServerAPI.getCustomersList(customersFilterList);
 			customerListController.initialize();
 		}
@@ -136,11 +149,10 @@ public class RootLayoutController {
 	
 	@FXML
 	private void importBillsList() {
-		ArrayList<BillsFilter> billsFilterList = new ArrayList<BillsFilter> ();
-		PayStatusBillsFilter payStatusBillsFilter = new PayStatusBillsFilter (PayStatus.UNPAID);
-		billsFilterList.add(payStatusBillsFilter);
-		
 		if (billsListTab.isSelected()){
+			ArrayList<BillsFilter> billsFilterList = new ArrayList<BillsFilter> ();
+			PayStatusBillsFilter payStatusBillsFilter = new PayStatusBillsFilter (PayStatus.UNPAID);
+			billsFilterList.add(payStatusBillsFilter);
 			billsListController.billsArray = ServerAPI.getBillsList(billsFilterList);
 			billsListController.initialize();
 		}

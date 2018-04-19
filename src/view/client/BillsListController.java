@@ -7,12 +7,10 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.awt.Desktop;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.ArrayList;
-import java.util.Optional;
 
 import com.itextpdf.text.Chapter;
 import com.itextpdf.text.Chunk;
@@ -30,29 +28,17 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
 import javafx.util.Callback;
 import model.client.ServerAPI;
 import model.shared.Bill;
-import model.shared.Customer;
 import model.shared.Bill.PayStatus;
 import model.shared.filters.billsFilters.BillsFilter;
 import model.shared.filters.billsFilters.CustomerNameBillsFilter;
 import model.shared.filters.billsFilters.PayStatusBillsFilter;
-import model.shared.filters.reservationsFilters.CustomerNameReservationsFilter;
-import model.shared.filters.reservationsFilters.LocationReservationsFilter;
-import model.shared.filters.reservationsFilters.ReservationsFilter;
-import model.shared.filters.reservationsFilters.StatusReservationsFilter;
-import model.shared.Reservation;
 import model.shared.Service;
 import javafx.scene.control.TableView;
 
@@ -130,6 +116,7 @@ public class BillsListController implements Controller{
 		billsTable.setItems(data);
 	}
 	
+	@SuppressWarnings("unused")
 	public void billToPdf () {
 		try {
 			String tempDir = System.getProperty("java.io.tmpdir");

@@ -97,6 +97,8 @@ public class Reservation implements Serializable {
 
 	public void setReservationId(int reservationId) {
 		this.reservationId = reservationId;
+		if (this.getBill()!= null)
+			this.getBill().setBillId(reservationId);
 	}
 
 	public ReservationStatus getReservationStatus() {
@@ -113,6 +115,8 @@ public class Reservation implements Serializable {
 
 	public void setCustomerId(int customerId) {
 		this.customerId = customerId;
+		if (this.getBill()!= null)
+			this.getBill().setCustomerId(customerId);
 	}
 
 	public String getCustomerName() {
@@ -121,6 +125,8 @@ public class Reservation implements Serializable {
 
 	public void setCustomerName(String customerName) {
 		this.customerName = customerName;
+		if (this.getBill()!= null)
+			this.getBill().setCustomerName(customerName);
 	}
 
 	public String getCheckInDate() {

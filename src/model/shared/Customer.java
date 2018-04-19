@@ -93,6 +93,8 @@ public class Customer implements Serializable{
 
 	public void setCustomerId(int customerId) {
 		this.customerId = customerId;
+		for (Reservation rs : this.reservationsList)
+			rs.setCustomerId(customerId);
 	}
 
 	public String getName() {
@@ -101,6 +103,8 @@ public class Customer implements Serializable{
 
 	public void setName(String name) {
 		this.name = name;
+		for (Reservation rs : this.reservationsList)
+			rs.setCustomerName(name);
 	}
 
 	public String getBirthDate() {
@@ -198,6 +202,18 @@ public class Customer implements Serializable{
 	public void setReservationsList(ArrayList<Reservation> reservationsList) {
 		this.reservationsList = reservationsList;
 		//this.setReservationsCounter();
+	}
+	
+	public void updateFrom(Customer customer) {
+		this.setAddress(customer.getAddress());
+		this.setName(customer.getName());
+		this.setBirthDate(customer.getBirthDate());
+		this.setCreditCardNum(customer.getCreditCardNum());
+		this.setDescription(customer.getDescription());
+		this.setEmail(customer.getEmail());
+		this.setGender(customer.getGender());
+		this.setIdentificationNumber(customer.getIdentificationNumber());
+		this.setIdentificationType(customer.getIdentificationType());
 	}
 	
 	public String getCurrentReservedRooms() {

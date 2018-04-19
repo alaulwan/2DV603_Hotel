@@ -30,8 +30,6 @@ public class HotelMain extends Application{
 		}
 		
 		RootLayoutController root = new RootLayoutController();
-		
-		
 		Scene mainScene = new Scene(root.getParentPane());
 		primaryStage.setOnCloseRequest(onExitCloseEverything -> System.exit(0));
 		primaryStage.setScene(mainScene);

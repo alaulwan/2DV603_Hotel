@@ -14,7 +14,7 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="645.0" prefWidth="620.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Button fx:id="cancelButton" layoutX="468.0" layoutY="583.0" mnemonicParsing="false" onMouseClicked="#cancel" text="Cancel" />
-      <Button fx:id="saveButton" layoutX="548.0" layoutY="582.0" mnemonicParsing="false" text="Save" />
+      <Button fx:id="saveButton" layoutX="548.0" layoutY="582.0" mnemonicParsing="false" onAction="#saveCustomerBtn" text="Save" />
       <Label layoutX="29.0" layoutY="250.0" text="Address" />
       <TextField fx:id="nationalityBox" layoutX="29.0" layoutY="358.0" maxHeight="-Infinity" maxWidth="-Infinity" />
       <Label layoutX="31.0" layoutY="78.0" text="Name" />

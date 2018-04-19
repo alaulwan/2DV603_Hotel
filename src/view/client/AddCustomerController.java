@@ -22,6 +22,7 @@ import model.client.ServerAPI;
 import model.shared.Customer;
 import model.shared.Customer.Gender;
 import model.shared.Customer.IdentificationType;
+import model.shared.Reservation;
 import model.shared.filters.customersFilters.NameCustomersFilter;
 import javafx.scene.control.ComboBox;
 
@@ -81,6 +82,7 @@ public class AddCustomerController implements Controller {
 
 	public ArrayList <Customer> customersList; 
 	public Customer currentCustomer;
+	public Reservation reservation;
 
 	@FXML
 	public void initialize() {
@@ -108,6 +110,29 @@ public class AddCustomerController implements Controller {
 	}
 	
 	@FXML
+	public void saveCustomerBtn() {
+		InputVerifier inputVerifier = new InputVerifier();
+		if (!inputVerifier.isCorrectCustomerInfo(this)) {
+			return;
+		}
+		Customer newCustomer = new Customer(this.nameBox.getText(), this.birthDateBox.getValue(), this.maleBox.isSelected()? Gender.MALE:Gender.FEMALE, this.phoneNumberBox.getText(), this.identificationType.getValue(),this.idNumberBox.getText(), this.creditCardNumberBox.getText(), this.addressBox.getText(), this.nationalityBox.getText(),
+				this.emailBox.getText(), this.descriptionBox.getText());
+		if (currentCustomer == null) {
+			newCustomer.getReservationsList().add(reservation);
+			ServerAPI.put(newCustomer);
+		}
+		else {
+			ServerAPI.post(newCustomer, currentCustomer.getCustomerId());
+			if (reservation!=null) {
+				reservation.setCustomerId(currentCustomer.getCustomerId());
+				reservation.setCustomerName(this.nameBox.getText());
+				ServerAPI.put(reservation);
+			}
+		}
+		((Stage) cancelButton.getScene().getWindow()).close();
+	}
+	
+	@FXML
 	public void comboBoxCustomerTyped() {
 		ArrayList <Customer> customersList = new ArrayList <Customer> (this.customersList);
 		String customerName = customersNameList.getEditor().getText();
@@ -126,6 +151,9 @@ public class AddCustomerController implements Controller {
 			loadCustomer();
 			//setEditable(false);
 			newCustomerButton.setSelected(false);
+			customersNameList.setPromptText(currentCustomer.getName());
+			customersNameList.setItems(FXCollections.observableList(customersList));
+			setEditable(true);
 		}
 	}
 	
@@ -147,8 +175,7 @@ public class AddCustomerController implements Controller {
 		phoneNumberBox.setText(currentCustomer.getPhoneNum());
 		emailBox.setText(currentCustomer.getEmail());
 		birthDateBox.setValue(currentCustomer.birthDateToLocaleDate());
-		idNumberBox.setText(currentCustomer.getCustomerId() + "");
-		idNumberBox.setEditable(false);
+		idNumberBox.setText(currentCustomer.getIdentificationNumber() + "");
 		addressBox.setText(currentCustomer.getAddress());
 		identificationType.setValue(currentCustomer.getIdentificationType());
 		descriptionBox.setText(currentCustomer.getDescription());
@@ -193,7 +220,7 @@ public class AddCustomerController implements Controller {
 		    @Override
 		    protected void updateItem(Customer item, boolean empty) {
 		        super.updateItem(item, empty);
-		        setText(empty ? "" : item.getName());
+		        setText(empty ? "" : item.getName() + " ,ID:"+item.getIdentificationNumber());
 		    }
 
 		};
@@ -207,7 +234,7 @@ public class AddCustomerController implements Controller {
 				if (user == null) {
 					return null;
 				} else {
-					return user.getName();
+					return user.getName()+ " ,ID:"+ user.getIdentificationNumber();
 				}
 			}
 

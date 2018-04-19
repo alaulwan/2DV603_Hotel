@@ -15,6 +15,8 @@ import model.shared.filters.roomsFilters.LocationRoomsFilter;
 import model.shared.filters.roomsFilters.RoomsFilter;
 import model.shared.requests.BillsListRequest;
 import model.shared.requests.CustomersListRequest;
+import model.shared.requests.PostRequest;
+import model.shared.requests.PutRequest;
 import model.shared.requests.Request;
 import model.shared.requests.Request.RequestType;
 import model.shared.requests.ReservationsListRequest;
@@ -25,6 +27,24 @@ public class ServerAPI {
 	
 	public ServerAPI () {
 		
+	}
+	
+	public static boolean put (Object object) {
+		Request request = new PutRequest (object);
+		Connection c = new Connection();
+		c.send(request);
+		boolean addedSuccess = (boolean) c.receiveObject ();
+		c.close();
+		return addedSuccess;
+	}
+	
+	public static boolean post (Object object, int Id) {
+		Request request = new PostRequest (object, Id);
+		Connection c = new Connection();
+		c.send(request);
+		boolean addedSuccess = (boolean) c.receiveObject ();
+		c.close();
+		return addedSuccess;
 	}
 	
 	public static ArrayList <Room> getAllRooms () {

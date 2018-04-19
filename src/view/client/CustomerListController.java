@@ -79,7 +79,7 @@ public class CustomerListController implements Controller{
 			
 			idCol.setCellValueFactory(new PropertyValueFactory<Customer, Integer> ("customerId"));
 			nameCol.setCellValueFactory(new PropertyValueFactory<Customer, String> ("name"));
-			phoneNumberCol.setCellValueFactory(new PropertyValueFactory<Customer, String> ("mobileNum"));
+			phoneNumberCol.setCellValueFactory(new PropertyValueFactory<Customer, String> ("phoneNum"));
 			passCol.setCellValueFactory(new PropertyValueFactory<Customer, String> ("identificationNumber"));
 			roomsNumberCol.setCellValueFactory(new PropertyValueFactory<Customer, String> ("currentReservedRooms"));
 			reservationsNumberCol.setCellValueFactory(new PropertyValueFactory<Customer, Integer> ("currentReservedNumbers"));	
@@ -167,6 +167,7 @@ public class CustomerListController implements Controller{
 						} catch (IOException e) {
 							e.printStackTrace();
 						}
+						viewHistoryChecked();
 					});
 				
 					MenuItem mi2 = new MenuItem("View reservations");

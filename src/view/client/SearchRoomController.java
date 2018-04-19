@@ -32,7 +32,9 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 import model.client.ServerAPI;
+import model.shared.Reservation;
 import model.shared.Room;
+import model.shared.Reservation.ReservationStatus;
 import model.shared.Room.RoomLocation;
 import model.shared.filters.roomsFilters.ChekInOutDateRoomsFilter;
 import model.shared.filters.roomsFilters.LocationRoomsFilter;
@@ -104,9 +106,11 @@ public class SearchRoomController {
 	@FXML
 	public void nextToEnterCustomerInformation() {
 		try {
-			AddCustomerController c = new AddCustomerController();
-
-			Scene mainScene = new Scene(c.getParentPane());
+			AddCustomerController addCustomer = new AddCustomerController();
+			addCustomer.reservation = new Reservation(ReservationStatus.PENDING, 0, "", selectedRoomNode.room.getRoomId(),
+					selectedRoomNode.room.getRoomNum(), selectedRoomNode.room.getRoomLocation(), arrivalDateBox.getValue(), departureDateBox.getValue(), selectedRoomNode.room.getRate(),
+					0, guestNumberBox.getValue(), "");
+			Scene mainScene = new Scene(addCustomer.getParentPane());
 			Stage stage = new Stage();
 			stage.setMinWidth(650);
 			stage.setMinHeight(680);
@@ -114,10 +118,8 @@ public class SearchRoomController {
 			stage.setMaxHeight(680);
 			stage.setScene(mainScene);
 			stage.setTitle("Add Customer Info.");
-			stage.show();
+			stage.showAndWait();
 			((Stage) nextButton.getScene().getWindow()).close();
-
-
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -125,6 +127,10 @@ public class SearchRoomController {
 	
 	@FXML
 	public void searchRooms() {
+		InputVerifier inputVerifier = new InputVerifier();
+		if (!inputVerifier.isCorrectReservationInfo(this)) {
+			return;
+		}
 		ArrayList <RoomsFilter> roomsFiltersList = new ArrayList <RoomsFilter>();
 		ChekInOutDateRoomsFilter chekInOutDateRoomsFilter = new ChekInOutDateRoomsFilter(this.arrivalDateBox.getValue(), this.departureDateBox.getValue());
 		roomsFiltersList.add(chekInOutDateRoomsFilter);

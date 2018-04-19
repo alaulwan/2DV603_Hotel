@@ -21,6 +21,7 @@ import javafx.stage.Stage;
 import javafx.util.Callback;
 import model.client.ServerAPI;
 import model.shared.Reservation;
+import model.shared.Reservation.ReservationStatus;
 import model.shared.filters.reservationsFilters.CustomerNameReservationsFilter;
 import model.shared.filters.reservationsFilters.LocationReservationsFilter;
 import model.shared.filters.reservationsFilters.ReservationsFilter;
@@ -53,6 +54,8 @@ public class ReservationsListController implements Controller{
 	private TableColumn<Reservation, String> checkOutCol;
 	@FXML
 	private TableColumn<Reservation, Integer> totalDaysCol;
+	@FXML
+	private TableColumn<Reservation, ReservationStatus> reservationStatusCol;
 	@FXML
 	public CheckBox viewAllBox ;
 	@FXML
@@ -149,6 +152,7 @@ public class ReservationsListController implements Controller{
 			checkInCol.setCellValueFactory(new PropertyValueFactory<Reservation, String>("checkInDate"));
 			checkOutCol.setCellValueFactory(new PropertyValueFactory<Reservation, String>("checkOutDate"));
 			totalDaysCol.setCellValueFactory(new PropertyValueFactory<Reservation, Integer>("totalDays"));
+			reservationStatusCol.setCellValueFactory(new PropertyValueFactory<Reservation, ReservationStatus>("reservationStatus"));
 		}
 	}
 	

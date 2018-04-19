@@ -36,8 +36,8 @@
                     <serviceType>RESTURANT</serviceType>
                 </serviceList>
             </bill>
-            <checkInDate>2018-04-18</checkInDate>
-            <checkOutDate>2018-04-23</checkOutDate>
+            <checkInDate>2018-04-19</checkInDate>
+            <checkOutDate>2018-04-24</checkOutDate>
             <customerId>1</customerId>
             <customerName>Alaa Al</customerName>
             <discription>Al reservation</discription>
@@ -72,8 +72,8 @@
                     <serviceType>RESTURANT</serviceType>
                 </serviceList>
             </bill>
-            <checkInDate>2018-04-08</checkInDate>
-            <checkOutDate>2018-04-13</checkOutDate>
+            <checkInDate>2018-04-09</checkInDate>
+            <checkOutDate>2018-04-14</checkOutDate>
             <customerId>1</customerId>
             <customerName>Alaa Al</customerName>
             <discription>Old Al reservation</discription>
@@ -114,8 +114,8 @@
                     <serviceType>RESERVATION</serviceType>
                 </serviceList>
             </bill>
-            <checkInDate>2018-04-17</checkInDate>
-            <checkOutDate>2018-04-23</checkOutDate>
+            <checkInDate>2018-04-18</checkInDate>
+            <checkOutDate>2018-04-24</checkOutDate>
             <customerId>2</customerId>
             <customerName>Basem mo</customerName>
             <discription>Ba reservation</discription>
@@ -156,8 +156,8 @@
                     <serviceType>RESERVATION</serviceType>
                 </serviceList>
             </bill>
-            <checkInDate>2018-04-17</checkInDate>
-            <checkOutDate>2018-04-18</checkOutDate>
+            <checkInDate>2018-04-18</checkInDate>
+            <checkOutDate>2018-04-19</checkOutDate>
             <customerId>3</customerId>
             <customerName>Paul</customerName>
             <discription>Pa reservation kalmar</discription>
@@ -184,8 +184,8 @@
                     <serviceType>RESERVATION</serviceType>
                 </serviceList>
             </bill>
-            <checkInDate>2018-04-17</checkInDate>
-            <checkOutDate>2018-04-18</checkOutDate>
+            <checkInDate>2018-04-18</checkInDate>
+            <checkOutDate>2018-04-19</checkOutDate>
             <customerId>3</customerId>
             <customerName>Paul</customerName>
             <discription>Pa reservation vaxjo</discription>

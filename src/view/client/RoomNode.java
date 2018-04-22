@@ -37,7 +37,7 @@ public class RoomNode extends StackPane {
 			rectangle = new Rectangle(125, 125, Color.LIGHTGREEN);
 			roomStatus = "\n Available  \n \n  ";
 			break;
-		case CHEKIN_TODAY:
+		case CHECKIN_TODAY:
 			rectangle = new Rectangle(125, 125, Color.ORANGE);
 			roomStatus = "\n Check-in Today \n \n        ";
 			break;

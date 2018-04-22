@@ -50,10 +50,10 @@ public class RoomsStatusUpdaterThread extends Thread {
 				 if (r.getRoomStatus().equals(RoomStatus.CHECKOUT_TODAY))
 					 r.setRoomStatus(RoomStatus.CHECK_OUT_IN);
 				 else
-					 r.setRoomStatus(RoomStatus.CHEKIN_TODAY);
+					 r.setRoomStatus(RoomStatus.CHECKIN_TODAY);
 			 }
 			 else if (todayDate.equals(res.checkOutDateAsLocalDate())) {
-				 if (r.getRoomStatus().equals(RoomStatus.CHEKIN_TODAY))
+				 if (r.getRoomStatus().equals(RoomStatus.CHECKIN_TODAY))
 					 r.setRoomStatus(RoomStatus.CHECK_OUT_IN);
 				 else
 					 r.setRoomStatus(RoomStatus.CHECKOUT_TODAY);

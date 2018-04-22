@@ -76,6 +76,10 @@ public class CustomerListController extends Controller{
 
 	private void setData() {
 		if (customersArray!= null) {
+			LocationReservationsFilter locationReservationsFilter = new LocationReservationsFilter(ServerAPI.location);
+			for (Customer customer : customersArray) {
+				locationReservationsFilter.applyReservationsFilter(customer.getReservationsList());
+			}
 			ObservableList<Customer> data = FXCollections.observableList(customersArray);
 			customersTableView.setItems(data);
 			
@@ -83,6 +87,7 @@ public class CustomerListController extends Controller{
 			nameCol.setCellValueFactory(new PropertyValueFactory<Customer, String> ("name"));
 			phoneNumberCol.setCellValueFactory(new PropertyValueFactory<Customer, String> ("phoneNum"));
 			passCol.setCellValueFactory(new PropertyValueFactory<Customer, String> ("identificationNumber"));
+			
 			roomsNumberCol.setCellValueFactory(new PropertyValueFactory<Customer, String> ("currentReservedRooms"));
 			reservationsNumberCol.setCellValueFactory(new PropertyValueFactory<Customer, Integer> ("currentReservedNumbers"));	
 		}		

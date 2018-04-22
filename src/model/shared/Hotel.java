@@ -108,7 +108,7 @@ public class Hotel implements Serializable{
 	}
 
 	public ArrayList<Customer> getCustomersList() {
-		return customersList;
+		return new ArrayList<Customer> (customersList);
 	}
 
 	public void setCustomersList(ArrayList<Customer> customersList) {

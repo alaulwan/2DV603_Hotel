@@ -10,7 +10,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <HBox xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <GridPane fx:id="roomsGrid" alignment="CENTER" hgap="10.0" prefHeight="700.0" prefWidth="600.0" vgap="10.0">
@@ -42,7 +41,7 @@
             <RowConstraints maxHeight="179.99997558593753" minHeight="10.0" prefHeight="104.20000000000005" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <VBox prefHeight="200.0" prefWidth="100.0">
+            <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1">
                <children>
                   <Label text="Rooms">
                      <font>
@@ -66,34 +65,6 @@
                         <Label id="Vxo_occupiedRooms_Lbl" fx:id="occupiedRoomCounter" layoutX="115.0" layoutY="23.0" text="0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                         <Label text="Available: " GridPane.rowIndex="2" />
                         <Label id="Vxo_availableRooms_Lbl" fx:id="availableRoomCounter" layoutX="10.0" layoutY="23.0" text="0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                     </children>
-                  </GridPane>
-               </children>
-            </VBox>
-            <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
-               <children>
-                  <Label text="Guests: ">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Label>
-                  <GridPane alignment="CENTER_LEFT" style="-: Black;">
-                     <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="150.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="50.0" />
-                     </columnConstraints>
-                     <rowConstraints>
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                     </rowConstraints>
-                     <children>
-                        <Label text="Total: " />
-                        <Label id="Vxo_totalGuests_Lbl" fx:id="totalGuestCounter" layoutX="10.0" layoutY="23.0" text="0" GridPane.columnIndex="1" />
-                        <Label text="Male: " GridPane.rowIndex="1" />
-                        <Label id="Vxo_maleGuests_Lbl" fx:id="maleGuestCounter" layoutX="115.0" layoutY="23.0" text="0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <Label text="Female: " GridPane.rowIndex="2" />
-                        <Label id="Vxo_femaleGuests_Lbl" fx:id="femaleGuestCounter" layoutX="10.0" layoutY="23.0" text="0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                      </children>
                   </GridPane>
                </children>
@@ -150,32 +121,6 @@
                         <Label alignment="CENTER" contentDisplay="CENTER" layoutX="202.0" layoutY="66.0" text="Check In Today" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
                         <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: SKYBLUE;" GridPane.rowIndex="3" />
                         <Label alignment="CENTER" contentDisplay="CENTER" text="Check Out Today" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
-                     </children>
-                  </GridPane>
-               </children>
-            </VBox>
-            <VBox prefHeight="213.0" prefWidth="170.0" GridPane.rowIndex="1">
-               <children>
-                  <Label text="Available Beds">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Label>
-                  <GridPane alignment="CENTER_LEFT" prefHeight="114.0" prefWidth="218.0" style="-: Black;">
-                     <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="150.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="50.0" />
-                     </columnConstraints>
-                     <rowConstraints>
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                     </rowConstraints>
-                     <children>
-                        <Label text="Single:" />
-                        <Label id="Klm_CheckInToday_Lbl" fx:id="singleBedCounter" layoutX="10.0" layoutY="23.0" text="0" GridPane.columnIndex="1" />
-                        <Label text="Double:" GridPane.rowIndex="1" />
-                        <Label id="Klm_CheckOutToday_Lbl" fx:id="doubleBedCounter" layoutX="115.0" layoutY="23.0" text="0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                      </children>
                   </GridPane>
                </children>

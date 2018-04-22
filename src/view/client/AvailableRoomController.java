@@ -34,19 +34,9 @@ public class AvailableRoomController extends Controller {
 	@FXML
 	private Label availableRoomCounter;
 	@FXML
-	private Label totalGuestCounter;
-	@FXML
-	private Label maleGuestCounter;
-	@FXML
-	private Label femaleGuestCounter;
-	@FXML
 	private Label checkInCounter;
 	@FXML
 	private Label checkOutCounter;
-	@FXML
-	private Label singleBedCounter;
-	@FXML
-	private Label doubleBedCounter;
 	
 	private final String AVAILABLE_ROOM_LAYOUT = "res/view/AvailableRoom.fxml";
 	private ArrayList <RoomsFilter> roomsFilterList;
@@ -74,6 +64,33 @@ public class AvailableRoomController extends Controller {
 			RoomNode roomNode = new RoomNode (roomsList.get(i)) ;
 			roomsGrid.add(roomNode, i%4 , i/4);
 			setRoomNodemouseAction(roomNode);
+		}
+		
+		fillCounters() ;
+	}
+	
+	private void fillCounters() {
+		totalRoomCounter.setText(Integer.toString(roomsList.size()));
+		int occupiedRoomCount = 0 ;
+		int availableRoomCount = 0 ;
+		int checkInTodayCount = 0;
+		int checkOutTodayCount = 0;
+
+		for(Room room : roomsList ) {
+			if(room.getRoomStatus() == RoomStatus.OCCUPIED)
+				occupiedRoomCounter.setText(Integer.toString(++occupiedRoomCount));
+			else if (room.getRoomStatus() == RoomStatus.AVAILABLE)
+				availableRoomCounter.setText(Integer.toString(++availableRoomCount));
+			else if (room.getRoomStatus() == RoomStatus.CHECKIN_TODAY)
+				checkInCounter.setText(Integer.toString(++checkInTodayCount));
+			else if (room.getRoomStatus() == RoomStatus.CHECKOUT_TODAY)
+				checkOutCounter.setText(Integer.toString(++checkOutTodayCount));
+			else if (room.getRoomStatus() == RoomStatus.CHECK_OUT_IN) {
+				checkInCounter.setText(Integer.toString(++checkInTodayCount));
+				checkOutCounter.setText(Integer.toString(++checkOutTodayCount));
+			}
+
+				
 		}
 	}
 	
@@ -131,7 +148,7 @@ public class AvailableRoomController extends Controller {
 	
 	private void updateCheckInOutBtnStatus () {
 		Room room = selectedRoomNode.room;
-		boolean checkInStatus = room.getRoomStatus().equals(RoomStatus.CHEKIN_TODAY);
+		boolean checkInStatus = room.getRoomStatus().equals(RoomStatus.CHECKIN_TODAY);
 		boolean checkOutStatus = room.getRoomStatus().equals(RoomStatus.CHECKOUT_TODAY)
 				|| room.getRoomStatus().equals(RoomStatus.CHECK_OUT_IN)
 				|| room.getRoomStatus().equals(RoomStatus.OCCUPIED);

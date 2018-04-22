@@ -31,7 +31,7 @@ public class ResponseFactory {
 			response = new CheckInResponse(((CheckInRequest)recievedRequest).reservationId);
 		}
 		else if (recievedRequest.requestType == RequestType.GET_ROOMS) {
-			response = new RommsListResponse(((RoomsListRequest)recievedRequest).rFilList);
+			response = new RoomsListResponse(((RoomsListRequest)recievedRequest).rFilList);
 		}
 		else if (recievedRequest.requestType == RequestType.GET_RESERVATIONS){
 			response = new ReservationsListResponse(((ReservationsListRequest)recievedRequest).reservationsFilterList);

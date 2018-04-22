@@ -30,7 +30,7 @@ public class PutResponse extends Response {
 			HotelServer.hotel.getCustomerById(receivedReservation.getCustomerId()).getReservationsList().add(receivedReservation);
 			super.object = true;
 			if (receivedReservation.checkInDateAsLocalDate().isEqual(LocalDate.now()))
-				HotelServer.hotel.getRoomById(receivedReservation.getRoomId()).setRoomStatus(RoomStatus.CHEKIN_TODAY);
+				HotelServer.hotel.getRoomById(receivedReservation.getRoomId()).setRoomStatus(RoomStatus.CHECKIN_TODAY);
 		}catch (Exception e) {
 			super.object = false;
 		}
@@ -50,7 +50,7 @@ public class PutResponse extends Response {
 			receivedReservation.getBill().setCustomerId(receivedCustomer.getCustomerId());
 			HotelServer.hotel.addCustomer(receivedCustomer);
 			if (receivedReservation.checkInDateAsLocalDate().isEqual(LocalDate.now()))
-				HotelServer.hotel.getRoomById(receivedReservation.getRoomId()).setRoomStatus(RoomStatus.CHEKIN_TODAY);
+				HotelServer.hotel.getRoomById(receivedReservation.getRoomId()).setRoomStatus(RoomStatus.CHECKIN_TODAY);
 			super.object = true;
 		}catch (Exception e) {
 			super.object = false;

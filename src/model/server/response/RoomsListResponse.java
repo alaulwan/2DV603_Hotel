@@ -6,14 +6,14 @@ import model.server.HotelServer;
 import model.shared.Room;
 import model.shared.filters.roomsFilters.RoomsFilter;
 
-public class RommsListResponse extends Response {
+public class RoomsListResponse extends Response {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	public ArrayList <Room> roomList;
 	
-	public RommsListResponse (ArrayList <RoomsFilter> roomsFilterList) {
+	public RoomsListResponse (ArrayList <RoomsFilter> roomsFilterList) {
 		roomList = HotelServer.hotel.getRoomsAndSuitesList();
 		if (roomsFilterList != null) {
 			for (RoomsFilter filter : roomsFilterList) {

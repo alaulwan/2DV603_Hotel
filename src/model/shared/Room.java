@@ -9,7 +9,7 @@ public class Room implements Serializable {
 	private static int count = 0;
 	public enum RoomSize { SMALL, MEDIUM, BIG }
 	public enum RoomLocation { VAXJO, KALMAR }
-	public enum RoomStatus { AVAILABLE, OCCUPIED,CHEKIN_TODAY, CHECKOUT_TODAY }
+	public enum RoomStatus { AVAILABLE, OCCUPIED,CHEKIN_TODAY, CHECKOUT_TODAY, CHECK_OUT_IN }
 	private RoomStatus RoomStatus;
 	private int roomId;
 	private RoomLocation roomLocation;

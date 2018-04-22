@@ -60,6 +60,10 @@ public class RootLayoutController {
 
 	@FXML
 	public void initialize() throws IOException {
+		availableRoomController.checkinButton = this.checkinButton;
+		availableRoomController.checkoutButton = this.checkoutButton;
+		reservationsListController.checkinButton = this.checkinButton;
+		reservationsListController.checkoutButton = this.checkoutButton;
 		availableRoomsTab.setContent(availableRoomController.getParentPane());
 		reservationsListTab.setContent(reservationsListController.getParentPane());
 		customerListTab.setContent(customerListController.getParentPane());
@@ -121,6 +125,8 @@ public class RootLayoutController {
 	
 	@FXML
 	private void imprtReservationsList() {
+		this.checkinButton.setDisable(true);
+		this.checkoutButton.setDisable(true);
 		if (reservationsListTab.isSelected()){
 			ArrayList<ReservationsFilter> reservationsFilterList = new ArrayList<ReservationsFilter> ();
 			LocationReservationsFilter locationReservationsFilter = new LocationReservationsFilter (ServerAPI.location);
@@ -128,13 +134,15 @@ public class RootLayoutController {
 			reservationsFilterList.add(locationReservationsFilter);
 			reservationsFilterList.add(statusReservationsFilter);
 			reservationsListController.reservationArray = ServerAPI.getReservationsList(reservationsFilterList);
+			reservationsListController.roomsList = this.availableRoomController.roomsList;
 			reservationsListController.initialize();
 		}
 	}
 	
 	@FXML
 	private void imprtCustomersList() {
-		
+		this.checkinButton.setDisable(true);
+		this.checkoutButton.setDisable(true);
 		if (customerListTab.isSelected()){
 			ArrayList<CustomersFilter> customersFilterList = new ArrayList<CustomersFilter> ();
 			ReservationLocationCustomersFilter reservationLocationCustomersFilter = new ReservationLocationCustomersFilter (ServerAPI.location);
@@ -149,6 +157,8 @@ public class RootLayoutController {
 	
 	@FXML
 	private void importBillsList() {
+		this.checkinButton.setDisable(true);
+		this.checkoutButton.setDisable(true);
 		if (billsListTab.isSelected()){
 			ArrayList<BillsFilter> billsFilterList = new ArrayList<BillsFilter> ();
 			PayStatusBillsFilter payStatusBillsFilter = new PayStatusBillsFilter (PayStatus.UNPAID);

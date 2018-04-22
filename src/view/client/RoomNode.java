@@ -4,6 +4,9 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Tooltip;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.CycleMethod;
+import javafx.scene.paint.LinearGradient;
+import javafx.scene.paint.Stop;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
@@ -41,6 +44,13 @@ public class RoomNode extends StackPane {
 		case CHECKOUT_TODAY:
 			rectangle = new Rectangle(125, 125, Color.SKYBLUE);
 			roomStatus = "\n Check-out Today  \n \n        ";
+			break;
+		case CHECK_OUT_IN:
+			Stop[] stops = new Stop[] { new Stop(0, Color.SKYBLUE), new Stop(1, Color.ORANGE)};
+	        LinearGradient linerColorPaint = new LinearGradient(0, 0, 1, 0, true, CycleMethod.NO_CYCLE, stops);
+			rectangle = new Rectangle(125, 125, linerColorPaint);
+			roomStatus = "\n Check-Out-In  \n \n        ";
+			
 			break;
 		default:
 			roomStatus = "\n Occupied  \n \n  ";

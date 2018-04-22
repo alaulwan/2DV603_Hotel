@@ -187,6 +187,15 @@ public class Hotel implements Serializable{
 				true, false, false);
 		Suite suite2 = new Suite(4, new ArrayList<Room>(Arrays.asList(S2Ra, S2Rb)));
 		
+		Room R3 = new Room (new ArrayList<Bed>(Arrays.asList(bed1R1, bed1R2)), RoomLocation.VAXJO, 3, RoomSize.MEDIUM, false, true,
+				true, false, false);
+		Room R4 = new Room (new ArrayList<Bed>(Arrays.asList(bed1R1, bed1R2)), RoomLocation.VAXJO, 5, RoomSize.MEDIUM, false, true,
+				true, false, false);
+		Room R5 = new Room (new ArrayList<Bed>(Arrays.asList(bed1R1)), RoomLocation.VAXJO, 6, RoomSize.MEDIUM, false, true,
+				true, false, false);
+		Room R6 = new Room (new ArrayList<Bed>(Arrays.asList(bed1R1)), RoomLocation.VAXJO, 7, RoomSize.MEDIUM, false, true,
+				true, false, false);
+		
 		Customer customer1 = new Customer("Alaa Al", LocalDate.of(1982, 01, 01), Gender.MALE, "076970", IdentificationType.PASS_NUMBER, "1111111", "Card5555555", "Vaxjo", "Syr",
 				"a@a.a", "student");
 		
@@ -203,17 +212,13 @@ public class Hotel implements Serializable{
 		customer1.getReservationsList().get(1).getBill().addService(ServiceType.RESTURANT, 5, 2, 0, "CocaCola");;
 		customer1.getReservationsList().get(1).getBill().setPayStatus(PayStatus.PAID);
 		customer2.addReservation(R2.getRoomId(), R2.getRoomNum(), R2.getRoomLocation(), LocalDate.now().minusDays(1), LocalDate.now().plusDays(5), R2.getRate(), 0, 1 , "Ba reservation");
+		customer3.addReservation(R3.getRoomId(), R3.getRoomNum(), R3.getRoomLocation(), LocalDate.now().minusDays(1), LocalDate.now(), R3.getRate(), 0, 4 ,"Pa reservation vaxjo");
 		customer3.addReservation(suite1.getRoomId(), suite1.getRoomNum(), suite1.getRoomLocation(), LocalDate.now().minusDays(1), LocalDate.now(), suite1.getRate(), 0, 4 ,"Pa reservation kalmar");
 		customer3.addReservation(suite2.getRoomId(), suite2.getRoomNum(), suite2.getRoomLocation(), LocalDate.now().minusDays(1), LocalDate.now(), suite2.getRate(), 0, 4 ,"Pa reservation vaxjo");
-		
-		Room R3 = new Room (new ArrayList<Bed>(Arrays.asList(bed1R1, bed1R2)), RoomLocation.VAXJO, 3, RoomSize.MEDIUM, false, true,
-				true, false, false);
-		Room R4 = new Room (new ArrayList<Bed>(Arrays.asList(bed1R1, bed1R2)), RoomLocation.VAXJO, 4, RoomSize.MEDIUM, false, true,
-				true, false, false);
-		Room R5 = new Room (new ArrayList<Bed>(Arrays.asList(bed1R1)), RoomLocation.VAXJO, 5, RoomSize.MEDIUM, false, true,
-				true, false, false);
-		Room R6 = new Room (new ArrayList<Bed>(Arrays.asList(bed1R1)), RoomLocation.VAXJO, 6, RoomSize.MEDIUM, false, true,
-				true, false, false);
+		customer3.addReservation(suite2.getRoomId(), suite2.getRoomNum(), suite2.getRoomLocation(), LocalDate.now(), LocalDate.now().plusDays(2), suite2.getRate(), 0, 4 ,"Pa reservation vaxjo");
+		customer3.getReservationsList().get(0).setReservationStatus(ReservationStatus.CHECKED_IN);
+		customer3.getReservationsList().get(2).setReservationStatus(ReservationStatus.CHECKED_IN);
+
 		customersList.addAll(new ArrayList<Customer> (Arrays.asList(customer1, customer2, customer3)));
 		roomsList.addAll(new ArrayList<Room> (Arrays.asList(R1, R2,R3,R4,R5,R6)));
 		suitesList.addAll(new ArrayList<Suite> (Arrays.asList(suite1, suite2)));

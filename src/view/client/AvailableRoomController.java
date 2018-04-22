@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
@@ -18,6 +19,7 @@ import javafx.stage.Stage;
 import model.client.ServerAPI;
 import model.shared.Reservation;
 import model.shared.Room;
+import model.shared.Room.RoomStatus;
 import model.shared.filters.reservationsFilters.LocationReservationsFilter;
 import model.shared.filters.reservationsFilters.ReservationsFilter;
 import model.shared.filters.reservationsFilters.RoomNumReservationsFilter;
@@ -54,9 +56,13 @@ public class AvailableRoomController implements Controller {
 	private ArrayList <RoomsFilter> roomsFilterList;
 	public ArrayList <Room> roomsList;
 	private RoomNode selectedRoomNode;
+	public Button checkinButton;
+	public Button checkoutButton;
 	
 	@FXML
 	public void initialize() {
+		this.checkinButton.setDisable(true);
+		this.checkoutButton.setDisable(true);
 		if (roomsFilterList == null)
 			roomsList = ServerAPI.getAllRooms();
 		else {
@@ -103,6 +109,7 @@ public class AvailableRoomController implements Controller {
 				selectedRoomNode.rectangle.setStroke(paint);
 			selectedRoomNode = roomNode;
 			selectedRoomNode.rectangle.setStroke(Paint.valueOf("GRAY"));
+			updateCheckInOutBtnStatus ();
 			if (t.getButton() == MouseButton.PRIMARY && t.getClickCount() == 2) {
 				ReservationsListController reservationsListController = new ReservationsListController();
 				try {
@@ -121,6 +128,16 @@ public class AvailableRoomController implements Controller {
 			}
 		});
 		
+	}
+	
+	private void updateCheckInOutBtnStatus () {
+		Room room = selectedRoomNode.room;
+		boolean checkInStatus = room.getRoomStatus().equals(RoomStatus.CHEKIN_TODAY);
+		boolean checkOutStatus = room.getRoomStatus().equals(RoomStatus.CHECKOUT_TODAY)
+				|| room.getRoomStatus().equals(RoomStatus.CHECK_OUT_IN)
+				|| room.getRoomStatus().equals(RoomStatus.OCCUPIED);
+		this.checkinButton.setDisable(!checkInStatus);
+		this.checkoutButton.setDisable(!checkOutStatus);
 	}
 	
 	public Parent getParentPane() throws IOException {

@@ -34,8 +34,7 @@ public class AddServiceController implements Controller {
 	@FXML
 	public void initialize() throws IOException {
 		type.setValue(Service.ServiceType.RESTURANT);
-		type.setItems(FXCollections.observableArrayList(Service.ServiceType.RESTURANT, Service.ServiceType.CLEANING,
-				Service.ServiceType.GYM, Service.ServiceType.PARKING));
+		type.setItems(FXCollections.observableArrayList(Service.ServiceType.values()));
 		
 		SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 10, 1);
 		quantity.setValueFactory(valueFactory);

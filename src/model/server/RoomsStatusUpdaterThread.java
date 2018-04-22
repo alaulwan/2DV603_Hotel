@@ -46,10 +46,18 @@ public class RoomsStatusUpdaterThread extends Thread {
 		
 		for (Reservation res : pindingCheckedInReservationsList) {
 			Room r = HotelServer.hotel.getRoomById(res.getRoomId());
-			 if (todayDate.equals(res.checkInDateAsLocalDate()))
-				 r.setRoomStatus(RoomStatus.CHEKIN_TODAY);
-			 else if (todayDate.equals(res.checkOutDateAsLocalDate()))
-				 r.setRoomStatus(RoomStatus.CHECKOUT_TODAY);
+			 if (todayDate.equals(res.checkInDateAsLocalDate())) {
+				 if (r.getRoomStatus().equals(RoomStatus.CHECKOUT_TODAY))
+					 r.setRoomStatus(RoomStatus.CHECK_OUT_IN);
+				 else
+					 r.setRoomStatus(RoomStatus.CHEKIN_TODAY);
+			 }
+			 else if (todayDate.equals(res.checkOutDateAsLocalDate())) {
+				 if (r.getRoomStatus().equals(RoomStatus.CHEKIN_TODAY))
+					 r.setRoomStatus(RoomStatus.CHECK_OUT_IN);
+				 else
+					 r.setRoomStatus(RoomStatus.CHECKOUT_TODAY);
+			 }
 			 else if (todayDate.isAfter(res.checkInDateAsLocalDate()) && todayDate.isBefore(res.checkOutDateAsLocalDate()))
 				 r.setRoomStatus(RoomStatus.OCCUPIED);
 		}		

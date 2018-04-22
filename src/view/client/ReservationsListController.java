@@ -2,6 +2,7 @@ package view.client;
 
 import java.io.File;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Optional;
 
@@ -21,7 +22,9 @@ import javafx.stage.Stage;
 import javafx.util.Callback;
 import model.client.ServerAPI;
 import model.shared.Reservation;
+import model.shared.Room;
 import model.shared.Reservation.ReservationStatus;
+import model.shared.Room.RoomStatus;
 import model.shared.filters.reservationsFilters.CustomerNameReservationsFilter;
 import model.shared.filters.reservationsFilters.LocationReservationsFilter;
 import model.shared.filters.reservationsFilters.ReservationsFilter;
@@ -30,6 +33,7 @@ import model.shared.filters.reservationsFilters.StatusReservationsFilter;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ContextMenu;
@@ -66,8 +70,11 @@ public class ReservationsListController implements Controller{
 	public TextField searchRoomNumber ;
 	
 	private final String RESERVATION_LIST_LAYOUT = "res/view/ReservationsList.fxml";
+	public ArrayList <Room> roomsList;
 	public ArrayList<Reservation> reservationArray;
 	public Reservation selectedReservation;
+	public Button checkinButton;
+	public Button checkoutButton;
 
 	
 	@FXML
@@ -145,7 +152,7 @@ public class ReservationsListController implements Controller{
 			ObservableList<Reservation> data = FXCollections.observableList(reservationArray);
 			reservationsList.setItems(data);
 			
-			idCol.setCellValueFactory(new PropertyValueFactory<Reservation, Integer>("customerId"));
+			idCol.setCellValueFactory(new PropertyValueFactory<Reservation, Integer>("reservationId"));
 			roomCol.setCellValueFactory(new PropertyValueFactory<Reservation, Integer>("roomNumber"));
 			nameCol.setCellValueFactory(new PropertyValueFactory<Reservation, String>("customerName"));
 			guestNoCol.setCellValueFactory(new PropertyValueFactory<Reservation, Integer>("guestsNumber"));
@@ -162,9 +169,6 @@ public class ReservationsListController implements Controller{
 			  @Override
 			  public TableRow<Reservation> call(TableView<Reservation> tableView) {
 			    final TableRow<Reservation> row = new TableRow<>();
-			    row.setOnMousePressed((MouseEvent t) -> {
-			    	selectedReservation= reservationsList.getSelectionModel().getSelectedItem();
-			    });
 			    final ContextMenu menu = new ContextMenu();
 			    MenuItem mi1 = new MenuItem("Edit");
 					mi1.setOnAction((ActionEvent event) -> {
@@ -207,7 +211,7 @@ public class ReservationsListController implements Controller{
 				
 				MenuItem mi5 = new MenuItem("View bill");
 				mi5.setOnAction((ActionEvent event) -> {
-
+					viewBill();
 				});
 				
 				MenuItem mi6 = new MenuItem("Delete");
@@ -236,9 +240,40 @@ public class ReservationsListController implements Controller{
 			      Bindings.when(Bindings.isNotNull(row.itemProperty()))
 			      .then(menu)
 			      .otherwise((ContextMenu)null));
+			    
+			    row.setOnMousePressed((MouseEvent t) -> {
+			    	selectedReservation= reservationsList.getSelectionModel().getSelectedItem();
+			    	boolean editStatus = selectedReservation.getReservationStatus().equals(ReservationStatus.PENDING);
+	    			boolean checkInStatus = selectedReservation.getReservationStatus().equals(ReservationStatus.PENDING) && selectedReservation.checkInDateAsLocalDate().equals(LocalDate.now());
+	    			for (Reservation rs : reservationArray) {
+	    				if(rs.getRoomId()==selectedReservation.getRoomId() && rs.getReservationStatus().equals(ReservationStatus.CHECKED_IN)) {
+	    					checkInStatus = false;
+	    					break;
+	    				}
+	    			}
+	    			boolean checkOutStatus = selectedReservation.getReservationStatus().equals(ReservationStatus.CHECKED_IN);
+	    			boolean deleteStatus = !selectedReservation.getReservationStatus().equals(ReservationStatus.CHECKED_IN);
+	    			boolean cancelStatus = selectedReservation.getReservationStatus().equals(ReservationStatus.PENDING);
+	    			mi1.setDisable(!editStatus);
+	    			mi2.setDisable(!checkInStatus);
+	    			mi3.setDisable(!checkOutStatus);
+	    			mi6.setDisable(!deleteStatus);
+	    			mi7.setDisable(!cancelStatus);
+	    			if (checkinButton != null) {
+	    				checkinButton.setDisable(!checkInStatus);
+		    			checkoutButton.setDisable(!checkOutStatus);
+	    			}
+	    			
+			    });
 			    return row;
 			  }
 			});		
+	}
+	
+	private void viewBill() {
+		BillsListController BillsListController = new BillsListController();
+		BillsListController.selectedBill = this.selectedReservation.getBill();
+		BillsListController.billToPdf();
 	}
 
 }

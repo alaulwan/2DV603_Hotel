@@ -10,7 +10,7 @@
 
 <AnchorPane xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <HBox layoutX="671.0" layoutY="2.0" prefHeight="33.0" prefWidth="286.0">
+      <HBox layoutX="671.0" layoutY="3.0" prefHeight="33.0" prefWidth="286.0">
          <children>
             <TextField fx:id="searchName" onKeyReleased="#apllyAllChosenFilters" prefHeight="25.0" prefWidth="170.0" promptText="Search by Name">
                <HBox.margin>
@@ -24,7 +24,7 @@
             </CheckBox>
          </children>
       </HBox>
-      <TableView fx:id="customersTableView" fixedCellSize="0.0" layoutY="33.0" prefHeight="367.0" prefWidth="900.0" tableMenuButtonVisible="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="33.0">
+      <TableView fx:id="customersTableView" fixedCellSize="0.0" layoutY="39.0" prefHeight="362.0" prefWidth="958.0" tableMenuButtonVisible="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="39.0">
          <columns>
             <TableColumn fx:id="idCol" maxWidth="150.0" prefWidth="100.0" text="ID" />
             <TableColumn fx:id="nameCol" maxWidth="500.0" minWidth="50.0" prefWidth="250.0" text="Name" />

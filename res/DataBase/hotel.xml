@@ -20,7 +20,7 @@
                 <customerName>Alaa Al</customerName>
                 <payStatus>UNPAID</payStatus>
                 <serviceList>
-                    <descraption>VAXJO Room: 1 Days: 5</descraption>
+                    <descraption></descraption>
                     <discount>0.0</discount>
                     <piecesNumber>1</piecesNumber>
                     <price>300.0</price>
@@ -28,12 +28,12 @@
                     <serviceType>RESERVATION</serviceType>
                 </serviceList>
                 <serviceList>
-                    <descraption>Pepsi</descraption>
+                    <descraption></descraption>
                     <discount>0.0</discount>
                     <piecesNumber>2</piecesNumber>
-                    <price>5.0</price>
+                    <price>3.0</price>
                     <serviceId>3</serviceId>
-                    <serviceType>RESTURANT</serviceType>
+                    <serviceType>SOFT_DRINK</serviceType>
                 </serviceList>
             </bill>
             <checkInDate>2018-04-22</checkInDate>
@@ -56,7 +56,7 @@
                 <customerName>Alaa Al</customerName>
                 <payStatus>PAID</payStatus>
                 <serviceList>
-                    <descraption>VAXJO Room: 1 Days: 5</descraption>
+                    <descraption></descraption>
                     <discount>0.0</discount>
                     <piecesNumber>1</piecesNumber>
                     <price>300.0</price>
@@ -64,12 +64,12 @@
                     <serviceType>RESERVATION</serviceType>
                 </serviceList>
                 <serviceList>
-                    <descraption>CocaCola</descraption>
+                    <descraption></descraption>
                     <discount>0.0</discount>
                     <piecesNumber>2</piecesNumber>
-                    <price>5.0</price>
+                    <price>10.0</price>
                     <serviceId>4</serviceId>
-                    <serviceType>RESTURANT</serviceType>
+                    <serviceType>BREAKFAST</serviceType>
                 </serviceList>
             </bill>
             <checkInDate>2018-04-12</checkInDate>
@@ -106,7 +106,7 @@
                 <customerName>Basem mo</customerName>
                 <payStatus>UNPAID</payStatus>
                 <serviceList>
-                    <descraption>VAXJO Room: 2 Days: 6</descraption>
+                    <descraption></descraption>
                     <discount>0.0</discount>
                     <piecesNumber>1</piecesNumber>
                     <price>360.0</price>
@@ -148,7 +148,7 @@
                 <customerName>Paul</customerName>
                 <payStatus>UNPAID</payStatus>
                 <serviceList>
-                    <descraption>VAXJO Room: 3 Days: 1</descraption>
+                    <descraption></descraption>
                     <discount>0.0</discount>
                     <piecesNumber>1</piecesNumber>
                     <price>60.0</price>
@@ -176,7 +176,7 @@
                 <customerName>Paul</customerName>
                 <payStatus>UNPAID</payStatus>
                 <serviceList>
-                    <descraption>KALMAR Room: 3 Days: 1</descraption>
+                    <descraption></descraption>
                     <discount>0.0</discount>
                     <piecesNumber>1</piecesNumber>
                     <price>90.0</price>
@@ -204,7 +204,7 @@
                 <customerName>Paul</customerName>
                 <payStatus>UNPAID</payStatus>
                 <serviceList>
-                    <descraption>VAXJO Room: 4 Days: 1</descraption>
+                    <descraption></descraption>
                     <discount>0.0</discount>
                     <piecesNumber>1</piecesNumber>
                     <price>90.0</price>
@@ -232,7 +232,7 @@
                 <customerName>Paul</customerName>
                 <payStatus>UNPAID</payStatus>
                 <serviceList>
-                    <descraption>VAXJO Room: 4 Days: 2</descraption>
+                    <descraption></descraption>
                     <discount>0.0</discount>
                     <piecesNumber>1</piecesNumber>
                     <price>180.0</price>

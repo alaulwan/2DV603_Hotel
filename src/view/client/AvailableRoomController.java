@@ -55,7 +55,7 @@ public class AvailableRoomController implements Controller {
 	private final String AVAILABLE_ROOM_LAYOUT = "res/view/AvailableRoom.fxml";
 	private ArrayList <RoomsFilter> roomsFilterList;
 	public ArrayList <Room> roomsList;
-	private RoomNode selectedRoomNode;
+	public RoomNode selectedRoomNode;
 	public Button checkinButton;
 	public Button checkoutButton;
 	

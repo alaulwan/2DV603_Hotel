@@ -68,9 +68,11 @@ public class Hotel implements Serializable{
 		Reservation res = this.getReservationById(reservationId);
 		if (res == null)
 			return false;
-		this.getRoomById(res.getRoomId()).setRoomStatus(RoomStatus.OCCUPIED);
-		res.checkIn();
-		return true;
+		if (res.checkIn()) {
+			this.getRoomById(res.getRoomId()).setRoomStatus(RoomStatus.OCCUPIED);
+			return true;
+		}
+		return false;
 	}
 	
 	public boolean chekOutReservation (int reservationId) {

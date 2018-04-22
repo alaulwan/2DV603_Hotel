@@ -177,7 +177,7 @@ public class BillsListController implements Controller{
 		loader.setLocation(new File(BILLS_LIST_LAYOUT).toURI().toURL());
 		Parent rootLayout = (Parent) loader.load();
 		return rootLayout;
-		}
+	}
 	
 	private void setContextMenu() {
 		billsTable.setRowFactory(

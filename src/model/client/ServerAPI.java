@@ -14,11 +14,11 @@ import model.shared.filters.reservationsFilters.ReservationsFilter;
 import model.shared.filters.roomsFilters.LocationRoomsFilter;
 import model.shared.filters.roomsFilters.RoomsFilter;
 import model.shared.requests.BillsListRequest;
+import model.shared.requests.CheckInRequest;
 import model.shared.requests.CustomersListRequest;
 import model.shared.requests.PostRequest;
 import model.shared.requests.PutRequest;
 import model.shared.requests.Request;
-import model.shared.requests.Request.RequestType;
 import model.shared.requests.ReservationsListRequest;
 import model.shared.requests.RoomsListRequest;
 
@@ -47,6 +47,15 @@ public class ServerAPI {
 		return addedSuccess;
 	}
 	
+	public static boolean CheckIn (int reservationId) {
+		Request request = new CheckInRequest (reservationId);
+		Connection c = new Connection();
+		c.send(request);
+		boolean checkedInSuccess = (boolean) c.receiveObject ();
+		c.close();
+		return checkedInSuccess;
+	}
+	
 	public static ArrayList <Room> getAllRooms () {
 		ArrayList<RoomsFilter> filterList= new ArrayList<RoomsFilter>() ;
 		filterList.add(new LocationRoomsFilter(location));
@@ -55,7 +64,6 @@ public class ServerAPI {
 	
 	public static ArrayList <Room> getRoomsList (ArrayList<RoomsFilter> reservationsFilterList) {
 		Request request = new RoomsListRequest (reservationsFilterList);
-		request.requestType = RequestType.GET_ROOMS;
 		Connection c = new Connection();
 		c.send(request);
 		
@@ -68,7 +76,6 @@ public class ServerAPI {
 	
 	public static ArrayList <Reservation> getReservationsList (ArrayList<ReservationsFilter> reservationsFilterList) {
 		Request request = new ReservationsListRequest (reservationsFilterList);
-		request.requestType = RequestType.GET_RESERVATIONS;
 		Connection c = new Connection();
 		c.send(request);
 		
@@ -81,7 +88,6 @@ public class ServerAPI {
 	
 	public static ArrayList <Customer> getCustomersList (ArrayList<CustomersFilter> customerssFilterList) {
 		Request request = new CustomersListRequest (customerssFilterList);
-		request.requestType = RequestType.GET_USERS;
 		Connection c = new Connection();
 		c.send(request);
 		
@@ -94,7 +100,6 @@ public class ServerAPI {
 	
 	public static ArrayList <Bill> getBillsList (ArrayList<BillsFilter> BillsFilterList) {
 		Request request = new BillsListRequest (BillsFilterList);
-		request.requestType = RequestType.GET_BILLS;
 		Connection c = new Connection();
 		c.send(request);
 		

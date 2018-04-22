@@ -2,6 +2,7 @@ package view.client;
 
 import java.io.File;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Optional;
 import javafx.fxml.FXML;
@@ -15,6 +16,7 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.client.ServerAPI;
+import model.shared.Reservation;
 import model.shared.Bill.PayStatus;
 import model.shared.filters.billsFilters.BillsFilter;
 import model.shared.filters.billsFilters.PayStatusBillsFilter;
@@ -23,8 +25,11 @@ import model.shared.filters.customersFilters.ReservationLocationCustomersFilter;
 import model.shared.filters.customersFilters.ReservationStatusCustumersFilter;
 import model.shared.filters.reservationsFilters.LocationReservationsFilter;
 import model.shared.filters.reservationsFilters.ReservationsFilter;
+import model.shared.filters.reservationsFilters.RoomIdReservationsFilter;
+import model.shared.filters.reservationsFilters.RoomNumReservationsFilter;
 import model.shared.filters.reservationsFilters.StatusReservationsFilter;
 import javafx.scene.control.TabPane;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Tab;
 
 public class RootLayoutController {
@@ -94,7 +99,33 @@ public class RootLayoutController {
 	
 	@FXML
 	public void checkIn() {
-		
+		boolean checkInSuccess = false;
+		ArrayList<ReservationsFilter> reservationsFilterList = new ArrayList<ReservationsFilter> ();
+		LocationReservationsFilter locationReservationsFilter = new LocationReservationsFilter (ServerAPI.location);
+		StatusReservationsFilter statusReservationsFilter = new StatusReservationsFilter(true, false, false, false);
+		RoomIdReservationsFilter roomIdReservationsFilter = new RoomIdReservationsFilter (availableRoomController.selectedRoomNode.room.getRoomId());
+		reservationsFilterList.add(locationReservationsFilter);
+		reservationsFilterList.add(statusReservationsFilter);
+		reservationsFilterList.add(roomIdReservationsFilter);
+		ArrayList<Reservation> reservationArray= ServerAPI.getReservationsList(reservationsFilterList);
+		for (Reservation rs : reservationArray) {
+			if (rs.checkInDateAsLocalDate().equals(LocalDate.now())) {
+				checkInSuccess = ServerAPI.CheckIn(rs.getReservationId());
+				break;
+			}
+		}
+		if (checkInSuccess) {
+			imprtRoomsList();
+			imprtReservationsList();
+			imprtCustomersList();
+			importBillsList();
+			alertWindow(AlertType.INFORMATION, "CheckIn", "CheckIn Successed", "");
+			
+		}
+		else {
+			alertWindow(AlertType.INFORMATION, "CheckIn", "CheckIn Failed", "");
+		}
+
 	}
 	
 	@FXML
@@ -168,6 +199,21 @@ public class RootLayoutController {
 		}
 	}
 
+	/**
+     * Warning popUp 
+     * @param type of alert
+     * @param Title 
+     * @param headText
+     * @param contentText
+     */
+    public void alertWindow(AlertType type, String Title, String headText, String contentText) {
+    	Alert alert = new Alert(type);
+		alert.setTitle(Title);
+		alert.setHeaderText(headText);
+		alert.setContentText(contentText);
+		alert.showAndWait();
+    }
+    
 	public Parent getParentPane() throws IOException {
 		FXMLLoader loader = new FXMLLoader();
 		loader.setController(this);

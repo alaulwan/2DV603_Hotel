@@ -53,8 +53,11 @@ public class Reservation implements Serializable {
 	}
 	
 	public boolean checkIn() {
-		this.setReservationStatus(ReservationStatus.CHECKED_IN);
-		return true;
+		if (reservationStatus.equals(ReservationStatus.PENDING)) {
+			this.setReservationStatus(ReservationStatus.CHECKED_IN);
+			return true;
+		}
+		return false;
 	}
 	
 	public boolean checkOut() {

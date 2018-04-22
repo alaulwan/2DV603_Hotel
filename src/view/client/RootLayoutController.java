@@ -1,13 +1,10 @@
 package view.client;
 
-import java.io.File;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Optional;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -26,13 +23,12 @@ import model.shared.filters.customersFilters.ReservationStatusCustumersFilter;
 import model.shared.filters.reservationsFilters.LocationReservationsFilter;
 import model.shared.filters.reservationsFilters.ReservationsFilter;
 import model.shared.filters.reservationsFilters.RoomIdReservationsFilter;
-import model.shared.filters.reservationsFilters.RoomNumReservationsFilter;
 import model.shared.filters.reservationsFilters.StatusReservationsFilter;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Tab;
 
-public class RootLayoutController {
+public class RootLayoutController extends Controller{
 	@FXML
 	private TabPane tabPane;
 	@FXML
@@ -48,27 +44,26 @@ public class RootLayoutController {
 	@FXML
 	private Button newReservationButton;
 	@FXML
-	private Button checkinButton;
+	public Button checkinButton;
 	@FXML
-	private Button checkoutButton;
+	public Button checkoutButton;
 	@FXML
 	private Button exitButton;
 
 	private final String ROOT_LAYOUT = "res/view/RootLayout.fxml";
-	private AvailableRoomController availableRoomController = new AvailableRoomController();
-	private ReservationsListController reservationsListController = new ReservationsListController();
-	private CustomerListController customerListController = new CustomerListController();
+	private AvailableRoomController availableRoomController = new AvailableRoomController(this);
+	private ReservationsListController reservationsListController = new ReservationsListController(this);
+	private CustomerListController customerListController = new CustomerListController(this);
 	private BillsListController billsListController = new BillsListController();
 
 	private SearchRoomController searchRoomController = new SearchRoomController();
 	
+	public RootLayoutController(){
+		super.fxmlPath = ROOT_LAYOUT;
+	}
 
 	@FXML
 	public void initialize() throws IOException {
-		availableRoomController.checkinButton = this.checkinButton;
-		availableRoomController.checkoutButton = this.checkoutButton;
-		reservationsListController.checkinButton = this.checkinButton;
-		reservationsListController.checkoutButton = this.checkoutButton;
 		availableRoomsTab.setContent(availableRoomController.getParentPane());
 		reservationsListTab.setContent(reservationsListController.getParentPane());
 		customerListTab.setContent(customerListController.getParentPane());
@@ -91,12 +86,9 @@ public class RootLayoutController {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		imprtRoomsList();
-		imprtReservationsList();
-		imprtCustomersList();
-		importBillsList();
+		update();
 	}
-	
+
 	@FXML
 	public void checkIn() {
 		boolean checkInSuccess = false;
@@ -115,10 +107,7 @@ public class RootLayoutController {
 			}
 		}
 		if (checkInSuccess) {
-			imprtRoomsList();
-			imprtReservationsList();
-			imprtCustomersList();
-			importBillsList();
+			update();
 			alertWindow(AlertType.INFORMATION, "CheckIn", "CheckIn Successed", "");
 			
 		}
@@ -198,27 +187,11 @@ public class RootLayoutController {
 			billsListController.initialize();
 		}
 	}
-
-	/**
-     * Warning popUp 
-     * @param type of alert
-     * @param Title 
-     * @param headText
-     * @param contentText
-     */
-    public void alertWindow(AlertType type, String Title, String headText, String contentText) {
-    	Alert alert = new Alert(type);
-		alert.setTitle(Title);
-		alert.setHeaderText(headText);
-		alert.setContentText(contentText);
-		alert.showAndWait();
-    }
-    
-	public Parent getParentPane() throws IOException {
-		FXMLLoader loader = new FXMLLoader();
-		loader.setController(this);
-		loader.setLocation(new File(ROOT_LAYOUT).toURI().toURL());
-		Parent rootLayout = (Parent) loader.load();
-		return rootLayout;
+	
+	public void update() {
+		imprtRoomsList();
+		imprtReservationsList();
+		imprtCustomersList();
+		importBillsList();		
 	}
 }

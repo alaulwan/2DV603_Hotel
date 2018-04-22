@@ -1,17 +1,10 @@
 package view.client;
 
-import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.control.Button;
-
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.shared.Service;
@@ -20,7 +13,7 @@ import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.control.ChoiceBox;
 
-public class AddServiceController implements Controller {
+public class AddServiceController extends Controller {
 	@FXML
 	private ChoiceBox<ServiceType> type;
 	@FXML
@@ -34,6 +27,10 @@ public class AddServiceController implements Controller {
 
 	private final String ADD_SERVICE_LAYOUT = "res/view/AddService.fxml";
 
+	public AddServiceController() {
+		super.fxmlPath = ADD_SERVICE_LAYOUT;
+	}
+	
 	@FXML
 	public void initialize() throws IOException {
 		type.setValue(Service.ServiceType.BREAKFAST);
@@ -57,13 +54,5 @@ public class AddServiceController implements Controller {
 		totalPrice.setText(Float.toString(service.getPrice()));
 	}
 	
-	@Override
-	public Parent getParentPane() throws IOException {
-		FXMLLoader loader = new FXMLLoader();
-		loader.setController(this);
-		loader.setLocation(new File(ADD_SERVICE_LAYOUT).toURI().toURL());
-		Parent rootLayout = (Parent) loader.load();
-		return rootLayout;
-	}
 
 }

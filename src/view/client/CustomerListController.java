@@ -1,6 +1,5 @@
 package view.client;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Optional;
@@ -9,7 +8,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -28,7 +26,6 @@ import model.shared.filters.reservationsFilters.CustomerNameReservationsFilter;
 import model.shared.filters.reservationsFilters.LocationReservationsFilter;
 import model.shared.filters.reservationsFilters.ReservationsFilter;
 import model.shared.filters.reservationsFilters.StatusReservationsFilter;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
@@ -39,7 +36,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
 
 
-public class CustomerListController implements Controller{
+public class CustomerListController extends Controller{
 	@FXML
 	private TableView<Customer> customersTableView;
 	@FXML
@@ -63,6 +60,11 @@ public class CustomerListController implements Controller{
 	
 	public ArrayList<Customer> customersArray;
 	private Customer selectedCustomer;
+	
+	public CustomerListController(RootLayoutController rootLayoutController) {
+		super.fxmlPath = CUSTOMER_LIST_LAYOUT;
+		super.rootLayoutController = rootLayoutController;
+	}
 	
 	@FXML
 	public void initialize() {		
@@ -134,14 +136,6 @@ public class CustomerListController implements Controller{
 		
 		return ServerAPI.getReservationsList(reservationsFilterList);
 	}
-
-	public Parent getParentPane() throws IOException {
-		FXMLLoader loader = new FXMLLoader();
-		loader.setController(this);
-		loader.setLocation(new File(CUSTOMER_LIST_LAYOUT).toURI().toURL());
-		Parent rootLayout = (Parent) loader.load();
-		return rootLayout;
-	}
 	
 	private void setContextMenu() {
 		customersTableView.setRowFactory(
@@ -176,7 +170,7 @@ public class CustomerListController implements Controller{
 				
 					MenuItem mi2 = new MenuItem("View reservations");
 					mi2.setOnAction((ActionEvent event) -> {
-						ReservationsListController reservationsListController = new ReservationsListController();
+						ReservationsListController reservationsListController = new ReservationsListController(rootLayoutController);
 						try {
 							reservationsListController.reservationArray = importReservationsListByCustumer(selectedCustomer.getName());
 							

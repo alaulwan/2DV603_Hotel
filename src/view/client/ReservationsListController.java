@@ -1,19 +1,17 @@
 package view.client;
 
-import java.io.File;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Optional;
-
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
@@ -24,13 +22,11 @@ import model.client.ServerAPI;
 import model.shared.Reservation;
 import model.shared.Room;
 import model.shared.Reservation.ReservationStatus;
-import model.shared.Room.RoomStatus;
 import model.shared.filters.reservationsFilters.CustomerNameReservationsFilter;
 import model.shared.filters.reservationsFilters.LocationReservationsFilter;
 import model.shared.filters.reservationsFilters.ReservationsFilter;
 import model.shared.filters.reservationsFilters.RoomNumReservationsFilter;
 import model.shared.filters.reservationsFilters.StatusReservationsFilter;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -41,7 +37,7 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
 
-public class ReservationsListController implements Controller{
+public class ReservationsListController extends Controller{
 	@FXML
 	private TableView<Reservation> reservationsList;
 	@FXML
@@ -76,6 +72,10 @@ public class ReservationsListController implements Controller{
 	public Button checkinButton;
 	public Button checkoutButton;
 
+	public ReservationsListController(RootLayoutController rootLayoutController) {
+		super.fxmlPath = RESERVATION_LIST_LAYOUT;
+		super.rootLayoutController = rootLayoutController;
+	}
 	
 	@FXML
 	public void initialize() {		
@@ -138,14 +138,6 @@ public class ReservationsListController implements Controller{
 		
 	}
 	
-	public Parent getParentPane() throws IOException {
-		FXMLLoader loader = new FXMLLoader();
-		loader.setController(this);
-		loader.setLocation(new File(RESERVATION_LIST_LAYOUT).toURI().toURL());
-		Parent rootLayout = (Parent) loader.load();
-		return rootLayout;
-	}
-	
 	public void setData () {
 		
 		if (reservationArray!=null) {
@@ -186,7 +178,7 @@ public class ReservationsListController implements Controller{
 
 				MenuItem mi2 = new MenuItem("Check-in");
 				mi2.setOnAction((ActionEvent event) -> {
-					
+					chekInReservation (selectedReservation.getReservationId());
 				});
 				
 				MenuItem mi3 = new MenuItem("Check-out");
@@ -268,6 +260,23 @@ public class ReservationsListController implements Controller{
 			    return row;
 			  }
 			});		
+	}
+	
+	private boolean chekInReservation (int reservationId){
+		boolean checkInSuccess = ServerAPI.CheckIn(reservationId);
+		if (checkInSuccess) {
+			update();
+			alertWindow(AlertType.INFORMATION, "CheckIn", "CheckIn Successed", "");
+		}
+		else {
+			alertWindow(AlertType.INFORMATION, "CheckIn", "CheckIn Failed", "");
+		}
+		return checkInSuccess;
+	}
+	
+	private void update() {
+		viewHistoryChecked();
+		super.rootLayoutController.update();
 	}
 	
 	private void viewBill() {

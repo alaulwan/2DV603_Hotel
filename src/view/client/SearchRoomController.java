@@ -1,33 +1,22 @@
 package view.client;
 
-import java.io.File;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
-
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-
 import javafx.scene.control.Label;
-
 import javafx.scene.layout.AnchorPane;
-
 import javafx.scene.control.CheckBox;
-
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory.IntegerSpinnerValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.control.DatePicker;
-
 import javafx.scene.layout.GridPane;
-
 import javafx.scene.control.ChoiceBox;
-
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
@@ -43,7 +32,7 @@ import model.shared.filters.roomsFilters.RoomsFilter;
 import model.shared.filters.roomsFilters.SuiteRoomsFilter;
 import model.shared.filters.roomsFilters.AirViewBalSmoRoomsFilter;
 
-public class SearchRoomController {
+public class SearchRoomController extends Controller {
 	@FXML
 	private AnchorPane addReservationPane;
 	@FXML
@@ -84,6 +73,10 @@ public class SearchRoomController {
 	private final String SEARCH_ROOM_LAYOUT = "res/view/SearchRoom.fxml";
 	private ArrayList <Room> roomsList;
 	private RoomNode selectedRoomNode;
+	
+	public SearchRoomController() {
+		super.fxmlPath = SEARCH_ROOM_LAYOUT;
+	}
 	
 	@FXML
 	public void initialize() {
@@ -185,14 +178,6 @@ public class SearchRoomController {
 			
 		});
 		
-	}
-	
-	public Parent getParentPane() throws IOException {
-		FXMLLoader loader = new FXMLLoader();
-		loader.setController(this);
-		loader.setLocation(new File(SEARCH_ROOM_LAYOUT).toURI().toURL());
-		Parent rootLayout = (Parent) loader.load();
-		return rootLayout;
 	}
 
 }

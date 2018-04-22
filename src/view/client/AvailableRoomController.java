@@ -1,12 +1,8 @@
 package view.client;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -26,7 +22,7 @@ import model.shared.filters.reservationsFilters.RoomNumReservationsFilter;
 import model.shared.filters.reservationsFilters.StatusReservationsFilter;
 import model.shared.filters.roomsFilters.RoomsFilter;
 
-public class AvailableRoomController implements Controller {
+public class AvailableRoomController extends Controller {
 	@FXML
 	private GridPane roomsGrid;
 	@FXML
@@ -56,13 +52,16 @@ public class AvailableRoomController implements Controller {
 	private ArrayList <RoomsFilter> roomsFilterList;
 	public ArrayList <Room> roomsList;
 	public RoomNode selectedRoomNode;
-	public Button checkinButton;
-	public Button checkoutButton;
+	
+	public AvailableRoomController(RootLayoutController rootLayoutController) {
+		super.fxmlPath = AVAILABLE_ROOM_LAYOUT;
+		super.rootLayoutController = rootLayoutController;
+	}
 	
 	@FXML
 	public void initialize() {
-		this.checkinButton.setDisable(true);
-		this.checkoutButton.setDisable(true);
+		super.rootLayoutController.checkinButton.setDisable(true);
+		super.rootLayoutController.checkoutButton.setDisable(true);
 		if (roomsFilterList == null)
 			roomsList = ServerAPI.getAllRooms();
 		else {
@@ -111,7 +110,7 @@ public class AvailableRoomController implements Controller {
 			selectedRoomNode.rectangle.setStroke(Paint.valueOf("GRAY"));
 			updateCheckInOutBtnStatus ();
 			if (t.getButton() == MouseButton.PRIMARY && t.getClickCount() == 2) {
-				ReservationsListController reservationsListController = new ReservationsListController();
+				ReservationsListController reservationsListController = new ReservationsListController(super.rootLayoutController);
 				try {
 					reservationsListController.reservationArray = importReservationsListByRoomNum(roomNode.room.getRoomNum());
 					
@@ -136,16 +135,8 @@ public class AvailableRoomController implements Controller {
 		boolean checkOutStatus = room.getRoomStatus().equals(RoomStatus.CHECKOUT_TODAY)
 				|| room.getRoomStatus().equals(RoomStatus.CHECK_OUT_IN)
 				|| room.getRoomStatus().equals(RoomStatus.OCCUPIED);
-		this.checkinButton.setDisable(!checkInStatus);
-		this.checkoutButton.setDisable(!checkOutStatus);
-	}
-	
-	public Parent getParentPane() throws IOException {
-		FXMLLoader loader = new FXMLLoader();
-		loader.setController(this);
-		loader.setLocation(new File(AVAILABLE_ROOM_LAYOUT).toURI().toURL());
-		Parent rootLayout = (Parent) loader.load();
-		return rootLayout;
+		super.rootLayoutController.checkinButton.setDisable(!checkInStatus);
+		super.rootLayoutController.checkoutButton.setDisable(!checkOutStatus);
 	}
 
 }

@@ -1,15 +1,11 @@
 package view.client;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.control.Button;
 
 import javafx.scene.control.TextField;
@@ -36,7 +32,7 @@ import javafx.scene.control.DatePicker;
 
 import javafx.scene.control.ChoiceBox;
 
-public class AddCustomerController implements Controller {
+public class AddCustomerController extends Controller {
 	@FXML
 	private Button cancelButton;
 	@FXML
@@ -79,10 +75,13 @@ public class AddCustomerController implements Controller {
 	private Label guestsNameLabel;
 
 	private final String ADD_CUSTOMER_LAYOUT = "res/view/AddCustomer.fxml";
-
 	public ArrayList <Customer> customersList; 
 	public Customer currentCustomer;
 	public Reservation reservation;
+	
+	public AddCustomerController() {
+		super.fxmlPath = ADD_CUSTOMER_LAYOUT;
+	}
 
 	@FXML
 	public void initialize() {
@@ -243,14 +242,6 @@ public class AddCustomerController implements Controller {
 				return null;
 			}
 		});
-	}
-
-	public Parent getParentPane() throws IOException {
-		FXMLLoader loader = new FXMLLoader();
-		loader.setController(this);
-		loader.setLocation(new File(ADD_CUSTOMER_LAYOUT).toURI().toURL());
-		Parent rootLayout = (Parent) loader.load();
-		return rootLayout;
 	}
 
 }

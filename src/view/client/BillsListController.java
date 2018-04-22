@@ -146,7 +146,7 @@ public class BillsListController implements Controller{
             table.addCell("Total Price");
             float totalPrice = 0;
 	        for(Service service : selectedBill.getServiceList()){
-	            table.addCell(service.getDescraption());
+	            table.addCell(service.getServiceType().toString());
 	            table.addCell(service.getPiecesNumber()+"");
 	            table.addCell(service.getPrice()+"");
 	            table.addCell(service.getTotalPrice()+"");

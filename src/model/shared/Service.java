@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class Service implements Serializable{
 	private static final long serialVersionUID = 1L;
-	public enum ServiceType { RESERVATION, RESTURANT, GYM, PARKING, CLEANING }
+	public enum ServiceType { BREAKFAST, LUNCH, DINNER, SOFT_DRINK, RESERVATION, GYM, PARKING }
 	
 	private static int count = 0;
 	private int serviceId;
@@ -17,8 +17,17 @@ public class Service implements Serializable{
 	public Service() {
 		
 	}
-
-	public Service(ServiceType serviceType, float price, int piecesNumber, float discount, String descraption ) {
+	
+	public Service(ServiceType serviceType, int piecesNumber, float discount ) {
+		this.setServiceId(++count);
+		this.setServiceType(serviceType);
+		this.setPrice(serviceType);
+		this.setPiecesNumber(piecesNumber);
+		this.setDiscount(discount);
+		this.setDescraption(descraption);
+	}
+	
+	public Service(ServiceType serviceType, float price, int piecesNumber, float discount ) {
 		this.setServiceId(++count);
 		this.setServiceType(serviceType);
 		this.setPrice(price);
@@ -59,6 +68,22 @@ public class Service implements Serializable{
 
 	public void setPrice(float price) {
 		this.price = price;
+	}
+	
+	public void setPrice(ServiceType type) {
+		if (type == ServiceType.BREAKFAST)
+			this.price = 10 ;
+		else if (type == ServiceType.LUNCH)
+			this.price = 15 ;
+		else if (type == ServiceType.DINNER)
+			this.price = 10 ;
+		else if (type == ServiceType.SOFT_DRINK)
+			this.price = 3 ;
+		else if (type == ServiceType.GYM)
+			this.price = 7 ;
+		else if (type == ServiceType.PARKING)
+			this.price = 10 ;
+			
 	}
 
 	public int getPiecesNumber() {

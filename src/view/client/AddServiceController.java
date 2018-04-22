@@ -2,14 +2,17 @@ package view.client;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.shared.Service;
 import model.shared.Service.ServiceType;
@@ -23,7 +26,7 @@ public class AddServiceController implements Controller {
 	@FXML
 	private Spinner<Integer> quantity;
 	@FXML
-	private TextArea description;
+	private TextField totalPrice;
 	@FXML
 	private Button addButton;
 	@FXML
@@ -33,18 +36,27 @@ public class AddServiceController implements Controller {
 
 	@FXML
 	public void initialize() throws IOException {
-		type.setValue(Service.ServiceType.RESTURANT);
-		type.setItems(FXCollections.observableArrayList(Service.ServiceType.RESTURANT, Service.ServiceType.CLEANING,
-				Service.ServiceType.GYM, Service.ServiceType.PARKING));
-		
-		SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 10, 1);
+		type.setValue(Service.ServiceType.BREAKFAST);
+		ObservableList<ServiceType> TypeArr = FXCollections.observableArrayList(Service.ServiceType.values()) ;
+		TypeArr.remove(ServiceType.RESERVATION);
+		type.setItems(TypeArr);
+				
+		SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 15, 1);
 		quantity.setValueFactory(valueFactory);
+		
+		totalPrice.setDisable(true);
 		
 		cancelButton.setOnMouseClicked(event -> {
 			((Stage) cancelButton.getScene().getWindow()).close();
 		});
 	}
 
+	@FXML
+	public void setTotalPrice() {
+		Service service = new Service(type.getValue(), quantity.getValue() , 0 );
+		totalPrice.setText(Float.toString(service.getPrice()));
+	}
+	
 	@Override
 	public Parent getParentPane() throws IOException {
 		FXMLLoader loader = new FXMLLoader();

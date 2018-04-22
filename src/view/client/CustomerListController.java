@@ -162,6 +162,10 @@ public class CustomerListController implements Controller{
 							Scene mainScene = new Scene(addCustomerController.getParentPane());
 							Stage stage = new Stage();
 							stage.setScene(mainScene);
+							stage.setMinWidth(650);
+							stage.setMinHeight(680);
+							stage.setMaxWidth(650);
+							stage.setMaxHeight(680);
 							stage.setTitle("Edit the customer information");
 							stage.showAndWait();
 						} catch (IOException e) {

@@ -89,7 +89,7 @@ public class Hotel implements Serializable{
 	
 	public boolean cancelReservation (int reservationId) {
 		Reservation res = this.getReservationById(reservationId);
-		if (res != null) {
+		if (res != null && res.getReservationStatus().equals(ReservationStatus.PENDING)) {
 			Room room = this.getRoomById(res.getRoomId());
 			if (LocalDate.now().isAfter(res.checkInDateAsLocalDate()))
 				room.setRoomStatus(RoomStatus.AVAILABLE);
@@ -106,11 +106,13 @@ public class Hotel implements Serializable{
 		boolean canceled=false;
 		boolean deleted=false;
 		Reservation res = this.getReservationById(reservationId);
-		if (res == null || res.getReservationStatus()!= ReservationStatus.PENDING)
-			return false;
-		canceled = this.cancelReservation(reservationId);
-		if (canceled) {
-			deleted = this.getCustomerById(res.getCustomerId()).getReservationsList().remove(res);
+		if (res != null) {
+			if (res.getReservationStatus().equals(ReservationStatus.PENDING)) {
+				canceled = this.cancelReservation(reservationId);
+			}
+			if (canceled || res.getReservationStatus().equals(ReservationStatus.CHECKED_OUT) ) {
+				deleted = this.getCustomerById(res.getCustomerId()).getReservationsList().remove(res);
+			}
 		}
 		return deleted; 
 	}

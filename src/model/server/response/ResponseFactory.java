@@ -7,6 +7,7 @@ import model.shared.requests.CheckOutRequest;
 import model.shared.requests.CustomersListRequest;
 import model.shared.requests.PostRequest;
 import model.shared.requests.PutRequest;
+import model.shared.requests.DeleteRequest;
 import model.shared.requests.Request;
 import model.shared.requests.Request.RequestType;
 import model.shared.requests.ReservationsListRequest;
@@ -28,6 +29,9 @@ public class ResponseFactory {
 		}
 		else if (recievedRequest.requestType == RequestType.POST) {
 			response = new PostResponse(((PostRequest)recievedRequest).Object, ((PostRequest)recievedRequest).Id);
+		}
+		else if (recievedRequest.requestType == RequestType.DELETE) {
+			response = new DeleteResponse(((DeleteRequest)recievedRequest).Object);
 		}
 		else if (recievedRequest.requestType == RequestType.CheckIn) {
 			response = new CheckInResponse(((CheckInRequest)recievedRequest).reservationId);

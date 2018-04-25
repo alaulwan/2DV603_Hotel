@@ -18,6 +18,7 @@ import model.shared.requests.CancelReservationRequest;
 import model.shared.requests.CheckInRequest;
 import model.shared.requests.CheckOutRequest;
 import model.shared.requests.CustomersListRequest;
+import model.shared.requests.DeleteRequest;
 import model.shared.requests.PostRequest;
 import model.shared.requests.PutRequest;
 import model.shared.requests.Request;
@@ -47,6 +48,15 @@ public class ServerAPI {
 		boolean addedSuccess = (boolean) c.receiveObject ();
 		c.close();
 		return addedSuccess;
+	}
+	
+	public static boolean delete (Object object) {
+		Request request = new DeleteRequest (object);
+		Connection c = new Connection();
+		c.send(request);
+		boolean deletingSuccess = (boolean) c.receiveObject ();
+		c.close();
+		return deletingSuccess;
 	}
 	
 	public static boolean checkIn (int reservationId) {

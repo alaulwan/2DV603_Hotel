@@ -216,7 +216,7 @@ public class ReservationsListController extends Controller{
 					Stage stage = (Stage) closeConfirmation.getDialogPane().getScene().getWindow();
 					Optional<ButtonType> result = closeConfirmation.showAndWait();
 					if (result.isPresent()) {
-						
+						deleteReservation();
 					}
 				});
 				
@@ -299,6 +299,18 @@ public class ReservationsListController extends Controller{
 			alertWindow(AlertType.INFORMATION, "Cancel Reservation", "Cancel Reservation Failed", "");
 		}
 		return cancelReservationSuccess;
+	}
+	
+	private boolean deleteReservation() {
+		boolean deleteReservationSuccess = ServerAPI.delete(selectedReservation);
+		if (deleteReservationSuccess) {
+			update();
+			alertWindow(AlertType.INFORMATION, "Delete Reservation", "Delete Reservation Successed", "");
+		}
+		else {
+			alertWindow(AlertType.INFORMATION, "Delete Reservation", "Delete Reservation Failed", "");
+		}
+		return deleteReservationSuccess;		
 	}
 	
 	private void checkOutAndupdateLocalReservation() {

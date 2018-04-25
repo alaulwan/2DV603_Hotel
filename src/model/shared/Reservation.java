@@ -82,11 +82,11 @@ public class Reservation implements Serializable {
 		}
 		else if (cancelPeriod == 1) {
 			this.setCheckOutDate(this.checkInDateAsLocalDate().plusDays(1));
-			reservationDescription = roomLocation + " Room: "+ roomNumber +  "Canceled less than 24H";
+			reservationDescription = roomLocation + " Room: "+ roomNumber +  " ,Canceled less than 24H. Billed for "+ this.getTotalDays()+ " days";
 		}
 		else if (cancelPeriod < 1) {
 			this.setCheckOutDate(this.checkInDateAsLocalDate().plusDays(2));
-			reservationDescription = roomLocation + " Room: "+ roomNumber +  "Customer did not chekin";
+			reservationDescription = roomLocation + " Room: "+ roomNumber +  " ,Canceled less than 24H, or customer did not chekin. Billed for "+ this.getTotalDays()+ " days";
 		}
 		bill.getServiceList().get(0).setDescraption(reservationDescription);
 		bill.getServiceList().get(0).setPrice(price* this.getTotalDays());

@@ -89,12 +89,17 @@ public class Hotel implements Serializable{
 	
 	public boolean cancelReservation (int reservationId) {
 		Reservation res = this.getReservationById(reservationId);
-		if (res == null)
-			return false;
-		if (LocalDate.now().isAfter(res.checkInDateAsLocalDate()))
-			this.getRoomById(res.getRoomId()).setRoomStatus(RoomStatus.AVAILABLE);
-		res.cancel();
-		return true;
+		if (res != null) {
+			Room room = this.getRoomById(res.getRoomId());
+			if (LocalDate.now().isAfter(res.checkInDateAsLocalDate()))
+				room.setRoomStatus(RoomStatus.AVAILABLE);
+			else if (LocalDate.now().equals(res.checkInDateAsLocalDate()) && room.getRoomStatus().equals(RoomStatus.CHECK_OUT_IN))
+				room.setRoomStatus(RoomStatus.CHECKOUT_TODAY);
+			else if (LocalDate.now().equals(res.checkInDateAsLocalDate()))
+				room.setRoomStatus(RoomStatus.AVAILABLE);
+			return res.cancel();
+		}
+		return false;
 	}
 	
 	public boolean deleteReservation (int reservationId) {

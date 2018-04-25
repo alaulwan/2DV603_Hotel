@@ -222,7 +222,7 @@ public class ReservationsListController extends Controller{
 				
 				MenuItem mi7 = new MenuItem("Cancel");
 				mi7.setOnAction((ActionEvent event) -> {
-
+					cancelReservation (selectedReservation.getReservationId());
 				});
 				
 			    menu.getItems().addAll(mi1, mi2, mi3, mi4, mi5, mi6, mi7);
@@ -287,6 +287,18 @@ public class ReservationsListController extends Controller{
 			alertWindow(AlertType.INFORMATION, "CheckOut", "CheckIn Failed", "");
 		}
 		return checkOutSuccess;
+	}
+	
+	public boolean cancelReservation (int reservationId){
+		boolean cancelReservationSuccess = ServerAPI.cancelReservation(reservationId);
+		if (cancelReservationSuccess) {
+			update();
+			alertWindow(AlertType.INFORMATION, "Cancel Reservation", "Cancel Reservation Successed", "");
+		}
+		else {
+			alertWindow(AlertType.INFORMATION, "Cancel Reservation", "Cancel Reservation Failed", "");
+		}
+		return cancelReservationSuccess;
 	}
 	
 	private void checkOutAndupdateLocalReservation() {

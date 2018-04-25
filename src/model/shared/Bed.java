@@ -2,23 +2,27 @@ package model.shared;
 
 import java.io.Serializable;
 
-public class Bed implements Serializable{
+public class Bed implements Serializable {
 	private static final long serialVersionUID = 1L;
-	public enum BedSize { SINGLE, DOUBLE }
+
+	public enum BedSize {
+		SINGLE, DOUBLE
+	}
+
 	private static int count = 0;
 	private int bedId;
-	
-	private BedSize bedSize ;
-	
-	public Bed () {
-		
+
+	private BedSize bedSize;
+
+	public Bed() {
+
 	}
-	
-	public Bed (BedSize bedSize) {
+
+	public Bed(BedSize bedSize) {
 		this.setBedId(++count);
 		this.setBedSize(bedSize);
 	}
-	
+
 	public static int getCount() {
 		return count;
 	}

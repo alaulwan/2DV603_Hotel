@@ -7,9 +7,19 @@ import model.shared.Bed.BedSize;
 public class Room implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private static int count = 0;
-	public enum RoomSize { SMALL, MEDIUM, BIG }
-	public enum RoomLocation { VAXJO, KALMAR }
-	public enum RoomStatus { AVAILABLE, OCCUPIED,CHECKIN_TODAY, CHECKOUT_TODAY, CHECK_OUT_IN }
+
+	public enum RoomSize {
+		SMALL, MEDIUM, BIG
+	}
+
+	public enum RoomLocation {
+		VAXJO, KALMAR
+	}
+
+	public enum RoomStatus {
+		AVAILABLE, OCCUPIED, CHECKIN_TODAY, CHECKOUT_TODAY, CHECK_OUT_IN
+	}
+
 	private RoomStatus RoomStatus;
 	private int roomId;
 	private RoomLocation roomLocation;
@@ -24,16 +34,15 @@ public class Room implements Serializable {
 	private boolean balcony;
 	private boolean view;
 	private boolean smoking;
-	
-	
+
 	private ArrayList<Bed> bedsList = new ArrayList<Bed>();
-	
+
 	public Room() {
-		
+
 	}
 
-	public Room(ArrayList<Bed> beds, RoomLocation roomLocation, int roomNum, RoomSize roomSize, boolean airCon, boolean balcony,
-			boolean view, boolean smoking, boolean isSuite) {
+	public Room(ArrayList<Bed> beds, RoomLocation roomLocation, int roomNum, RoomSize roomSize, boolean airCon,
+			boolean balcony, boolean view, boolean smoking, boolean isSuite) {
 
 		this.roomId = ++count;
 		this.bedsList = beds;
@@ -55,10 +64,10 @@ public class Room implements Serializable {
 		return roomId;
 	}
 
-	public void setRoomId (int roomId) {
+	public void setRoomId(int roomId) {
 		this.roomId = roomId;
 	}
-	
+
 	public RoomStatus getRoomStatus() {
 		return RoomStatus;
 	}
@@ -86,7 +95,7 @@ public class Room implements Serializable {
 	public int getMaxGuestCapacity() {
 		return maxGuestCapacity;
 	}
-	
+
 	public void setMaxGuestCapacity(int maxGuestCapacity) {
 		this.maxGuestCapacity = maxGuestCapacity;
 	}
@@ -100,7 +109,7 @@ public class Room implements Serializable {
 				maxGuestCapacity += 2;
 		}
 	}
-	
+
 	public boolean isSuite() {
 		return suite;
 	}
@@ -121,7 +130,7 @@ public class Room implements Serializable {
 	public int getQualityLev() {
 		return qualityLev;
 	}
-	
+
 	public void setQualityLev(int qualityLev) {
 		this.qualityLev = qualityLev;
 		calculateRate();
@@ -131,7 +140,7 @@ public class Room implements Serializable {
 	// and view
 	// TODO should modify it for the adjoin ability
 	public void calculateQualityLev() {
-		qualityLev=3;
+		qualityLev = 3;
 		if (roomSize == RoomSize.MEDIUM)
 			qualityLev++;
 		if (roomSize == RoomSize.BIG)
@@ -142,10 +151,10 @@ public class Room implements Serializable {
 			qualityLev++;
 		if (isView())
 			qualityLev++;
-		
+
 		calculateRate();
 	}
-	
+
 	public float getRate() {
 		return rate;
 	}
@@ -153,7 +162,7 @@ public class Room implements Serializable {
 	public void setRate(float rate) {
 		this.rate = rate;
 	}
-	
+
 	public void calculateRate() {
 		this.rate = getQualityLev() * 10;
 	}
@@ -224,7 +233,5 @@ public class Room implements Serializable {
 	public static void setCount(int count) {
 		Room.count = count;
 	}
-	
-	
 
 }

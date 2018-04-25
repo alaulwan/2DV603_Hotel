@@ -13,7 +13,7 @@ import model.shared.Reservation;
 import model.shared.Room;
 
 public class HotelDAO {
-	
+
 	public void xmlSave(Hotel hotel) {
 		xmlSave(hotel, "hotel.xml");
 	}
@@ -40,13 +40,13 @@ public class HotelDAO {
 	public Hotel xmlLoad() {
 		return xmlLoad("hotel.xml");
 	}
-	
+
 	public Hotel xmlLoad(String fileName) {
 		try {
 			JAXBContext context = JAXBContext.newInstance(Hotel.class);
 			Unmarshaller un = context.createUnmarshaller();
 			Hotel hotel = (Hotel) un.unmarshal(new File("res/DataBase/" + fileName));
-			setCounter (hotel);
+			setCounter(hotel);
 			return hotel;
 		} catch (JAXBException e) {
 			e.printStackTrace();
@@ -55,17 +55,17 @@ public class HotelDAO {
 	}
 
 	private void setCounter(Hotel hotel) {
-		for (Customer customer : hotel .getCustomersList()) {
-			if (customer.getCustomerId()> Customer.getCount())
+		for (Customer customer : hotel.getCustomersList()) {
+			if (customer.getCustomerId() > Customer.getCount())
 				Customer.setCount(customer.getCustomerId());
 		}
 		for (Reservation rs : hotel.getReservationsList()) {
-			if (rs.getReservationId()> Reservation.getCount())
+			if (rs.getReservationId() > Reservation.getCount())
 				Reservation.setCount(rs.getReservationId());
 		}
-		
+
 		for (Room room : hotel.getRoomsAndSuitesList()) {
-			if (room.getRoomId()> Room.getCount())
+			if (room.getRoomId() > Room.getCount())
 				Room.setCount(room.getRoomId());
 		}
 	}

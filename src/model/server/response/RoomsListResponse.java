@@ -11,10 +11,10 @@ public class RoomsListResponse extends Response {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	public ArrayList <Room> roomList;
-	
-	public RoomsListResponse (ArrayList <RoomsFilter> roomsFilterList) {
-		roomList = new ArrayList <Room>(HotelServer.hotel.getRoomsAndSuitesList());
+	public ArrayList<Room> roomList;
+
+	public RoomsListResponse(ArrayList<RoomsFilter> roomsFilterList) {
+		roomList = new ArrayList<Room>(HotelServer.hotel.getRoomsAndSuitesList());
 		if (roomsFilterList != null) {
 			for (RoomsFilter filter : roomsFilterList) {
 				filter.applyRoomsFilter(roomList, HotelServer.hotel.getReservationsList());
@@ -22,5 +22,5 @@ public class RoomsListResponse extends Response {
 		}
 		super.object = roomList;
 	}
-	
+
 }

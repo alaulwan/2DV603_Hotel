@@ -5,14 +5,13 @@ import java.util.ArrayList;
 public class Suite extends Room {
 	private static final long serialVersionUID = 1L;
 	private ArrayList<Room> roomsList = new ArrayList<Room>();
-	
+
 	public Suite() {
-		
+
 	}
-	
-	public Suite (int roomNum, ArrayList<Room> roomsList) {
-		super(null, null, roomNum, null, false, false,
-				false, false, true);
+
+	public Suite(int roomNum, ArrayList<Room> roomsList) {
+		super(null, null, roomNum, null, false, false, false, false, true);
 		this.setRoomsList(roomsList);
 		CalculateBidsList();
 		CalculateRoomLocation();
@@ -45,11 +44,11 @@ public class Suite extends Room {
 	}
 
 	private void CalculateBidsList() {
-		this.setBedsList(new ArrayList <Bed>());
+		this.setBedsList(new ArrayList<Bed>());
 		for (Room room : roomsList) {
 			this.getBedsList().addAll(room.getBedsList());
 		}
-		
+
 	}
 
 	private void CalculateSmoking() {
@@ -93,11 +92,11 @@ public class Suite extends Room {
 	}
 
 	private void CalculateRoomSize() {
-		int size =0;
+		int size = 0;
 		for (Room room : roomsList) {
 			size += room.getRoomSize().ordinal();
 		}
-		super.setRoomSize(RoomSize.values()[size/roomsList.size()]);
+		super.setRoomSize(RoomSize.values()[size / roomsList.size()]);
 	}
 
 	private void CalculateRoomLocation() {
@@ -109,23 +108,23 @@ public class Suite extends Room {
 
 	@Override
 	public void calculateQualityLev() {
-		if (roomsList.size()>0) {
-			int qualityLev=0;
+		if (roomsList.size() > 0) {
+			int qualityLev = 0;
 			for (Room room : roomsList)
 				qualityLev += room.getQualityLev();
-			 super.setQualityLev(qualityLev/roomsList.size());
+			super.setQualityLev(qualityLev / roomsList.size());
 		}
-		
+
 	}
 
 	@Override
 	public void calculateRate() {
-		float rate=0;
+		float rate = 0;
 		for (Room room : roomsList)
 			rate += room.getRate();
-		 super.setRate((float) (rate * 0.75));
+		super.setRate((float) (rate * 0.75));
 	}
-	
+
 	public int getNumberOfRooms() {
 		return roomsList.size();
 	}

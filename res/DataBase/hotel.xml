@@ -15,27 +15,69 @@
         <phoneNum>076970</phoneNum>
         <reservationsList>
             <bill>
+                <billId>2</billId>
+                <customerId>1</customerId>
+                <customerName>Alaa Al</customerName>
+                <payStatus>PAID</payStatus>
+                <serviceList>
+                    <descraption>VAXJO Room: 1 Days: 5</descraption>
+                    <piecesNumber>1</piecesNumber>
+                    <price>300.0</price>
+                    <serviceType>RESERVATION</serviceType>
+                </serviceList>
+                <serviceList>
+                    <descraption>Pepsi</descraption>
+                    <piecesNumber>2</piecesNumber>
+                    <price>2.0</price>
+                    <serviceType>ITEM</serviceType>
+                </serviceList>
+            </bill>
+            <checkInDate>2018-04-16</checkInDate>
+            <checkOutDate>2018-04-21</checkOutDate>
+            <customerId>1</customerId>
+            <customerName>Alaa Al</customerName>
+            <discription>Old Al reservation</discription>
+            <guestsNumber>2</guestsNumber>
+            <price>60.0</price>
+            <reservationId>2</reservationId>
+            <reservationStatus>CHECKED_OUT</reservationStatus>
+            <roomId>1</roomId>
+            <roomLocation>VAXJO</roomLocation>
+            <roomNumber>1</roomNumber>
+        </reservationsList>
+        <reservationsList>
+            <bill>
                 <billId>1</billId>
                 <customerId>1</customerId>
                 <customerName>Alaa Al</customerName>
                 <payStatus>UNPAID</payStatus>
                 <serviceList>
                     <descraption>VAXJO Room: 1 Days: 5</descraption>
-                    <discount>0.0</discount>
                     <piecesNumber>1</piecesNumber>
                     <price>300.0</price>
                     <serviceType>RESERVATION</serviceType>
                 </serviceList>
                 <serviceList>
                     <descraption>Coca cola</descraption>
-                    <discount>0.0</discount>
                     <piecesNumber>2</piecesNumber>
-                    <price>3.0</price>
-                    <serviceType>SOFT_DRINK</serviceType>
+                    <price>1.0</price>
+                    <serviceType>ITEM</serviceType>
+                </serviceList>
+                <serviceList>
+                    <descraption>Coca cola</descraption>
+                    <piecesNumber>4</piecesNumber>
+                    <price>1.0</price>
+                    <serviceType>ITEM</serviceType>
+                </serviceList>
+                <serviceList>
+                    <descraption>Coca cola</descraption>
+                    <piecesNumber>1</piecesNumber>
+                    <price>1.0</price>
+                    <serviceType>ITEM</serviceType>
                 </serviceList>
             </bill>
-            <checkInDate>2018-04-25</checkInDate>
-            <checkOutDate>2018-04-30</checkOutDate>
+            <checkInDate>2018-04-26</checkInDate>
+            <checkOutDate>2018-05-01</checkOutDate>
             <customerId>1</customerId>
             <customerName>Alaa Al</customerName>
             <discription>Al reservation</discription>
@@ -47,39 +89,57 @@
             <roomLocation>VAXJO</roomLocation>
             <roomNumber>1</roomNumber>
         </reservationsList>
+    </customersList>
+    <customersList>
+        <address>Vaxjo</address>
+        <birthDate>1992-05-05</birthDate>
+        <creditCardNum>Card22222</creditCardNum>
+        <customerId>2</customerId>
+        <description>student</description>
+        <email>b@b.b</email>
+        <gender>MALE</gender>
+        <identificationNumber>2222222</identificationNumber>
+        <identificationType>PASS_NUMBER</identificationType>
+        <name>Basem mo</name>
+        <nationality>Syr</nationality>
+        <phoneNum>0732323</phoneNum>
         <reservationsList>
             <bill>
-                <billId>2</billId>
-                <customerId>1</customerId>
-                <customerName>Alaa Al</customerName>
-                <payStatus>PAID</payStatus>
+                <billId>3</billId>
+                <customerId>2</customerId>
+                <customerName>Basem mo</customerName>
+                <payStatus>UNPAID</payStatus>
                 <serviceList>
-                    <descraption>VAXJO Room: 1 Days: 5</descraption>
-                    <discount>0.0</discount>
+                    <descraption>VAXJO Room: 2 Days: 6</descraption>
                     <piecesNumber>1</piecesNumber>
-                    <price>300.0</price>
+                    <price>360.0</price>
                     <serviceType>RESERVATION</serviceType>
                 </serviceList>
                 <serviceList>
-                    <descraption>Pepsi</descraption>
-                    <discount>0.0</discount>
+                    <descraption>Coca cola</descraption>
+                    <piecesNumber>4</piecesNumber>
+                    <price>1.0</price>
+                    <serviceType>ITEM</serviceType>
+                </serviceList>
+                <serviceList>
+                    <descraption>Coca cola</descraption>
                     <piecesNumber>2</piecesNumber>
-                    <price>10.0</price>
-                    <serviceType>BREAKFAST</serviceType>
+                    <price>1.0</price>
+                    <serviceType>ITEM</serviceType>
                 </serviceList>
             </bill>
-            <checkInDate>2018-04-15</checkInDate>
-            <checkOutDate>2018-04-20</checkOutDate>
-            <customerId>1</customerId>
-            <customerName>Alaa Al</customerName>
-            <discription>Old Al reservation</discription>
-            <guestsNumber>2</guestsNumber>
+            <checkInDate>2018-04-25</checkInDate>
+            <checkOutDate>2018-05-01</checkOutDate>
+            <customerId>2</customerId>
+            <customerName>Basem mo</customerName>
+            <discription>Ba reservation</discription>
+            <guestsNumber>1</guestsNumber>
             <price>60.0</price>
-            <reservationId>2</reservationId>
-            <reservationStatus>CHECKED_OUT</reservationStatus>
-            <roomId>1</roomId>
+            <reservationId>3</reservationId>
+            <reservationStatus>CHECKED_IN</reservationStatus>
+            <roomId>2</roomId>
             <roomLocation>VAXJO</roomLocation>
-            <roomNumber>1</roomNumber>
+            <roomNumber>2</roomNumber>
         </reservationsList>
     </customersList>
     <customersList>
@@ -103,14 +163,19 @@
                 <payStatus>UNPAID</payStatus>
                 <serviceList>
                     <descraption>VAXJO Room: 3 Days: 1</descraption>
-                    <discount>0.0</discount>
                     <piecesNumber>1</piecesNumber>
                     <price>60.0</price>
                     <serviceType>RESERVATION</serviceType>
                 </serviceList>
+                <serviceList>
+                    <descraption>Coca cola</descraption>
+                    <piecesNumber>4</piecesNumber>
+                    <price>1.0</price>
+                    <serviceType>ITEM</serviceType>
+                </serviceList>
             </bill>
-            <checkInDate>2018-04-24</checkInDate>
-            <checkOutDate>2018-04-25</checkOutDate>
+            <checkInDate>2018-04-25</checkInDate>
+            <checkOutDate>2018-04-26</checkOutDate>
             <customerId>3</customerId>
             <customerName>Paul</customerName>
             <discription>Pa reservation vaxjo</discription>
@@ -130,14 +195,13 @@
                 <payStatus>UNPAID</payStatus>
                 <serviceList>
                     <descraption>KALMAR Room: 3 Days: 1</descraption>
-                    <discount>0.0</discount>
                     <piecesNumber>1</piecesNumber>
                     <price>90.0</price>
                     <serviceType>RESERVATION</serviceType>
                 </serviceList>
             </bill>
-            <checkInDate>2018-04-24</checkInDate>
-            <checkOutDate>2018-04-25</checkOutDate>
+            <checkInDate>2018-04-25</checkInDate>
+            <checkOutDate>2018-04-26</checkOutDate>
             <customerId>3</customerId>
             <customerName>Paul</customerName>
             <discription>Pa reservation kalmar</discription>
@@ -157,14 +221,13 @@
                 <payStatus>UNPAID</payStatus>
                 <serviceList>
                     <descraption>VAXJO Room: 4 Days: 1</descraption>
-                    <discount>0.0</discount>
                     <piecesNumber>1</piecesNumber>
                     <price>90.0</price>
                     <serviceType>RESERVATION</serviceType>
                 </serviceList>
             </bill>
-            <checkInDate>2018-04-24</checkInDate>
-            <checkOutDate>2018-04-25</checkOutDate>
+            <checkInDate>2018-04-25</checkInDate>
+            <checkOutDate>2018-04-26</checkOutDate>
             <customerId>3</customerId>
             <customerName>Paul</customerName>
             <discription>Pa reservation vaxjo</discription>
@@ -184,14 +247,13 @@
                 <payStatus>UNPAID</payStatus>
                 <serviceList>
                     <descraption>VAXJO Room: 4 Days: 2</descraption>
-                    <discount>0.0</discount>
                     <piecesNumber>1</piecesNumber>
                     <price>180.0</price>
                     <serviceType>RESERVATION</serviceType>
                 </serviceList>
             </bill>
-            <checkInDate>2018-04-25</checkInDate>
-            <checkOutDate>2018-04-27</checkOutDate>
+            <checkInDate>2018-04-26</checkInDate>
+            <checkOutDate>2018-04-28</checkOutDate>
             <customerId>3</customerId>
             <customerName>Paul</customerName>
             <discription>Pa reservation vaxjo</discription>
@@ -326,6 +388,18 @@
         <suite>false</suite>
         <view>true</view>
     </roomsList>
+    <servicesList>
+        <descraption>Coca cola</descraption>
+        <piecesNumber>2</piecesNumber>
+        <price>1.0</price>
+        <serviceType>ITEM</serviceType>
+    </servicesList>
+    <servicesList>
+        <descraption>Pepsi</descraption>
+        <piecesNumber>2</piecesNumber>
+        <price>2.0</price>
+        <serviceType>ITEM</serviceType>
+    </servicesList>
     <suitesList>
         <airCon>false</airCon>
         <balcony>true</balcony>

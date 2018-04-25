@@ -36,21 +36,21 @@ public class HotelServerThread extends Thread {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		if (recievedRequest!=null) {
+
+		if (recievedRequest != null) {
 
 			// Print information about the client and the request's header in the console
-			//printRequestSummary(recievedRequest.getRequestAsString());
+			// printRequestSummary(recievedRequest.getRequestAsString());
 
-			 // Create a response factory to generate a suitable response according to the
-			 // request
+			// Create a response factory to generate a suitable response according to the
+			// request
 			ResponseFactory responseFactory = new ResponseFactory(recievedRequest);
 
 			// Generate the response. ()
 			Response response = responseFactory.getResponse();
 
 			// Send the response to the client
-			//response.send(objectOutputStream);
+			// response.send(objectOutputStream);
 			response.sendObject(objectOutputStream);
 		}
 
@@ -58,7 +58,7 @@ public class HotelServerThread extends Thread {
 		closeSoket();
 
 	}
-	
+
 	// Method to print a request-summary
 	@SuppressWarnings("unused")
 	private void printRequestSummary(String recievedHeader) {
@@ -82,4 +82,3 @@ public class HotelServerThread extends Thread {
 	}
 
 }
-

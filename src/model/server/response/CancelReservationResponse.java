@@ -7,8 +7,9 @@ public class CancelReservationResponse extends Response {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+
 	public CancelReservationResponse(int reservationId) {
-		cancelReservation (reservationId);
+		cancelReservation(reservationId);
 		if ((boolean) super.object)
 			super.updateDataBase();
 	}

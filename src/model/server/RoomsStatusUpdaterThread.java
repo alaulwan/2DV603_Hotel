@@ -13,10 +13,10 @@ import model.shared.filters.reservationsFilters.ReservationsFilter;
 import model.shared.filters.reservationsFilters.StatusReservationsFilter;
 
 public class RoomsStatusUpdaterThread extends Thread {
-	public RoomsStatusUpdaterThread (){
-		
+	public RoomsStatusUpdaterThread() {
+
 	}
-	
+
 	@Override
 	public void run() {
 		while (true) {
@@ -28,39 +28,39 @@ public class RoomsStatusUpdaterThread extends Thread {
 			try {
 				Thread.sleep(duration.toMillis());
 			} catch (InterruptedException e) {
-				
+
 			}
 		}
 	}
 
 	public void updateAllRoomsStatus() {
 		LocalDate todayDate = LocalDate.now();
-		ArrayList<Room> roomsList = new ArrayList<Room> (HotelServer.hotel.getRoomsAndSuitesList());
+		ArrayList<Room> roomsList = new ArrayList<Room>(HotelServer.hotel.getRoomsAndSuitesList());
 		for (Room r : roomsList) {
 			r.setRoomStatus(RoomStatus.AVAILABLE);
 		}
-		
-		ArrayList<Reservation> pindingCheckedInReservationsList = new ArrayList <Reservation> (HotelServer.hotel.getReservationsList());
-		ReservationsFilter reservationsFilter = new StatusReservationsFilter (true, true, false, false);
+
+		ArrayList<Reservation> pindingCheckedInReservationsList = new ArrayList<Reservation>(
+				HotelServer.hotel.getReservationsList());
+		ReservationsFilter reservationsFilter = new StatusReservationsFilter(true, true, false, false);
 		reservationsFilter.applyReservationsFilter(pindingCheckedInReservationsList);
-		
+
 		for (Reservation res : pindingCheckedInReservationsList) {
 			Room r = HotelServer.hotel.getRoomById(res.getRoomId());
-			 if (todayDate.equals(res.checkInDateAsLocalDate())) {
-				 if (r.getRoomStatus().equals(RoomStatus.CHECKOUT_TODAY))
-					 r.setRoomStatus(RoomStatus.CHECK_OUT_IN);
-				 else
-					 r.setRoomStatus(RoomStatus.CHECKIN_TODAY);
-			 }
-			 else if (todayDate.equals(res.checkOutDateAsLocalDate())) {
-				 if (r.getRoomStatus().equals(RoomStatus.CHECKIN_TODAY))
-					 r.setRoomStatus(RoomStatus.CHECK_OUT_IN);
-				 else
-					 r.setRoomStatus(RoomStatus.CHECKOUT_TODAY);
-			 }
-			 else if (todayDate.isAfter(res.checkInDateAsLocalDate()) && todayDate.isBefore(res.checkOutDateAsLocalDate()))
-				 r.setRoomStatus(RoomStatus.OCCUPIED);
-		}		
+			if (todayDate.equals(res.checkInDateAsLocalDate())) {
+				if (r.getRoomStatus().equals(RoomStatus.CHECKOUT_TODAY))
+					r.setRoomStatus(RoomStatus.CHECK_OUT_IN);
+				else
+					r.setRoomStatus(RoomStatus.CHECKIN_TODAY);
+			} else if (todayDate.equals(res.checkOutDateAsLocalDate())) {
+				if (r.getRoomStatus().equals(RoomStatus.CHECKIN_TODAY))
+					r.setRoomStatus(RoomStatus.CHECK_OUT_IN);
+				else
+					r.setRoomStatus(RoomStatus.CHECKOUT_TODAY);
+			} else if (todayDate.isAfter(res.checkInDateAsLocalDate())
+					&& todayDate.isBefore(res.checkOutDateAsLocalDate()))
+				r.setRoomStatus(RoomStatus.OCCUPIED);
+		}
 	}
-	
+
 }

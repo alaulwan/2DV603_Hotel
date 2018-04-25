@@ -177,17 +177,7 @@ public class ReservationsListController extends Controller{
 				
 				MenuItem mi4 = new MenuItem("Add service");
 				mi4.setOnAction((ActionEvent event) -> {
-					
-					try {
-						AddServiceController addServiceController = new AddServiceController();
-						Scene mainScene = new Scene(addServiceController.getParentPane());
-						Stage stage = new Stage();
-						stage.setScene(mainScene);
-						stage.setTitle("Add Service");
-						stage.showAndWait();
-					} catch (IOException e) {
-						e.printStackTrace();
-					}
+					addService();
 				});
 				
 				MenuItem mi5 = new MenuItem("View bill");
@@ -324,6 +314,21 @@ public class ReservationsListController extends Controller{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}			
+	}
+	
+	private void addService() {
+		try {
+			AddServiceController addServiceController = new AddServiceController();
+			addServiceController.selectedReservation=this.selectedReservation;
+			Scene mainScene = new Scene(addServiceController.getParentPane());
+			Stage stage = new Stage();
+			stage.setScene(mainScene);
+			stage.setTitle("Add Service");
+			stage.showAndWait();
+			reservationsList.refresh();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}		
 	}
 
 	private void update() {

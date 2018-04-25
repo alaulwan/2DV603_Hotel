@@ -11,10 +11,10 @@ public class ReservationsListResponse extends Response {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	public ArrayList <Reservation> reservationsList;
-	
-	public ReservationsListResponse (ArrayList <ReservationsFilter> reservationsFilterList) {
-		reservationsList = new ArrayList <Reservation>(HotelServer.hotel.getReservationsList());
+	public ArrayList<Reservation> reservationsList;
+
+	public ReservationsListResponse(ArrayList<ReservationsFilter> reservationsFilterList) {
+		reservationsList = new ArrayList<Reservation>(HotelServer.hotel.getReservationsList());
 		if (reservationsFilterList != null) {
 			for (ReservationsFilter filter : reservationsFilterList) {
 				filter.applyReservationsFilter(reservationsList);

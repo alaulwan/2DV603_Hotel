@@ -6,11 +6,17 @@ import java.util.ArrayList;
 import model.shared.Reservation.ReservationStatus;
 import model.shared.Room.RoomLocation;
 
-public class Customer implements Serializable{
+public class Customer implements Serializable {
 	private static final long serialVersionUID = 1L;
-	public enum IdentificationType { PERSONAL_NUMBER, PASS_NUMBER }
-	public enum Gender { MALE, FEMALE }
-	
+
+	public enum IdentificationType {
+		PERSONAL_NUMBER, PASS_NUMBER
+	}
+
+	public enum Gender {
+		MALE, FEMALE
+	}
+
 	private static int count = 0;
 	private int customerId;
 	private String name;
@@ -24,18 +30,19 @@ public class Customer implements Serializable{
 	private String nationality;
 	private String email;
 	private String description;
-	
-	private ArrayList <Reservation> reservationsList = new ArrayList<Reservation>();
-	//private int reservationsCounter ;
-	//private String rooms = "" ;
-	//private ArrayList <Bill> billsList = new ArrayList<Bill>();
-	
+
+	private ArrayList<Reservation> reservationsList = new ArrayList<Reservation>();
+	// private int reservationsCounter ;
+	// private String rooms = "" ;
+	// private ArrayList <Bill> billsList = new ArrayList<Bill>();
+
 	public Customer() {
-		
+
 	}
 
-	public Customer(String name, LocalDate birthDate, Gender gender, String mobileNum, IdentificationType identificationType,String identificationNumber, String creditCardNum, String address, String nationality,
-			String email, String description) {
+	public Customer(String name, LocalDate birthDate, Gender gender, String mobileNum,
+			IdentificationType identificationType, String identificationNumber, String creditCardNum, String address,
+			String nationality, String email, String description) {
 		this.setCustomerId(++count);
 		this.name = name;
 		this.setBirthDate(birthDate);
@@ -49,18 +56,22 @@ public class Customer implements Serializable{
 		this.email = email;
 		this.description = description;
 	}
-	
-	public void addReservation(int roomId, int roomNumber, RoomLocation roomLocation, LocalDate checkInDate, LocalDate checkOutDate,float roomPrice, float discount,int guestsNumber,  String description) {
-		Reservation reservation = new Reservation(ReservationStatus.PENDING, this.getCustomerId(), this.getName() , roomId, roomNumber, roomLocation, checkInDate, checkOutDate, roomPrice, discount, guestsNumber , description );
+
+	public void addReservation(int roomId, int roomNumber, RoomLocation roomLocation, LocalDate checkInDate,
+			LocalDate checkOutDate, float roomPrice, float discount, int guestsNumber, String description) {
+		Reservation reservation = new Reservation(ReservationStatus.PENDING, this.getCustomerId(), this.getName(),
+				roomId, roomNumber, roomLocation, checkInDate, checkOutDate, roomPrice, discount, guestsNumber,
+				description);
 		reservationsList.add(reservation);
-		/*reservationsCounter ++ ;
-		if (reservationsCounter == 1 )
-			setRooms(getRooms() + Integer.toString(roomNumber)) ;
-		else 
-			setRooms(getRooms() + Integer.toString(roomNumber) +", ") ;*/
+		/*
+		 * reservationsCounter ++ ; if (reservationsCounter == 1 ) setRooms(getRooms() +
+		 * Integer.toString(roomNumber)) ; else setRooms(getRooms() +
+		 * Integer.toString(roomNumber) +", ") ;
+		 */
 	}
-	
-	public void updateCustomerInfo (String name, LocalDate birthDate, Gender gender, String mobileNum, IdentificationType identificationType,String identificationNumber, String address, String nationality,
+
+	public void updateCustomerInfo(String name, LocalDate birthDate, Gender gender, String mobileNum,
+			IdentificationType identificationType, String identificationNumber, String address, String nationality,
 			String email, String description) {
 		this.name = name;
 		this.setBirthDate(birthDate);
@@ -72,7 +83,7 @@ public class Customer implements Serializable{
 		this.nationality = nationality;
 		this.email = email;
 		this.description = description;
-		
+
 		for (Reservation r : reservationsList) {
 			r.setCustomerId(this.customerId);
 			r.setCustomerName(this.name);
@@ -114,11 +125,11 @@ public class Customer implements Serializable{
 	public void setBirthDate(String birthDate) {
 		this.birthDate = birthDate;
 	}
-	
+
 	public LocalDate birthDateToLocaleDate() {
 		return LocalDate.parse(birthDate);
 	}
-	
+
 	public void setBirthDate(LocalDate birthDate) {
 		this.birthDate = birthDate.toString();
 	}
@@ -201,9 +212,9 @@ public class Customer implements Serializable{
 
 	public void setReservationsList(ArrayList<Reservation> reservationsList) {
 		this.reservationsList = reservationsList;
-		//this.setReservationsCounter();
+		// this.setReservationsCounter();
 	}
-	
+
 	public void updateFrom(Customer customer) {
 		this.setAddress(customer.getAddress());
 		this.setName(customer.getName());
@@ -215,52 +226,49 @@ public class Customer implements Serializable{
 		this.setIdentificationNumber(customer.getIdentificationNumber());
 		this.setIdentificationType(customer.getIdentificationType());
 	}
-	
+
 	public String getCurrentReservedRooms() {
-		String rooms="";
-		int reservationsCounter=0;
+		String rooms = "";
+		int reservationsCounter = 0;
 		for (Reservation res : reservationsList) {
-			if (res.getReservationStatus()==ReservationStatus.PENDING || res.getReservationStatus()==ReservationStatus.CHECKED_IN) {
+			if (res.getReservationStatus() == ReservationStatus.PENDING
+					|| res.getReservationStatus() == ReservationStatus.CHECKED_IN) {
 				reservationsCounter++;
-				rooms += (reservationsCounter==1? "":", ") + res.getRoomNumber();
+				rooms += (reservationsCounter == 1 ? "" : ", ") + res.getRoomNumber();
 			}
 		}
 		return rooms;
 	}
+
 	public int getCurrentReservedNumbers() {
-		int reservationsCounter=0;
+		int reservationsCounter = 0;
 		for (Reservation res : reservationsList) {
-			if (res.getReservationStatus()==ReservationStatus.PENDING || res.getReservationStatus()==ReservationStatus.CHECKED_IN) {
+			if (res.getReservationStatus() == ReservationStatus.PENDING
+					|| res.getReservationStatus() == ReservationStatus.CHECKED_IN) {
 				reservationsCounter++;
 			}
 		}
 		return reservationsCounter;
 	}
 
-	/*public int getReservationsCounter() {
-		return reservationsCounter;
-	}
-	
-	public void setReservationsCounter() {
-		this.reservationsCounter = getReservationsList().size();
-	}*/
+	/*
+	 * public int getReservationsCounter() { return reservationsCounter; }
+	 * 
+	 * public void setReservationsCounter() { this.reservationsCounter =
+	 * getReservationsList().size(); }
+	 */
 
-	/*public String getRooms() {
-		return rooms;
-	}
+	/*
+	 * public String getRooms() { return rooms; }
+	 * 
+	 * public void setRooms(String rooms) { this.rooms = rooms; }
+	 */
 
-	public void setRooms(String rooms) {
-		this.rooms = rooms;
-	}*/
-	
-	/*public ArrayList<Bill> getBillsList() {
-		return billsList;
-	}
-
-	public void setBillsList(ArrayList<Bill> billsList) {
-		this.billsList = billsList;
-	}*/
+	/*
+	 * public ArrayList<Bill> getBillsList() { return billsList; }
+	 * 
+	 * public void setBillsList(ArrayList<Bill> billsList) { this.billsList =
+	 * billsList; }
+	 */
 
 }
-
-

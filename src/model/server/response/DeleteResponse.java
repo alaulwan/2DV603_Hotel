@@ -11,13 +11,12 @@ public class DeleteResponse extends Response {
 	 */
 	private static final long serialVersionUID = 1L;
 	public Object receivedObject;
-	
-	public DeleteResponse (Object Object) {
+
+	public DeleteResponse(Object Object) {
 		this.receivedObject = Object;
 		if (receivedObject instanceof Customer) {
 			deleteCustomer();
-		}
-		else if (receivedObject instanceof Reservation) {
+		} else if (receivedObject instanceof Reservation) {
 			deleteReservation();
 		}
 		if ((boolean) super.object)
@@ -28,10 +27,10 @@ public class DeleteResponse extends Response {
 		try {
 			Reservation receivedReservation = (Reservation) receivedObject;
 			super.object = HotelServer.hotel.deleteReservation(receivedReservation.getReservationId());
-		}catch (Exception e) {
+		} catch (Exception e) {
 			super.object = false;
 		}
-		
+
 	}
 
 	private void deleteCustomer() {
@@ -40,14 +39,15 @@ public class DeleteResponse extends Response {
 			Customer receivedCustomer = HotelServer.hotel.getCustomerById(((Customer) receivedObject).getCustomerId());
 			System.out.println(receivedCustomer);
 			for (Reservation reservation : receivedCustomer.getReservationsList()) {
-				if (reservation.getReservationStatus().equals(ReservationStatus.PENDING) || reservation.getReservationStatus().equals(ReservationStatus.PENDING))
+				if (reservation.getReservationStatus().equals(ReservationStatus.PENDING)
+						|| reservation.getReservationStatus().equals(ReservationStatus.PENDING))
 					return;
 			}
 			HotelServer.hotel.getCustomersList().remove(receivedCustomer);
 			super.object = true;
-		}catch (Exception e) {
+		} catch (Exception e) {
 			super.object = false;
 		}
-		
+
 	}
 }

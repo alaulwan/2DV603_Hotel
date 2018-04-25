@@ -7,8 +7,9 @@ public class CheckOutResponse extends Response {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+
 	public CheckOutResponse(int reservationId) {
-		checkOut (reservationId);
+		checkOut(reservationId);
 		if ((boolean) super.object)
 			super.updateDataBase();
 	}

@@ -11,10 +11,10 @@ public class CustomersListResponse extends Response {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	public ArrayList <Customer> customersList;
-	
-	public CustomersListResponse (ArrayList <CustomersFilter> customersFilterList) {
-		customersList = new ArrayList<Customer> (HotelServer.hotel.getCustomersList());
+	public ArrayList<Customer> customersList;
+
+	public CustomersListResponse(ArrayList<CustomersFilter> customersFilterList) {
+		customersList = new ArrayList<Customer>(HotelServer.hotel.getCustomersList());
 		if (customersFilterList != null) {
 			for (CustomersFilter filter : customersFilterList) {
 				filter.applyCustomersFilter(customersList);

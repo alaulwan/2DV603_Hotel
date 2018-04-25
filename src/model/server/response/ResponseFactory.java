@@ -22,42 +22,36 @@ public class ResponseFactory {
 	}
 
 	public Response getResponse() {
-		response=null;
-		
+		response = null;
+
 		if (recievedRequest.requestType == RequestType.PUT) {
-			response = new PutResponse(((PutRequest)recievedRequest).Object);
+			response = new PutResponse(((PutRequest) recievedRequest).Object);
+		} else if (recievedRequest.requestType == RequestType.POST) {
+			response = new PostResponse(((PostRequest) recievedRequest).Object, ((PostRequest) recievedRequest).Id);
+		} else if (recievedRequest.requestType == RequestType.DELETE) {
+			response = new DeleteResponse(((DeleteRequest) recievedRequest).Object);
+		} else if (recievedRequest.requestType == RequestType.CheckIn) {
+			response = new CheckInResponse(((CheckInRequest) recievedRequest).reservationId);
+		} else if (recievedRequest.requestType == RequestType.CheckOut) {
+			response = new CheckOutResponse(((CheckOutRequest) recievedRequest).reservationId);
+		} else if (recievedRequest.requestType == RequestType.CancelReservation) {
+			response = new CancelReservationResponse(((CancelReservationRequest) recievedRequest).reservationId);
+		} else if (recievedRequest.requestType == RequestType.GET_ROOMS) {
+			response = new RoomsListResponse(((RoomsListRequest) recievedRequest).rFilList);
+		} else if (recievedRequest.requestType == RequestType.GET_RESERVATIONS) {
+			response = new ReservationsListResponse(((ReservationsListRequest) recievedRequest).reservationsFilterList);
+
+		} else if (recievedRequest.requestType == RequestType.GET_USERS) {
+			response = new CustomersListResponse(((CustomersListRequest) recievedRequest).customersFilterList);
+
+		} else if (recievedRequest.requestType == RequestType.GET_BILLS) {
+			response = new BillsListResponse(((BillsListRequest) recievedRequest).billsFilterList);
+
+		} else if (recievedRequest.requestType == RequestType.GET_SERVICES) {
+			response = new ServicesListResponse();
+
 		}
-		else if (recievedRequest.requestType == RequestType.POST) {
-			response = new PostResponse(((PostRequest)recievedRequest).Object, ((PostRequest)recievedRequest).Id);
-		}
-		else if (recievedRequest.requestType == RequestType.DELETE) {
-			response = new DeleteResponse(((DeleteRequest)recievedRequest).Object);
-		}
-		else if (recievedRequest.requestType == RequestType.CheckIn) {
-			response = new CheckInResponse(((CheckInRequest)recievedRequest).reservationId);
-		}
-		else if (recievedRequest.requestType == RequestType.CheckOut) {
-			response = new CheckOutResponse(((CheckOutRequest)recievedRequest).reservationId);
-		}
-		else if (recievedRequest.requestType == RequestType.CancelReservation) {
-			response = new CancelReservationResponse(((CancelReservationRequest)recievedRequest).reservationId);
-		}
-		else if (recievedRequest.requestType == RequestType.GET_ROOMS) {
-			response = new RoomsListResponse(((RoomsListRequest)recievedRequest).rFilList);
-		}
-		else if (recievedRequest.requestType == RequestType.GET_RESERVATIONS){
-			response = new ReservationsListResponse(((ReservationsListRequest)recievedRequest).reservationsFilterList);
-			
-		}
-		else if (recievedRequest.requestType == RequestType.GET_USERS){
-			response = new CustomersListResponse(((CustomersListRequest)recievedRequest).customersFilterList);
-			
-		}
-		else if (recievedRequest.requestType == RequestType.GET_BILLS){
-			response = new BillsListResponse(((BillsListRequest)recievedRequest).billsFilterList);
-			
-		}
-		
+
 		return response;
 	}
 }

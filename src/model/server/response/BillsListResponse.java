@@ -11,10 +11,10 @@ public class BillsListResponse extends Response {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	public ArrayList <Bill> billsList;
-	
-	public BillsListResponse (ArrayList <BillsFilter> billsFilterList) {
-		billsList = new ArrayList <Bill>(HotelServer.hotel.getBillsList());
+	public ArrayList<Bill> billsList;
+
+	public BillsListResponse(ArrayList<BillsFilter> billsFilterList) {
+		billsList = new ArrayList<Bill>(HotelServer.hotel.getBillsList());
 		if (billsFilterList != null) {
 			for (BillsFilter filter : billsFilterList) {
 				filter.applyBillsFilter(billsList);

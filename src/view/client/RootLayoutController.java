@@ -102,7 +102,7 @@ public class RootLayoutController extends Controller{
 		ArrayList<Reservation> reservationArray= ServerAPI.getReservationsList(reservationsFilterList);
 		for (Reservation rs : reservationArray) {
 			if (rs.checkInDateAsLocalDate().equals(LocalDate.now())) {
-				checkInSuccess = ServerAPI.CheckIn(rs.getReservationId());
+				checkInSuccess = ServerAPI.checkIn(rs.getReservationId());
 				break;
 			}
 		}
@@ -119,7 +119,23 @@ public class RootLayoutController extends Controller{
 	
 	@FXML
 	public void checkOut() {
-		
+		ArrayList<ReservationsFilter> reservationsFilterList = new ArrayList<ReservationsFilter> ();
+		LocationReservationsFilter locationReservationsFilter = new LocationReservationsFilter (ServerAPI.location);
+		StatusReservationsFilter statusReservationsFilter = new StatusReservationsFilter(false, true, false, false);
+		RoomIdReservationsFilter roomIdReservationsFilter = new RoomIdReservationsFilter (availableRoomController.selectedRoomNode.room.getRoomId());
+		reservationsFilterList.add(locationReservationsFilter);
+		reservationsFilterList.add(statusReservationsFilter);
+		reservationsFilterList.add(roomIdReservationsFilter);
+		ArrayList<Reservation> reservationArray= ServerAPI.getReservationsList(reservationsFilterList);
+		for (Reservation rs : reservationArray) {
+			reservationsListController.selectedReservation = rs;
+			reservationsListController.chekOutReservation(rs.getReservationId());
+//			if (rs.checkOutDateAsLocalDate().isAfter(LocalDate.now().minusDays(1))) {
+//				reservationsListController.selectedReservation = rs;
+//				reservationsListController.chekOutReservation(rs.getReservationId());
+//				break;
+//			}
+		}
 	}
 	
 	@FXML

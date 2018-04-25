@@ -14,7 +14,7 @@ public class BillsListResponse extends Response {
 	public ArrayList <Bill> billsList;
 	
 	public BillsListResponse (ArrayList <BillsFilter> billsFilterList) {
-		billsList = HotelServer.hotel.getBillsList();
+		billsList = new ArrayList <Bill>(HotelServer.hotel.getBillsList());
 		if (billsFilterList != null) {
 			for (BillsFilter filter : billsFilterList) {
 				filter.applyBillsFilter(billsList);

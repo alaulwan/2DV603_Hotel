@@ -2,10 +2,12 @@ package view.client;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Optional;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Alert.AlertType;
 
 public class Controller {
@@ -26,13 +28,18 @@ public class Controller {
      * @param Title 
      * @param headText
      * @param contentText
+	 * @return 
      */
-    public void alertWindow(AlertType type, String Title, String headText, String contentText) {
+    public Optional<ButtonType> alertWindow(AlertType type, String Title, String headText, String contentText) {
     	Alert alert = new Alert(type);
 		alert.setTitle(Title);
 		alert.setHeaderText(headText);
 		alert.setContentText(contentText);
-		alert.showAndWait();
+		Optional<ButtonType> result = alert.showAndWait();
+		if (result.isPresent()) {
+			return result;
+		}
+		return null;
     }
 
 }

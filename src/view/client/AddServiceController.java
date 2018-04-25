@@ -50,7 +50,7 @@ public class AddServiceController extends Controller {
 
 	@FXML
 	public void setTotalPrice() {
-		Service service = new Service(type.getValue(), quantity.getValue() , 0 );
+		Service service = new Service(type.getValue(), quantity.getValue() , 0, "" );
 		totalPrice.setText(Float.toString(service.getPrice()));
 	}
 	

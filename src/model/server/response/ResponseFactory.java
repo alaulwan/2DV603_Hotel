@@ -2,6 +2,7 @@ package model.server.response;
 
 import model.shared.requests.BillsListRequest;
 import model.shared.requests.CheckInRequest;
+import model.shared.requests.CheckOutRequest;
 import model.shared.requests.CustomersListRequest;
 import model.shared.requests.PostRequest;
 import model.shared.requests.PutRequest;
@@ -29,6 +30,9 @@ public class ResponseFactory {
 		}
 		else if (recievedRequest.requestType == RequestType.CheckIn) {
 			response = new CheckInResponse(((CheckInRequest)recievedRequest).reservationId);
+		}
+		else if (recievedRequest.requestType == RequestType.CheckOut) {
+			response = new CheckOutResponse(((CheckOutRequest)recievedRequest).reservationId);
 		}
 		else if (recievedRequest.requestType == RequestType.GET_ROOMS) {
 			response = new RoomsListResponse(((RoomsListRequest)recievedRequest).rFilList);

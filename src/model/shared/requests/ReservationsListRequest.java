@@ -1,9 +1,7 @@
 package model.shared.requests;
 
 import java.util.ArrayList;
-
 import model.shared.filters.reservationsFilters.ReservationsFilter;
-import model.shared.requests.Request.RequestType;
 
 public class ReservationsListRequest extends Request {
 	private static final long serialVersionUID = 1L;

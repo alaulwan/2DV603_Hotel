@@ -14,7 +14,7 @@ public class RoomsListResponse extends Response {
 	public ArrayList <Room> roomList;
 	
 	public RoomsListResponse (ArrayList <RoomsFilter> roomsFilterList) {
-		roomList = HotelServer.hotel.getRoomsAndSuitesList();
+		roomList = new ArrayList <Room>(HotelServer.hotel.getRoomsAndSuitesList());
 		if (roomsFilterList != null) {
 			for (RoomsFilter filter : roomsFilterList) {
 				filter.applyRoomsFilter(roomList, HotelServer.hotel.getReservationsList());

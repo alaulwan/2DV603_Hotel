@@ -20,7 +20,7 @@
                 <customerName>Alaa Al</customerName>
                 <payStatus>UNPAID</payStatus>
                 <serviceList>
-                    <descraption></descraption>
+                    <descraption>VAXJO Room: 1 Days: 5</descraption>
                     <discount>0.0</discount>
                     <piecesNumber>1</piecesNumber>
                     <price>300.0</price>
@@ -28,7 +28,7 @@
                     <serviceType>RESERVATION</serviceType>
                 </serviceList>
                 <serviceList>
-                    <descraption></descraption>
+                    <descraption>Coca cola</descraption>
                     <discount>0.0</discount>
                     <piecesNumber>2</piecesNumber>
                     <price>3.0</price>
@@ -36,8 +36,8 @@
                     <serviceType>SOFT_DRINK</serviceType>
                 </serviceList>
             </bill>
-            <checkInDate>2018-04-22</checkInDate>
-            <checkOutDate>2018-04-27</checkOutDate>
+            <checkInDate>2018-04-25</checkInDate>
+            <checkOutDate>2018-04-30</checkOutDate>
             <customerId>1</customerId>
             <customerName>Alaa Al</customerName>
             <discription>Al reservation</discription>
@@ -56,7 +56,7 @@
                 <customerName>Alaa Al</customerName>
                 <payStatus>PAID</payStatus>
                 <serviceList>
-                    <descraption></descraption>
+                    <descraption>VAXJO Room: 1 Days: 5</descraption>
                     <discount>0.0</discount>
                     <piecesNumber>1</piecesNumber>
                     <price>300.0</price>
@@ -64,7 +64,7 @@
                     <serviceType>RESERVATION</serviceType>
                 </serviceList>
                 <serviceList>
-                    <descraption></descraption>
+                    <descraption>Pepsi</descraption>
                     <discount>0.0</discount>
                     <piecesNumber>2</piecesNumber>
                     <price>10.0</price>
@@ -72,8 +72,8 @@
                     <serviceType>BREAKFAST</serviceType>
                 </serviceList>
             </bill>
-            <checkInDate>2018-04-12</checkInDate>
-            <checkOutDate>2018-04-17</checkOutDate>
+            <checkInDate>2018-04-15</checkInDate>
+            <checkOutDate>2018-04-20</checkOutDate>
             <customerId>1</customerId>
             <customerName>Alaa Al</customerName>
             <discription>Old Al reservation</discription>
@@ -106,7 +106,7 @@
                 <customerName>Basem mo</customerName>
                 <payStatus>UNPAID</payStatus>
                 <serviceList>
-                    <descraption></descraption>
+                    <descraption>VAXJO Room: 2 Days: 6</descraption>
                     <discount>0.0</discount>
                     <piecesNumber>1</piecesNumber>
                     <price>360.0</price>
@@ -114,15 +114,15 @@
                     <serviceType>RESERVATION</serviceType>
                 </serviceList>
             </bill>
-            <checkInDate>2018-04-21</checkInDate>
-            <checkOutDate>2018-04-27</checkOutDate>
+            <checkInDate>2018-04-24</checkInDate>
+            <checkOutDate>2018-04-30</checkOutDate>
             <customerId>2</customerId>
             <customerName>Basem mo</customerName>
             <discription>Ba reservation</discription>
             <guestsNumber>1</guestsNumber>
             <price>60.0</price>
             <reservationId>3</reservationId>
-            <reservationStatus>PENDING</reservationStatus>
+            <reservationStatus>CHECKED_IN</reservationStatus>
             <roomId>2</roomId>
             <roomLocation>VAXJO</roomLocation>
             <roomNumber>2</roomNumber>
@@ -148,7 +148,7 @@
                 <customerName>Paul</customerName>
                 <payStatus>UNPAID</payStatus>
                 <serviceList>
-                    <descraption></descraption>
+                    <descraption>VAXJO Room: 3 Days: 1</descraption>
                     <discount>0.0</discount>
                     <piecesNumber>1</piecesNumber>
                     <price>60.0</price>
@@ -156,8 +156,8 @@
                     <serviceType>RESERVATION</serviceType>
                 </serviceList>
             </bill>
-            <checkInDate>2018-04-21</checkInDate>
-            <checkOutDate>2018-04-22</checkOutDate>
+            <checkInDate>2018-04-24</checkInDate>
+            <checkOutDate>2018-04-25</checkOutDate>
             <customerId>3</customerId>
             <customerName>Paul</customerName>
             <discription>Pa reservation vaxjo</discription>
@@ -176,7 +176,7 @@
                 <customerName>Paul</customerName>
                 <payStatus>UNPAID</payStatus>
                 <serviceList>
-                    <descraption></descraption>
+                    <descraption>KALMAR Room: 3 Days: 1</descraption>
                     <discount>0.0</discount>
                     <piecesNumber>1</piecesNumber>
                     <price>90.0</price>
@@ -184,8 +184,8 @@
                     <serviceType>RESERVATION</serviceType>
                 </serviceList>
             </bill>
-            <checkInDate>2018-04-21</checkInDate>
-            <checkOutDate>2018-04-22</checkOutDate>
+            <checkInDate>2018-04-24</checkInDate>
+            <checkOutDate>2018-04-25</checkOutDate>
             <customerId>3</customerId>
             <customerName>Paul</customerName>
             <discription>Pa reservation kalmar</discription>
@@ -204,7 +204,7 @@
                 <customerName>Paul</customerName>
                 <payStatus>UNPAID</payStatus>
                 <serviceList>
-                    <descraption></descraption>
+                    <descraption>VAXJO Room: 4 Days: 1</descraption>
                     <discount>0.0</discount>
                     <piecesNumber>1</piecesNumber>
                     <price>90.0</price>
@@ -212,8 +212,8 @@
                     <serviceType>RESERVATION</serviceType>
                 </serviceList>
             </bill>
-            <checkInDate>2018-04-21</checkInDate>
-            <checkOutDate>2018-04-22</checkOutDate>
+            <checkInDate>2018-04-24</checkInDate>
+            <checkOutDate>2018-04-25</checkOutDate>
             <customerId>3</customerId>
             <customerName>Paul</customerName>
             <discription>Pa reservation vaxjo</discription>
@@ -232,7 +232,7 @@
                 <customerName>Paul</customerName>
                 <payStatus>UNPAID</payStatus>
                 <serviceList>
-                    <descraption></descraption>
+                    <descraption>VAXJO Room: 4 Days: 2</descraption>
                     <discount>0.0</discount>
                     <piecesNumber>1</piecesNumber>
                     <price>180.0</price>
@@ -240,8 +240,8 @@
                     <serviceType>RESERVATION</serviceType>
                 </serviceList>
             </bill>
-            <checkInDate>2018-04-22</checkInDate>
-            <checkOutDate>2018-04-24</checkOutDate>
+            <checkInDate>2018-04-25</checkInDate>
+            <checkOutDate>2018-04-27</checkOutDate>
             <customerId>3</customerId>
             <customerName>Paul</customerName>
             <discription>Pa reservation vaxjo</discription>

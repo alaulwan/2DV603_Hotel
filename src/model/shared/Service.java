@@ -18,7 +18,7 @@ public class Service implements Serializable{
 		
 	}
 	
-	public Service(ServiceType serviceType, int piecesNumber, float discount ) {
+	public Service(ServiceType serviceType, int piecesNumber, float discount, String descraption ) {
 		this.setServiceId(++count);
 		this.setServiceType(serviceType);
 		this.setPrice(serviceType);
@@ -27,7 +27,7 @@ public class Service implements Serializable{
 		this.setDescraption(descraption);
 	}
 	
-	public Service(ServiceType serviceType, float price, int piecesNumber, float discount ) {
+	public Service(ServiceType serviceType, float price, int piecesNumber, float discount, String descraption ) {
 		this.setServiceId(++count);
 		this.setServiceType(serviceType);
 		this.setPrice(price);

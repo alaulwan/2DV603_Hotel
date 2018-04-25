@@ -23,7 +23,7 @@ public class Bill implements Serializable {
 	}
 
 	public Bill(int billId, int customerId, String customerName, float price, float discount, String descraption) {
-		Service reserveService = new Service(ServiceType.RESERVATION, price, 1, discount);
+		Service reserveService = new Service(ServiceType.RESERVATION, price, 1, discount, descraption);
 		serviceList.add(reserveService);
 		this.setBillId(billId);
 		this.customerId = customerId;
@@ -79,15 +79,15 @@ public class Bill implements Serializable {
 		return totalPrice;
 	}
 
-	public void addService(ServiceType serviceType, int piecesNumber, float discount) {
+	public void addService(ServiceType serviceType, int piecesNumber, float discount, String descraption ) {
 
-		Service service = new Service(serviceType, piecesNumber, discount);
+		Service service = new Service(serviceType, piecesNumber, discount, descraption);
 		this.serviceList.add(service);
 	}
 
-	public void addService(ServiceType serviceType, float price, int piecesNumber, float discount) {
+	public void addService(ServiceType serviceType, float price, int piecesNumber, float discount, String descraption) {
 
-		Service service = new Service(serviceType, price, piecesNumber, discount);
+		Service service = new Service(serviceType, price, piecesNumber, discount, descraption);
 		this.serviceList.add(service);
 	}
 

@@ -66,9 +66,7 @@ public class Hotel implements Serializable{
 	
 	public boolean chekInReservation (int reservationId) {
 		Reservation res = this.getReservationById(reservationId);
-		if (res == null)
-			return false;
-		if (res.checkIn()) {
+		if (res != null && res.checkIn()) {
 			this.getRoomById(res.getRoomId()).setRoomStatus(RoomStatus.OCCUPIED);
 			return true;
 		}
@@ -77,11 +75,16 @@ public class Hotel implements Serializable{
 	
 	public boolean chekOutReservation (int reservationId) {
 		Reservation res = this.getReservationById(reservationId);
-		if (res == null)
-			return false;
-		this.getRoomById(res.getRoomId()).setRoomStatus(RoomStatus.AVAILABLE);
-		res.checkOut();
-		return true;
+		Room room = this.getRoomById(res.getRoomId());
+		if(res != null && res.checkOut()) {
+			if (room.getRoomStatus().equals(RoomStatus.CHECK_OUT_IN))
+				room.setRoomStatus(RoomStatus.CHECKIN_TODAY);
+			else
+				room.setRoomStatus(RoomStatus.AVAILABLE);
+
+			return true;
+		}
+		return false;
 	}
 	
 	public boolean cancelReservation (int reservationId) {
@@ -108,7 +111,7 @@ public class Hotel implements Serializable{
 	}
 
 	public ArrayList<Customer> getCustomersList() {
-		return new ArrayList<Customer> (customersList);
+		return customersList;
 	}
 
 	public void setCustomersList(ArrayList<Customer> customersList) {
@@ -210,10 +213,11 @@ public class Hotel implements Serializable{
 		customer1.addReservation(R1.getRoomId(), R1.getRoomNum(), R1.getRoomLocation(),LocalDate.now(), LocalDate.now().plusDays(5),R1.getRate(), 0, 2, "Al reservation");
 		customer1.addReservation(R1.getRoomId(), R1.getRoomNum(), R1.getRoomLocation(),LocalDate.now().minusDays(10), LocalDate.now().minusDays(5),R1.getRate(), 0, 2, "Old Al reservation");
 		customer1.getReservationsList().get(1).setReservationStatus(ReservationStatus.CHECKED_OUT);
-		customer1.getReservationsList().get(0).getBill().addService(ServiceType.SOFT_DRINK, 2, 0);;
-		customer1.getReservationsList().get(1).getBill().addService(ServiceType.BREAKFAST, 2, 0);;
+		customer1.getReservationsList().get(0).getBill().addService(ServiceType.SOFT_DRINK, 2, 0, "Coca cola");;
+		customer1.getReservationsList().get(1).getBill().addService(ServiceType.BREAKFAST, 2, 0, "Pepsi");;
 		customer1.getReservationsList().get(1).getBill().setPayStatus(PayStatus.PAID);
 		customer2.addReservation(R2.getRoomId(), R2.getRoomNum(), R2.getRoomLocation(), LocalDate.now().minusDays(1), LocalDate.now().plusDays(5), R2.getRate(), 0, 1 , "Ba reservation");
+		customer2.getReservationsList().get(0).setReservationStatus(ReservationStatus.CHECKED_IN);
 		customer3.addReservation(R3.getRoomId(), R3.getRoomNum(), R3.getRoomLocation(), LocalDate.now().minusDays(1), LocalDate.now(), R3.getRate(), 0, 4 ,"Pa reservation vaxjo");
 		customer3.addReservation(suite1.getRoomId(), suite1.getRoomNum(), suite1.getRoomLocation(), LocalDate.now().minusDays(1), LocalDate.now(), suite1.getRate(), 0, 4 ,"Pa reservation kalmar");
 		customer3.addReservation(suite2.getRoomId(), suite2.getRoomNum(), suite2.getRoomLocation(), LocalDate.now().minusDays(1), LocalDate.now(), suite2.getRate(), 0, 4 ,"Pa reservation vaxjo");

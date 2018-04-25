@@ -14,7 +14,7 @@ public class CustomersListResponse extends Response {
 	public ArrayList <Customer> customersList;
 	
 	public CustomersListResponse (ArrayList <CustomersFilter> customersFilterList) {
-		customersList = HotelServer.hotel.getCustomersList();
+		customersList = new ArrayList<Customer> (HotelServer.hotel.getCustomersList());
 		if (customersFilterList != null) {
 			for (CustomersFilter filter : customersFilterList) {
 				filter.applyCustomersFilter(customersList);

@@ -2,17 +2,17 @@ package model.server.response;
 
 import model.server.HotelServer;
 
-public class CheckInResponse extends Response {
+public class CheckOutResponse extends Response {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	public CheckInResponse(int reservationId) {
-		checkIn (reservationId);
+	public CheckOutResponse(int reservationId) {
+		checkOut (reservationId);
 	}
 
-	private void checkIn(int reservationId) {
-		Boolean checkedInSuccess = HotelServer.hotel.chekInReservation(reservationId);
+	private void checkOut(int reservationId) {
+		Boolean checkedInSuccess = HotelServer.hotel.chekOutReservation(reservationId);
 		this.object = checkedInSuccess;
 //		Reservation reservation = HotelServer.hotel.getReservationById(reservationId);
 //		if (reservation.getReservationStatus().equals(ReservationStatus.PENDING)) {

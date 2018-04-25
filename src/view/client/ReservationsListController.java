@@ -183,7 +183,7 @@ public class ReservationsListController extends Controller{
 				
 				MenuItem mi3 = new MenuItem("Check-out");
 				mi3.setOnAction((ActionEvent event) -> {
-
+					chekOutReservation (selectedReservation.getReservationId());
 				});
 				
 				MenuItem mi4 = new MenuItem("Add service");
@@ -262,8 +262,8 @@ public class ReservationsListController extends Controller{
 			});		
 	}
 	
-	private boolean chekInReservation (int reservationId){
-		boolean checkInSuccess = ServerAPI.CheckIn(reservationId);
+	public boolean chekInReservation (int reservationId){
+		boolean checkInSuccess = ServerAPI.checkIn(reservationId);
 		if (checkInSuccess) {
 			update();
 			alertWindow(AlertType.INFORMATION, "CheckIn", "CheckIn Successed", "");
@@ -274,6 +274,33 @@ public class ReservationsListController extends Controller{
 		return checkInSuccess;
 	}
 	
+	public boolean chekOutReservation (int reservationId){
+		boolean checkOutSuccess = ServerAPI.checkOut(reservationId);
+		if (checkOutSuccess) {
+			checkOutAndupdateLocalReservation();
+			Optional<ButtonType> result = alertWindow(AlertType.CONFIRMATION, "CheckOut", "CheckOut Successed", "Do you want to view the bill?");
+			if (result.isPresent() && result.get().equals(ButtonType.YES)) {
+				viewBill();
+			}
+		}
+		else {
+			alertWindow(AlertType.INFORMATION, "CheckOut", "CheckIn Failed", "");
+		}
+		return checkOutSuccess;
+	}
+	
+	private void checkOutAndupdateLocalReservation() {
+		selectedReservation.setReservationStatus(ReservationStatus.CHECKED_OUT);
+		if (LocalDate.now().isBefore(selectedReservation.checkOutDateAsLocalDate())) {
+			selectedReservation.setCheckOutDate(LocalDate.now().plusDays(1));
+			String reservationDescription = selectedReservation.getRoomLocation() + " Room: "+ selectedReservation.getRoomNumber() +  " Days: " + selectedReservation.getTotalDays();
+			selectedReservation.getBill().getServiceList().get(0).setDescraption(reservationDescription);
+			selectedReservation.getBill().getServiceList().get(0).setPrice(selectedReservation.getPrice()* selectedReservation.getTotalDays());
+		}
+		reservationsList.refresh();
+		super.rootLayoutController.update();		
+	}
+
 	private void update() {
 		viewHistoryChecked();
 		super.rootLayoutController.update();

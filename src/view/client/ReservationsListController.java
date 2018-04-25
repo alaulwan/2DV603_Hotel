@@ -29,7 +29,6 @@ import model.shared.filters.reservationsFilters.RoomNumReservationsFilter;
 import model.shared.filters.reservationsFilters.StatusReservationsFilter;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ContextMenu;
@@ -203,9 +202,8 @@ public class ReservationsListController extends Controller{
 							"Are you sure you want to delete ?");
 					closeConfirmation.setHeaderText("Confirm removal");
 					closeConfirmation.initModality(Modality.APPLICATION_MODAL);
-					Stage stage = (Stage) closeConfirmation.getDialogPane().getScene().getWindow();
 					Optional<ButtonType> result = closeConfirmation.showAndWait();
-					if (result.isPresent()) {
+					if (result.isPresent() && result.get().equals(ButtonType.YES)) {
 						deleteReservation();
 					}
 				});

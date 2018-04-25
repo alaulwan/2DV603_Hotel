@@ -15,6 +15,40 @@
         <phoneNum>076970</phoneNum>
         <reservationsList>
             <bill>
+                <billId>1</billId>
+                <customerId>1</customerId>
+                <customerName>Alaa Al</customerName>
+                <payStatus>UNPAID</payStatus>
+                <serviceList>
+                    <descraption>VAXJO Room: 1 Days: 5</descraption>
+                    <discount>0.0</discount>
+                    <piecesNumber>1</piecesNumber>
+                    <price>300.0</price>
+                    <serviceType>RESERVATION</serviceType>
+                </serviceList>
+                <serviceList>
+                    <descraption>Coca cola</descraption>
+                    <discount>0.0</discount>
+                    <piecesNumber>2</piecesNumber>
+                    <price>3.0</price>
+                    <serviceType>SOFT_DRINK</serviceType>
+                </serviceList>
+            </bill>
+            <checkInDate>2018-04-25</checkInDate>
+            <checkOutDate>2018-04-30</checkOutDate>
+            <customerId>1</customerId>
+            <customerName>Alaa Al</customerName>
+            <discription>Al reservation</discription>
+            <guestsNumber>2</guestsNumber>
+            <price>60.0</price>
+            <reservationId>1</reservationId>
+            <reservationStatus>PENDING</reservationStatus>
+            <roomId>1</roomId>
+            <roomLocation>VAXJO</roomLocation>
+            <roomNumber>1</roomNumber>
+        </reservationsList>
+        <reservationsList>
+            <bill>
                 <billId>2</billId>
                 <customerId>1</customerId>
                 <customerName>Alaa Al</customerName>
@@ -46,47 +80,6 @@
             <roomId>1</roomId>
             <roomLocation>VAXJO</roomLocation>
             <roomNumber>1</roomNumber>
-        </reservationsList>
-    </customersList>
-    <customersList>
-        <address>Vaxjo</address>
-        <birthDate>1992-05-05</birthDate>
-        <creditCardNum>Card22222</creditCardNum>
-        <customerId>2</customerId>
-        <description>student</description>
-        <email>b@b.b</email>
-        <gender>MALE</gender>
-        <identificationNumber>2222222</identificationNumber>
-        <identificationType>PASS_NUMBER</identificationType>
-        <name>Basem mo</name>
-        <nationality>Syr</nationality>
-        <phoneNum>0732323</phoneNum>
-        <reservationsList>
-            <bill>
-                <billId>3</billId>
-                <customerId>2</customerId>
-                <customerName>Basem mo</customerName>
-                <payStatus>UNPAID</payStatus>
-                <serviceList>
-                    <descraption>VAXJO Room: 2 Days: 6</descraption>
-                    <discount>0.0</discount>
-                    <piecesNumber>1</piecesNumber>
-                    <price>360.0</price>
-                    <serviceType>RESERVATION</serviceType>
-                </serviceList>
-            </bill>
-            <checkInDate>2018-04-24</checkInDate>
-            <checkOutDate>2018-04-30</checkOutDate>
-            <customerId>2</customerId>
-            <customerName>Basem mo</customerName>
-            <discription>Ba reservation</discription>
-            <guestsNumber>1</guestsNumber>
-            <price>60.0</price>
-            <reservationId>3</reservationId>
-            <reservationStatus>CHECKED_IN</reservationStatus>
-            <roomId>2</roomId>
-            <roomLocation>VAXJO</roomLocation>
-            <roomNumber>2</roomNumber>
         </reservationsList>
     </customersList>
     <customersList>
@@ -225,7 +218,7 @@
         <roomLocation>VAXJO</roomLocation>
         <roomNum>1</roomNum>
         <roomSize>MEDIUM</roomSize>
-        <roomStatus>AVAILABLE</roomStatus>
+        <roomStatus>CHECKIN_TODAY</roomStatus>
         <smoking>false</smoking>
         <suite>false</suite>
         <view>true</view>

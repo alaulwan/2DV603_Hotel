@@ -10,6 +10,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
@@ -193,15 +194,13 @@ public class CustomerListController extends Controller{
 					
 				MenuItem mi3 = new MenuItem("Delete");
 				mi3.setOnAction((ActionEvent event) -> {
-					
 					Alert closeConfirmation = new Alert(Alert.AlertType.CONFIRMATION,
 							"Are you sure you want to delete ?");
 					closeConfirmation.setHeaderText("Confirm removal");
 					closeConfirmation.initModality(Modality.APPLICATION_MODAL);
-					Stage stage = (Stage) closeConfirmation.getDialogPane().getScene().getWindow();
 					Optional<ButtonType> result = closeConfirmation.showAndWait();
-					if (result.isPresent()) {
-						
+					if (result.isPresent() && result.get().equals(ButtonType.OK)) {
+						deleteCustomer();
 					}
 				});
 				
@@ -214,8 +213,25 @@ public class CustomerListController extends Controller{
 			      .otherwise((ContextMenu)null));
 			    return row;
 			  }
+
+			
 			});
 		
 	}
+	private boolean deleteCustomer() {
+		boolean deleteCustomerSuccess = ServerAPI.delete(selectedCustomer);
+		if (deleteCustomerSuccess) {
+			update();
+			alertWindow(AlertType.INFORMATION, "Delete Customer", "Delete Customer Successed", "");
+		}
+		else {
+			alertWindow(AlertType.INFORMATION, "Delete Customer", "Delete Customer Failed", "Cannot delete customer with pindding or checked in reservation.");
+		}
+		return deleteCustomerSuccess;
+	}
 
+	private void update() {
+		viewHistoryChecked();
+		super.rootLayoutController.update();
+	}
 }

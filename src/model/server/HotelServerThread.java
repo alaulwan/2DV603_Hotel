@@ -60,6 +60,7 @@ public class HotelServerThread extends Thread {
 	}
 	
 	// Method to print a request-summary
+	@SuppressWarnings("unused")
 	private void printRequestSummary(String recievedHeader) {
 		if (recievedHeader != null && !recievedHeader.isEmpty()) {
 			System.out.printf("\n[Client " + clientId + "] TCP echo request from %s",

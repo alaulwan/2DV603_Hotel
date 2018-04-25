@@ -1,11 +1,9 @@
 package model.server.response;
 
-import java.time.LocalDate;
-
 import model.server.HotelServer;
 import model.shared.Customer;
 import model.shared.Reservation;
-import model.shared.Room.RoomStatus;
+import model.shared.Reservation.ReservationStatus;
 
 public class DeleteResponse extends Response {
 	/**
@@ -37,19 +35,15 @@ public class DeleteResponse extends Response {
 	}
 
 	private void deleteCustomer() {
+		super.object = false;
 		try {
-			Customer receivedCustomer = (Customer) receivedObject;
-			Reservation receivedReservation = receivedCustomer.getReservationsList().get(0);
-			Customer.setCount(Customer.getCount()+1);
-			receivedCustomer.setCustomerId(Customer.getCount());
-			Reservation.setCount(Reservation.getCount()+1);
-			receivedReservation.setReservationId(Reservation.getCount());
-			receivedReservation.setCustomerId(receivedCustomer.getCustomerId());
-			receivedReservation.getBill().setBillId(receivedReservation.getReservationId());
-			receivedReservation.getBill().setCustomerId(receivedCustomer.getCustomerId());
-			HotelServer.hotel.addCustomer(receivedCustomer);
-			if (receivedReservation.checkInDateAsLocalDate().isEqual(LocalDate.now()))
-				HotelServer.hotel.getRoomById(receivedReservation.getRoomId()).setRoomStatus(RoomStatus.CHECKIN_TODAY);
+			Customer receivedCustomer = HotelServer.hotel.getCustomerById(((Customer) receivedObject).getCustomerId());
+			System.out.println(receivedCustomer);
+			for (Reservation reservation : receivedCustomer.getReservationsList()) {
+				if (reservation.getReservationStatus().equals(ReservationStatus.PENDING) || reservation.getReservationStatus().equals(ReservationStatus.PENDING))
+					return;
+			}
+			HotelServer.hotel.getCustomersList().remove(receivedCustomer);
 			super.object = true;
 		}catch (Exception e) {
 			super.object = false;

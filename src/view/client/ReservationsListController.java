@@ -69,8 +69,6 @@ public class ReservationsListController extends Controller{
 	public ArrayList <Room> roomsList;
 	public ArrayList<Reservation> reservationArray;
 	public Reservation selectedReservation;
-	public Button checkinButton;
-	public Button checkoutButton;
 
 	public ReservationsListController(RootLayoutController rootLayoutController) {
 		super.fxmlPath = RESERVATION_LIST_LAYOUT;
@@ -164,16 +162,8 @@ public class ReservationsListController extends Controller{
 			    final ContextMenu menu = new ContextMenu();
 			    MenuItem mi1 = new MenuItem("Edit");
 					mi1.setOnAction((ActionEvent event) -> {
-						try {
-							SearchRoomController searchRoomController = new SearchRoomController();
-							Scene mainScene = new Scene(searchRoomController.getParentPane());
-							Stage stage = new Stage();
-							stage.setScene(mainScene);
-							stage.setTitle("Search for a room...");
-							stage.showAndWait();
-						} catch (IOException e) {
-							e.printStackTrace();
-						}
+						editReservation();
+						
 					});
 
 				MenuItem mi2 = new MenuItem("Check-in");
@@ -235,27 +225,25 @@ public class ReservationsListController extends Controller{
 			    
 			    row.setOnMousePressed((MouseEvent t) -> {
 			    	selectedReservation= reservationsList.getSelectionModel().getSelectedItem();
-			    	boolean editStatus = selectedReservation.getReservationStatus().equals(ReservationStatus.PENDING);
-	    			boolean checkInStatus = selectedReservation.getReservationStatus().equals(ReservationStatus.PENDING) && selectedReservation.checkInDateAsLocalDate().equals(LocalDate.now());
-	    			for (Reservation rs : reservationArray) {
-	    				if(rs.getRoomId()==selectedReservation.getRoomId() && rs.getReservationStatus().equals(ReservationStatus.CHECKED_IN)) {
-	    					checkInStatus = false;
-	    					break;
-	    				}
-	    			}
-	    			boolean checkOutStatus = selectedReservation.getReservationStatus().equals(ReservationStatus.CHECKED_IN);
-	    			boolean deleteStatus = !selectedReservation.getReservationStatus().equals(ReservationStatus.CHECKED_IN);
-	    			boolean cancelStatus = selectedReservation.getReservationStatus().equals(ReservationStatus.PENDING);
-	    			mi1.setDisable(!editStatus);
-	    			mi2.setDisable(!checkInStatus);
-	    			mi3.setDisable(!checkOutStatus);
-	    			mi6.setDisable(!deleteStatus);
-	    			mi7.setDisable(!cancelStatus);
-	    			if (checkinButton != null) {
-	    				checkinButton.setDisable(!checkInStatus);
-		    			checkoutButton.setDisable(!checkOutStatus);
-	    			}
-	    			
+			    	if (selectedReservation != null) {
+			    		boolean editStatus = selectedReservation.getReservationStatus().equals(ReservationStatus.PENDING);
+		    			boolean checkInStatus = selectedReservation.getReservationStatus().equals(ReservationStatus.PENDING) && selectedReservation.checkInDateAsLocalDate().equals(LocalDate.now());
+		    			for (Reservation rs : reservationArray) {
+		    				if(rs.getRoomId()==selectedReservation.getRoomId() && rs.getReservationStatus().equals(ReservationStatus.CHECKED_IN)) {
+		    					checkInStatus = false;
+		    					break;
+		    				}
+		    			}
+		    			boolean checkOutStatus = selectedReservation.getReservationStatus().equals(ReservationStatus.CHECKED_IN);
+		    			boolean deleteStatus = !selectedReservation.getReservationStatus().equals(ReservationStatus.CHECKED_IN);
+		    			boolean cancelStatus = selectedReservation.getReservationStatus().equals(ReservationStatus.PENDING);
+		    			mi1.setDisable(!editStatus);
+		    			mi2.setDisable(!checkInStatus);
+		    			mi3.setDisable(!checkOutStatus);
+		    			mi6.setDisable(!deleteStatus);
+		    			mi7.setDisable(!cancelStatus);
+		    			
+			    	}
 			    });
 			    return row;
 			  }
@@ -323,6 +311,21 @@ public class ReservationsListController extends Controller{
 		}
 		reservationsList.refresh();
 		super.rootLayoutController.update();		
+	}
+	
+	private void editReservation() {
+		try {
+			SearchRoomController searchRoomController = new SearchRoomController();
+			searchRoomController.selectedReservation =selectedReservation;
+			Scene mainScene = new Scene(searchRoomController.getParentPane());
+			Stage stage = new Stage();
+			stage.setScene(mainScene);
+			stage.setTitle("Search for a room...");
+			stage.showAndWait();
+			update();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}			
 	}
 
 	private void update() {

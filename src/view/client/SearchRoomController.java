@@ -73,6 +73,7 @@ public class SearchRoomController extends Controller {
 	private final String SEARCH_ROOM_LAYOUT = "res/view/SearchRoom.fxml";
 	private ArrayList <Room> roomsList;
 	private RoomNode selectedRoomNode;
+	public Reservation selectedReservation;
 	
 	public SearchRoomController() {
 		super.fxmlPath = SEARCH_ROOM_LAYOUT;
@@ -87,7 +88,9 @@ public class SearchRoomController extends Controller {
 		locationBox.setValue(ServerAPI.location);
 		arrivalDateBox.setValue(LocalDate.now());
 		departureDateBox.setValue(LocalDate.now().plusDays(1));
-		
+		if (selectedReservation != null) {
+			nextButton.setText("Save");
+		}
 	}
 	
 	
@@ -98,24 +101,34 @@ public class SearchRoomController extends Controller {
 	
 	@FXML
 	public void nextToEnterCustomerInformation() {
-		try {
-			AddCustomerController addCustomer = new AddCustomerController();
-			addCustomer.reservation = new Reservation(ReservationStatus.PENDING, 0, "", selectedRoomNode.room.getRoomId(),
-					selectedRoomNode.room.getRoomNum(), selectedRoomNode.room.getRoomLocation(), arrivalDateBox.getValue(), departureDateBox.getValue(), selectedRoomNode.room.getRate(),
-					0, guestNumberBox.getValue(), "");
-			Scene mainScene = new Scene(addCustomer.getParentPane());
-			Stage stage = new Stage();
-			stage.setMinWidth(650);
-			stage.setMinHeight(680);
-			stage.setMaxWidth(650);
-			stage.setMaxHeight(680);
-			stage.setScene(mainScene);
-			stage.setTitle("Add Customer Info.");
-			stage.showAndWait();
-			((Stage) nextButton.getScene().getWindow()).close();
-		} catch (IOException e) {
-			e.printStackTrace();
+		Reservation newReservation = new Reservation(ReservationStatus.PENDING, 0, "", selectedRoomNode.room.getRoomId(),
+				selectedRoomNode.room.getRoomNum(), selectedRoomNode.room.getRoomLocation(), arrivalDateBox.getValue(), departureDateBox.getValue(), selectedRoomNode.room.getRate(),
+				0, guestNumberBox.getValue(), "");
+		if (selectedReservation == null ) {
+			try {
+				AddCustomerController addCustomer = new AddCustomerController();
+				addCustomer.reservation = newReservation;
+				Scene mainScene = new Scene(addCustomer.getParentPane());
+				Stage stage = new Stage();
+				stage.setMinWidth(650);
+				stage.setMinHeight(680);
+				stage.setMaxWidth(650);
+				stage.setMaxHeight(680);
+				stage.setScene(mainScene);
+				stage.setTitle("Add Customer Info.");
+				stage.showAndWait();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
+		else {
+			newReservation.setReservationId(selectedReservation.getReservationId());
+			newReservation.setCustomerId(selectedReservation.getCustomerId());
+			newReservation.setCustomerName(selectedReservation.getCustomerName());
+			ServerAPI.post(newReservation, selectedReservation.getReservationId());
+		}
+		((Stage) nextButton.getScene().getWindow()).close();
+		
 	}
 	
 	@FXML

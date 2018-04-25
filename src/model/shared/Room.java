@@ -216,6 +216,14 @@ public class Room implements Serializable {
 		this.bedsList.remove(bed);
 		calculateMaxGuestCapacity();
 	}
+
+	public static int getCount() {
+		return count;
+	}
+
+	public static void setCount(int count) {
+		Room.count = count;
+	}
 	
 	
 

@@ -5,6 +5,8 @@ import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.io.Serializable;
 
+import model.server.HotelServer;
+
 public class Response implements Serializable {
 	/**
 	 * 
@@ -34,5 +36,11 @@ public class Response implements Serializable {
 		}
 		
 	}
+	
+	public void updateDataBase() {
+		HotelServer.savingThread.saveRequestList.add(true);
+		HotelServer.savingThread.interrupt();
+	}
+	
 
 }

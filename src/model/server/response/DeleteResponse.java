@@ -22,6 +22,8 @@ public class DeleteResponse extends Response {
 		else if (receivedObject instanceof Reservation) {
 			deleteReservation();
 		}
+		if ((boolean) super.object)
+			super.updateDataBase();
 	}
 
 	private void deleteReservation() {

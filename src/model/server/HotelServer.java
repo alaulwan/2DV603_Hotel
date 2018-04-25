@@ -5,12 +5,15 @@ import model.shared.Hotel;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
+
 import com.google.gson.*;
 
 public class HotelServer {
 	public HotelDAO DAO = new HotelDAO();
 	public static Hotel hotel = new Hotel();
 	public static RoomsStatusUpdaterThread RoomsStatusUpdaterThread = new RoomsStatusUpdaterThread();
+	public static SavingThread savingThread;
 	
 	public static final int BUFSIZE = 1024;
 	public static final int MYPORT = 4444;
@@ -46,33 +49,46 @@ public class HotelServer {
 		hotel = DAO.xmlLoad ();
 	}
 	
-	
+	public class SavingThread extends Thread {
+		public ArrayList <Boolean> saveRequestList = new ArrayList <Boolean>();
+		public SavingThread() {
+			
+		}
+		
+		@Override
+		public void run() {
+			while(true) {
+				while (!saveRequestList.isEmpty()) {
+					if (saveRequestList.remove(0)) {
+						DAO.xmlSave(hotel);
+					}
+				}
+				try {
+					Thread.sleep(Long.MAX_VALUE);
+				} catch (InterruptedException e) {
+				}
+			}
+			
+		}
+	}
 	
 	public void test (){
 		hotel.defaultHotel();
 		DAO.xmlSave (hotel);
+		savingThread= new SavingThread();
 		
 		Gson gson = new GsonBuilder().create();
 		String j = gson.toJson(hotel);
 		//System.out.println(j);
 		
-		Hotel hotel2 = DAO.xmlLoad ();
-		String j2 = gson.toJson(hotel2);
+		hotel = DAO.xmlLoad ();
+		String j2 = gson.toJson(hotel);
 		//System.out.println(j2);
 		
-		Hotel hotel3 = gson.fromJson(j, Hotel.class);
-		String j3 = gson.toJson(hotel3);
-		
 		System.out.println(j2.equals(j));
-		System.out.println(j3.equals(j));
-		
-		String jArr = gson.toJson(hotel3.getCustomersList());
-		
-		String jArr2 = gson.toJson(hotel3.getCustomersList());
-		System.out.println(jArr.equals(jArr2));
-		
 		
 		RoomsStatusUpdaterThread.start();
+		savingThread.start();
 	}
 	
 }

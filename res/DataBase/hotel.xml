@@ -15,42 +15,6 @@
         <phoneNum>076970</phoneNum>
         <reservationsList>
             <bill>
-                <billId>1</billId>
-                <customerId>1</customerId>
-                <customerName>Alaa Al</customerName>
-                <payStatus>UNPAID</payStatus>
-                <serviceList>
-                    <descraption>VAXJO Room: 1 Days: 5</descraption>
-                    <discount>0.0</discount>
-                    <piecesNumber>1</piecesNumber>
-                    <price>300.0</price>
-                    <serviceId>1</serviceId>
-                    <serviceType>RESERVATION</serviceType>
-                </serviceList>
-                <serviceList>
-                    <descraption>Coca cola</descraption>
-                    <discount>0.0</discount>
-                    <piecesNumber>2</piecesNumber>
-                    <price>3.0</price>
-                    <serviceId>3</serviceId>
-                    <serviceType>SOFT_DRINK</serviceType>
-                </serviceList>
-            </bill>
-            <checkInDate>2018-04-25</checkInDate>
-            <checkOutDate>2018-04-30</checkOutDate>
-            <customerId>1</customerId>
-            <customerName>Alaa Al</customerName>
-            <discription>Al reservation</discription>
-            <guestsNumber>2</guestsNumber>
-            <price>60.0</price>
-            <reservationId>1</reservationId>
-            <reservationStatus>PENDING</reservationStatus>
-            <roomId>1</roomId>
-            <roomLocation>VAXJO</roomLocation>
-            <roomNumber>1</roomNumber>
-        </reservationsList>
-        <reservationsList>
-            <bill>
                 <billId>2</billId>
                 <customerId>1</customerId>
                 <customerName>Alaa Al</customerName>
@@ -60,7 +24,6 @@
                     <discount>0.0</discount>
                     <piecesNumber>1</piecesNumber>
                     <price>300.0</price>
-                    <serviceId>2</serviceId>
                     <serviceType>RESERVATION</serviceType>
                 </serviceList>
                 <serviceList>
@@ -68,7 +31,6 @@
                     <discount>0.0</discount>
                     <piecesNumber>2</piecesNumber>
                     <price>10.0</price>
-                    <serviceId>4</serviceId>
                     <serviceType>BREAKFAST</serviceType>
                 </serviceList>
             </bill>
@@ -110,7 +72,6 @@
                     <discount>0.0</discount>
                     <piecesNumber>1</piecesNumber>
                     <price>360.0</price>
-                    <serviceId>5</serviceId>
                     <serviceType>RESERVATION</serviceType>
                 </serviceList>
             </bill>
@@ -152,7 +113,6 @@
                     <discount>0.0</discount>
                     <piecesNumber>1</piecesNumber>
                     <price>60.0</price>
-                    <serviceId>6</serviceId>
                     <serviceType>RESERVATION</serviceType>
                 </serviceList>
             </bill>
@@ -180,7 +140,6 @@
                     <discount>0.0</discount>
                     <piecesNumber>1</piecesNumber>
                     <price>90.0</price>
-                    <serviceId>7</serviceId>
                     <serviceType>RESERVATION</serviceType>
                 </serviceList>
             </bill>
@@ -208,7 +167,6 @@
                     <discount>0.0</discount>
                     <piecesNumber>1</piecesNumber>
                     <price>90.0</price>
-                    <serviceId>8</serviceId>
                     <serviceType>RESERVATION</serviceType>
                 </serviceList>
             </bill>
@@ -236,7 +194,6 @@
                     <discount>0.0</discount>
                     <piecesNumber>1</piecesNumber>
                     <price>180.0</price>
-                    <serviceId>9</serviceId>
                     <serviceType>RESERVATION</serviceType>
                 </serviceList>
             </bill>
@@ -268,6 +225,7 @@
         <roomLocation>VAXJO</roomLocation>
         <roomNum>1</roomNum>
         <roomSize>MEDIUM</roomSize>
+        <roomStatus>AVAILABLE</roomStatus>
         <smoking>false</smoking>
         <suite>false</suite>
         <view>true</view>
@@ -286,6 +244,7 @@
         <roomLocation>VAXJO</roomLocation>
         <roomNum>2</roomNum>
         <roomSize>MEDIUM</roomSize>
+        <roomStatus>OCCUPIED</roomStatus>
         <smoking>false</smoking>
         <suite>false</suite>
         <view>true</view>
@@ -308,6 +267,7 @@
         <roomLocation>VAXJO</roomLocation>
         <roomNum>3</roomNum>
         <roomSize>MEDIUM</roomSize>
+        <roomStatus>CHECKOUT_TODAY</roomStatus>
         <smoking>false</smoking>
         <suite>false</suite>
         <view>true</view>
@@ -330,6 +290,7 @@
         <roomLocation>VAXJO</roomLocation>
         <roomNum>5</roomNum>
         <roomSize>MEDIUM</roomSize>
+        <roomStatus>AVAILABLE</roomStatus>
         <smoking>false</smoking>
         <suite>false</suite>
         <view>true</view>
@@ -348,6 +309,7 @@
         <roomLocation>VAXJO</roomLocation>
         <roomNum>6</roomNum>
         <roomSize>MEDIUM</roomSize>
+        <roomStatus>AVAILABLE</roomStatus>
         <smoking>false</smoking>
         <suite>false</suite>
         <view>true</view>
@@ -366,6 +328,7 @@
         <roomLocation>VAXJO</roomLocation>
         <roomNum>7</roomNum>
         <roomSize>MEDIUM</roomSize>
+        <roomStatus>AVAILABLE</roomStatus>
         <smoking>false</smoking>
         <suite>false</suite>
         <view>true</view>
@@ -388,6 +351,7 @@
         <roomLocation>KALMAR</roomLocation>
         <roomNum>3</roomNum>
         <roomSize>MEDIUM</roomSize>
+        <roomStatus>CHECKOUT_TODAY</roomStatus>
         <smoking>false</smoking>
         <suite>true</suite>
         <view>true</view>
@@ -450,6 +414,7 @@
         <roomLocation>VAXJO</roomLocation>
         <roomNum>4</roomNum>
         <roomSize>MEDIUM</roomSize>
+        <roomStatus>CHECK_OUT_IN</roomStatus>
         <smoking>false</smoking>
         <suite>true</suite>
         <view>true</view>

@@ -6,7 +6,11 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
+
+import model.shared.Customer;
 import model.shared.Hotel;
+import model.shared.Reservation;
+import model.shared.Room;
 
 public class HotelDAO {
 	
@@ -42,11 +46,28 @@ public class HotelDAO {
 			JAXBContext context = JAXBContext.newInstance(Hotel.class);
 			Unmarshaller un = context.createUnmarshaller();
 			Hotel hotel = (Hotel) un.unmarshal(new File("res/DataBase/" + fileName));
+			setCounter (hotel);
 			return hotel;
 		} catch (JAXBException e) {
 			e.printStackTrace();
 		}
 		return null;
+	}
+
+	private void setCounter(Hotel hotel) {
+		for (Customer customer : hotel .getCustomersList()) {
+			if (customer.getCustomerId()> Customer.getCount())
+				Customer.setCount(customer.getCustomerId());
+		}
+		for (Reservation rs : hotel.getReservationsList()) {
+			if (rs.getReservationId()> Reservation.getCount())
+				Reservation.setCount(rs.getReservationId());
+		}
+		
+		for (Room room : hotel.getRoomsAndSuitesList()) {
+			if (room.getRoomId()> Room.getCount())
+				Room.setCount(room.getRoomId());
+		}
 	}
 
 }

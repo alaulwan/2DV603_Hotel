@@ -5,9 +5,6 @@ import java.io.Serializable;
 public class Service implements Serializable{
 	private static final long serialVersionUID = 1L;
 	public enum ServiceType { BREAKFAST, LUNCH, DINNER, SOFT_DRINK, RESERVATION, GYM, PARKING }
-	
-	private static int count = 0;
-	private int serviceId;
 	private ServiceType serviceType;
 	private float price;
 	private int piecesNumber;
@@ -19,7 +16,6 @@ public class Service implements Serializable{
 	}
 	
 	public Service(ServiceType serviceType, int piecesNumber, float discount, String descraption ) {
-		this.setServiceId(++count);
 		this.setServiceType(serviceType);
 		this.setPrice(serviceType);
 		this.setPiecesNumber(piecesNumber);
@@ -28,30 +24,11 @@ public class Service implements Serializable{
 	}
 	
 	public Service(ServiceType serviceType, float price, int piecesNumber, float discount, String descraption ) {
-		this.setServiceId(++count);
 		this.setServiceType(serviceType);
 		this.setPrice(price);
 		this.setPiecesNumber(piecesNumber);
 		this.setDiscount(discount);
 		this.setDescraption(descraption);
-	}
-	
-	
-
-	public static int getCount() {
-		return count;
-	}
-
-	public static void setCount(int count) {
-		Service.count = count;
-	}
-
-	public int getServiceId() {
-		return serviceId;
-	}
-
-	public void setServiceId(int serviceId) {
-		this.serviceId = serviceId;
 	}
 
 	public ServiceType getServiceType() {

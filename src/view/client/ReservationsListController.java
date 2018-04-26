@@ -36,7 +36,7 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
 
-public class ReservationsListController extends Controller{
+public class ReservationsListController extends Controller {
 	@FXML
 	private TableView<Reservation> reservationsList;
 	@FXML
@@ -56,16 +56,16 @@ public class ReservationsListController extends Controller{
 	@FXML
 	private TableColumn<Reservation, ReservationStatus> reservationStatusCol;
 	@FXML
-	public CheckBox viewAllBox ;
+	public CheckBox viewAllBox;
 	@FXML
-	public HBox hbox ;
+	public HBox hbox;
 	@FXML
-	public TextField searchName ;
+	public TextField searchName;
 	@FXML
-	public TextField searchRoomNumber ;
-	
+	public TextField searchRoomNumber;
+
 	private final String RESERVATION_LIST_LAYOUT = "res/view/ReservationsList.fxml";
-	public ArrayList <Room> roomsList;
+	public ArrayList<Room> roomsList;
 	public ArrayList<Reservation> reservationArray;
 	public Reservation selectedReservation;
 
@@ -73,58 +73,54 @@ public class ReservationsListController extends Controller{
 		super.fxmlPath = RESERVATION_LIST_LAYOUT;
 		super.rootLayoutController = rootLayoutController;
 	}
-	
+
 	@FXML
-	public void initialize() {		
-		setData () ;
+	public void initialize() {
+		setData();
 		setContextMenu();
 	}
-	
-	
 
 	@FXML
 	public void viewHistoryChecked() {
-		ArrayList<ReservationsFilter> reservationsFilterList = new ArrayList<ReservationsFilter> ();
-		LocationReservationsFilter locationReservationsFilter = new LocationReservationsFilter (ServerAPI.location);
+		ArrayList<ReservationsFilter> reservationsFilterList = new ArrayList<ReservationsFilter>();
+		LocationReservationsFilter locationReservationsFilter = new LocationReservationsFilter(ServerAPI.location);
 		StatusReservationsFilter statusReservationsFilter;
 		if (viewAllBox.isSelected()) {
 			statusReservationsFilter = new StatusReservationsFilter(true, true, true, true);
-		}
-		else {
+		} else {
 			statusReservationsFilter = new StatusReservationsFilter(true, true, false, false);
 		}
 		reservationsFilterList.add(locationReservationsFilter);
 		reservationsFilterList.add(statusReservationsFilter);
-		this.reservationArray= ServerAPI.getReservationsList(reservationsFilterList);
+		this.reservationArray = ServerAPI.getReservationsList(reservationsFilterList);
 		apllyAllChosenFilters();
 	}
-	
+
 	@FXML
 	public void apllyAllChosenFilters() {
-		ArrayList<Reservation> reservationsArray = new ArrayList<Reservation> (this.reservationArray);
-		applyCustomerNameFilter (reservationsArray);
-		applyRoomNumFilter (reservationsArray);
+		ArrayList<Reservation> reservationsArray = new ArrayList<Reservation>(this.reservationArray);
+		applyCustomerNameFilter(reservationsArray);
+		applyRoomNumFilter(reservationsArray);
 	}
-	
-	public void applyCustomerNameFilter(ArrayList<Reservation> reservationsArray){
+
+	public void applyCustomerNameFilter(ArrayList<Reservation> reservationsArray) {
 		String customerName = searchName.getText();
-		CustomerNameReservationsFilter customerNameReservationsFilter = new CustomerNameReservationsFilter(customerName);
+		CustomerNameReservationsFilter customerNameReservationsFilter = new CustomerNameReservationsFilter(
+				customerName);
 		customerNameReservationsFilter.applyReservationsFilter(reservationsArray);
 		ObservableList<Reservation> data = FXCollections.observableList(reservationsArray);
 		reservationsList.setItems(data);
 	}
-	
-	
-	public void applyRoomNumFilter(ArrayList<Reservation> reservationsArray){
+
+	public void applyRoomNumFilter(ArrayList<Reservation> reservationsArray) {
 		if (searchRoomNumber.getText().isEmpty()) {
 			ObservableList<Reservation> data = FXCollections.observableList(reservationsArray);
 			reservationsList.setItems(data);
-		}
-		else {
+		} else {
 			int roomNum = 0;
 			try {
 				roomNum = Integer.parseInt(searchRoomNumber.getText());
-			}catch (Exception e){
+			} catch (Exception e) {
 				return;
 			}
 			RoomNumReservationsFilter roomNumReservationsFilter = new RoomNumReservationsFilter(roomNum);
@@ -132,15 +128,15 @@ public class ReservationsListController extends Controller{
 			ObservableList<Reservation> data = FXCollections.observableList(reservationsArray);
 			reservationsList.setItems(data);
 		}
-		
+
 	}
-	
-	public void setData () {
-		
-		if (reservationArray!=null) {
+
+	public void setData() {
+
+		if (reservationArray != null) {
 			ObservableList<Reservation> data = FXCollections.observableList(reservationArray);
 			reservationsList.setItems(data);
-			
+
 			idCol.setCellValueFactory(new PropertyValueFactory<Reservation, Integer>("reservationId"));
 			roomCol.setCellValueFactory(new PropertyValueFactory<Reservation, Integer>("roomNumber"));
 			nameCol.setCellValueFactory(new PropertyValueFactory<Reservation, String>("customerName"));
@@ -148,46 +144,46 @@ public class ReservationsListController extends Controller{
 			checkInCol.setCellValueFactory(new PropertyValueFactory<Reservation, String>("checkInDate"));
 			checkOutCol.setCellValueFactory(new PropertyValueFactory<Reservation, String>("checkOutDate"));
 			totalDaysCol.setCellValueFactory(new PropertyValueFactory<Reservation, Integer>("totalDays"));
-			reservationStatusCol.setCellValueFactory(new PropertyValueFactory<Reservation, ReservationStatus>("reservationStatus"));
+			reservationStatusCol
+					.setCellValueFactory(new PropertyValueFactory<Reservation, ReservationStatus>("reservationStatus"));
 		}
 	}
-	
+
 	private void setContextMenu() {
-		reservationsList.setRowFactory(
-			    new Callback<TableView<Reservation>, TableRow<Reservation>>() {
-			  @Override
-			  public TableRow<Reservation> call(TableView<Reservation> tableView) {
-			    final TableRow<Reservation> row = new TableRow<>();
-			    final ContextMenu menu = new ContextMenu();
-			    MenuItem mi1 = new MenuItem("Edit");
-					mi1.setOnAction((ActionEvent event) -> {
-						editReservation();
-						
-					});
+		reservationsList.setRowFactory(new Callback<TableView<Reservation>, TableRow<Reservation>>() {
+			@Override
+			public TableRow<Reservation> call(TableView<Reservation> tableView) {
+				final TableRow<Reservation> row = new TableRow<>();
+				final ContextMenu menu = new ContextMenu();
+				MenuItem mi1 = new MenuItem("Edit");
+				mi1.setOnAction((ActionEvent event) -> {
+					editReservation();
+
+				});
 
 				MenuItem mi2 = new MenuItem("Check-in");
 				mi2.setOnAction((ActionEvent event) -> {
-					chekInReservation (selectedReservation.getReservationId());
+					chekInReservation(selectedReservation.getReservationId());
 				});
-				
+
 				MenuItem mi3 = new MenuItem("Check-out");
 				mi3.setOnAction((ActionEvent event) -> {
-					chekOutReservation (selectedReservation.getReservationId());
+					chekOutReservation(selectedReservation.getReservationId());
 				});
-				
+
 				MenuItem mi4 = new MenuItem("Add service");
 				mi4.setOnAction((ActionEvent event) -> {
 					addService();
 				});
-				
+
 				MenuItem mi5 = new MenuItem("View bill");
 				mi5.setOnAction((ActionEvent event) -> {
 					viewBill();
 				});
-				
+
 				MenuItem mi6 = new MenuItem("Delete");
 				mi6.setOnAction((ActionEvent event) -> {
-					
+
 					Alert closeConfirmation = new Alert(Alert.AlertType.CONFIRMATION,
 							"Are you sure you want to delete ?");
 					closeConfirmation.setHeaderText("Confirm removal");
@@ -197,114 +193,119 @@ public class ReservationsListController extends Controller{
 						deleteReservation();
 					}
 				});
-				
+
 				MenuItem mi7 = new MenuItem("Cancel");
 				mi7.setOnAction((ActionEvent event) -> {
-					cancelReservation (selectedReservation.getReservationId());
+					cancelReservation(selectedReservation.getReservationId());
 				});
-				
-			    menu.getItems().addAll(mi1, mi2, mi3, mi4, mi5, mi6, mi7);
 
-			    // only display context menu for non-null items:
-			    row.contextMenuProperty().bind(
-			      Bindings.when(Bindings.isNotNull(row.itemProperty()))
-			      .then(menu)
-			      .otherwise((ContextMenu)null));
-			    
-			    row.setOnMousePressed((MouseEvent t) -> {
-			    	selectedReservation= reservationsList.getSelectionModel().getSelectedItem();
-			    	if (selectedReservation != null) {
-			    		boolean editStatus = selectedReservation.getReservationStatus().equals(ReservationStatus.PENDING);
-		    			boolean checkInStatus = selectedReservation.getReservationStatus().equals(ReservationStatus.PENDING) && selectedReservation.checkInDateAsLocalDate().equals(LocalDate.now());
-		    			for (Reservation rs : reservationArray) {
-		    				if(rs.getRoomId()==selectedReservation.getRoomId() && rs.getReservationStatus().equals(ReservationStatus.CHECKED_IN)) {
-		    					checkInStatus = false;
-		    					break;
-		    				}
-		    			}
-		    			boolean checkOutStatus = selectedReservation.getReservationStatus().equals(ReservationStatus.CHECKED_IN);
-		    			boolean deleteStatus = !selectedReservation.getReservationStatus().equals(ReservationStatus.CHECKED_IN);
-		    			boolean cancelStatus = selectedReservation.getReservationStatus().equals(ReservationStatus.PENDING);
-		    			mi1.setDisable(!editStatus);
-		    			mi2.setDisable(!checkInStatus);
-		    			mi3.setDisable(!checkOutStatus);
-		    			mi6.setDisable(!deleteStatus);
-		    			mi7.setDisable(!cancelStatus);
-		    			
-			    	}
-			    });
-			    return row;
-			  }
-			});		
+				menu.getItems().addAll(mi1, mi2, mi3, mi4, mi5, mi6, mi7);
+
+				// only display context menu for non-null items:
+				row.contextMenuProperty().bind(
+						Bindings.when(Bindings.isNotNull(row.itemProperty())).then(menu).otherwise((ContextMenu) null));
+
+				row.setOnMousePressed((MouseEvent t) -> {
+					selectedReservation = reservationsList.getSelectionModel().getSelectedItem();
+					if (selectedReservation != null) {
+						boolean editStatus = selectedReservation.getReservationStatus()
+								.equals(ReservationStatus.PENDING);
+						boolean checkInStatus = selectedReservation.getReservationStatus()
+								.equals(ReservationStatus.PENDING)
+								&& selectedReservation.checkInDateAsLocalDate().equals(LocalDate.now());
+						for (Reservation rs : reservationArray) {
+							if (rs.getRoomId() == selectedReservation.getRoomId()
+									&& rs.getReservationStatus().equals(ReservationStatus.CHECKED_IN)) {
+								checkInStatus = false;
+								break;
+							}
+						}
+						boolean checkOutStatus = selectedReservation.getReservationStatus()
+								.equals(ReservationStatus.CHECKED_IN);
+						boolean deleteStatus = !selectedReservation.getReservationStatus()
+								.equals(ReservationStatus.CHECKED_IN);
+						boolean cancelStatus = selectedReservation.getReservationStatus()
+								.equals(ReservationStatus.PENDING);
+						mi1.setDisable(!editStatus);
+						mi2.setDisable(!checkInStatus);
+						mi3.setDisable(!checkOutStatus);
+						mi6.setDisable(!deleteStatus);
+						mi7.setDisable(!cancelStatus);
+
+					}
+				});
+				return row;
+			}
+		});
 	}
-	
-	public boolean chekInReservation (int reservationId){
+
+	public boolean chekInReservation(int reservationId) {
 		boolean checkInSuccess = ServerAPI.checkIn(reservationId);
 		if (checkInSuccess) {
 			update();
 			alertWindow(AlertType.INFORMATION, "CheckIn", "CheckIn Successed", "");
-		}
-		else {
+		} else {
 			alertWindow(AlertType.INFORMATION, "CheckIn", "CheckIn Failed", "");
 		}
 		return checkInSuccess;
 	}
-	
-	public boolean chekOutReservation (int reservationId){
+
+	public boolean chekOutReservation(int reservationId) {
 		boolean checkOutSuccess = ServerAPI.checkOut(reservationId);
 		if (checkOutSuccess) {
 			checkOutAndupdateLocalReservation();
-			Optional<ButtonType> result = alertWindow(AlertType.CONFIRMATION, "CheckOut", "CheckOut Successed", "Do you want to view the bill?");
-			if (result.isPresent() && result.get().equals(ButtonType.YES)) {
+			Optional<ButtonType> result = alertWindow(AlertType.CONFIRMATION, "CheckOut", "CheckOut Successed",
+					"Do you want to view the bill?");
+			if (result.isPresent() && result.get().equals(ButtonType.OK)) {
 				viewBill();
+				markBillAsPaid();
 			}
-		}
-		else {
+		} else {
 			alertWindow(AlertType.INFORMATION, "CheckOut", "CheckIn Failed", "");
 		}
 		return checkOutSuccess;
 	}
-	
-	public boolean cancelReservation (int reservationId){
+
+	public boolean cancelReservation(int reservationId) {
 		boolean cancelReservationSuccess = ServerAPI.cancelReservation(reservationId);
 		if (cancelReservationSuccess) {
 			update();
 			alertWindow(AlertType.INFORMATION, "Cancel Reservation", "Cancel Reservation Successed", "");
-		}
-		else {
+		} else {
 			alertWindow(AlertType.INFORMATION, "Cancel Reservation", "Cancel Reservation Failed", "");
 		}
 		return cancelReservationSuccess;
 	}
-	
+
 	private boolean deleteReservation() {
 		boolean deleteReservationSuccess = ServerAPI.delete(selectedReservation);
 		if (deleteReservationSuccess) {
 			update();
 			alertWindow(AlertType.INFORMATION, "Delete Reservation", "Delete Reservation Successed", "");
-		}
-		else {
+		} else {
 			alertWindow(AlertType.INFORMATION, "Delete Reservation", "Delete Reservation Failed", "");
 		}
-		return deleteReservationSuccess;		
+		return deleteReservationSuccess;
 	}
-	
+
 	private void checkOutAndupdateLocalReservation() {
 		selectedReservation.setReservationStatus(ReservationStatus.CHECKED_OUT);
 		if (LocalDate.now().isBefore(selectedReservation.checkOutDateAsLocalDate())) {
 			selectedReservation.setCheckOutDate(LocalDate.now().plusDays(1));
-			String reservationDescription = selectedReservation.getRoomLocation() + " Room: "+ selectedReservation.getRoomNumber() +  " Days: " + selectedReservation.getTotalDays();
+			String reservationDescription = selectedReservation.getRoomLocation() + " Room: "
+					+ selectedReservation.getRoomNumber() + " Days: " + selectedReservation.getTotalDays();
 			selectedReservation.getBill().getServiceList().get(0).setDescraption(reservationDescription);
-			selectedReservation.getBill().getServiceList().get(0).setPrice(selectedReservation.getPrice()* selectedReservation.getTotalDays());
+			selectedReservation.getBill().getServiceList().get(0)
+					.setPrice(selectedReservation.getPrice() * selectedReservation.getTotalDays());
 		}
 		reservationsList.refresh();
-		super.rootLayoutController.update();		
+		super.rootLayoutController.update();
 	}
-	
+
 	private void editReservation() {
 		try {
 			SearchRoomController searchRoomController = new SearchRoomController();
-			searchRoomController.selectedReservation =selectedReservation;
+			searchRoomController.selectedReservation = selectedReservation;
 			Scene mainScene = new Scene(searchRoomController.getParentPane());
 			Stage stage = new Stage();
 			stage.setScene(mainScene);
@@ -313,13 +314,13 @@ public class ReservationsListController extends Controller{
 			update();
 		} catch (IOException e) {
 			e.printStackTrace();
-		}			
+		}
 	}
-	
+
 	private void addService() {
 		try {
 			AddServiceController addServiceController = new AddServiceController();
-			addServiceController.selectedReservation=this.selectedReservation;
+			addServiceController.selectedReservation = this.selectedReservation;
 			Scene mainScene = new Scene(addServiceController.getParentPane());
 			Stage stage = new Stage();
 			stage.setScene(mainScene);
@@ -328,18 +329,28 @@ public class ReservationsListController extends Controller{
 			reservationsList.refresh();
 		} catch (IOException e) {
 			e.printStackTrace();
-		}		
+		}
 	}
 
 	private void update() {
 		viewHistoryChecked();
 		super.rootLayoutController.update();
 	}
-	
+
 	private void viewBill() {
 		BillsListController BillsListController = new BillsListController();
 		BillsListController.selectedBill = this.selectedReservation.getBill();
 		BillsListController.billToPdf();
+	}
+
+	private void markBillAsPaid() {
+		BillsListController BillsListController = new BillsListController();
+		BillsListController.selectedBill = this.selectedReservation.getBill();
+		Optional<ButtonType> result = alertWindow(AlertType.CONFIRMATION, "Pay Bill",
+				"Do you want to mark the bill as paid?", "");
+		if (result.isPresent() && result.get().equals(ButtonType.OK)) {
+			BillsListController.markBillAsPaid();
+		}
 	}
 
 }

@@ -3,6 +3,7 @@ package model.server.response;
 import java.time.LocalDate;
 
 import model.server.HotelServer;
+import model.shared.Bill;
 import model.shared.Customer;
 import model.shared.Reservation;
 import model.shared.Reservation.ReservationStatus;
@@ -23,6 +24,8 @@ public class PostResponse extends Response {
 			updateCustomer();
 		} else if (receivedObject instanceof Reservation) {
 			updateReservation();
+		} else if (receivedObject instanceof Bill) {
+			updateBill();
 		}
 		if ((boolean) super.object)
 			super.updateDataBase();
@@ -58,6 +61,17 @@ public class PostResponse extends Response {
 				super.object = true;
 			} else
 				super.object = false;
+		} catch (Exception e) {
+			super.object = false;
+		}
+	}
+
+	private void updateBill() {
+		try {
+			Bill receivedBill = (Bill) receivedObject;
+			Reservation reservation = HotelServer.hotel.getReservationById(Id);
+			reservation.setBill(receivedBill);
+			super.object = true;
 		} catch (Exception e) {
 			super.object = false;
 		}

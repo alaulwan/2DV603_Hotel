@@ -6,7 +6,4 @@ public class HotelClientMain {
 		HotelClient HotelClient = new HotelClient();
 		HotelClient.startClient(args);
 	}
-
-	
-
 }

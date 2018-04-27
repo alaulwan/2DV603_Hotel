@@ -9,6 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
+import model.client.ServerAPI;
 import model.shared.Reservation;
 import model.shared.Service;
 import javafx.scene.control.Spinner;
@@ -33,9 +34,11 @@ public class AddServiceController extends Controller {
 	public ArrayList <Service> serviceList;
 	public Service selectedService;
 	public Reservation selectedReservation;
+	public ServerAPI serverAPI;
 	
-	public AddServiceController() {
+	public AddServiceController(ServerAPI serverAPI) {
 		super.fxmlPath = ADD_SERVICE_LAYOUT;
+		this.serverAPI = serverAPI;
 	}
 	
 	@FXML

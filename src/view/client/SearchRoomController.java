@@ -107,7 +107,7 @@ public class SearchRoomController extends Controller {
 				0, guestNumberBox.getValue(), "");
 		if (selectedReservation == null ) {
 			try {
-				AddCustomerController addCustomer = new AddCustomerController();
+				AddCustomerController addCustomer = new AddCustomerController(serverAPI);
 				addCustomer.reservation = newReservation;
 				Scene mainScene = new Scene(addCustomer.getParentPane());
 				Stage stage = new Stage();

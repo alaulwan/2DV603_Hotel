@@ -319,7 +319,7 @@ public class ReservationsListController extends Controller {
 
 	private void addService() {
 		try {
-			AddServiceController addServiceController = new AddServiceController();
+			AddServiceController addServiceController = new AddServiceController(serverAPI);
 			addServiceController.selectedReservation = this.selectedReservation;
 			Scene mainScene = new Scene(addServiceController.getParentPane());
 			Stage stage = new Stage();

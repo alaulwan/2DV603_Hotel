@@ -157,7 +157,7 @@ public class CustomerListController extends Controller{
 			    MenuItem mi1 = new MenuItem("Edit");
 					mi1.setOnAction((ActionEvent event) -> {
 						try {
-							AddCustomerController addCustomerController = new AddCustomerController();
+							AddCustomerController addCustomerController = new AddCustomerController(serverAPI);
 							addCustomerController.currentCustomer = selectedCustomer;
 							Scene mainScene = new Scene(addCustomerController.getParentPane());
 							Stage stage = new Stage();

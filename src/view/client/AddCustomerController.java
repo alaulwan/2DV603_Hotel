@@ -11,6 +11,7 @@ import javafx.scene.control.ToggleGroup;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import javafx.util.StringConverter;
+import model.client.ServerAPI;
 import model.shared.Customer;
 import model.shared.Customer.Gender;
 import model.shared.Customer.IdentificationType;
@@ -71,9 +72,11 @@ public class AddCustomerController extends Controller {
 	public ArrayList<Customer> customersList;
 	public Customer currentCustomer;
 	public Reservation reservation;
+	public ServerAPI serverAPI;
 
-	public AddCustomerController() {
+	public AddCustomerController(ServerAPI serverAPI) {
 		super.fxmlPath = ADD_CUSTOMER_LAYOUT;
+		this.serverAPI = serverAPI;
 	}
 
 	@FXML
@@ -98,6 +101,7 @@ public class AddCustomerController extends Controller {
 		clearFields();
 		currentCustomer = null;
 		setEditable(newCustomerButton.isSelected());
+		customersNameList.setDisable(newCustomerButton.isSelected());
 	}
 
 	@FXML

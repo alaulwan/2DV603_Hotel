@@ -6,5 +6,4 @@ public class HotelServerMain {
 		HotelServer hotelServer = new HotelServer();
 		hotelServer.startServer();
 	}
-
 }

@@ -11,7 +11,6 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
-import model.client.ServerAPI;
 import model.shared.Reservation;
 import model.shared.Room;
 import model.shared.Room.RoomStatus;
@@ -45,6 +44,7 @@ public class AvailableRoomController extends Controller {
 	public AvailableRoomController(RootLayoutController rootLayoutController) {
 		super.fxmlPath = AVAILABLE_ROOM_LAYOUT;
 		super.rootLayoutController = rootLayoutController;
+		super.serverAPI = rootLayoutController.serverAPI;
 	}
 	
 	@FXML
@@ -52,9 +52,9 @@ public class AvailableRoomController extends Controller {
 		super.rootLayoutController.checkinButton.setDisable(true);
 		super.rootLayoutController.checkoutButton.setDisable(true);
 		if (roomsFilterList == null)
-			roomsList = ServerAPI.getAllRooms();
+			roomsList = serverAPI.getAllRooms();
 		else {
-			roomsList = ServerAPI.getRoomsList(roomsFilterList);
+			roomsList = serverAPI.getRoomsList(roomsFilterList);
 		}
 		if (roomsGrid!=null && roomsGrid.getChildren()!= null) {
 			roomsGrid.getChildren().removeAll(roomsGrid.getChildren());
@@ -95,14 +95,14 @@ public class AvailableRoomController extends Controller {
 	
 	private ArrayList<Reservation> importReservationsListByRoomNum(int roomNum) {
 		ArrayList<ReservationsFilter> reservationsFilterList = new ArrayList<ReservationsFilter> ();
-		LocationReservationsFilter locationReservationsFilter = new LocationReservationsFilter (ServerAPI.location);
+		LocationReservationsFilter locationReservationsFilter = new LocationReservationsFilter (serverAPI.location);
 		StatusReservationsFilter statusReservationsFilter = new StatusReservationsFilter(true, true, false, false);
 		RoomNumReservationsFilter roomNumReservationsFilter = new RoomNumReservationsFilter (roomNum);
 		reservationsFilterList.add(locationReservationsFilter);
 		reservationsFilterList.add(statusReservationsFilter);
 		reservationsFilterList.add(roomNumReservationsFilter);
 		
-		return ServerAPI.getReservationsList(reservationsFilterList);
+		return serverAPI.getReservationsList(reservationsFilterList);
 	}
 	
 	private void setRoomNodemouseAction(RoomNode roomNode) {

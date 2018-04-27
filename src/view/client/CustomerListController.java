@@ -16,7 +16,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Callback;
-import model.client.ServerAPI;
 import model.shared.Customer;
 import model.shared.Reservation;
 import model.shared.filters.customersFilters.CustomersFilter;
@@ -65,6 +64,7 @@ public class CustomerListController extends Controller{
 	public CustomerListController(RootLayoutController rootLayoutController) {
 		super.fxmlPath = CUSTOMER_LIST_LAYOUT;
 		super.rootLayoutController = rootLayoutController;
+		super.serverAPI = rootLayoutController.serverAPI;
 	}
 	
 	@FXML
@@ -77,7 +77,7 @@ public class CustomerListController extends Controller{
 
 	private void setData() {
 		if (customersArray!= null) {
-			LocationReservationsFilter locationReservationsFilter = new LocationReservationsFilter(ServerAPI.location);
+			LocationReservationsFilter locationReservationsFilter = new LocationReservationsFilter(serverAPI.location);
 			for (Customer customer : customersArray) {
 				locationReservationsFilter.applyReservationsFilter(customer.getReservationsList());
 			}
@@ -97,7 +97,7 @@ public class CustomerListController extends Controller{
 	@FXML
 	public void viewHistoryChecked() {
 		ArrayList<CustomersFilter> customersFilterList = new ArrayList<CustomersFilter> ();
-		ReservationLocationCustomersFilter reservationLocationCustomersFilter = new ReservationLocationCustomersFilter (ServerAPI.location);
+		ReservationLocationCustomersFilter reservationLocationCustomersFilter = new ReservationLocationCustomersFilter (serverAPI.location);
 		ReservationStatusCustumersFilter reservationStatusCustumersFilter;
 		
 		if (viewAllBox.isSelected()) {
@@ -110,7 +110,7 @@ public class CustomerListController extends Controller{
 		customersFilterList.add(reservationStatusCustumersFilter);
 		customersFilterList.add(reservationLocationCustomersFilter);
 		
-		this.customersArray = ServerAPI.getCustomersList(customersFilterList);
+		this.customersArray = serverAPI.getCustomersList(customersFilterList);
 		
 		apllyAllChosenFilters();
 	}
@@ -133,14 +133,14 @@ public class CustomerListController extends Controller{
 	
 	private ArrayList<Reservation> importReservationsListByCustumer(String customerName) {
 		ArrayList<ReservationsFilter> reservationsFilterList = new ArrayList<ReservationsFilter> ();
-		LocationReservationsFilter locationReservationsFilter = new LocationReservationsFilter (ServerAPI.location);
+		LocationReservationsFilter locationReservationsFilter = new LocationReservationsFilter (serverAPI.location);
 		StatusReservationsFilter statusReservationsFilter = new StatusReservationsFilter(true, true, false, false);
 		CustomerNameReservationsFilter customerNameReservationsFilter = new CustomerNameReservationsFilter (customerName);
 		reservationsFilterList.add(locationReservationsFilter);
 		reservationsFilterList.add(statusReservationsFilter);
 		reservationsFilterList.add(customerNameReservationsFilter);
 		
-		return ServerAPI.getReservationsList(reservationsFilterList);
+		return serverAPI.getReservationsList(reservationsFilterList);
 	}
 	
 	private void setContextMenu() {
@@ -219,7 +219,7 @@ public class CustomerListController extends Controller{
 		
 	}
 	private boolean deleteCustomer() {
-		boolean deleteCustomerSuccess = ServerAPI.delete(selectedCustomer);
+		boolean deleteCustomerSuccess = serverAPI.delete(selectedCustomer);
 		if (deleteCustomerSuccess) {
 			update();
 			alertWindow(AlertType.INFORMATION, "Delete Customer", "Delete Customer Successed", "");

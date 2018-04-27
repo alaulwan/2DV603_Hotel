@@ -6,6 +6,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
 
+import model.shared.Hotel;
 import model.shared.Reservation;
 import model.shared.Room;
 import model.shared.Room.RoomStatus;
@@ -13,8 +14,10 @@ import model.shared.filters.reservationsFilters.ReservationsFilter;
 import model.shared.filters.reservationsFilters.StatusReservationsFilter;
 
 public class RoomsStatusUpdaterThread extends Thread {
-	public RoomsStatusUpdaterThread() {
+	public Hotel hotel;
 
+	public RoomsStatusUpdaterThread(Hotel hotel) {
+		this.hotel = hotel;
 	}
 
 	@Override
@@ -35,18 +38,18 @@ public class RoomsStatusUpdaterThread extends Thread {
 
 	public void updateAllRoomsStatus() {
 		LocalDate todayDate = LocalDate.now();
-		ArrayList<Room> roomsList = new ArrayList<Room>(HotelServer.hotel.getRoomsAndSuitesList());
+		ArrayList<Room> roomsList = new ArrayList<Room>(hotel.getRoomsAndSuitesList());
 		for (Room r : roomsList) {
 			r.setRoomStatus(RoomStatus.AVAILABLE);
 		}
 
 		ArrayList<Reservation> pindingCheckedInReservationsList = new ArrayList<Reservation>(
-				HotelServer.hotel.getReservationsList());
+				hotel.getReservationsList());
 		ReservationsFilter reservationsFilter = new StatusReservationsFilter(true, true, false, false);
 		reservationsFilter.applyReservationsFilter(pindingCheckedInReservationsList);
 
 		for (Reservation res : pindingCheckedInReservationsList) {
-			Room r = HotelServer.hotel.getRoomById(res.getRoomId());
+			Room r = hotel.getRoomById(res.getRoomId());
 			if (todayDate.equals(res.checkInDateAsLocalDate())) {
 				if (r.getRoomStatus().equals(RoomStatus.CHECKOUT_TODAY))
 					r.setRoomStatus(RoomStatus.CHECK_OUT_IN);

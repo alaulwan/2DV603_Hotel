@@ -1,9 +1,9 @@
 package model.server.response;
 
 import java.time.LocalDate;
-
-import model.server.HotelServer;
+import model.server.HotelServer.SavingThread;
 import model.shared.Customer;
+import model.shared.Hotel;
 import model.shared.Reservation;
 import model.shared.Room.RoomStatus;
 
@@ -14,7 +14,8 @@ public class PutResponse extends Response {
 	private static final long serialVersionUID = 1L;
 	public Object receivedObject;
 
-	public PutResponse(Object Object) {
+	public PutResponse(Hotel hotel, SavingThread savingThread, Object Object) {
+		super (hotel, savingThread);
 		this.receivedObject = Object;
 		if (receivedObject instanceof Customer) {
 			addCustomer();
@@ -30,10 +31,10 @@ public class PutResponse extends Response {
 			Reservation receivedReservation = (Reservation) receivedObject;
 			Reservation.setCount(Reservation.getCount() + 1);
 			receivedReservation.setReservationId(Reservation.getCount());
-			HotelServer.hotel.getCustomerById(receivedReservation.getCustomerId()).getReservationsList()
+			hotel.getCustomerById(receivedReservation.getCustomerId()).getReservationsList()
 					.add(receivedReservation);
 			if (receivedReservation.checkInDateAsLocalDate().isEqual(LocalDate.now()))
-				HotelServer.hotel.getRoomById(receivedReservation.getRoomId()).setRoomStatus(RoomStatus.CHECKIN_TODAY);
+				hotel.getRoomById(receivedReservation.getRoomId()).setRoomStatus(RoomStatus.CHECKIN_TODAY);
 			super.object = true;
 		} catch (Exception e) {
 			super.object = false;
@@ -52,9 +53,9 @@ public class PutResponse extends Response {
 			receivedReservation.setCustomerId(receivedCustomer.getCustomerId());
 			receivedReservation.getBill().setBillId(receivedReservation.getReservationId());
 			receivedReservation.getBill().setCustomerId(receivedCustomer.getCustomerId());
-			HotelServer.hotel.addCustomer(receivedCustomer);
+			hotel.addCustomer(receivedCustomer);
 			if (receivedReservation.checkInDateAsLocalDate().isEqual(LocalDate.now()))
-				HotelServer.hotel.getRoomById(receivedReservation.getRoomId()).setRoomStatus(RoomStatus.CHECKIN_TODAY);
+				hotel.getRoomById(receivedReservation.getRoomId()).setRoomStatus(RoomStatus.CHECKIN_TODAY);
 			super.object = true;
 		} catch (Exception e) {
 			super.object = false;

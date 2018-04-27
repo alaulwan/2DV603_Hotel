@@ -9,7 +9,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
-import model.client.ServerAPI;
 import model.shared.Reservation;
 import model.shared.Service;
 import javafx.scene.control.Spinner;
@@ -41,7 +40,7 @@ public class AddServiceController extends Controller {
 	
 	@FXML
 	public void initialize() throws IOException {
-		serviceList = ServerAPI.getServicesList();
+		serviceList = serverAPI.getServicesList();
 		ObservableList<Service> TypeArr = FXCollections.observableArrayList(serviceList) ;
 		servicesBox.setItems(TypeArr);
 				
@@ -74,7 +73,7 @@ public class AddServiceController extends Controller {
 		if(selectedService != null) {
 			selectedService.setPiecesNumber(quantity.getValue());
 			selectedReservation.getBill().addService(selectedService.getServiceType(), selectedService.getPrice(), selectedService.getPiecesNumber(), selectedService.getDescraption());
-			ServerAPI.post(selectedReservation, selectedReservation.getReservationId());
+			serverAPI.post(selectedReservation, selectedReservation.getReservationId());
 			((Stage) cancelButton.getScene().getWindow()).close();
 		}
 		else

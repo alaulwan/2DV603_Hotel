@@ -18,7 +18,6 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Callback;
-import model.client.ServerAPI;
 import model.shared.Reservation;
 import model.shared.Room;
 import model.shared.Reservation.ReservationStatus;
@@ -72,6 +71,7 @@ public class ReservationsListController extends Controller {
 	public ReservationsListController(RootLayoutController rootLayoutController) {
 		super.fxmlPath = RESERVATION_LIST_LAYOUT;
 		super.rootLayoutController = rootLayoutController;
+		super.serverAPI = rootLayoutController.serverAPI;
 	}
 
 	@FXML
@@ -83,7 +83,7 @@ public class ReservationsListController extends Controller {
 	@FXML
 	public void viewHistoryChecked() {
 		ArrayList<ReservationsFilter> reservationsFilterList = new ArrayList<ReservationsFilter>();
-		LocationReservationsFilter locationReservationsFilter = new LocationReservationsFilter(ServerAPI.location);
+		LocationReservationsFilter locationReservationsFilter = new LocationReservationsFilter(serverAPI.location);
 		StatusReservationsFilter statusReservationsFilter;
 		if (viewAllBox.isSelected()) {
 			statusReservationsFilter = new StatusReservationsFilter(true, true, true, true);
@@ -92,7 +92,7 @@ public class ReservationsListController extends Controller {
 		}
 		reservationsFilterList.add(locationReservationsFilter);
 		reservationsFilterList.add(statusReservationsFilter);
-		this.reservationArray = ServerAPI.getReservationsList(reservationsFilterList);
+		this.reservationArray = serverAPI.getReservationsList(reservationsFilterList);
 		apllyAllChosenFilters();
 	}
 
@@ -240,7 +240,7 @@ public class ReservationsListController extends Controller {
 	}
 
 	public boolean chekInReservation(int reservationId) {
-		boolean checkInSuccess = ServerAPI.checkIn(reservationId);
+		boolean checkInSuccess = serverAPI.checkIn(reservationId);
 		if (checkInSuccess) {
 			update();
 			alertWindow(AlertType.INFORMATION, "CheckIn", "CheckIn Successed", "");
@@ -251,7 +251,7 @@ public class ReservationsListController extends Controller {
 	}
 
 	public boolean chekOutReservation(int reservationId) {
-		boolean checkOutSuccess = ServerAPI.checkOut(reservationId);
+		boolean checkOutSuccess = serverAPI.checkOut(reservationId);
 		if (checkOutSuccess) {
 			checkOutAndupdateLocalReservation();
 			Optional<ButtonType> result = alertWindow(AlertType.CONFIRMATION, "CheckOut", "CheckOut Successed",
@@ -267,7 +267,7 @@ public class ReservationsListController extends Controller {
 	}
 
 	public boolean cancelReservation(int reservationId) {
-		boolean cancelReservationSuccess = ServerAPI.cancelReservation(reservationId);
+		boolean cancelReservationSuccess = serverAPI.cancelReservation(reservationId);
 		if (cancelReservationSuccess) {
 			update();
 			alertWindow(AlertType.INFORMATION, "Cancel Reservation", "Cancel Reservation Successed", "");
@@ -278,7 +278,7 @@ public class ReservationsListController extends Controller {
 	}
 
 	private boolean deleteReservation() {
-		boolean deleteReservationSuccess = ServerAPI.delete(selectedReservation);
+		boolean deleteReservationSuccess = serverAPI.delete(selectedReservation);
 		if (deleteReservationSuccess) {
 			update();
 			alertWindow(AlertType.INFORMATION, "Delete Reservation", "Delete Reservation Successed", "");
@@ -304,7 +304,7 @@ public class ReservationsListController extends Controller {
 
 	private void editReservation() {
 		try {
-			SearchRoomController searchRoomController = new SearchRoomController();
+			SearchRoomController searchRoomController = new SearchRoomController(rootLayoutController);
 			searchRoomController.selectedReservation = selectedReservation;
 			Scene mainScene = new Scene(searchRoomController.getParentPane());
 			Stage stage = new Stage();
@@ -338,13 +338,13 @@ public class ReservationsListController extends Controller {
 	}
 
 	private void viewBill() {
-		BillsListController BillsListController = new BillsListController();
+		BillsListController BillsListController = new BillsListController(rootLayoutController);
 		BillsListController.selectedBill = this.selectedReservation.getBill();
 		BillsListController.billToPdf();
 	}
 
 	private void markBillAsPaid() {
-		BillsListController BillsListController = new BillsListController();
+		BillsListController BillsListController = new BillsListController(rootLayoutController);
 		BillsListController.selectedBill = this.selectedReservation.getBill();
 		Optional<ButtonType> result = alertWindow(AlertType.CONFIRMATION, "Pay Bill",
 				"Do you want to mark the bill as paid?", "");

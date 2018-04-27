@@ -1,5 +1,7 @@
 package model.server.response;
 
+import model.server.HotelServer.SavingThread;
+import model.shared.Hotel;
 import model.shared.requests.BillsListRequest;
 import model.shared.requests.CancelReservationRequest;
 import model.shared.requests.CheckInRequest;
@@ -14,44 +16,41 @@ import model.shared.requests.ReservationsListRequest;
 import model.shared.requests.RoomsListRequest;
 
 public class ResponseFactory {
+	public Hotel hotel;
+	public SavingThread savingThread;
 	Request recievedRequest;
 	Response response;
 
-	public ResponseFactory(Request recievedRequest) {
+	public ResponseFactory(Hotel hotel, SavingThread savingThread, Request recievedRequest) {
+		this.hotel = hotel;
+		this.savingThread = savingThread;
 		this.recievedRequest = recievedRequest;
 	}
 
 	public Response getResponse() {
-		response = null;
-
 		if (recievedRequest.requestType == RequestType.PUT) {
-			response = new PutResponse(((PutRequest) recievedRequest).Object);
+			response = new PutResponse(hotel, savingThread, ((PutRequest) recievedRequest).Object);
 		} else if (recievedRequest.requestType == RequestType.POST) {
-			response = new PostResponse(((PostRequest) recievedRequest).Object, ((PostRequest) recievedRequest).Id);
+			response = new PostResponse(hotel, savingThread, ((PostRequest) recievedRequest).Object, ((PostRequest) recievedRequest).Id);
 		} else if (recievedRequest.requestType == RequestType.DELETE) {
-			response = new DeleteResponse(((DeleteRequest) recievedRequest).Object);
+			response = new DeleteResponse(hotel, savingThread, ((DeleteRequest) recievedRequest).Object);
 		} else if (recievedRequest.requestType == RequestType.CheckIn) {
-			response = new CheckInResponse(((CheckInRequest) recievedRequest).reservationId);
+			response = new CheckInResponse(hotel, savingThread, ((CheckInRequest) recievedRequest).reservationId);
 		} else if (recievedRequest.requestType == RequestType.CheckOut) {
-			response = new CheckOutResponse(((CheckOutRequest) recievedRequest).reservationId);
+			response = new CheckOutResponse(hotel, savingThread, ((CheckOutRequest) recievedRequest).reservationId);
 		} else if (recievedRequest.requestType == RequestType.CancelReservation) {
-			response = new CancelReservationResponse(((CancelReservationRequest) recievedRequest).reservationId);
+			response = new CancelReservationResponse(hotel, savingThread, ((CancelReservationRequest) recievedRequest).reservationId);
 		} else if (recievedRequest.requestType == RequestType.GET_ROOMS) {
-			response = new RoomsListResponse(((RoomsListRequest) recievedRequest).rFilList);
+			response = new RoomsListResponse(hotel, savingThread, ((RoomsListRequest) recievedRequest).rFilList);
 		} else if (recievedRequest.requestType == RequestType.GET_RESERVATIONS) {
-			response = new ReservationsListResponse(((ReservationsListRequest) recievedRequest).reservationsFilterList);
-
+			response = new ReservationsListResponse(hotel, savingThread, ((ReservationsListRequest) recievedRequest).reservationsFilterList);
 		} else if (recievedRequest.requestType == RequestType.GET_USERS) {
-			response = new CustomersListResponse(((CustomersListRequest) recievedRequest).customersFilterList);
-
+			response = new CustomersListResponse(hotel, savingThread, ((CustomersListRequest) recievedRequest).customersFilterList);
 		} else if (recievedRequest.requestType == RequestType.GET_BILLS) {
-			response = new BillsListResponse(((BillsListRequest) recievedRequest).billsFilterList);
-
+			response = new BillsListResponse(hotel, savingThread, ((BillsListRequest) recievedRequest).billsFilterList);
 		} else if (recievedRequest.requestType == RequestType.GET_SERVICES) {
-			response = new ServicesListResponse();
-
+			response = new ServicesListResponse(hotel, savingThread);
 		}
-
 		return response;
 	}
 }

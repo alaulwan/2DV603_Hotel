@@ -20,7 +20,6 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
-import model.client.ServerAPI;
 import model.shared.Reservation;
 import model.shared.Room;
 import model.shared.Reservation.ReservationStatus;
@@ -75,8 +74,10 @@ public class SearchRoomController extends Controller {
 	private RoomNode selectedRoomNode;
 	public Reservation selectedReservation;
 	
-	public SearchRoomController() {
+	public SearchRoomController(RootLayoutController rootLayoutController) {
 		super.fxmlPath = SEARCH_ROOM_LAYOUT;
+		super.rootLayoutController = rootLayoutController;
+		super.serverAPI = rootLayoutController.serverAPI;
 	}
 	
 	@FXML
@@ -85,7 +86,7 @@ public class SearchRoomController extends Controller {
 		suiteRoomsNumberBox.setValueFactory(new IntegerSpinnerValueFactory(2, 3, 2));
 		suiteRoomsNumberBox.setDisable(true);
 		locationBox.setItems(FXCollections.observableList(Arrays.asList(RoomLocation.values())));
-		locationBox.setValue(ServerAPI.location);
+		locationBox.setValue(serverAPI.location);
 		arrivalDateBox.setValue(LocalDate.now());
 		departureDateBox.setValue(LocalDate.now().plusDays(1));
 		if (selectedReservation != null) {
@@ -125,7 +126,7 @@ public class SearchRoomController extends Controller {
 			newReservation.setReservationId(selectedReservation.getReservationId());
 			newReservation.setCustomerId(selectedReservation.getCustomerId());
 			newReservation.setCustomerName(selectedReservation.getCustomerName());
-			ServerAPI.post(newReservation, selectedReservation.getReservationId());
+			serverAPI.post(newReservation, selectedReservation.getReservationId());
 		}
 		((Stage) nextButton.getScene().getWindow()).close();
 		
@@ -150,7 +151,7 @@ public class SearchRoomController extends Controller {
 			SuiteRoomsFilter suiteRoomsFilter = new SuiteRoomsFilter(suiteRoomsNumberBox.getValue());
 			roomsFiltersList.add(suiteRoomsFilter);
 		}
-		this.roomsList = ServerAPI.getRoomsList(roomsFiltersList);
+		this.roomsList = serverAPI.getRoomsList(roomsFiltersList);
 		viewRooms();
 	}
 	

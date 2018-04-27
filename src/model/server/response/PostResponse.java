@@ -2,9 +2,10 @@ package model.server.response;
 
 import java.time.LocalDate;
 
-import model.server.HotelServer;
+import model.server.HotelServer.SavingThread;
 import model.shared.Bill;
 import model.shared.Customer;
+import model.shared.Hotel;
 import model.shared.Reservation;
 import model.shared.Reservation.ReservationStatus;
 import model.shared.Room.RoomStatus;
@@ -17,7 +18,8 @@ public class PostResponse extends Response {
 	public Object receivedObject;
 	public int Id;
 
-	public PostResponse(Object Object, int Id) {
+	public PostResponse(Hotel hotel, SavingThread savingThread, Object Object, int Id) {
+		super (hotel, savingThread);
 		this.receivedObject = Object;
 		this.Id = Id;
 		if (receivedObject instanceof Customer) {
@@ -34,7 +36,7 @@ public class PostResponse extends Response {
 	private void updateCustomer() {
 		try {
 			Customer receivedCustomer = (Customer) receivedObject;
-			HotelServer.hotel.getCustomerById(Id).updateFrom(receivedCustomer);
+			hotel.getCustomerById(Id).updateFrom(receivedCustomer);
 			super.object = true;
 		} catch (Exception e) {
 			super.object = false;
@@ -45,14 +47,14 @@ public class PostResponse extends Response {
 	private void updateReservation() {
 		try {
 			Reservation receivedReservation = (Reservation) receivedObject;
-			Reservation oldReservation = HotelServer.hotel.getReservationById(Id);
+			Reservation oldReservation = hotel.getReservationById(Id);
 			if (receivedReservation != null && oldReservation != null) {
 				if (oldReservation.getReservationStatus().equals(ReservationStatus.PENDING)) {
-					HotelServer.hotel.deleteReservation(oldReservation.getReservationId());
-					HotelServer.hotel.getCustomerById(receivedReservation.getCustomerId()).getReservationsList()
+					hotel.deleteReservation(oldReservation.getReservationId());
+					hotel.getCustomerById(receivedReservation.getCustomerId()).getReservationsList()
 							.add(receivedReservation);
 					if (receivedReservation.checkInDateAsLocalDate().isEqual(LocalDate.now()))
-						HotelServer.hotel.getRoomById(receivedReservation.getRoomId())
+						hotel.getRoomById(receivedReservation.getRoomId())
 								.setRoomStatus(RoomStatus.CHECKIN_TODAY);
 				} else if (oldReservation.getBill().getServiceList().size() != receivedReservation.getBill()
 						.getServiceList().size()) {
@@ -69,7 +71,7 @@ public class PostResponse extends Response {
 	private void updateBill() {
 		try {
 			Bill receivedBill = (Bill) receivedObject;
-			Reservation reservation = HotelServer.hotel.getReservationById(Id);
+			Reservation reservation = hotel.getReservationById(Id);
 			reservation.setBill(receivedBill);
 			super.object = true;
 		} catch (Exception e) {

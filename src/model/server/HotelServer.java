@@ -10,16 +10,16 @@ import com.google.gson.*;
 
 public class HotelServer {
 	public HotelDAO DAO = new HotelDAO();
-	public static Hotel hotel = new Hotel();
-	public static RoomsStatusUpdaterThread RoomsStatusUpdaterThread = new RoomsStatusUpdaterThread();
-	public static SavingThread savingThread;
+	public Hotel hotel = new Hotel();
+	public RoomsStatusUpdaterThread RoomsStatusUpdaterThread;
+	public SavingThread savingThread;
 
-	public static final int BUFSIZE = 1024;
-	public static final int MYPORT = 4444;
-
+	public final int BUFSIZE = 1024;
+	public final int MYPORT = 4444;
+	
 	@SuppressWarnings("resource")
-	public static void main(String[] args) throws IOException {
-		HotelServer hotelServer = new HotelServer();
+	public void startServer() {
+		this.test();
 
 		/* Create Server Socket */
 		ServerSocket serverSocket = null;
@@ -29,16 +29,18 @@ public class HotelServer {
 			System.err.println("The port is token.");
 			System.exit(0);
 		}
-		hotelServer.test();
-
 		System.out.println("Hotel Server is Running on the port: " + MYPORT + ", Buffer Size: " + BUFSIZE);
 		while (true) {
 			/* Create Socket and wait for a client */
-			Socket socket = serverSocket.accept();
+			Socket socket;
+			try {
+				socket = serverSocket.accept();
+			} catch (IOException e) {
+				continue;
+			}
 			/* Create a thread for each client */
-			HotelServerThread httpServerThread = new HotelServerThread(socket, BUFSIZE);
+			HotelServerThread httpServerThread = new HotelServerThread(hotel, savingThread, socket, BUFSIZE);
 			httpServerThread.start();
-
 		}
 	}
 
@@ -73,19 +75,21 @@ public class HotelServer {
 	public void test() {
 		hotel.defaultHotel();
 		DAO.xmlSave(hotel);
-		savingThread = new SavingThread();
+		
 
 		Gson gson = new GsonBuilder().create();
 		String j = gson.toJson(hotel);
 		// System.out.println(j);
 
-		hotel = DAO.xmlLoad();
-		String j2 = gson.toJson(hotel);
+		Hotel hotel2 = DAO.xmlLoad();
+		String j2 = gson.toJson(hotel2);
 		// System.out.println(j2);
 
 		System.out.println(j2.equals(j));
 
+		RoomsStatusUpdaterThread = new RoomsStatusUpdaterThread(hotel);
 		RoomsStatusUpdaterThread.start();
+		savingThread = new SavingThread();
 		savingThread.start();
 	}
 

@@ -2,21 +2,22 @@ package model.server.response;
 
 import java.io.IOException;
 import java.io.ObjectOutputStream;
-import java.io.OutputStream;
 import java.io.Serializable;
-
-import model.server.HotelServer;
+import model.server.HotelServer.SavingThread;
+import model.shared.Hotel;
 
 public class Response implements Serializable {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	public String textTSend = "";
+	public Hotel hotel;
+	public SavingThread savingThread;
 	public Object object;
 
-	public Response() {
-
+	public Response(Hotel hotel, SavingThread savingThread) {
+		this.hotel = hotel;
+		this.savingThread = savingThread;
 	}
 
 	public void sendObject(ObjectOutputStream outputStream) {
@@ -27,18 +28,9 @@ public class Response implements Serializable {
 		}
 	}
 
-	public void send(OutputStream outputStream) {
-		try {
-			outputStream.write(textTSend.getBytes());
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
-	}
-
 	public void updateDataBase() {
-		HotelServer.savingThread.saveRequestList.add(true);
-		HotelServer.savingThread.interrupt();
+		savingThread.saveRequestList.add(true);
+		savingThread.interrupt();
 	}
 
 }

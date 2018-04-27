@@ -9,10 +9,12 @@ import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Alert.AlertType;
+import model.client.ServerAPI;
 
 public class Controller {
 	protected String fxmlPath;
 	protected RootLayoutController rootLayoutController;
+	public ServerAPI serverAPI;
 	
 	public Parent getParentPane() throws IOException {
 		FXMLLoader loader = new FXMLLoader();

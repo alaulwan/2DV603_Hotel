@@ -27,7 +27,6 @@ import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.input.MouseEvent;
 import javafx.util.Callback;
-import model.client.ServerAPI;
 import model.shared.Bill;
 import model.shared.Bill.PayStatus;
 import model.shared.filters.billsFilters.BillsFilter;
@@ -60,8 +59,10 @@ public class BillsListController extends Controller {
 	public ArrayList<Bill> billsArray;
 	public Bill selectedBill;
 
-	public BillsListController() {
+	public BillsListController(RootLayoutController rootLayoutController) {
 		super.fxmlPath = BILLS_LIST_LAYOUT;
+		super.rootLayoutController = rootLayoutController;
+		super.serverAPI = rootLayoutController.serverAPI;
 	}
 
 	@FXML
@@ -100,7 +101,7 @@ public class BillsListController extends Controller {
 			payStatusBillsFilter = new PayStatusBillsFilter(PayStatus.UNPAID);
 		}
 		billsFilterList.add(payStatusBillsFilter);
-		this.billsArray = ServerAPI.getBillsList(billsFilterList);
+		this.billsArray = serverAPI.getBillsList(billsFilterList);
 		apllyAllChosenFilters();
 	}
 
@@ -114,7 +115,7 @@ public class BillsListController extends Controller {
 
 	protected void markBillAsPaid() {
 		selectedBill.setPayStatus(PayStatus.PAID);
-		ServerAPI.post(selectedBill, selectedBill.getBillId());
+		serverAPI.post(selectedBill, selectedBill.getBillId());
 		if (billsTable != null)
 			billsTable.refresh();
 	}

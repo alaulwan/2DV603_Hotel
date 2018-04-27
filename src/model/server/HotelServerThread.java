@@ -4,20 +4,26 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+
+import model.server.HotelServer.SavingThread;
 import model.server.response.Response;
 import model.server.response.ResponseFactory;
+import model.shared.Hotel;
 import model.shared.requests.Request;
 
 public class HotelServerThread extends Thread {
 	private Socket socket;
+	public Hotel hotel;
+	public SavingThread savingThread;
 	public static int counter = 0;
 	private final int clientId;
 	private ObjectInputStream objectInputStream;
 	private ObjectOutputStream objectOutputStream;
 
-	public HotelServerThread(Socket socket, int BUFSIZE) {
-
+	public HotelServerThread(Hotel hotel, SavingThread savingThread, Socket socket, int BUFSIZE) {
 		this.socket = socket;
+		this.hotel = hotel;
+		this.savingThread = savingThread;
 		this.clientId = ++counter;
 		try {
 			objectOutputStream = new ObjectOutputStream(this.socket.getOutputStream());
@@ -44,7 +50,7 @@ public class HotelServerThread extends Thread {
 
 			// Create a response factory to generate a suitable response according to the
 			// request
-			ResponseFactory responseFactory = new ResponseFactory(recievedRequest);
+			ResponseFactory responseFactory = new ResponseFactory(hotel, savingThread, recievedRequest);
 
 			// Generate the response. ()
 			Response response = responseFactory.getResponse();

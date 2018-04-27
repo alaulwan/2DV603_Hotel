@@ -51,15 +51,20 @@ public class RootLayoutController extends Controller{
 	private Button exitButton;
 
 	private final String ROOT_LAYOUT = "res/view/RootLayout.fxml";
-	private AvailableRoomController availableRoomController = new AvailableRoomController(this);
-	private ReservationsListController reservationsListController = new ReservationsListController(this);
-	private CustomerListController customerListController = new CustomerListController(this);
-	private BillsListController billsListController = new BillsListController();
-
-	private SearchRoomController searchRoomController = new SearchRoomController();
+	private AvailableRoomController availableRoomController;
+	private ReservationsListController reservationsListController;
+	private CustomerListController customerListController;
+	private BillsListController billsListController;
+	private SearchRoomController searchRoomController;
 	
-	public RootLayoutController(){
+	public RootLayoutController(ServerAPI API){
 		super.fxmlPath = ROOT_LAYOUT;
+		super.serverAPI = API;
+		availableRoomController = new AvailableRoomController(this);
+		reservationsListController = new ReservationsListController(this);
+		customerListController = new CustomerListController(this);
+		billsListController = new BillsListController(this);
+		searchRoomController = new SearchRoomController(this);
 	}
 
 	@FXML
@@ -93,16 +98,16 @@ public class RootLayoutController extends Controller{
 	public void checkIn() {
 		boolean checkInSuccess = false;
 		ArrayList<ReservationsFilter> reservationsFilterList = new ArrayList<ReservationsFilter> ();
-		LocationReservationsFilter locationReservationsFilter = new LocationReservationsFilter (ServerAPI.location);
+		LocationReservationsFilter locationReservationsFilter = new LocationReservationsFilter (serverAPI.location);
 		StatusReservationsFilter statusReservationsFilter = new StatusReservationsFilter(true, false, false, false);
 		RoomIdReservationsFilter roomIdReservationsFilter = new RoomIdReservationsFilter (availableRoomController.selectedRoomNode.room.getRoomId());
 		reservationsFilterList.add(locationReservationsFilter);
 		reservationsFilterList.add(statusReservationsFilter);
 		reservationsFilterList.add(roomIdReservationsFilter);
-		ArrayList<Reservation> reservationArray= ServerAPI.getReservationsList(reservationsFilterList);
+		ArrayList<Reservation> reservationArray= serverAPI.getReservationsList(reservationsFilterList);
 		for (Reservation rs : reservationArray) {
 			if (rs.checkInDateAsLocalDate().equals(LocalDate.now())) {
-				checkInSuccess = ServerAPI.checkIn(rs.getReservationId());
+				checkInSuccess = serverAPI.checkIn(rs.getReservationId());
 				break;
 			}
 		}
@@ -120,13 +125,13 @@ public class RootLayoutController extends Controller{
 	@FXML
 	public void checkOut() {
 		ArrayList<ReservationsFilter> reservationsFilterList = new ArrayList<ReservationsFilter> ();
-		LocationReservationsFilter locationReservationsFilter = new LocationReservationsFilter (ServerAPI.location);
+		LocationReservationsFilter locationReservationsFilter = new LocationReservationsFilter (serverAPI.location);
 		StatusReservationsFilter statusReservationsFilter = new StatusReservationsFilter(false, true, false, false);
 		RoomIdReservationsFilter roomIdReservationsFilter = new RoomIdReservationsFilter (availableRoomController.selectedRoomNode.room.getRoomId());
 		reservationsFilterList.add(locationReservationsFilter);
 		reservationsFilterList.add(statusReservationsFilter);
 		reservationsFilterList.add(roomIdReservationsFilter);
-		ArrayList<Reservation> reservationArray= ServerAPI.getReservationsList(reservationsFilterList);
+		ArrayList<Reservation> reservationArray= serverAPI.getReservationsList(reservationsFilterList);
 		for (Reservation rs : reservationArray) {
 			reservationsListController.selectedReservation = rs;
 			reservationsListController.chekOutReservation(rs.getReservationId());
@@ -165,11 +170,11 @@ public class RootLayoutController extends Controller{
 		this.checkoutButton.setDisable(true);
 		if (reservationsListTab.isSelected()){
 			ArrayList<ReservationsFilter> reservationsFilterList = new ArrayList<ReservationsFilter> ();
-			LocationReservationsFilter locationReservationsFilter = new LocationReservationsFilter (ServerAPI.location);
+			LocationReservationsFilter locationReservationsFilter = new LocationReservationsFilter (serverAPI.location);
 			StatusReservationsFilter statusReservationsFilter = new StatusReservationsFilter(true, true, false, false);
 			reservationsFilterList.add(locationReservationsFilter);
 			reservationsFilterList.add(statusReservationsFilter);
-			reservationsListController.reservationArray = ServerAPI.getReservationsList(reservationsFilterList);
+			reservationsListController.reservationArray = serverAPI.getReservationsList(reservationsFilterList);
 			reservationsListController.roomsList = this.availableRoomController.roomsList;
 			reservationsListController.initialize();
 		}
@@ -181,12 +186,12 @@ public class RootLayoutController extends Controller{
 		this.checkoutButton.setDisable(true);
 		if (customerListTab.isSelected()){
 			ArrayList<CustomersFilter> customersFilterList = new ArrayList<CustomersFilter> ();
-			ReservationLocationCustomersFilter reservationLocationCustomersFilter = new ReservationLocationCustomersFilter (ServerAPI.location);
+			ReservationLocationCustomersFilter reservationLocationCustomersFilter = new ReservationLocationCustomersFilter (serverAPI.location);
 			ReservationStatusCustumersFilter reservationStatusCustumersFilter = new ReservationStatusCustumersFilter(true, true, false, false);
 			customersFilterList.add(reservationStatusCustumersFilter);
 			customersFilterList.add(reservationLocationCustomersFilter);
 			
-			customerListController.customersArray = ServerAPI.getCustomersList(customersFilterList);
+			customerListController.customersArray = serverAPI.getCustomersList(customersFilterList);
 			customerListController.initialize();
 		}
 	}
@@ -199,7 +204,7 @@ public class RootLayoutController extends Controller{
 			ArrayList<BillsFilter> billsFilterList = new ArrayList<BillsFilter> ();
 			PayStatusBillsFilter payStatusBillsFilter = new PayStatusBillsFilter (PayStatus.UNPAID);
 			billsFilterList.add(payStatusBillsFilter);
-			billsListController.billsArray = ServerAPI.getBillsList(billsFilterList);
+			billsListController.billsArray = serverAPI.getBillsList(billsFilterList);
 			billsListController.initialize();
 		}
 	}

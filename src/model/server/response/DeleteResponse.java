@@ -42,7 +42,7 @@ public class DeleteResponse extends Response {
 			System.out.println(receivedCustomer);
 			for (Reservation reservation : receivedCustomer.getReservationsList()) {
 				if (reservation.getReservationStatus().equals(ReservationStatus.PENDING)
-						|| reservation.getReservationStatus().equals(ReservationStatus.PENDING))
+						|| reservation.getReservationStatus().equals(ReservationStatus.CHECKED_IN))
 					return;
 			}
 			hotel.getCustomersList().remove(receivedCustomer);

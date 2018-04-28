@@ -111,7 +111,12 @@ public class CustomerListController extends Controller{
 		customersFilterList.add(reservationLocationCustomersFilter);
 		
 		this.customersArray = serverAPI.getCustomersList(customersFilterList);
-		
+		if (customersArray!= null) {
+			LocationReservationsFilter locationReservationsFilter = new LocationReservationsFilter(serverAPI.location);
+			for (Customer customer : customersArray) {
+				locationReservationsFilter.applyReservationsFilter(customer.getReservationsList());
+			}
+		}
 		apllyAllChosenFilters();
 	}
 	

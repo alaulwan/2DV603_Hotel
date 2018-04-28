@@ -26,6 +26,8 @@ import model.shared.filters.reservationsFilters.RoomIdReservationsFilter;
 import model.shared.filters.reservationsFilters.StatusReservationsFilter;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.control.Tab;
 
 public class RootLayoutController extends Controller{
@@ -73,6 +75,7 @@ public class RootLayoutController extends Controller{
 		reservationsListTab.setContent(reservationsListController.getParentPane());
 		customerListTab.setContent(customerListController.getParentPane());
 		billsListTab.setContent(billsListController.getParentPane());
+
 	}
 	
 	@FXML
@@ -86,6 +89,7 @@ public class RootLayoutController extends Controller{
 			stage.setMaxHeight(620);
 			stage.setScene(mainScene);
 			stage.setTitle("Search for a room...");
+			stage.getIcons().add(new Image("file:res/icons/search_room.png"));
 			stage.showAndWait();
 			
 		} catch (IOException e) {
@@ -147,7 +151,9 @@ public class RootLayoutController extends Controller{
 	public void exit() {
 		Alert closeConfirmation = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to exit?");
 		closeConfirmation.setHeaderText("Confirm Exit");
-		closeConfirmation.initModality(Modality.APPLICATION_MODAL);
+		setAlertImage(closeConfirmation , "file:res/icons/warning.png");
+		
+		setIcon(closeConfirmation , "file:res/icons/exit.png" );
 		
 		Optional<ButtonType> closeResponse = closeConfirmation.showAndWait();
 		if (ButtonType.OK.equals(closeResponse.get())) {

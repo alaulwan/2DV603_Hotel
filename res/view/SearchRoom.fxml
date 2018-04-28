@@ -44,17 +44,17 @@
         </rowConstraints>
          <children>
             <Label prefHeight="17.0" prefWidth="170.0" text="Location" GridPane.halignment="CENTER" />
-            <ChoiceBox fx:id="locationBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" />
+            <ChoiceBox fx:id="locationBox" onMouseClicked="#disableNextButton" prefWidth="150.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" />
             <Label prefHeight="17.0" prefWidth="170.0" text="Arrival Date" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
             <Label prefHeight="17.0" prefWidth="170.0" text="Departure Date" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
-            <DatePicker fx:id="arrivalDateBox" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <DatePicker fx:id="departureDateBox" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <DatePicker fx:id="arrivalDateBox" onMouseClicked="#disableNextButton" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <DatePicker fx:id="departureDateBox" onMouseClicked="#disableNextButton" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <Label prefHeight="17.0" prefWidth="170.0" text="Guest Number" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
-            <CheckBox fx:id="viewBox" mnemonicParsing="false" text="View" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            <CheckBox fx:id="viewBox" mnemonicParsing="false" onMouseClicked="#disableNextButton" text="View" GridPane.columnIndex="1" GridPane.rowIndex="6" />
             <Label prefWidth="170.0" text="Additional Preferences" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="BOTTOM" GridPane.vgrow="ALWAYS" />
-            <CheckBox fx:id="airConBox" mnemonicParsing="false" text="Air Conditioner" GridPane.columnIndex="1" GridPane.rowIndex="5" GridPane.valignment="BOTTOM" />
-            <CheckBox fx:id="balconyBox" mnemonicParsing="false" text="Balcony" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-            <CheckBox fx:id="smokingBox" mnemonicParsing="false" text="Smoking" GridPane.columnIndex="1" GridPane.rowIndex="8" GridPane.valignment="TOP">
+            <CheckBox fx:id="airConBox" mnemonicParsing="false" onMouseClicked="#disableNextButton" text="Air Conditioner" GridPane.columnIndex="1" GridPane.rowIndex="5" GridPane.valignment="BOTTOM" />
+            <CheckBox fx:id="balconyBox" mnemonicParsing="false" onMouseClicked="#disableNextButton" text="Balcony" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+            <CheckBox fx:id="smokingBox" mnemonicParsing="false" onMouseClicked="#disableNextButton" text="Smoking" GridPane.columnIndex="1" GridPane.rowIndex="8" GridPane.valignment="TOP">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
@@ -62,8 +62,8 @@
                   <Insets top="5.0" />
                </GridPane.margin>
             </CheckBox>
-            <Spinner fx:id="guestNumberBox" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <CheckBox fx:id="suiteBox" mnemonicParsing="false" onAction="#suiteCheckBox" text="Suite" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
+            <Spinner fx:id="guestNumberBox" onMouseClicked="#disableNextButton" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <CheckBox fx:id="suiteBox" mnemonicParsing="false" onAction="#suiteCheckBox" onMouseClicked="#disableNextButton" text="Suite" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
             <Spinner fx:id="suiteRoomsNumberBox" GridPane.columnIndex="1" GridPane.rowIndex="4" />
          </children>
       </GridPane>

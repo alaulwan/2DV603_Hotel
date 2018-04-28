@@ -2,124 +2,6 @@
 <Hotel>
     <customersList>
         <address>Vaxjo</address>
-        <birthDate>1982-01-01</birthDate>
-        <creditCardNum>Card5555555</creditCardNum>
-        <customerId>1</customerId>
-        <description>student</description>
-        <email>a@a.a</email>
-        <gender>MALE</gender>
-        <identificationNumber>1111111</identificationNumber>
-        <identificationType>PASS_NUMBER</identificationType>
-        <name>Alaa Al</name>
-        <nationality>Syr</nationality>
-        <phoneNum>076970</phoneNum>
-        <reservationsList>
-            <bill>
-                <billId>1</billId>
-                <customerId>1</customerId>
-                <customerName>Alaa Al</customerName>
-                <payStatus>UNPAID</payStatus>
-                <serviceList>
-                    <descraption>VAXJO Room: 1 Days: 5</descraption>
-                    <piecesNumber>1</piecesNumber>
-                    <price>300.0</price>
-                    <serviceType>RESERVATION</serviceType>
-                </serviceList>
-                <serviceList>
-                    <descraption>Coca cola</descraption>
-                    <piecesNumber>2</piecesNumber>
-                    <price>1.0</price>
-                    <serviceType>ITEM</serviceType>
-                </serviceList>
-            </bill>
-            <checkInDate>2018-04-27</checkInDate>
-            <checkOutDate>2018-05-02</checkOutDate>
-            <customerId>1</customerId>
-            <customerName>Alaa Al</customerName>
-            <discription>Al reservation</discription>
-            <guestsNumber>2</guestsNumber>
-            <price>60.0</price>
-            <reservationId>1</reservationId>
-            <reservationStatus>PENDING</reservationStatus>
-            <roomId>1</roomId>
-            <roomLocation>VAXJO</roomLocation>
-            <roomNumber>1</roomNumber>
-        </reservationsList>
-        <reservationsList>
-            <bill>
-                <billId>2</billId>
-                <customerId>1</customerId>
-                <customerName>Alaa Al</customerName>
-                <payStatus>PAID</payStatus>
-                <serviceList>
-                    <descraption>VAXJO Room: 1 Days: 5</descraption>
-                    <piecesNumber>1</piecesNumber>
-                    <price>300.0</price>
-                    <serviceType>RESERVATION</serviceType>
-                </serviceList>
-                <serviceList>
-                    <descraption>Pepsi</descraption>
-                    <piecesNumber>2</piecesNumber>
-                    <price>2.0</price>
-                    <serviceType>ITEM</serviceType>
-                </serviceList>
-            </bill>
-            <checkInDate>2018-04-17</checkInDate>
-            <checkOutDate>2018-04-22</checkOutDate>
-            <customerId>1</customerId>
-            <customerName>Alaa Al</customerName>
-            <discription>Old Al reservation</discription>
-            <guestsNumber>2</guestsNumber>
-            <price>60.0</price>
-            <reservationId>2</reservationId>
-            <reservationStatus>CHECKED_OUT</reservationStatus>
-            <roomId>1</roomId>
-            <roomLocation>VAXJO</roomLocation>
-            <roomNumber>1</roomNumber>
-        </reservationsList>
-    </customersList>
-    <customersList>
-        <address>Vaxjo</address>
-        <birthDate>1992-05-05</birthDate>
-        <creditCardNum>Card22222</creditCardNum>
-        <customerId>2</customerId>
-        <description>student</description>
-        <email>b@b.b</email>
-        <gender>MALE</gender>
-        <identificationNumber>2222222</identificationNumber>
-        <identificationType>PASS_NUMBER</identificationType>
-        <name>Basem mo</name>
-        <nationality>Syr</nationality>
-        <phoneNum>0732323</phoneNum>
-        <reservationsList>
-            <bill>
-                <billId>3</billId>
-                <customerId>2</customerId>
-                <customerName>Basem mo</customerName>
-                <payStatus>UNPAID</payStatus>
-                <serviceList>
-                    <descraption>VAXJO Room: 2 Days: 6</descraption>
-                    <piecesNumber>1</piecesNumber>
-                    <price>360.0</price>
-                    <serviceType>RESERVATION</serviceType>
-                </serviceList>
-            </bill>
-            <checkInDate>2018-04-26</checkInDate>
-            <checkOutDate>2018-05-02</checkOutDate>
-            <customerId>2</customerId>
-            <customerName>Basem mo</customerName>
-            <discription>Ba reservation</discription>
-            <guestsNumber>1</guestsNumber>
-            <price>60.0</price>
-            <reservationId>3</reservationId>
-            <reservationStatus>CHECKED_IN</reservationStatus>
-            <roomId>2</roomId>
-            <roomLocation>VAXJO</roomLocation>
-            <roomNumber>2</roomNumber>
-        </reservationsList>
-    </customersList>
-    <customersList>
-        <address>Vaxjo</address>
         <birthDate>1987-10-10</birthDate>
         <creditCardNum>Card11111111</creditCardNum>
         <customerId>3</customerId>
@@ -136,7 +18,7 @@
                 <billId>4</billId>
                 <customerId>3</customerId>
                 <customerName>Paul</customerName>
-                <payStatus>UNPAID</payStatus>
+                <payStatus>PAID</payStatus>
                 <serviceList>
                     <descraption>VAXJO Room: 3 Days: 1</descraption>
                     <piecesNumber>1</piecesNumber>
@@ -144,15 +26,15 @@
                     <serviceType>RESERVATION</serviceType>
                 </serviceList>
             </bill>
-            <checkInDate>2018-04-26</checkInDate>
-            <checkOutDate>2018-04-27</checkOutDate>
+            <checkInDate>2018-04-27</checkInDate>
+            <checkOutDate>2018-04-28</checkOutDate>
             <customerId>3</customerId>
             <customerName>Paul</customerName>
             <discription>Pa reservation vaxjo</discription>
             <guestsNumber>4</guestsNumber>
             <price>60.0</price>
             <reservationId>4</reservationId>
-            <reservationStatus>CHECKED_IN</reservationStatus>
+            <reservationStatus>CHECKED_OUT</reservationStatus>
             <roomId>9</roomId>
             <roomLocation>VAXJO</roomLocation>
             <roomNumber>3</roomNumber>
@@ -170,8 +52,8 @@
                     <serviceType>RESERVATION</serviceType>
                 </serviceList>
             </bill>
-            <checkInDate>2018-04-26</checkInDate>
-            <checkOutDate>2018-04-27</checkOutDate>
+            <checkInDate>2018-04-27</checkInDate>
+            <checkOutDate>2018-04-28</checkOutDate>
             <customerId>3</customerId>
             <customerName>Paul</customerName>
             <discription>Pa reservation kalmar</discription>
@@ -196,15 +78,15 @@
                     <serviceType>RESERVATION</serviceType>
                 </serviceList>
             </bill>
-            <checkInDate>2018-04-26</checkInDate>
-            <checkOutDate>2018-04-27</checkOutDate>
+            <checkInDate>2018-04-27</checkInDate>
+            <checkOutDate>2018-04-28</checkOutDate>
             <customerId>3</customerId>
             <customerName>Paul</customerName>
             <discription>Pa reservation vaxjo</discription>
             <guestsNumber>4</guestsNumber>
             <price>90.0</price>
             <reservationId>6</reservationId>
-            <reservationStatus>CHECKED_IN</reservationStatus>
+            <reservationStatus>CHECKED_OUT</reservationStatus>
             <roomId>8</roomId>
             <roomLocation>VAXJO</roomLocation>
             <roomNumber>4</roomNumber>
@@ -216,24 +98,180 @@
                 <customerName>Paul</customerName>
                 <payStatus>UNPAID</payStatus>
                 <serviceList>
-                    <descraption>VAXJO Room: 4 Days: 2</descraption>
+                    <descraption>VAXJO Room: 4 ,Canceled less than 24H, or customer did not chekin. Billed for 2 days</descraption>
                     <piecesNumber>1</piecesNumber>
                     <price>180.0</price>
                     <serviceType>RESERVATION</serviceType>
                 </serviceList>
             </bill>
-            <checkInDate>2018-04-27</checkInDate>
-            <checkOutDate>2018-04-29</checkOutDate>
+            <checkInDate>2018-04-28</checkInDate>
+            <checkOutDate>2018-04-30</checkOutDate>
             <customerId>3</customerId>
             <customerName>Paul</customerName>
             <discription>Pa reservation vaxjo</discription>
             <guestsNumber>4</guestsNumber>
             <price>90.0</price>
             <reservationId>7</reservationId>
-            <reservationStatus>PENDING</reservationStatus>
+            <reservationStatus>CANCELED</reservationStatus>
             <roomId>8</roomId>
             <roomLocation>VAXJO</roomLocation>
             <roomNumber>4</roomNumber>
+        </reservationsList>
+        <reservationsList>
+            <bill>
+                <billId>8</billId>
+                <customerId>3</customerId>
+                <customerName>Paul</customerName>
+                <payStatus>UNPAID</payStatus>
+                <serviceList>
+                    <descraption>VAXJO Room: 6 ,Canceled less than 24H, or customer did not chekin. Billed for 2 days</descraption>
+                    <piecesNumber>1</piecesNumber>
+                    <price>120.0</price>
+                    <serviceType>RESERVATION</serviceType>
+                </serviceList>
+            </bill>
+            <checkInDate>2018-04-28</checkInDate>
+            <checkOutDate>2018-04-30</checkOutDate>
+            <customerId>3</customerId>
+            <customerName>Paul</customerName>
+            <discription></discription>
+            <guestsNumber>1</guestsNumber>
+            <price>60.0</price>
+            <reservationId>8</reservationId>
+            <reservationStatus>CANCELED</reservationStatus>
+            <roomId>11</roomId>
+            <roomLocation>VAXJO</roomLocation>
+            <roomNumber>6</roomNumber>
+        </reservationsList>
+        <reservationsList>
+            <bill>
+                <billId>9</billId>
+                <customerId>3</customerId>
+                <customerName>Paul</customerName>
+                <payStatus>UNPAID</payStatus>
+                <serviceList>
+                    <descraption>VAXJO Room: 3 ,Canceled less than 24H, or customer did not chekin. Billed for 2 days</descraption>
+                    <piecesNumber>1</piecesNumber>
+                    <price>120.0</price>
+                    <serviceType>RESERVATION</serviceType>
+                </serviceList>
+            </bill>
+            <checkInDate>2018-04-28</checkInDate>
+            <checkOutDate>2018-04-30</checkOutDate>
+            <customerId>3</customerId>
+            <customerName>Paul</customerName>
+            <discription></discription>
+            <guestsNumber>1</guestsNumber>
+            <price>60.0</price>
+            <reservationId>9</reservationId>
+            <reservationStatus>CANCELED</reservationStatus>
+            <roomId>9</roomId>
+            <roomLocation>VAXJO</roomLocation>
+            <roomNumber>3</roomNumber>
+        </reservationsList>
+        <reservationsList>
+            <bill>
+                <billId>10</billId>
+                <customerId>3</customerId>
+                <customerName>Paul</customerName>
+                <payStatus>UNPAID</payStatus>
+                <serviceList>
+                    <descraption>VAXJO Room: 6 ,Canceled less than 24H, or customer did not chekin. Billed for 2 days</descraption>
+                    <piecesNumber>1</piecesNumber>
+                    <price>120.0</price>
+                    <serviceType>RESERVATION</serviceType>
+                </serviceList>
+            </bill>
+            <checkInDate>2018-04-28</checkInDate>
+            <checkOutDate>2018-04-30</checkOutDate>
+            <customerId>3</customerId>
+            <customerName>Paul</customerName>
+            <discription></discription>
+            <guestsNumber>1</guestsNumber>
+            <price>60.0</price>
+            <reservationId>10</reservationId>
+            <reservationStatus>CANCELED</reservationStatus>
+            <roomId>11</roomId>
+            <roomLocation>VAXJO</roomLocation>
+            <roomNumber>6</roomNumber>
+        </reservationsList>
+        <reservationsList>
+            <bill>
+                <billId>11</billId>
+                <customerId>3</customerId>
+                <customerName>Paul</customerName>
+                <payStatus>UNPAID</payStatus>
+                <serviceList>
+                    <descraption>VAXJO Room: 3 ,Canceled less than 24H, or customer did not chekin. Billed for 2 days</descraption>
+                    <piecesNumber>1</piecesNumber>
+                    <price>120.0</price>
+                    <serviceType>RESERVATION</serviceType>
+                </serviceList>
+            </bill>
+            <checkInDate>2018-04-28</checkInDate>
+            <checkOutDate>2018-04-30</checkOutDate>
+            <customerId>3</customerId>
+            <customerName>Paul</customerName>
+            <discription></discription>
+            <guestsNumber>1</guestsNumber>
+            <price>60.0</price>
+            <reservationId>11</reservationId>
+            <reservationStatus>CANCELED</reservationStatus>
+            <roomId>9</roomId>
+            <roomLocation>VAXJO</roomLocation>
+            <roomNumber>3</roomNumber>
+        </reservationsList>
+        <reservationsList>
+            <bill>
+                <billId>12</billId>
+                <customerId>3</customerId>
+                <customerName>Paul</customerName>
+                <payStatus>UNPAID</payStatus>
+                <serviceList>
+                    <descraption>VAXJO Room: 6 ,Canceled less than 24H, or customer did not chekin. Billed for 2 days</descraption>
+                    <piecesNumber>1</piecesNumber>
+                    <price>120.0</price>
+                    <serviceType>RESERVATION</serviceType>
+                </serviceList>
+            </bill>
+            <checkInDate>2018-04-28</checkInDate>
+            <checkOutDate>2018-04-30</checkOutDate>
+            <customerId>3</customerId>
+            <customerName>Paul</customerName>
+            <discription></discription>
+            <guestsNumber>1</guestsNumber>
+            <price>60.0</price>
+            <reservationId>12</reservationId>
+            <reservationStatus>CANCELED</reservationStatus>
+            <roomId>11</roomId>
+            <roomLocation>VAXJO</roomLocation>
+            <roomNumber>6</roomNumber>
+        </reservationsList>
+        <reservationsList>
+            <bill>
+                <billId>13</billId>
+                <customerId>3</customerId>
+                <customerName>Paul</customerName>
+                <payStatus>UNPAID</payStatus>
+                <serviceList>
+                    <descraption>VAXJO Room: 6 ,Canceled less than 24H, or customer did not chekin. Billed for 2 days</descraption>
+                    <piecesNumber>1</piecesNumber>
+                    <price>120.0</price>
+                    <serviceType>RESERVATION</serviceType>
+                </serviceList>
+            </bill>
+            <checkInDate>2018-04-28</checkInDate>
+            <checkOutDate>2018-04-30</checkOutDate>
+            <customerId>3</customerId>
+            <customerName>Paul</customerName>
+            <discription></discription>
+            <guestsNumber>1</guestsNumber>
+            <price>60.0</price>
+            <reservationId>13</reservationId>
+            <reservationStatus>CANCELED</reservationStatus>
+            <roomId>11</roomId>
+            <roomLocation>VAXJO</roomLocation>
+            <roomNumber>6</roomNumber>
         </reservationsList>
     </customersList>
     <roomsList>
@@ -250,6 +288,7 @@
         <roomLocation>VAXJO</roomLocation>
         <roomNum>1</roomNum>
         <roomSize>MEDIUM</roomSize>
+        <roomStatus>OCCUPIED</roomStatus>
         <smoking>false</smoking>
         <suite>false</suite>
         <view>true</view>
@@ -268,6 +307,7 @@
         <roomLocation>VAXJO</roomLocation>
         <roomNum>2</roomNum>
         <roomSize>MEDIUM</roomSize>
+        <roomStatus>OCCUPIED</roomStatus>
         <smoking>false</smoking>
         <suite>false</suite>
         <view>true</view>
@@ -290,6 +330,7 @@
         <roomLocation>VAXJO</roomLocation>
         <roomNum>3</roomNum>
         <roomSize>MEDIUM</roomSize>
+        <roomStatus>AVAILABLE</roomStatus>
         <smoking>false</smoking>
         <suite>false</suite>
         <view>true</view>
@@ -312,6 +353,7 @@
         <roomLocation>VAXJO</roomLocation>
         <roomNum>5</roomNum>
         <roomSize>MEDIUM</roomSize>
+        <roomStatus>AVAILABLE</roomStatus>
         <smoking>false</smoking>
         <suite>false</suite>
         <view>true</view>
@@ -330,6 +372,7 @@
         <roomLocation>VAXJO</roomLocation>
         <roomNum>6</roomNum>
         <roomSize>MEDIUM</roomSize>
+        <roomStatus>AVAILABLE</roomStatus>
         <smoking>false</smoking>
         <suite>false</suite>
         <view>true</view>
@@ -348,6 +391,7 @@
         <roomLocation>VAXJO</roomLocation>
         <roomNum>7</roomNum>
         <roomSize>MEDIUM</roomSize>
+        <roomStatus>AVAILABLE</roomStatus>
         <smoking>false</smoking>
         <suite>false</suite>
         <view>true</view>
@@ -382,6 +426,7 @@
         <roomLocation>KALMAR</roomLocation>
         <roomNum>3</roomNum>
         <roomSize>MEDIUM</roomSize>
+        <roomStatus>CHECKOUT_TODAY</roomStatus>
         <smoking>false</smoking>
         <suite>true</suite>
         <view>true</view>
@@ -444,6 +489,7 @@
         <roomLocation>VAXJO</roomLocation>
         <roomNum>4</roomNum>
         <roomSize>MEDIUM</roomSize>
+        <roomStatus>AVAILABLE</roomStatus>
         <smoking>false</smoking>
         <suite>true</suite>
         <view>true</view>

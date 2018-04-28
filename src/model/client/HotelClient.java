@@ -5,6 +5,8 @@ import java.util.Optional;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.ChoiceDialog;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.shared.Room.RoomLocation;
@@ -32,8 +34,16 @@ public class HotelClient extends Application{
 
 		ChoiceDialog<RoomLocation> choiceDialog = new ChoiceDialog<RoomLocation>(RoomLocation.VAXJO,
 				RoomLocation.values());
-		choiceDialog.setHeaderText("Choose Your Location!");
-		choiceDialog.initModality(Modality.APPLICATION_MODAL);
+		choiceDialog.setHeaderText("Welcome to Linnause Hotel");
+		choiceDialog.setTitle("Choose Your Location!");
+		choiceDialog.setContentText("Choose Your Location:");
+		ImageView iv = new ImageView(new Image("file:res/icons/hotel.png"));
+		iv.setFitWidth(140);
+		iv.setFitHeight(160);
+		choiceDialog.setGraphic(iv);
+		
+		Stage dialogStage = (Stage) choiceDialog.getDialogPane().getScene().getWindow();
+		dialogStage.getIcons().add(new Image("file:res/icons/location.png"));
 
 		Optional<RoomLocation> result = choiceDialog.showAndWait();
 		if (!result.isPresent()) {
@@ -47,6 +57,7 @@ public class HotelClient extends Application{
 		Scene mainScene = new Scene(root.getParentPane());
 		primaryStage.setOnCloseRequest(onExitCloseEverything -> System.exit(0));
 		primaryStage.setScene(mainScene);
+		primaryStage.getIcons().add(new Image("file:res/icons/hotel1.png"));
 
 		// Locking window size
 		// primaryStage.setMinWidth(1280);

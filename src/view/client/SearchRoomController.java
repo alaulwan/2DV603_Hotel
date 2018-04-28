@@ -13,6 +13,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory.IntegerSpinnerValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.control.DatePicker;
 import javafx.scene.layout.GridPane;
@@ -85,6 +86,7 @@ public class SearchRoomController extends Controller {
 		guestNumberBox.setValueFactory(new IntegerSpinnerValueFactory(1, 12, 1));
 		suiteRoomsNumberBox.setValueFactory(new IntegerSpinnerValueFactory(2, 3, 2));
 		suiteRoomsNumberBox.setDisable(true);
+		nextButton.setDisable(true);
 		locationBox.setItems(FXCollections.observableList(Arrays.asList(RoomLocation.values())));
 		locationBox.setValue(serverAPI.location);
 		arrivalDateBox.setValue(LocalDate.now());
@@ -117,6 +119,7 @@ public class SearchRoomController extends Controller {
 				stage.setMaxHeight(680);
 				stage.setScene(mainScene);
 				stage.setTitle("Add Customer Info.");
+				stage.getIcons().add(new Image("file:res/icons/customer.png"));
 				stage.showAndWait();
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -153,6 +156,7 @@ public class SearchRoomController extends Controller {
 		}
 		this.roomsList = serverAPI.getRoomsList(roomsFiltersList);
 		viewRooms();
+
 	}
 	
 	private void viewRooms() {
@@ -162,12 +166,18 @@ public class SearchRoomController extends Controller {
 			roomGrid.add(roomNode, i%2 , i/2);
 			setRoomNodemouseAction(roomNode);
 		}
+
 	}
 
 
 	@FXML
 	public void cancel() {
 		((Stage) cancelButton.getScene().getWindow()).close();
+	}
+	
+	@FXML
+	public void disableNextButton() {
+		nextButton.setDisable(true);
 	}
 	
 	private void setRoomNodemouseAction(RoomNode roomNode) {
@@ -189,7 +199,8 @@ public class SearchRoomController extends Controller {
 				selectedRoomNode.rectangle.setStroke(paint);
 			selectedRoomNode = roomNode;
 			selectedRoomNode.rectangle.setStroke(Paint.valueOf("GRAY"));
-			
+			nextButton.setDisable(false);
+	
 		});
 		
 	}

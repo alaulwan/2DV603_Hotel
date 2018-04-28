@@ -13,6 +13,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.stage.Modality;
@@ -183,15 +184,7 @@ public class ReservationsListController extends Controller {
 
 				MenuItem mi6 = new MenuItem("Delete");
 				mi6.setOnAction((ActionEvent event) -> {
-
-					Alert closeConfirmation = new Alert(Alert.AlertType.CONFIRMATION,
-							"Are you sure you want to delete ?");
-					closeConfirmation.setHeaderText("Confirm removal");
-					closeConfirmation.initModality(Modality.APPLICATION_MODAL);
-					Optional<ButtonType> result = closeConfirmation.showAndWait();
-					if (result.isPresent() && result.get().equals(ButtonType.YES)) {
-						deleteReservation();
-					}
+					deleteReservation();
 				});
 
 				MenuItem mi7 = new MenuItem("Cancel");
@@ -261,7 +254,7 @@ public class ReservationsListController extends Controller {
 				markBillAsPaid();
 			}
 		} else {
-			alertWindow(AlertType.INFORMATION, "CheckOut", "CheckIn Failed", "");
+			alertWindow(AlertType.INFORMATION, "CheckOut", "CheckOut Failed", "");
 		}
 		return checkOutSuccess;
 	}
@@ -269,8 +262,12 @@ public class ReservationsListController extends Controller {
 	public boolean cancelReservation(int reservationId) {
 		boolean cancelReservationSuccess = serverAPI.cancelReservation(reservationId);
 		if (cancelReservationSuccess) {
+			Optional<ButtonType> result = alertWindow(AlertType.CONFIRMATION, "Cancel Reservation", "Are you sure you want to cancel this reservation",
+					"");
+			if (result.isPresent() && result.get().equals(ButtonType.OK)) {
 			update();
 			alertWindow(AlertType.INFORMATION, "Cancel Reservation", "Cancel Reservation Successed", "");
+			}
 		} else {
 			alertWindow(AlertType.INFORMATION, "Cancel Reservation", "Cancel Reservation Failed", "");
 		}
@@ -280,8 +277,12 @@ public class ReservationsListController extends Controller {
 	private boolean deleteReservation() {
 		boolean deleteReservationSuccess = serverAPI.delete(selectedReservation);
 		if (deleteReservationSuccess) {
+			Optional<ButtonType> result = alertWindow(AlertType.CONFIRMATION, "Delete Reservation", "Are you sure you want to delete this reservation",
+					"");
+			if (result.isPresent() && result.get().equals(ButtonType.OK)) {
 			update();
 			alertWindow(AlertType.INFORMATION, "Delete Reservation", "Delete Reservation Successed", "");
+			}
 		} else {
 			alertWindow(AlertType.INFORMATION, "Delete Reservation", "Delete Reservation Failed", "");
 		}
@@ -309,7 +310,8 @@ public class ReservationsListController extends Controller {
 			Scene mainScene = new Scene(searchRoomController.getParentPane());
 			Stage stage = new Stage();
 			stage.setScene(mainScene);
-			stage.setTitle("Search for a room...");
+			stage.setTitle("Edit reservation");
+			stage.getIcons().add(new Image("file:res/icons/search_room.png"));
 			stage.showAndWait();
 			update();
 		} catch (IOException e) {
@@ -325,6 +327,7 @@ public class ReservationsListController extends Controller {
 			Stage stage = new Stage();
 			stage.setScene(mainScene);
 			stage.setTitle("Add Service");
+			stage.getIcons().add(new Image("file:res/icons/service.png"));
 			stage.showAndWait();
 			reservationsList.refresh();
 		} catch (IOException e) {

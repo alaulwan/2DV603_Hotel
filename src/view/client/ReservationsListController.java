@@ -258,33 +258,36 @@ public class ReservationsListController extends Controller {
 		}
 		return checkOutSuccess;
 	}
-
 	public boolean cancelReservation(int reservationId) {
-		boolean cancelReservationSuccess = serverAPI.cancelReservation(reservationId);
-		if (cancelReservationSuccess) {
-			Optional<ButtonType> result = alertWindow(AlertType.CONFIRMATION, "Cancel Reservation", "Are you sure you want to cancel this reservation",
-					"");
-			if (result.isPresent() && result.get().equals(ButtonType.OK)) {
-			update();
-			alertWindow(AlertType.INFORMATION, "Cancel Reservation", "Cancel Reservation Successed", "");
+		boolean cancelReservationSuccess = false;
+		Optional<ButtonType> result = alertWindow(AlertType.CONFIRMATION, "Cancel Reservation", "Are you sure you want to cancel this reservation",
+				"");
+		if (result.isPresent() && result.get().equals(ButtonType.OK)) {
+			cancelReservationSuccess = serverAPI.cancelReservation(reservationId);
+			if (cancelReservationSuccess) {
+				update();
+				alertWindow(AlertType.INFORMATION, "Cancel Reservation", "Cancel Reservation Successed", "");
+				}
+			else {
+				alertWindow(AlertType.INFORMATION, "Cancel Reservation", "Cancel Reservation Failed", "");
 			}
-		} else {
-			alertWindow(AlertType.INFORMATION, "Cancel Reservation", "Cancel Reservation Failed", "");
-		}
+		} 
 		return cancelReservationSuccess;
 	}
-
 	private boolean deleteReservation() {
-		boolean deleteReservationSuccess = serverAPI.delete(selectedReservation);
-		if (deleteReservationSuccess) {
-			Optional<ButtonType> result = alertWindow(AlertType.CONFIRMATION, "Delete Reservation", "Are you sure you want to delete this reservation",
-					"");
-			if (result.isPresent() && result.get().equals(ButtonType.OK)) {
-			update();
-			alertWindow(AlertType.INFORMATION, "Delete Reservation", "Delete Reservation Successed", "");
+		boolean deleteReservationSuccess = false;
+		Optional<ButtonType> result = alertWindow(AlertType.CONFIRMATION, "Delete Reservation", "Are you sure you want to delete this reservation",
+				"");
+		if (result.isPresent() && result.get().equals(ButtonType.OK)) {
+			deleteReservationSuccess = serverAPI.delete(selectedReservation);
+			
+			if (deleteReservationSuccess) {
+				update();
+				alertWindow(AlertType.INFORMATION, "Delete Reservation", "Delete Reservation Successed", "");
 			}
-		} else {
-			alertWindow(AlertType.INFORMATION, "Delete Reservation", "Delete Reservation Failed", "");
+			else {
+				alertWindow(AlertType.INFORMATION, "Delete Reservation", "Delete Reservation Failed", "");
+			}
 		}
 		return deleteReservationSuccess;
 	}

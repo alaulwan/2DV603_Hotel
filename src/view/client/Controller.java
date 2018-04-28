@@ -78,14 +78,26 @@ public class Controller {
 			setAlertImage(alert , "file:res/icons/error.png");
 			setIcon(alert, "file:res/icons/reservations.png");
 		}
-		else if (type == AlertType.CONFIRMATION && title.equals("Cancel Reservation")) {
-			setAlertImage(alert , "file:res/icons/warning.png");
+		else if(headText.equals("Delete Reservation Successed")) {
+			setAlertImage(alert , "file:res/icons/ok.png");
 			setIcon(alert, "file:res/icons/reservations.png");
 		}
-		else if (type == AlertType.CONFIRMATION && title.equals("Delete Reservation")) {
-			setAlertImage(alert , "file:res/icons/warning.png");
+		else if(headText.equals("Delete Reservation Failed")) {
+			setAlertImage(alert , "file:res/icons/ok.png");
 			setIcon(alert, "file:res/icons/reservations.png");
 		}
+
+		if (type == AlertType.CONFIRMATION) {
+			setAlertImage(alert , "file:res/icons/warning.png");
+
+			 if (title.equals("Cancel Reservation") || title.equals("Delete Reservation")) {
+				setIcon(alert, "file:res/icons/reservations.png");
+			}
+			else if ( title.equals("Delete Customer")) {
+				setIcon(alert, "file:res/icons/customer.png");
+			}
+		}
+		
 		
 		Optional<ButtonType> result = alert.showAndWait();
 		if (result.isPresent()) {

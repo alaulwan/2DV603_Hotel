@@ -198,15 +198,8 @@ public class CustomerListController extends Controller{
 					});
 					
 				MenuItem mi3 = new MenuItem("Delete");
-				mi3.setOnAction((ActionEvent event) -> {
-					Alert deleteConfirmation = new Alert(Alert.AlertType.CONFIRMATION,
-							"Are you sure you want to delete ?");
-					deleteConfirmation.setHeaderText("Confirm removal");
-					deleteConfirmation.initModality(Modality.APPLICATION_MODAL);
-					Optional<ButtonType> result = deleteConfirmation.showAndWait();
-					if (result.isPresent() && result.get().equals(ButtonType.OK)) {
+				mi3.setOnAction((ActionEvent event) -> {					
 						deleteCustomer();
-					}
 				});
 				
 			    menu.getItems().addAll(mi1, mi2, mi3);
@@ -224,17 +217,17 @@ public class CustomerListController extends Controller{
 		
 	}
 	private boolean deleteCustomer() {
-		boolean deleteCustomerSuccess = serverAPI.delete(selectedCustomer);
-		if (deleteCustomerSuccess) {
-			Optional<ButtonType> result = alertWindow(AlertType.CONFIRMATION, "Delete Customer", "Are you sure you want to delete this customer",
-					"");
-			if (result.isPresent() && result.get().equals(ButtonType.OK)) {
-			update();
-			alertWindow(AlertType.INFORMATION, "Delete Customer", "Delete Customer Successed", "");
+		boolean deleteCustomerSuccess = false;
+		Optional<ButtonType> result = alertWindow(AlertType.CONFIRMATION, "Delete Customer", "Are you sure you want to delete this customer", "");
+		if (result.isPresent() && result.get().equals(ButtonType.OK)) {
+			deleteCustomerSuccess = serverAPI.delete(selectedCustomer);
+			if (deleteCustomerSuccess) {
+				update();
+				alertWindow(AlertType.INFORMATION, "Delete Customer", "Delete Customer Successed", "");
+				}
+			else {
+				alertWindow(AlertType.INFORMATION, "Delete Customer", "Delete Customer Failed", "Cannot delete customer with pindding or checked in reservation.");
 			}
-		}
-		else {
-			alertWindow(AlertType.INFORMATION, "Delete Customer", "Delete Customer Failed", "Cannot delete customer with pindding or checked in reservation.");
 		}
 		return deleteCustomerSuccess;
 	}

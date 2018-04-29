@@ -20,6 +20,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Paint;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.shared.Reservation;
 import model.shared.Room;
@@ -120,6 +121,7 @@ public class SearchRoomController extends Controller {
 				stage.setScene(mainScene);
 				stage.setTitle("Add Customer Info.");
 				stage.getIcons().add(new Image("file:res/icons/customer.png"));
+				stage.initModality(Modality.APPLICATION_MODAL);
 				stage.showAndWait();
 			} catch (IOException e) {
 				e.printStackTrace();

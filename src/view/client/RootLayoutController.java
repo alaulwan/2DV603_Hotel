@@ -27,7 +27,6 @@ import model.shared.filters.reservationsFilters.StatusReservationsFilter;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.control.Tab;
 
 public class RootLayoutController extends Controller{
@@ -90,6 +89,7 @@ public class RootLayoutController extends Controller{
 			stage.setScene(mainScene);
 			stage.setTitle("Search for a room...");
 			stage.getIcons().add(new Image("file:res/icons/search_room.png"));
+			stage.initModality(Modality.APPLICATION_MODAL);
 			stage.showAndWait();
 			
 		} catch (IOException e) {
@@ -155,8 +155,8 @@ public class RootLayoutController extends Controller{
 		
 		setIcon(closeConfirmation , "file:res/icons/exit.png" );
 		
-		Optional<ButtonType> closeResponse = closeConfirmation.showAndWait();
-		if (ButtonType.OK.equals(closeResponse.get())) {
+		Optional<ButtonType> result = closeConfirmation.showAndWait();
+		if (ButtonType.OK.equals(result.get())) {
 			System.exit(0);
 
 		} 

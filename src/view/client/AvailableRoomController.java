@@ -10,6 +10,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Paint;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.shared.Reservation;
 import model.shared.Room;
@@ -136,6 +137,7 @@ public class AvailableRoomController extends Controller {
 					Stage stage = new Stage();
 					stage.setScene(mainScene);
 					stage.setTitle("Reservations List");
+					stage.initModality(Modality.APPLICATION_MODAL);
 					stage.showAndWait();
 				} catch (IOException e) {
 					e.printStackTrace();

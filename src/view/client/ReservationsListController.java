@@ -28,7 +28,6 @@ import model.shared.filters.reservationsFilters.ReservationsFilter;
 import model.shared.filters.reservationsFilters.RoomNumReservationsFilter;
 import model.shared.filters.reservationsFilters.StatusReservationsFilter;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ContextMenu;
@@ -315,6 +314,7 @@ public class ReservationsListController extends Controller {
 			stage.setScene(mainScene);
 			stage.setTitle("Edit reservation");
 			stage.getIcons().add(new Image("file:res/icons/search_room.png"));
+			stage.initModality(Modality.APPLICATION_MODAL);
 			stage.showAndWait();
 			update();
 		} catch (IOException e) {
@@ -331,6 +331,7 @@ public class ReservationsListController extends Controller {
 			stage.setScene(mainScene);
 			stage.setTitle("Add Service");
 			stage.getIcons().add(new Image("file:res/icons/service.png"));
+			stage.initModality(Modality.APPLICATION_MODAL);
 			stage.showAndWait();
 			reservationsList.refresh();
 		} catch (IOException e) {

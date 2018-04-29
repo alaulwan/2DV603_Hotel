@@ -27,7 +27,6 @@ import model.shared.filters.reservationsFilters.LocationReservationsFilter;
 import model.shared.filters.reservationsFilters.ReservationsFilter;
 import model.shared.filters.reservationsFilters.StatusReservationsFilter;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ContextMenu;
@@ -172,6 +171,7 @@ public class CustomerListController extends Controller{
 							stage.setMaxWidth(650);
 							stage.setMaxHeight(680);
 							stage.setTitle("Edit the customer information");
+							stage.initModality(Modality.APPLICATION_MODAL);
 							stage.showAndWait();
 						} catch (IOException e) {
 							e.printStackTrace();
@@ -191,6 +191,7 @@ public class CustomerListController extends Controller{
 							Stage stage = new Stage();
 							stage.setScene(mainScene);
 							stage.setTitle("Reservations List");
+							stage.initModality(Modality.APPLICATION_MODAL);
 							stage.showAndWait();
 						} catch (IOException e) {
 							e.printStackTrace();

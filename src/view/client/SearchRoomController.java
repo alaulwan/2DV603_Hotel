@@ -249,6 +249,7 @@ public class SearchRoomController extends Controller {
 
 	@FXML
 	public void disableNextButton() {
+		roomGrid.getChildren().removeAll(roomGrid.getChildren());
 		nextButton.setDisable(true);
 	}
 

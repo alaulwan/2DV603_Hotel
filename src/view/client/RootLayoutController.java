@@ -29,7 +29,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.control.Tab;
 
-public class RootLayoutController extends Controller{
+public class RootLayoutController extends Controller {
 	@FXML
 	private TabPane tabPane;
 	@FXML
@@ -57,8 +57,8 @@ public class RootLayoutController extends Controller{
 	private CustomerListController customerListController;
 	private BillsListController billsListController;
 	private SearchRoomController searchRoomController;
-	
-	public RootLayoutController(ServerAPI API){
+
+	public RootLayoutController(ServerAPI API) {
 		super.fxmlPath = ROOT_LAYOUT;
 		super.serverAPI = API;
 		availableRoomController = new AvailableRoomController(this);
@@ -76,7 +76,7 @@ public class RootLayoutController extends Controller{
 		billsListTab.setContent(billsListController.getParentPane());
 
 	}
-	
+
 	@FXML
 	public void newReservation() {
 		try {
@@ -91,7 +91,7 @@ public class RootLayoutController extends Controller{
 			stage.getIcons().add(new Image("file:res/icons/search_room.png"));
 			stage.initModality(Modality.APPLICATION_MODAL);
 			stage.showAndWait();
-			
+
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -100,83 +100,92 @@ public class RootLayoutController extends Controller{
 
 	@FXML
 	public void checkIn() {
-		boolean checkInSuccess = false;
-		ArrayList<ReservationsFilter> reservationsFilterList = new ArrayList<ReservationsFilter> ();
-		LocationReservationsFilter locationReservationsFilter = new LocationReservationsFilter (serverAPI.location);
-		StatusReservationsFilter statusReservationsFilter = new StatusReservationsFilter(true, false, false, false);
-		RoomIdReservationsFilter roomIdReservationsFilter = new RoomIdReservationsFilter (availableRoomController.selectedRoomNode.room.getRoomId());
-		reservationsFilterList.add(locationReservationsFilter);
-		reservationsFilterList.add(statusReservationsFilter);
-		reservationsFilterList.add(roomIdReservationsFilter);
-		ArrayList<Reservation> reservationArray= serverAPI.getReservationsList(reservationsFilterList);
-		for (Reservation rs : reservationArray) {
-			if (rs.checkInDateAsLocalDate().equals(LocalDate.now())) {
-				checkInSuccess = serverAPI.checkIn(rs.getReservationId());
-				break;
+		Optional<ButtonType> result = alertWindow(AlertType.CONFIRMATION, "Check-in",
+				"Are you sure you want to check in this room", "");
+		if (result.isPresent() && result.get().equals(ButtonType.OK)) {
+
+			boolean checkInSuccess = false;
+			ArrayList<ReservationsFilter> reservationsFilterList = new ArrayList<ReservationsFilter>();
+			LocationReservationsFilter locationReservationsFilter = new LocationReservationsFilter(serverAPI.location);
+			StatusReservationsFilter statusReservationsFilter = new StatusReservationsFilter(true, false, false, false);
+			RoomIdReservationsFilter roomIdReservationsFilter = new RoomIdReservationsFilter(
+					availableRoomController.selectedRoomNode.room.getRoomId());
+			reservationsFilterList.add(locationReservationsFilter);
+			reservationsFilterList.add(statusReservationsFilter);
+			reservationsFilterList.add(roomIdReservationsFilter);
+			ArrayList<Reservation> reservationArray = serverAPI.getReservationsList(reservationsFilterList);
+			for (Reservation rs : reservationArray) {
+				if (rs.checkInDateAsLocalDate().equals(LocalDate.now())) {
+					checkInSuccess = serverAPI.checkIn(rs.getReservationId());
+					break;
+				}
+			}
+			if (checkInSuccess) {
+				update();
+				alertWindow(AlertType.INFORMATION, "CheckIn", "CheckIn Successed", "");
+
+			} else {
+				alertWindow(AlertType.INFORMATION, "CheckIn", "CheckIn Failed", "");
 			}
 		}
-		if (checkInSuccess) {
-			update();
-			alertWindow(AlertType.INFORMATION, "CheckIn", "CheckIn Successed", "");
-			
-		}
-		else {
-			alertWindow(AlertType.INFORMATION, "CheckIn", "CheckIn Failed", "");
-		}
-
 	}
-	
+
 	@FXML
 	public void checkOut() {
-		ArrayList<ReservationsFilter> reservationsFilterList = new ArrayList<ReservationsFilter> ();
-		LocationReservationsFilter locationReservationsFilter = new LocationReservationsFilter (serverAPI.location);
-		StatusReservationsFilter statusReservationsFilter = new StatusReservationsFilter(false, true, false, false);
-		RoomIdReservationsFilter roomIdReservationsFilter = new RoomIdReservationsFilter (availableRoomController.selectedRoomNode.room.getRoomId());
-		reservationsFilterList.add(locationReservationsFilter);
-		reservationsFilterList.add(statusReservationsFilter);
-		reservationsFilterList.add(roomIdReservationsFilter);
-		ArrayList<Reservation> reservationArray= serverAPI.getReservationsList(reservationsFilterList);
-		for (Reservation rs : reservationArray) {
-			reservationsListController.selectedReservation = rs;
-			reservationsListController.chekOutReservation(rs.getReservationId());
-//			if (rs.checkOutDateAsLocalDate().isAfter(LocalDate.now().minusDays(1))) {
-//				reservationsListController.selectedReservation = rs;
-//				reservationsListController.chekOutReservation(rs.getReservationId());
-//				break;
-//			}
+		Optional<ButtonType> result = alertWindow(AlertType.CONFIRMATION, "Check-out",
+				"Are you sure you want to check out this room", "");
+		if (result.isPresent() && result.get().equals(ButtonType.OK)) {
+
+			ArrayList<ReservationsFilter> reservationsFilterList = new ArrayList<ReservationsFilter>();
+			LocationReservationsFilter locationReservationsFilter = new LocationReservationsFilter(serverAPI.location);
+			StatusReservationsFilter statusReservationsFilter = new StatusReservationsFilter(false, true, false, false);
+			RoomIdReservationsFilter roomIdReservationsFilter = new RoomIdReservationsFilter(
+					availableRoomController.selectedRoomNode.room.getRoomId());
+			reservationsFilterList.add(locationReservationsFilter);
+			reservationsFilterList.add(statusReservationsFilter);
+			reservationsFilterList.add(roomIdReservationsFilter);
+			ArrayList<Reservation> reservationArray = serverAPI.getReservationsList(reservationsFilterList);
+			for (Reservation rs : reservationArray) {
+				reservationsListController.selectedReservation = rs;
+				reservationsListController.chekOutReservation(rs.getReservationId());
+				// if (rs.checkOutDateAsLocalDate().isAfter(LocalDate.now().minusDays(1))) {
+				// reservationsListController.selectedReservation = rs;
+				// reservationsListController.chekOutReservation(rs.getReservationId());
+				// break;
+				// }
+			}
 		}
 	}
-	
+
 	@FXML
 	public void exit() {
 		Alert closeConfirmation = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to exit?");
 		closeConfirmation.setHeaderText("Confirm Exit");
-		setAlertImage(closeConfirmation , "file:res/icons/warning.png");
-		
-		setIcon(closeConfirmation , "file:res/icons/exit.png" );
-		
+		setAlertImage(closeConfirmation, "file:res/icons/warning.png");
+
+		setIcon(closeConfirmation, "file:res/icons/exit.png");
+
 		Optional<ButtonType> result = closeConfirmation.showAndWait();
 		if (ButtonType.OK.equals(result.get())) {
 			System.exit(0);
 
-		} 
+		}
 	}
-	
-	
+
 	@FXML
 	private void imprtRoomsList() {
-		if (availableRoomController.roomsList!=null && availableRoomsTab.isSelected()){
+		if (availableRoomController.roomsList != null && availableRoomsTab.isSelected()) {
 			availableRoomController.initialize();
 		}
 	}
-	
+
 	@FXML
 	private void imprtReservationsList() {
 		this.checkinButton.setDisable(true);
 		this.checkoutButton.setDisable(true);
-		if (reservationsListTab.isSelected()){
-			ArrayList<ReservationsFilter> reservationsFilterList = new ArrayList<ReservationsFilter> ();
-			LocationReservationsFilter locationReservationsFilter = new LocationReservationsFilter (serverAPI.location);
+		if (reservationsListTab.isSelected()) {
+			ArrayList<ReservationsFilter> reservationsFilterList = new ArrayList<ReservationsFilter>();
+			LocationReservationsFilter locationReservationsFilter = new LocationReservationsFilter(serverAPI.location);
 			StatusReservationsFilter statusReservationsFilter = new StatusReservationsFilter(true, true, false, false);
 			reservationsFilterList.add(locationReservationsFilter);
 			reservationsFilterList.add(statusReservationsFilter);
@@ -185,40 +194,42 @@ public class RootLayoutController extends Controller{
 			reservationsListController.initialize();
 		}
 	}
-	
+
 	@FXML
 	private void imprtCustomersList() {
 		this.checkinButton.setDisable(true);
 		this.checkoutButton.setDisable(true);
-		if (customerListTab.isSelected()){
-			ArrayList<CustomersFilter> customersFilterList = new ArrayList<CustomersFilter> ();
-			ReservationLocationCustomersFilter reservationLocationCustomersFilter = new ReservationLocationCustomersFilter (serverAPI.location);
-			ReservationStatusCustumersFilter reservationStatusCustumersFilter = new ReservationStatusCustumersFilter(true, true, false, false);
+		if (customerListTab.isSelected()) {
+			ArrayList<CustomersFilter> customersFilterList = new ArrayList<CustomersFilter>();
+			ReservationLocationCustomersFilter reservationLocationCustomersFilter = new ReservationLocationCustomersFilter(
+					serverAPI.location);
+			ReservationStatusCustumersFilter reservationStatusCustumersFilter = new ReservationStatusCustumersFilter(
+					true, true, false, false);
 			customersFilterList.add(reservationStatusCustumersFilter);
 			customersFilterList.add(reservationLocationCustomersFilter);
-			
+
 			customerListController.customersArray = serverAPI.getCustomersList(customersFilterList);
 			customerListController.initialize();
 		}
 	}
-	
+
 	@FXML
 	private void importBillsList() {
 		this.checkinButton.setDisable(true);
 		this.checkoutButton.setDisable(true);
-		if (billsListTab.isSelected()){
-			ArrayList<BillsFilter> billsFilterList = new ArrayList<BillsFilter> ();
-			PayStatusBillsFilter payStatusBillsFilter = new PayStatusBillsFilter (PayStatus.UNPAID);
+		if (billsListTab.isSelected()) {
+			ArrayList<BillsFilter> billsFilterList = new ArrayList<BillsFilter>();
+			PayStatusBillsFilter payStatusBillsFilter = new PayStatusBillsFilter(PayStatus.UNPAID);
 			billsFilterList.add(payStatusBillsFilter);
 			billsListController.billsArray = serverAPI.getBillsList(billsFilterList);
 			billsListController.initialize();
 		}
 	}
-	
+
 	public void update() {
 		imprtRoomsList();
 		imprtReservationsList();
 		imprtCustomersList();
-		importBillsList();		
+		importBillsList();
 	}
 }

@@ -47,7 +47,7 @@
             <ChoiceBox fx:id="locationBox" onMouseClicked="#disableNextButton" prefWidth="150.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" />
             <Label prefHeight="17.0" prefWidth="170.0" text="Arrival Date" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
             <Label prefHeight="17.0" prefWidth="170.0" text="Departure Date" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
-            <DatePicker fx:id="arrivalDateBox" onMouseClicked="#disableNextButton" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <DatePicker fx:id="arrivalDateBox" onAction="#arrivalDateBoxClicked" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <DatePicker fx:id="departureDateBox" onMouseClicked="#disableNextButton" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <Label prefHeight="17.0" prefWidth="170.0" text="Guest Number" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
             <CheckBox fx:id="viewBox" mnemonicParsing="false" onMouseClicked="#disableNextButton" text="View" GridPane.columnIndex="1" GridPane.rowIndex="6" />

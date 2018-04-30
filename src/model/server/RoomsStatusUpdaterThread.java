@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import model.shared.Hotel;
 import model.shared.Reservation;
 import model.shared.Room;
+import model.shared.Reservation.ReservationStatus;
 import model.shared.Room.RoomStatus;
 import model.shared.filters.reservationsFilters.ReservationsFilter;
 import model.shared.filters.reservationsFilters.StatusReservationsFilter;
@@ -23,15 +24,27 @@ public class RoomsStatusUpdaterThread extends Thread {
 	@Override
 	public void run() {
 		while (true) {
+			updateAllReservationsInfo();
 			updateAllRoomsStatus();
 			LocalDateTime timeNow = LocalDateTime.now();
 			LocalDateTime timetomorrow = LocalDateTime.of(LocalDate.now().plusDays(1), LocalTime.of(0, 0, 0));
 			Duration duration = Duration.between(timeNow, timetomorrow);
-
 			try {
 				Thread.sleep(duration.toMillis());
 			} catch (InterruptedException e) {
 
+			}
+		}
+	}
+	
+	public void updateAllReservationsInfo() {
+		ArrayList<Reservation> reservationsList = new ArrayList<Reservation>(hotel.getReservationsList());
+		for (Reservation res : reservationsList) {
+			if (res.getReservationStatus().equals(ReservationStatus.PENDING) && res.checkInDateAsLocalDate().isBefore(LocalDate.now())) {
+				hotel.cancelReservation(res.getReservationId());
+			}
+			else if (res.getReservationStatus().equals(ReservationStatus.CHECKED_IN) && res.checkOutDateAsLocalDate().isBefore(LocalDate.now())) {
+				res.setCheckOutDate(LocalDate.now());
 			}
 		}
 	}

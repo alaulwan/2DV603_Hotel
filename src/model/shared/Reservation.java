@@ -6,6 +6,7 @@ import java.time.Period;
 
 import model.shared.Bill.PayStatus;
 import model.shared.Room.RoomLocation;
+import model.shared.Service.ServiceType;
 
 public class Reservation implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -140,14 +141,16 @@ public class Reservation implements Serializable {
 
 	public void setCheckInDate(String checkInDate) {
 		this.checkInDate = checkInDate;
+		updateBill();
 	}
-
+	
 	public LocalDate checkInDateAsLocalDate() {
 		return LocalDate.parse(checkInDate);
 	}
 
 	public void setCheckInDate(LocalDate checkInDate) {
 		this.checkInDate = checkInDate.toString();
+		updateBill();
 	}
 
 	public String getCheckOutDate() {
@@ -156,6 +159,7 @@ public class Reservation implements Serializable {
 
 	public void setCheckOutDate(String checkOutDate) {
 		this.checkOutDate = checkOutDate;
+		updateBill();
 	}
 
 	public LocalDate checkOutDateAsLocalDate() {
@@ -164,6 +168,7 @@ public class Reservation implements Serializable {
 
 	public void setCheckOutDate(LocalDate checkOutDate) {
 		this.checkOutDate = checkOutDate.toString();
+		updateBill();
 	}
 
 	public static int getCount() {
@@ -180,6 +185,7 @@ public class Reservation implements Serializable {
 
 	public void setPrice(float price) {
 		this.price = price;
+		updateBill();
 	}
 
 	public int getRoomId() {
@@ -196,6 +202,7 @@ public class Reservation implements Serializable {
 
 	public void setRoomNumber(int roomNumber) {
 		this.roomNumber = roomNumber;
+		updateBill();
 	}
 
 	public RoomLocation getRoomLocation() {
@@ -204,6 +211,7 @@ public class Reservation implements Serializable {
 
 	public void setRoomLocation(RoomLocation roomLocation) {
 		this.roomLocation = roomLocation;
+		updateBill();
 	}
 
 	public int getGuestsNumber() {
@@ -235,6 +243,14 @@ public class Reservation implements Serializable {
 
 	public void setBill(Bill bill) {
 		this.bill = bill;
+	}
+	
+	private void updateBill() {
+		if (this.bill!= null && this.bill.getServiceList()!= null) {
+			String reservationDescription = roomLocation + " Room: " + roomNumber + " Days: " + getTotalDays();
+			Service reserveService = new Service(ServiceType.RESERVATION, price * getTotalDays(), 1, reservationDescription);
+			this.bill.getServiceList().set(0, reserveService);
+		}		
 	}
 
 }

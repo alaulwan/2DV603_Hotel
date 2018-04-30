@@ -32,8 +32,8 @@
                     <serviceType>ITEM</serviceType>
                 </serviceList>
             </bill>
-            <checkInDate>2018-04-29</checkInDate>
-            <checkOutDate>2018-05-04</checkOutDate>
+            <checkInDate>2018-04-30</checkInDate>
+            <checkOutDate>2018-05-05</checkOutDate>
             <customerId>1</customerId>
             <customerName>Alaa Al</customerName>
             <discription>Al reservation</discription>
@@ -64,8 +64,8 @@
                     <serviceType>ITEM</serviceType>
                 </serviceList>
             </bill>
-            <checkInDate>2018-04-19</checkInDate>
-            <checkOutDate>2018-04-24</checkOutDate>
+            <checkInDate>2018-04-20</checkInDate>
+            <checkOutDate>2018-04-25</checkOutDate>
             <customerId>1</customerId>
             <customerName>Alaa Al</customerName>
             <discription>Old Al reservation</discription>
@@ -104,8 +104,8 @@
                     <serviceType>RESERVATION</serviceType>
                 </serviceList>
             </bill>
-            <checkInDate>2018-04-28</checkInDate>
-            <checkOutDate>2018-05-04</checkOutDate>
+            <checkInDate>2018-04-29</checkInDate>
+            <checkOutDate>2018-05-05</checkOutDate>
             <customerId>2</customerId>
             <customerName>Basem mo</customerName>
             <discription>Ba reservation</discription>
@@ -144,8 +144,8 @@
                     <serviceType>RESERVATION</serviceType>
                 </serviceList>
             </bill>
-            <checkInDate>2018-04-28</checkInDate>
-            <checkOutDate>2018-04-29</checkOutDate>
+            <checkInDate>2018-04-29</checkInDate>
+            <checkOutDate>2018-04-30</checkOutDate>
             <customerId>3</customerId>
             <customerName>Paul</customerName>
             <discription>Pa reservation vaxjo</discription>
@@ -170,8 +170,8 @@
                     <serviceType>RESERVATION</serviceType>
                 </serviceList>
             </bill>
-            <checkInDate>2018-04-28</checkInDate>
-            <checkOutDate>2018-04-29</checkOutDate>
+            <checkInDate>2018-04-29</checkInDate>
+            <checkOutDate>2018-04-30</checkOutDate>
             <customerId>3</customerId>
             <customerName>Paul</customerName>
             <discription>Pa reservation kalmar</discription>
@@ -196,8 +196,8 @@
                     <serviceType>RESERVATION</serviceType>
                 </serviceList>
             </bill>
-            <checkInDate>2018-04-28</checkInDate>
-            <checkOutDate>2018-04-29</checkOutDate>
+            <checkInDate>2018-04-29</checkInDate>
+            <checkOutDate>2018-04-30</checkOutDate>
             <customerId>3</customerId>
             <customerName>Paul</customerName>
             <discription>Pa reservation vaxjo</discription>
@@ -222,8 +222,8 @@
                     <serviceType>RESERVATION</serviceType>
                 </serviceList>
             </bill>
-            <checkInDate>2018-04-29</checkInDate>
-            <checkOutDate>2018-05-01</checkOutDate>
+            <checkInDate>2018-04-30</checkInDate>
+            <checkOutDate>2018-05-02</checkOutDate>
             <customerId>3</customerId>
             <customerName>Paul</customerName>
             <discription>Pa reservation vaxjo</discription>

@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import javafx.util.StringConverter;
@@ -81,6 +82,7 @@ public class AddCustomerController extends Controller {
 
 	@FXML
 	public void initialize() {
+		saveButton.setDisable(true);
 		identificationType.setItems(FXCollections.observableList(Arrays.asList(IdentificationType.values())));
 		if (currentCustomer == null) {
 			setComboBoxFactory();
@@ -93,6 +95,7 @@ public class AddCustomerController extends Controller {
 			guestsNameBox.setVisible(false);
 			guestsNameLabel.setVisible(false);
 			loadCustomer();
+			saveButton.setDisable(false);
 		}
 	}
 
@@ -102,14 +105,22 @@ public class AddCustomerController extends Controller {
 		currentCustomer = null;
 		setEditable(newCustomerButton.isSelected());
 		customersNameList.setDisable(newCustomerButton.isSelected());
+		if (newCustomerButton.isSelected())
+			saveButton.setDisable(false);
+		else {
+			saveButton.setDisable(true);
+		}
+
 	}
 
 	@FXML
 	public void saveCustomerBtn() {
-		InputVerifier inputVerifier = new InputVerifier();
-		if (!inputVerifier.isCorrectCustomerInfo(this)) {
-			return;
+		if (!verifyInputs()) {
+			alertWindow(AlertType.ERROR, "Add customer",
+					"The required fields are empty, please fill them to add a customer and complete the reservation!",
+					"");
 		}
+		else {
 		Customer newCustomer = new Customer(this.nameBox.getText(), this.birthDateBox.getValue(),
 				this.maleBox.isSelected() ? Gender.MALE : Gender.FEMALE, this.phoneNumberBox.getText(),
 				this.identificationType.getValue(), this.idNumberBox.getText(), this.creditCardNumberBox.getText(),
@@ -127,6 +138,7 @@ public class AddCustomerController extends Controller {
 			}
 		}
 		((Stage) cancelButton.getScene().getWindow()).close();
+		}
 	}
 
 	@FXML
@@ -151,6 +163,7 @@ public class AddCustomerController extends Controller {
 			customersNameList.setPromptText(currentCustomer.getName());
 			customersNameList.setItems(FXCollections.observableList(customersList));
 			setEditable(true);
+			saveButton.setDisable(false);
 		}
 	}
 
@@ -188,7 +201,7 @@ public class AddCustomerController extends Controller {
 		emailBox.setText("");
 		birthDateBox.setValue(null);
 		idNumberBox.setText("");
-		idNumberBox.setEditable(false);
+		//idNumberBox.setEditable(false);
 		addressBox.setText("");
 		identificationType.setValue(null);
 		descriptionBox.setText("");
@@ -202,7 +215,6 @@ public class AddCustomerController extends Controller {
 		phoneNumberBox.setDisable(!editable);
 		emailBox.setDisable(!editable);
 		birthDateBox.setDisable(!editable);
-		idNumberBox.setDisable(!editable);
 		idNumberBox.setDisable(!editable);
 		addressBox.setDisable(!editable);
 		identificationType.setDisable(!editable);
@@ -241,6 +253,18 @@ public class AddCustomerController extends Controller {
 				return null;
 			}
 		});
+	}
+
+	private boolean verifyInputs() {
+		if (this.nameBox.getText().equals("") || this.birthDateBox.getValue() == null
+				|| this.phoneNumberBox.getText().equals("") || this.identificationType.getValue() == null
+				|| this.idNumberBox.getText().equals("") || this.creditCardNumberBox.getText().equals("")
+				|| this.addressBox.getText().equals("") || this.nationalityBox.equals("")
+				|| this.emailBox.getText().equals(""))
+			return false;
+		else {
+			return true;
+		}
 	}
 
 }

@@ -2,17 +2,12 @@ package view.client;
 
 import java.io.IOException;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
-
-import com.sun.javafx.css.converters.StringConverter;
 
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
@@ -104,7 +99,7 @@ public class SearchRoomController extends Controller {
 		if (selectedReservation != null) {
 			nextButton.setText("Save");
 		}
-		
+
 		setBeginDateBounds();
 		setEndDateBounds(departureDateBox, arrivalDateBox);
 	}
@@ -113,14 +108,13 @@ public class SearchRoomController extends Controller {
 	public void suiteCheckBox() {
 		suiteRoomsNumberBox.setDisable(!suiteBox.isSelected());
 	}
-	
+
 	@FXML
 	public void arrivalDateBoxClicked() {
 		departureDateBox.setValue(arrivalDateBox.getValue().plusDays(1));
 		setEndDateBounds(departureDateBox, arrivalDateBox);
 		disableNextButton();
 	}
-
 
 	@FXML
 	public void nextToEnterCustomerInformation() {
@@ -207,7 +201,6 @@ public class SearchRoomController extends Controller {
 		};
 		end_date.setDayCellFactory(dayCellFactory);
 	}
-	
 
 	@FXML
 	public void searchRooms() {
@@ -229,6 +222,7 @@ public class SearchRoomController extends Controller {
 		}
 		this.roomsList = serverAPI.getRoomsList(roomsFiltersList);
 		viewRooms();
+		nextButton.setDisable(true);
 
 	}
 

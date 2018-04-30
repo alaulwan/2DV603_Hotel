@@ -78,9 +78,15 @@ public class Controller {
 			setIcon(alert, "file:res/icons/reservations.png");
 		}
 
+		if (type == AlertType.ERROR) {
+			setAlertImage(alert, "file:res/icons/error.png");
+			if (title.equals("Add customer")) {
+				setIcon(alert, "file:res/icons/customer.png");
+			}
+		}
+
 		if (type == AlertType.CONFIRMATION) {
 			setAlertImage(alert, "file:res/icons/warning.png");
-
 			if (title.equals("Cancel Reservation") || title.equals("Delete Reservation")) {
 				setIcon(alert, "file:res/icons/reservations.png");
 			} else if (title.equals("Delete Customer")) {
@@ -89,7 +95,10 @@ public class Controller {
 				setIcon(alert, "file:res/icons/check-in.png");
 			} else if (title.equals("Check-out")) {
 				setIcon(alert, "file:res/icons/check-out.png");
+			} else if (title.equals("Mark bill as paid...")) {
+				setIcon(alert, "file:res/icons/bill.png");
 			}
+
 		}
 
 		Optional<ButtonType> result = alert.showAndWait();

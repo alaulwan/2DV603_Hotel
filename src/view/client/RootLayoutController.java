@@ -135,7 +135,6 @@ public class RootLayoutController extends Controller {
 		Optional<ButtonType> result = alertWindow(AlertType.CONFIRMATION, "Check-out",
 				"Are you sure you want to check out this room", "");
 		if (result.isPresent() && result.get().equals(ButtonType.OK)) {
-
 			ArrayList<ReservationsFilter> reservationsFilterList = new ArrayList<ReservationsFilter>();
 			LocationReservationsFilter locationReservationsFilter = new LocationReservationsFilter(serverAPI.location);
 			StatusReservationsFilter statusReservationsFilter = new StatusReservationsFilter(false, true, false, false);

@@ -2,12 +2,15 @@ package view.client;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import java.awt.Desktop;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
+import java.util.Optional;
+
 import com.itextpdf.text.Chapter;
 import com.itextpdf.text.Chunk;
 import com.itextpdf.text.Document;
@@ -22,6 +25,7 @@ import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
@@ -114,10 +118,14 @@ public class BillsListController extends Controller {
 	}
 
 	protected void markBillAsPaid() {
-		selectedBill.setPayStatus(PayStatus.PAID);
-		serverAPI.post(selectedBill, selectedBill.getBillId());
-		if (billsTable != null)
-			billsTable.refresh();
+		Optional<ButtonType> result = alertWindow(AlertType.CONFIRMATION, "Mark bill as paid...",
+				"Are you sure you want to pay this bill", "");
+		if (result.isPresent() && result.get().equals(ButtonType.OK)) {
+			selectedBill.setPayStatus(PayStatus.PAID);
+			serverAPI.post(selectedBill, selectedBill.getBillId());
+			if (billsTable != null)
+				billsTable.refresh();
+		}
 	}
 
 	@SuppressWarnings("unused")
@@ -169,7 +177,7 @@ public class BillsListController extends Controller {
 		} catch (Exception e) {
 
 		}
-		
+
 	}
 
 	private void setContextMenu() {
@@ -184,7 +192,7 @@ public class BillsListController extends Controller {
 					billToPdf();
 				});
 
-				MenuItem mi2 = new MenuItem("Mark AS Paid");
+				MenuItem mi2 = new MenuItem("Mark as Paid");
 				mi2.setOnAction((ActionEvent event) -> {
 					markBillAsPaid();
 				});

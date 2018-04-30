@@ -204,7 +204,6 @@ public class CustomerListController extends Controller{
 				});
 				
 			    menu.getItems().addAll(mi1, mi2, mi3);
-
 			    // only display context menu for non-null items:
 			    row.contextMenuProperty().bind(
 			      Bindings.when(Bindings.isNotNull(row.itemProperty()))
@@ -212,11 +211,10 @@ public class CustomerListController extends Controller{
 			      .otherwise((ContextMenu)null));
 			    return row;
 			  }
-
-			
 			});
 		
 	}
+	
 	private boolean deleteCustomer() {
 		boolean deleteCustomerSuccess = false;
 		Optional<ButtonType> result = alertWindow(AlertType.CONFIRMATION, "Delete Customer", "Are you sure you want to delete this customer", "");

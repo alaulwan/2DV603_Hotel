@@ -1,4 +1,4 @@
-package view.client;
+package controller.client;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -30,15 +30,15 @@ public class AddServiceController extends Controller {
 	@FXML
 	private Button cancelButton;
 
-	private final String ADD_SERVICE_LAYOUT = "res/view/AddService.fxml";
+	private final String ADD_SERVICE_LAYOUT = "/view/client/AddService.fxml";
 	public ArrayList <Service> serviceList;
 	public Service selectedService;
 	public Reservation selectedReservation;
 	public ServerAPI serverAPI;
 	
 	public AddServiceController(ServerAPI serverAPI) {
-		super.fxmlPath = ADD_SERVICE_LAYOUT;
 		this.serverAPI = serverAPI;
+		super.urlPath = getClass().getResource(ADD_SERVICE_LAYOUT);
 	}
 	
 	@FXML
@@ -80,7 +80,7 @@ public class AddServiceController extends Controller {
 			((Stage) cancelButton.getScene().getWindow()).close();
 		}
 		else
-			alertWindow(AlertType.INFORMATION, "Add Service", "Please select a service", "");
+			alertWindow(AlertType.INFORMATION, "Add Service", "Please select a service", "", null, null);
 	}
 	
 	@FXML

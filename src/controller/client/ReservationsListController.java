@@ -1,4 +1,4 @@
-package view.client;
+package controller.client;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -63,15 +63,16 @@ public class ReservationsListController extends Controller {
 	@FXML
 	public TextField searchRoomNumber;
 
-	private final String RESERVATION_LIST_LAYOUT = "res/view/ReservationsList.fxml";
+	private final String RESERVATION_LIST_LAYOUT = "/view/client/ReservationsList.fxml";
 	public ArrayList<Room> roomsList;
 	public ArrayList<Reservation> reservationArray;
 	public Reservation selectedReservation;
 
 	public ReservationsListController(RootLayoutController rootLayoutController) {
-		super.fxmlPath = RESERVATION_LIST_LAYOUT;
+//		super.fxmlPath = RESERVATION_LIST_LAYOUT;
 		super.rootLayoutController = rootLayoutController;
 		super.serverAPI = rootLayoutController.serverAPI;
+		super.urlPath = getClass().getResource(RESERVATION_LIST_LAYOUT);
 	}
 
 	@FXML
@@ -235,9 +236,9 @@ public class ReservationsListController extends Controller {
 		boolean checkInSuccess = serverAPI.checkIn(reservationId);
 		if (checkInSuccess) {
 			update();
-			alertWindow(AlertType.INFORMATION, "CheckIn", "CheckIn Successed", "");
+			alertWindow(AlertType.INFORMATION, "CheckIn", "CheckIn Successed", "", "ok.png", "check-in.png");
 		} else {
-			alertWindow(AlertType.INFORMATION, "CheckIn", "CheckIn Failed", "");
+			alertWindow(AlertType.INFORMATION, "CheckIn", "CheckIn Failed", "", "error.png", "check-in.png");
 		}
 		return checkInSuccess;
 	}
@@ -247,28 +248,28 @@ public class ReservationsListController extends Controller {
 		if (checkOutSuccess) {
 			checkOutAndupdateLocalReservation();
 			Optional<ButtonType> result = alertWindow(AlertType.CONFIRMATION, "CheckOut", "CheckOut Successed",
-					"Do you want to view the bill?");
+					"Do you want to view the bill?", "warning.png", "check-out.png");
 			if (result.isPresent() && result.get().equals(ButtonType.OK)) {
 				viewBill();
 				markBillAsPaid();
 			}
 		} else {
-			alertWindow(AlertType.INFORMATION, "CheckOut", "CheckOut Failed", "");
+			alertWindow(AlertType.INFORMATION, "CheckOut", "CheckOut Failed", "", "error.png", "check-out.png");
 		}
 		return checkOutSuccess;
 	}
 	public boolean cancelReservation(int reservationId) {
 		boolean cancelReservationSuccess = false;
 		Optional<ButtonType> result = alertWindow(AlertType.CONFIRMATION, "Cancel Reservation", "Are you sure you want to cancel this reservation",
-				"");
+				"", "warning.png", "reservations.png");
 		if (result.isPresent() && result.get().equals(ButtonType.OK)) {
 			cancelReservationSuccess = serverAPI.cancelReservation(reservationId);
 			if (cancelReservationSuccess) {
 				update();
-				alertWindow(AlertType.INFORMATION, "Cancel Reservation", "Cancel Reservation Successed", "");
+				alertWindow(AlertType.INFORMATION, "Cancel Reservation", "Cancel Reservation Successed", "", "ok.png", "reservations.png");
 				}
 			else {
-				alertWindow(AlertType.INFORMATION, "Cancel Reservation", "Cancel Reservation Failed", "");
+				alertWindow(AlertType.INFORMATION, "Cancel Reservation", "Cancel Reservation Failed", "", "error.png", "reservations.png");
 			}
 		} 
 		return cancelReservationSuccess;
@@ -276,16 +277,16 @@ public class ReservationsListController extends Controller {
 	private boolean deleteReservation() {
 		boolean deleteReservationSuccess = false;
 		Optional<ButtonType> result = alertWindow(AlertType.CONFIRMATION, "Delete Reservation", "Are you sure you want to delete this reservation",
-				"");
+				"", "warning.png", "reservations.png");
 		if (result.isPresent() && result.get().equals(ButtonType.OK)) {
 			deleteReservationSuccess = serverAPI.delete(selectedReservation);
 			
 			if (deleteReservationSuccess) {
 				update();
-				alertWindow(AlertType.INFORMATION, "Delete Reservation", "Delete Reservation Successed", "");
+				alertWindow(AlertType.INFORMATION, "Delete Reservation", "Delete Reservation Successed", "", "ok.png", "reservations.png");
 			}
 			else {
-				alertWindow(AlertType.INFORMATION, "Delete Reservation", "Delete Reservation Failed", "");
+				alertWindow(AlertType.INFORMATION, "Delete Reservation", "Delete Reservation Failed", "", "ok.png", "reservations.png");
 			}
 		}
 		return deleteReservationSuccess;
@@ -354,7 +355,7 @@ public class ReservationsListController extends Controller {
 		BillsListController BillsListController = new BillsListController(rootLayoutController);
 		BillsListController.selectedBill = this.selectedReservation.getBill();
 		Optional<ButtonType> result = alertWindow(AlertType.CONFIRMATION, "Pay Bill",
-				"Do you want to mark the bill as paid?", "");
+				"Do you want to mark the bill as paid?", "", "warning.png", "bill.png");
 		if (result.isPresent() && result.get().equals(ButtonType.OK)) {
 			BillsListController.markBillAsPaid();
 		}

@@ -1,4 +1,4 @@
-package view.client;
+package controller.client;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -55,15 +55,15 @@ public class CustomerListController extends Controller{
 	@FXML
 	public TextField searchName ;
 	
-	private final String CUSTOMER_LIST_LAYOUT = "res/view/CustomerList.fxml";
+	private final String CUSTOMER_LIST_LAYOUT = "/view/client/CustomerList.fxml";
 	
 	public ArrayList<Customer> customersArray;
 	private Customer selectedCustomer;
 	
 	public CustomerListController(RootLayoutController rootLayoutController) {
-		super.fxmlPath = CUSTOMER_LIST_LAYOUT;
 		super.rootLayoutController = rootLayoutController;
 		super.serverAPI = rootLayoutController.serverAPI;
+		super.urlPath = getClass().getResource(CUSTOMER_LIST_LAYOUT);
 	}
 	
 	@FXML
@@ -217,15 +217,15 @@ public class CustomerListController extends Controller{
 	
 	private boolean deleteCustomer() {
 		boolean deleteCustomerSuccess = false;
-		Optional<ButtonType> result = alertWindow(AlertType.CONFIRMATION, "Delete Customer", "Are you sure you want to delete this customer", "");
+		Optional<ButtonType> result = alertWindow(AlertType.CONFIRMATION, "Delete Customer", "Are you sure you want to delete this customer", "", "warning.png", "customer.png");
 		if (result.isPresent() && result.get().equals(ButtonType.OK)) {
 			deleteCustomerSuccess = serverAPI.delete(selectedCustomer);
 			if (deleteCustomerSuccess) {
 				update();
-				alertWindow(AlertType.INFORMATION, "Delete Customer", "Delete Customer Successed", "");
+				alertWindow(AlertType.INFORMATION, "Delete Customer", "Delete Customer Successed", "", "ok.png", "customer.png");
 				}
 			else {
-				alertWindow(AlertType.INFORMATION, "Delete Customer", "Delete Customer Failed", "Cannot delete customer with pindding or checked in reservation.");
+				alertWindow(AlertType.INFORMATION, "Delete Customer", "Delete Customer Failed", "Cannot delete customer with pindding or checked in reservation.", "error.png", "customer.png");
 			}
 		}
 		return deleteCustomerSuccess;

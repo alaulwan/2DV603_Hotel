@@ -17,7 +17,7 @@
                <graphic>
                   <ImageView fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../icons/available_rooms.png" />
+                        <Image url="@icons/available_rooms.png" />
                      </image>
                   </ImageView>
                </graphic></Tab>
@@ -25,7 +25,7 @@
                <graphic>
                   <ImageView fitHeight="26.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../icons/reservations.png" />
+                        <Image url="@icons/reservations.png" />
                      </image>
                   </ImageView>
                </graphic></Tab>
@@ -33,7 +33,7 @@
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../icons/customer.png" />
+                        <Image url="@icons/customer.png" />
                      </image>
                   </ImageView>
                </graphic></Tab>
@@ -41,7 +41,7 @@
                <graphic>
                   <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../icons/bill.png" />
+                        <Image url="@icons/bill.png" />
                      </image>
                   </ImageView>
                </graphic></Tab>
@@ -58,7 +58,7 @@
                <graphic>
                   <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../icons/add.png" />
+                        <Image url="@icons/add.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -70,7 +70,7 @@
                <graphic>
                   <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../icons/check-in.png" />
+                        <Image url="@icons/check-in.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -82,7 +82,7 @@
                <graphic>
                   <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../icons/check-out.png" />
+                        <Image url="@icons/check-out.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -94,7 +94,7 @@
                <graphic>
                   <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../icons/exit.png" />
+                        <Image url="@icons/exit.png" />
                      </image>
                   </ImageView>
                </graphic>

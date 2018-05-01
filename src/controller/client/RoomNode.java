@@ -1,4 +1,4 @@
-package view.client;
+package controller.client;
 
 import javafx.geometry.Pos;
 import javafx.scene.control.Tooltip;

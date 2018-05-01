@@ -1,4 +1,4 @@
-package view.client;
+package controller.client;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -69,15 +69,15 @@ public class AddCustomerController extends Controller {
 	@FXML
 	private Label guestsNameLabel;
 
-	private final String ADD_CUSTOMER_LAYOUT = "res/view/AddCustomer.fxml";
+	private final String ADD_CUSTOMER_LAYOUT = "/view/client/AddCustomer.fxml";
 	public ArrayList<Customer> customersList;
 	public Customer currentCustomer;
 	public Reservation reservation;
 	public ServerAPI serverAPI;
 
 	public AddCustomerController(ServerAPI serverAPI) {
-		super.fxmlPath = ADD_CUSTOMER_LAYOUT;
 		this.serverAPI = serverAPI;
+		super.urlPath = getClass().getResource(ADD_CUSTOMER_LAYOUT);
 	}
 
 	@FXML
@@ -118,26 +118,25 @@ public class AddCustomerController extends Controller {
 		if (!verifyInputs()) {
 			alertWindow(AlertType.ERROR, "Add customer",
 					"The required fields are empty, please fill them to add a customer and complete the reservation!",
-					"");
-		}
-		else {
-		Customer newCustomer = new Customer(this.nameBox.getText(), this.birthDateBox.getValue(),
-				this.maleBox.isSelected() ? Gender.MALE : Gender.FEMALE, this.phoneNumberBox.getText(),
-				this.identificationType.getValue(), this.idNumberBox.getText(), this.creditCardNumberBox.getText(),
-				this.addressBox.getText(), this.nationalityBox.getText(), this.emailBox.getText(),
-				this.descriptionBox.getText());
-		if (currentCustomer == null) {
-			newCustomer.getReservationsList().add(reservation);
-			serverAPI.put(newCustomer);
+					"", "error.png", null);
 		} else {
-			serverAPI.post(newCustomer, currentCustomer.getCustomerId());
-			if (reservation != null) {
-				reservation.setCustomerId(currentCustomer.getCustomerId());
-				reservation.setCustomerName(this.nameBox.getText());
-				serverAPI.put(reservation);
+			Customer newCustomer = new Customer(this.nameBox.getText(), this.birthDateBox.getValue(),
+					this.maleBox.isSelected() ? Gender.MALE : Gender.FEMALE, this.phoneNumberBox.getText(),
+					this.identificationType.getValue(), this.idNumberBox.getText(), this.creditCardNumberBox.getText(),
+					this.addressBox.getText(), this.nationalityBox.getText(), this.emailBox.getText(),
+					this.descriptionBox.getText());
+			if (currentCustomer == null) {
+				newCustomer.getReservationsList().add(reservation);
+				serverAPI.put(newCustomer);
+			} else {
+				serverAPI.post(newCustomer, currentCustomer.getCustomerId());
+				if (reservation != null) {
+					reservation.setCustomerId(currentCustomer.getCustomerId());
+					reservation.setCustomerName(this.nameBox.getText());
+					serverAPI.put(reservation);
+				}
 			}
-		}
-		((Stage) cancelButton.getScene().getWindow()).close();
+			((Stage) cancelButton.getScene().getWindow()).close();
 		}
 	}
 
@@ -201,7 +200,7 @@ public class AddCustomerController extends Controller {
 		emailBox.setText("");
 		birthDateBox.setValue(null);
 		idNumberBox.setText("");
-		//idNumberBox.setEditable(false);
+		// idNumberBox.setEditable(false);
 		addressBox.setText("");
 		identificationType.setValue(null);
 		descriptionBox.setText("");
@@ -259,7 +258,7 @@ public class AddCustomerController extends Controller {
 		if (this.nameBox.getText().equals("") || this.birthDateBox.getValue() == null
 				|| this.phoneNumberBox.getText().equals("") || this.identificationType.getValue() == null
 				|| this.idNumberBox.getText().equals("") || this.creditCardNumberBox.getText().equals("")
-				|| this.addressBox.getText().equals("") || this.nationalityBox.equals("")
+				|| this.addressBox.getText().equals("") || this.nationalityBox.getText().equals("")
 				|| this.emailBox.getText().equals(""))
 			return false;
 		else {

@@ -1,4 +1,4 @@
-package view.client;
+package controller.client;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -43,16 +43,16 @@ public class AvailableRoomController extends Controller {
 	private ImageView logo;
 
 
-	private final String AVAILABLE_ROOM_LAYOUT = "res/view/AvailableRoom.fxml";
+	private final String AVAILABLE_ROOM_LAYOUT = "/view/client/AvailableRoom.fxml";
 	private ArrayList<RoomsFilter> roomsFilterList;
 	public ArrayList<Room> roomsList;
 	public RoomNode selectedRoomNode;
 	private String imageURL ;
 
 	public AvailableRoomController(RootLayoutController rootLayoutController) {
-		super.fxmlPath = AVAILABLE_ROOM_LAYOUT;
 		super.rootLayoutController = rootLayoutController;
 		super.serverAPI = rootLayoutController.serverAPI;
+		super.urlPath = getClass().getResource(AVAILABLE_ROOM_LAYOUT);
 	}
 
 	@FXML
@@ -67,9 +67,9 @@ public class AvailableRoomController extends Controller {
 		}
 		
 		if (roomsList.get(0).getRoomLocation() == RoomLocation.VAXJO)
-			imageURL = "file:res/icons/vaxjologo.png" ;
+			imageURL = getClass().getResource("/view/client/icons/vaxjologo.png").toString() ;
 		else {
-			imageURL = "file:res/icons/kalmarlogo.png" ;
+			imageURL = getClass().getResource("/view/client/icons/kalmarlogo.png").toString() ;
 		}
 			
 		logo.setImage(new Image(imageURL));

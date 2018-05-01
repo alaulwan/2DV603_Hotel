@@ -1,7 +1,10 @@
 package model.client;
 
+import java.net.URL;
 import java.util.List;
 import java.util.Optional;
+
+import controller.client.RootLayoutController;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.ChoiceDialog;
@@ -9,7 +12,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import model.shared.Room.RoomLocation;
-import view.client.RootLayoutController;
 
 public class HotelClient extends Application{
 	public ServerAPI serverAPI;
@@ -36,13 +38,15 @@ public class HotelClient extends Application{
 		choiceDialog.setHeaderText("Welcome to Linnause Hotel");
 		choiceDialog.setTitle("Choose Your Location!");
 		choiceDialog.setContentText("Choose Your Location:");
-		ImageView iv = new ImageView(new Image("file:res/icons/hotel.png"));
+		URL imgUrl = getClass().getResource("/view/client/icons/hotel.png");
+		ImageView iv = new ImageView(new Image(imgUrl.toString()));
 		iv.setFitWidth(140);
 		iv.setFitHeight(160);
 		choiceDialog.setGraphic(iv);
 		
 		Stage dialogStage = (Stage) choiceDialog.getDialogPane().getScene().getWindow();
-		dialogStage.getIcons().add(new Image("file:res/icons/location.png"));
+		URL iconUrl = getClass().getResource("/view/client/icons/location.png");
+		dialogStage.getIcons().add(new Image(iconUrl.toString()));
 
 		Optional<RoomLocation> result = choiceDialog.showAndWait();
 		if (!result.isPresent()) {
@@ -56,7 +60,8 @@ public class HotelClient extends Application{
 		Scene mainScene = new Scene(root.getParentPane());
 		primaryStage.setOnCloseRequest(onExitCloseEverything -> System.exit(0));
 		primaryStage.setScene(mainScene);
-		primaryStage.getIcons().add(new Image("file:res/icons/hotel1.png"));
+		imgUrl = getClass().getResource("/view/client/icons/hotel1.png");
+		primaryStage.getIcons().add(new Image(imgUrl.toString()));
 
 		// Locking window size
 		// primaryStage.setMinWidth(1280);

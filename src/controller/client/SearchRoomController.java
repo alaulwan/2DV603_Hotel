@@ -1,4 +1,4 @@
-package view.client;
+package controller.client;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -74,16 +74,16 @@ public class SearchRoomController extends Controller {
 	@FXML
 	private Button cancelButton;
 
-	private final String SEARCH_ROOM_LAYOUT = "res/view/SearchRoom.fxml";
+	private final String SEARCH_ROOM_LAYOUT = "/view/client/SearchRoom.fxml";
 	private ArrayList<Room> roomsList;
 	private RoomNode selectedRoomNode;
 	public Reservation selectedReservation;
 	public Reservation tempReservation;
 
 	public SearchRoomController(RootLayoutController rootLayoutController) {
-		super.fxmlPath = SEARCH_ROOM_LAYOUT;
 		super.rootLayoutController = rootLayoutController;
 		super.serverAPI = rootLayoutController.serverAPI;
+		super.urlPath = getClass().getResource(SEARCH_ROOM_LAYOUT);
 	}
 
 	@FXML

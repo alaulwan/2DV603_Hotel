@@ -1,4 +1,4 @@
-package view.client;
+package controller.client;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
@@ -59,14 +59,14 @@ public class BillsListController extends Controller {
 	@FXML
 	private CheckBox viewAllBox;
 
-	private final String BILLS_LIST_LAYOUT = "res/view/BillsList.fxml";
+	private final String BILLS_LIST_LAYOUT = "/view/client/BillsList.fxml";
 	public ArrayList<Bill> billsArray;
 	public Bill selectedBill;
 
 	public BillsListController(RootLayoutController rootLayoutController) {
-		super.fxmlPath = BILLS_LIST_LAYOUT;
 		super.rootLayoutController = rootLayoutController;
 		super.serverAPI = rootLayoutController.serverAPI;
+		super.urlPath = getClass().getResource(BILLS_LIST_LAYOUT);
 	}
 
 	@FXML
@@ -119,7 +119,7 @@ public class BillsListController extends Controller {
 
 	protected void markBillAsPaid() {
 		Optional<ButtonType> result = alertWindow(AlertType.CONFIRMATION, "Mark bill as paid...",
-				"Are you sure you want to pay this bill", "");
+				"Are you sure you want to pay this bill", "", "warning.png", "bill.png");
 		if (result.isPresent() && result.get().equals(ButtonType.OK)) {
 			selectedBill.setPayStatus(PayStatus.PAID);
 			serverAPI.post(selectedBill, selectedBill.getBillId());

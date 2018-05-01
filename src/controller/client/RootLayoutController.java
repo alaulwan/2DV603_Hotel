@@ -1,4 +1,4 @@
-package view.client;
+package controller.client;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.Optional;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.layout.HBox;
@@ -51,7 +50,7 @@ public class RootLayoutController extends Controller {
 	@FXML
 	private Button exitButton;
 
-	private final String ROOT_LAYOUT = "res/view/RootLayout.fxml";
+	private final String ROOT_LAYOUT = "/view/client/RootLayout.fxml";
 	private AvailableRoomController availableRoomController;
 	private ReservationsListController reservationsListController;
 	private CustomerListController customerListController;
@@ -59,8 +58,8 @@ public class RootLayoutController extends Controller {
 	private SearchRoomController searchRoomController;
 
 	public RootLayoutController(ServerAPI API) {
-		super.fxmlPath = ROOT_LAYOUT;
 		super.serverAPI = API;
+		super.urlPath = getClass().getResource(ROOT_LAYOUT);
 		availableRoomController = new AvailableRoomController(this);
 		reservationsListController = new ReservationsListController(this);
 		customerListController = new CustomerListController(this);
@@ -101,7 +100,7 @@ public class RootLayoutController extends Controller {
 	@FXML
 	public void checkIn() {
 		Optional<ButtonType> result = alertWindow(AlertType.CONFIRMATION, "Check-in",
-				"Are you sure you want to check in this room", "");
+				"Are you sure you want to check in this room", "", "warning.png", "check-in.png");
 		if (result.isPresent() && result.get().equals(ButtonType.OK)) {
 
 			boolean checkInSuccess = false;
@@ -122,10 +121,10 @@ public class RootLayoutController extends Controller {
 			}
 			if (checkInSuccess) {
 				update();
-				alertWindow(AlertType.INFORMATION, "CheckIn", "CheckIn Successed", "");
+				alertWindow(AlertType.INFORMATION, "CheckIn", "CheckIn Successed", "", "ok.png", "check-in.png");
 
 			} else {
-				alertWindow(AlertType.INFORMATION, "CheckIn", "CheckIn Failed", "");
+				alertWindow(AlertType.INFORMATION, "CheckIn", "CheckIn Failed", "", "error.png", "check-in.png");
 			}
 		}
 	}
@@ -133,7 +132,7 @@ public class RootLayoutController extends Controller {
 	@FXML
 	public void checkOut() {
 		Optional<ButtonType> result = alertWindow(AlertType.CONFIRMATION, "Check-out",
-				"Are you sure you want to check out this room", "");
+				"Are you sure you want to check out this room", "", "warning.png", "check-out.png");
 		if (result.isPresent() && result.get().equals(ButtonType.OK)) {
 			ArrayList<ReservationsFilter> reservationsFilterList = new ArrayList<ReservationsFilter>();
 			LocationReservationsFilter locationReservationsFilter = new LocationReservationsFilter(serverAPI.location);
@@ -147,27 +146,15 @@ public class RootLayoutController extends Controller {
 			for (Reservation rs : reservationArray) {
 				reservationsListController.selectedReservation = rs;
 				reservationsListController.chekOutReservation(rs.getReservationId());
-				// if (rs.checkOutDateAsLocalDate().isAfter(LocalDate.now().minusDays(1))) {
-				// reservationsListController.selectedReservation = rs;
-				// reservationsListController.chekOutReservation(rs.getReservationId());
-				// break;
-				// }
 			}
 		}
 	}
 
 	@FXML
 	public void exit() {
-		Alert closeConfirmation = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to exit?");
-		closeConfirmation.setHeaderText("Confirm Exit");
-		setAlertImage(closeConfirmation, "file:res/icons/warning.png");
-
-		setIcon(closeConfirmation, "file:res/icons/exit.png");
-
-		Optional<ButtonType> result = closeConfirmation.showAndWait();
+		Optional<ButtonType> result = alertWindow(AlertType.CONFIRMATION, "Exit", "Confirm Exit", "Are you sure you want to exit?", "warning.png", "exit.png");
 		if (ButtonType.OK.equals(result.get())) {
 			System.exit(0);
-
 		}
 	}
 

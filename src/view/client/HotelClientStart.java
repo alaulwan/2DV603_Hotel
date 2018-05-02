@@ -1,4 +1,4 @@
-package model.client;
+package view.client;
 
 import java.net.URL;
 import java.util.List;
@@ -11,11 +11,12 @@ import javafx.scene.control.ChoiceDialog;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import model.client.ServerAPI;
 import model.shared.Room.RoomLocation;
 
-public class HotelClient extends Application{
+public class HotelClientStart extends Application{
 	public ServerAPI serverAPI;
-	public HotelClient() {
+	public HotelClientStart() {
 
 	}
 

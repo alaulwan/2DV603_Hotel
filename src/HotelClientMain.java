@@ -1,9 +1,9 @@
-import model.client.HotelClient;
+import view.client.HotelClientStart;
 
 public class HotelClientMain {
 
 	public static void main(String[] args) {
-		HotelClient HotelClient = new HotelClient();
-		HotelClient.startClient(args);
+		HotelClientStart hotelClientStart = new HotelClientStart();
+		hotelClientStart.startClient(args);
 	}
 }

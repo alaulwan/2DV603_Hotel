@@ -224,7 +224,6 @@ public class ReservationsListController extends Controller {
 						mi3.setDisable(!checkOutStatus);
 						mi6.setDisable(!deleteStatus);
 						mi7.setDisable(!cancelStatus);
-
 					}
 				});
 				return row;
@@ -258,6 +257,7 @@ public class ReservationsListController extends Controller {
 		}
 		return checkOutSuccess;
 	}
+	
 	public boolean cancelReservation(int reservationId) {
 		boolean cancelReservationSuccess = false;
 		Optional<ButtonType> result = alertWindow(AlertType.CONFIRMATION, "Cancel Reservation", "Are you sure you want to cancel this reservation",
@@ -329,6 +329,10 @@ public class ReservationsListController extends Controller {
 			addServiceController.selectedReservation = this.selectedReservation;
 			Scene mainScene = new Scene(addServiceController.getParentPane());
 			Stage stage = new Stage();
+			stage.setMinHeight(330);
+			stage.setMinWidth(410);
+			stage.setMaxHeight(330);
+			stage.setMaxWidth(410);
 			stage.setScene(mainScene);
 			stage.setTitle("Add Service");
 			stage.getIcons().add(new Image("file:res/icons/service.png"));

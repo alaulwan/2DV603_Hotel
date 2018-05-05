@@ -1,10 +1,9 @@
-package view.client;
+package controller.client;
 
 import java.net.URL;
 import java.util.List;
 import java.util.Optional;
 
-import controller.client.RootLayoutController;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.ChoiceDialog;

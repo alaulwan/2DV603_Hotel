@@ -1,4 +1,4 @@
-package model.shared;
+package model.client;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;

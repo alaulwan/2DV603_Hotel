@@ -3,7 +3,6 @@ package model.client;
 import java.util.ArrayList;
 
 import model.shared.Bill;
-import model.shared.Connection;
 import model.shared.Customer;
 import model.shared.Reservation;
 import model.shared.Room;

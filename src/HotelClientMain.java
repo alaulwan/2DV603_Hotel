@@ -1,4 +1,4 @@
-import view.client.HotelClientStart;
+import controller.client.HotelClientStart;
 
 public class HotelClientMain {
 

@@ -8,6 +8,8 @@ import java.awt.Desktop;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
+import java.net.URI;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Optional;
 
@@ -16,6 +18,7 @@ import com.itextpdf.text.Chunk;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.Font;
 import com.itextpdf.text.FontFactory;
+import com.itextpdf.text.Image;
 import com.itextpdf.text.PageSize;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.Section;
@@ -60,6 +63,8 @@ public class BillsListController extends Controller {
 	private CheckBox viewAllBox;
 
 	private final String BILLS_LIST_LAYOUT = "/view/client/BillsList.fxml";
+	private final String address = "Växjö: Universitetsvägen 2 \n Kalmar: Strandsvägen 2 \n Tel: +46123456789 \n lnuhotel.se";
+
 	public ArrayList<Bill> billsArray;
 	public Bill selectedBill;
 
@@ -132,7 +137,7 @@ public class BillsListController extends Controller {
 	public void billToPdf() {
 		try {
 			String tempDir = System.getProperty("java.io.tmpdir");
-			File file = new File(tempDir + "bill.pdf");
+			File file = new File( tempDir + "bill" + selectedBill.getCustomerName() + "-" + selectedBill.getBillId() + ".pdf");
 
 			OutputStream fileOutStream = new FileOutputStream(file);
 			Document document = new Document(PageSize.A4);
@@ -141,41 +146,53 @@ public class BillsListController extends Controller {
 			document.open();
 			Font chapterFont = FontFactory.getFont(FontFactory.HELVETICA, 16, Font.BOLDITALIC);
 			Font paragraphFont = FontFactory.getFont(FontFactory.HELVETICA, 12, Font.NORMAL);
-			Chunk chunk = new Chunk("Bill ID: " + selectedBill.getBillId(), chapterFont);
-			Chapter chapter = new Chapter(new Paragraph(chunk), 1);
-			chapter.setNumberDepth(0);
-			Section section1 = chapter.addSection("Customer ID: " + selectedBill.getCustomerId(), 0);
-			Section subSec = section1.addSection("Customer Name: " + selectedBill.getCustomerName(), 0);
-			Section subSec2 = section1.addSection("Pay Status: " + selectedBill.getPayStatus(), 0);
+			
+//			Chunk chunk = new Chunk("Bill ID: " + selectedBill.getBillId(), chapterFont);
+//			Chapter chapter = new Chapter(new Paragraph(chunk), 1);
+//			chapter.setNumberDepth(0);
+			
+			URL imgUrl = getClass().getResource("/view/client/icons/hotel.png");
+			Image logo = Image.getInstance(imgUrl.toString());
+	        logo.setAbsolutePosition(450,700);
+	        logo.scaleAbsolute(100, 120);
 
-			chapter.add(new Paragraph("Services:\n\n", paragraphFont));
+			Paragraph chunk = new Paragraph("LINNAEUS HOTEL " , chapterFont);			
+			Paragraph section = new Paragraph (address, paragraphFont);
+			document.add(section);
+			
+//			Section section1 = chapter.addSection("Customer ID: " + selectedBill.getCustomerId(), 0);
+//			Section subSec = section1.addSection("Customer Name: " + selectedBill.getCustomerName(), 0);
+//			Section subSec2 = section1.addSection("Pay Status: " + selectedBill.getPayStatus(), 0);
+//
+//			chapter.add(new Paragraph("Services:\n\n", paragraphFont));
+//
+//			PdfPTable table = new PdfPTable(4);
+//			table.addCell("Descraption");
+//			table.addCell("Pieces Number");
+//			table.addCell("Price/Unit");
+//			table.addCell("Total Price");
+//			float totalPrice = 0;
+//			for (Service service : selectedBill.getServiceList()) {
+//				table.addCell(service.getDescraption());
+//				table.addCell(service.getPiecesNumber() + "");
+//				table.addCell(service.getPrice() + "");
+//				table.addCell(service.getTotalPrice() + "");
+//				totalPrice += service.getTotalPrice();
+//			}
+//
+//			chapter.add(table);
+//			Section section3 = chapter.addSection("Total Price: " + totalPrice, 0);
+//
+			document.add(chunk);
+			document.add(logo);
 
-			PdfPTable table = new PdfPTable(4);
-			table.addCell("Descraption");
-			table.addCell("Pieces Number");
-			table.addCell("Price/Unit");
-			table.addCell("Total Price");
-			float totalPrice = 0;
-			for (Service service : selectedBill.getServiceList()) {
-				table.addCell(service.getDescraption());
-				table.addCell(service.getPiecesNumber() + "");
-				table.addCell(service.getPrice() + "");
-				table.addCell(service.getTotalPrice() + "");
-				totalPrice += service.getTotalPrice();
-			}
-
-			chapter.add(table);
-			Section section3 = chapter.addSection("Total Price: " + totalPrice, 0);
-
-			document.add(chapter);
-			// document.add(table);
-
+//			// document.add(table);
 			document.close();
-
+			
 			Desktop dt = Desktop.getDesktop();
 			dt.open(file);
 		} catch (Exception e) {
-
+			e.printStackTrace();
 		}
 
 	}

@@ -18,10 +18,10 @@ public class Bill implements Serializable {
 	private PayStatus payStatus;
 	private ArrayList<Service> serviceList = new ArrayList<Service>();
 
-	public Bill() {
-
+	public Bill () {
+		
 	}
-
+	
 	public Bill(int billId, int customerId, String customerName, float price, String descraption) {
 		Service reserveService = new Service(ServiceType.RESERVATION, price, 1, descraption);
 		serviceList.add(reserveService);

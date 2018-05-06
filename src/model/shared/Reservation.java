@@ -50,7 +50,7 @@ public class Reservation implements Serializable {
 		this.setGuestsNumber(guestsNumber);
 		this.setDiscription(description);
 		String reservationDescription = roomLocation + " Room: " + roomNumber + " Days: " + getTotalDays();
-		this.setBill(new Bill(reservationId, this.customerId, this.customerName, price * getTotalDays(),
+		this.setBill(new Bill(this.getReservationId(), this.customerId, this.customerName, price * getTotalDays(),
 				reservationDescription));
 	}
 
@@ -143,7 +143,7 @@ public class Reservation implements Serializable {
 		this.checkInDate = checkInDate;
 		updateBill();
 	}
-	
+
 	public LocalDate checkInDateAsLocalDate() {
 		return LocalDate.parse(checkInDate);
 	}
@@ -244,13 +244,14 @@ public class Reservation implements Serializable {
 	public void setBill(Bill bill) {
 		this.bill = bill;
 	}
-	
+
 	private void updateBill() {
-		if (this.bill!= null && this.bill.getServiceList()!= null) {
+		if (this.bill != null && this.bill.getServiceList() != null) {
 			String reservationDescription = roomLocation + " Room: " + roomNumber + " Days: " + getTotalDays();
-			Service reserveService = new Service(ServiceType.RESERVATION, price * getTotalDays(), 1, reservationDescription);
+			Service reserveService = new Service(ServiceType.RESERVATION, price * getTotalDays(), 1,
+					reservationDescription);
 			this.bill.getServiceList().set(0, reserveService);
-		}		
+		}
 	}
 
 }

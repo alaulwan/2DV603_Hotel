@@ -14,6 +14,7 @@ import model.shared.Room.RoomStatus;
 import model.shared.filters.reservationsFilters.ReservationsFilter;
 import model.shared.filters.reservationsFilters.StatusReservationsFilter;
 
+// Thread to update the status of the reservatons and the room everyday at 00:00:00 O'clock
 public class RoomsStatusUpdaterThread extends Thread {
 	public Hotel hotel;
 
@@ -37,6 +38,7 @@ public class RoomsStatusUpdaterThread extends Thread {
 		}
 	}
 	
+	// Update the reservation-status. For example, cancel all pending reservations if the guest did not check within the defined time
 	public void updateAllReservationsInfo() {
 		ArrayList<Reservation> reservationsList = new ArrayList<Reservation>(hotel.getReservationsList());
 		for (Reservation res : reservationsList) {
@@ -49,6 +51,7 @@ public class RoomsStatusUpdaterThread extends Thread {
 		}
 	}
 
+	// Update the reservation-status. For example, define which rooms should checked out today
 	public void updateAllRoomsStatus() {
 		LocalDate todayDate = LocalDate.now();
 		ArrayList<Room> roomsList = new ArrayList<Room>(hotel.getRoomsAndSuitesList());

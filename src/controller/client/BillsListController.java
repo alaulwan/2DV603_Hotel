@@ -8,13 +8,9 @@ import java.awt.Desktop;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
-import java.net.URI;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Optional;
-
-import com.itextpdf.text.Chapter;
-import com.itextpdf.text.Chunk;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.Element;
 import com.itextpdf.text.Font;
@@ -22,7 +18,6 @@ import com.itextpdf.text.FontFactory;
 import com.itextpdf.text.Image;
 import com.itextpdf.text.PageSize;
 import com.itextpdf.text.Paragraph;
-import com.itextpdf.text.Section;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import javafx.beans.binding.Bindings;
@@ -72,7 +67,7 @@ public class BillsListController extends Controller {
 	public BillsListController(RootLayoutController rootLayoutController) {
 		super.rootLayoutController = rootLayoutController;
 		super.serverAPI = rootLayoutController.serverAPI;
-		super.urlPath = getClass().getResource(BILLS_LIST_LAYOUT);
+		super.fxmlURL = getClass().getResource(BILLS_LIST_LAYOUT);
 	}
 
 	@FXML

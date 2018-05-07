@@ -14,14 +14,14 @@ import javafx.stage.Stage;
 import model.client.ServerAPI;
 
 public class Controller {
-	protected URL urlPath;
+	protected URL fxmlURL;
 	protected RootLayoutController rootLayoutController;
 	public ServerAPI serverAPI;
 
 	public Parent getParentPane() throws IOException {
 		FXMLLoader loader = new FXMLLoader();
 		loader.setController(this);
-		loader.setLocation(urlPath);
+		loader.setLocation(fxmlURL);
 
 		Parent rootLayout = (Parent) loader.load();
 		return rootLayout;

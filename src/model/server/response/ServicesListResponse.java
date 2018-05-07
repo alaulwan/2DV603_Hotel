@@ -5,6 +5,7 @@ import model.server.HotelServer.SavingThread;
 import model.shared.Hotel;
 import model.shared.Service;
 
+// This response will send all available services in the hotel to the client
 public class ServicesListResponse extends Response {
 	/**
 	 * 

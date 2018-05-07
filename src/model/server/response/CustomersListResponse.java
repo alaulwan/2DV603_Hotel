@@ -16,7 +16,10 @@ public class CustomersListResponse extends Response {
 
 	public CustomersListResponse(Hotel hotel, SavingThread savingThread, ArrayList<CustomersFilter> customersFilterList) {
 		super (hotel, savingThread);
+		// Get all customers in the hotel
 		customersList = new ArrayList<Customer>(hotel.getCustomersList());
+		
+		// Apply the received-filters from the client on the customers-list
 		if (customersFilterList != null) {
 			for (CustomersFilter filter : customersFilterList) {
 				filter.applyCustomersFilter(customersList);

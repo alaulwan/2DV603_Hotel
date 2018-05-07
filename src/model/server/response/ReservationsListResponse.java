@@ -15,7 +15,10 @@ public class ReservationsListResponse extends Response {
 
 	public ReservationsListResponse(Hotel hotel, SavingThread savingThread, ArrayList<ReservationsFilter> reservationsFilterList) {
 		super (hotel, savingThread);
+		// Get all reservations in the hotel
 		reservationsList = new ArrayList<Reservation>(hotel.getReservationsList());
+		
+		// Apply the received-filters from the client on the reservations-list
 		if (reservationsFilterList != null) {
 			for (ReservationsFilter filter : reservationsFilterList) {
 				filter.applyReservationsFilter(reservationsList);

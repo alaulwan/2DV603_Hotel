@@ -10,6 +10,7 @@ import model.shared.Reservation;
 import model.shared.Reservation.ReservationStatus;
 import model.shared.Room.RoomStatus;
 
+// This response to edit an existing object such as customer, reservation, or bill
 public class PostResponse extends Response {
 	/**
 	 * 
@@ -22,6 +23,7 @@ public class PostResponse extends Response {
 		super (hotel, savingThread);
 		this.receivedObject = Object;
 		this.Id = Id;
+		// If the received object from the client is a customer, reservation or bill, then invoke the corresponding method
 		if (receivedObject instanceof Customer) {
 			updateCustomer();
 		} else if (receivedObject instanceof Reservation) {
@@ -29,10 +31,13 @@ public class PostResponse extends Response {
 		} else if (receivedObject instanceof Bill) {
 			updateBill();
 		}
+		
+		// If success, save to the database
 		if ((boolean) super.object)
 			super.updateDataBase();
 	}
 
+	// Method to edit the received reservation
 	private void updateCustomer() {
 		try {
 			Customer receivedCustomer = (Customer) receivedObject;
@@ -44,6 +49,7 @@ public class PostResponse extends Response {
 
 	}
 
+	// Method to edit the received customer
 	private void updateReservation() {
 		try {
 			Reservation receivedReservation = (Reservation) receivedObject;

@@ -59,7 +59,7 @@ public class RootLayoutController extends Controller {
 
 	public RootLayoutController(ServerAPI API) {
 		super.serverAPI = API;
-		super.urlPath = getClass().getResource(ROOT_LAYOUT);
+		super.fxmlURL = getClass().getResource(ROOT_LAYOUT);
 		availableRoomController = new AvailableRoomController(this);
 		reservationsListController = new ReservationsListController(this);
 		customerListController = new CustomerListController(this);

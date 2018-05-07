@@ -15,8 +15,8 @@ import model.shared.Room.RoomLocation;
 
 public class HotelClientStart extends Application{
 	public ServerAPI serverAPI;
+	
 	public HotelClientStart() {
-
 	}
 
 	public void startClient(String[] args) {
@@ -25,11 +25,8 @@ public class HotelClientStart extends Application{
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		List<String> argsList = getParameters().getRaw();
-		if(argsList.size()>0 && isCurrectIP(argsList.get(0)))
-			serverAPI = new ServerAPI(argsList.get(0));
-		else
-			serverAPI = new ServerAPI("127.0.0.1");
+		String IP = prseIpAddress(getParameters().getRaw());
+		serverAPI = new ServerAPI(IP);
 		
 		primaryStage.setTitle("Linnaeus Hotel");
 
@@ -63,16 +60,19 @@ public class HotelClientStart extends Application{
 		imgUrl = getClass().getResource("/view/client/icons/hotel1.png");
 		primaryStage.getIcons().add(new Image(imgUrl.toString()));
 
-		// Locking window size
-		// primaryStage.setMinWidth(1280);
-		// primaryStage.setMinHeight(600);
-		// primaryStage.setMaxWidth(1280);
-		// primaryStage.setMaxHeight(600);
-
 		primaryStage.show();
 
 	}
 
+	// Method to extract the IP from the arguments
+	private String prseIpAddress(List<String> argsList) {
+		if(argsList.size()>0 && isCurrectIP(argsList.get(0)))
+			return argsList.get(0);
+		else
+			return "127.0.0.1";
+	}
+
+	// check if the given IP in the arguments is a valid IP address
 	private boolean isCurrectIP(String IP) {
 		String[] IpParts = IP.split("\\.");
 		if (IpParts.length == 4) {

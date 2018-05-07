@@ -15,11 +15,12 @@ import model.shared.requests.Request.RequestType;
 import model.shared.requests.ReservationsListRequest;
 import model.shared.requests.RoomsListRequest;
 
+// This class will generate the corresponding response according to the request from the client
 public class ResponseFactory {
 	public Hotel hotel;
 	public SavingThread savingThread;
-	Request recievedRequest;
-	Response response;
+	public Request recievedRequest;
+	public Response response;
 
 	public ResponseFactory(Hotel hotel, SavingThread savingThread, Request recievedRequest) {
 		this.hotel = hotel;
@@ -27,6 +28,7 @@ public class ResponseFactory {
 		this.recievedRequest = recievedRequest;
 	}
 
+	// This method return an response according to the response from the client
 	public Response getResponse() {
 		if (recievedRequest.requestType == RequestType.PUT) {
 			response = new PutResponse(hotel, savingThread, ((PutRequest) recievedRequest).Object);

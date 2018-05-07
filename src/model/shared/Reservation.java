@@ -62,6 +62,7 @@ public class Reservation implements Serializable {
 		return false;
 	}
 
+	// Method to check-out an reservation. This can only be executed on an pending reservations
 	public boolean checkOut() {
 		this.setReservationStatus(ReservationStatus.CHECKED_OUT);
 		if (LocalDate.now().isBefore(this.checkOutDateAsLocalDate())) {
@@ -73,9 +74,12 @@ public class Reservation implements Serializable {
 		return true;
 	}
 
+	// Method to cancel an reservation. This can only be executed on the pending reservations
 	public boolean cancel() {
 		this.setReservationStatus(ReservationStatus.CANCELED);
 		String reservationDescription = "";
+		// Check how long time the reservation canceled before the check-in day to calculate the bill
+		// and update the bill description
 		int cancelPeriod = Period.between(LocalDate.now(), this.checkInDateAsLocalDate()).getDays();
 		if (cancelPeriod > 1) {
 			bill.getServiceList().remove(0);

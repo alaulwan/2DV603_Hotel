@@ -72,7 +72,7 @@ public class ReservationsListController extends Controller {
 //		super.fxmlPath = RESERVATION_LIST_LAYOUT;
 		super.rootLayoutController = rootLayoutController;
 		super.serverAPI = rootLayoutController.serverAPI;
-		super.urlPath = getClass().getResource(RESERVATION_LIST_LAYOUT);
+		super.fxmlURL = getClass().getResource(RESERVATION_LIST_LAYOUT);
 	}
 
 	@FXML
@@ -245,6 +245,7 @@ public class ReservationsListController extends Controller {
 	public boolean chekOutReservation(int reservationId) {
 		boolean checkOutSuccess = serverAPI.checkOut(reservationId);
 		if (checkOutSuccess) {
+			// Update the reservation in the reservations-table in GUI
 			checkOutAndupdateLocalReservation();
 			Optional<ButtonType> result = alertWindow(AlertType.CONFIRMATION, "CheckOut", "CheckOut Successed",
 					"Do you want to view the bill?", "warning.png", "check-out.png");
@@ -292,6 +293,7 @@ public class ReservationsListController extends Controller {
 		return deleteReservationSuccess;
 	}
 
+	// This method will just update the reservation in the reservations-table in GUI
 	private void checkOutAndupdateLocalReservation() {
 		selectedReservation.setReservationStatus(ReservationStatus.CHECKED_OUT);
 		if (LocalDate.now().isBefore(selectedReservation.checkOutDateAsLocalDate())) {
@@ -344,6 +346,7 @@ public class ReservationsListController extends Controller {
 		}
 	}
 
+	// Update the reservations-table in GUI
 	private void update() {
 		viewHistoryChecked();
 		super.rootLayoutController.update();

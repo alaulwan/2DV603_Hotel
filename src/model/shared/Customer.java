@@ -32,9 +32,6 @@ public class Customer implements Serializable {
 	private String description;
 
 	private ArrayList<Reservation> reservationsList = new ArrayList<Reservation>();
-	// private int reservationsCounter ;
-	// private String rooms = "" ;
-	// private ArrayList <Bill> billsList = new ArrayList<Bill>();
 
 	public Customer() {
 
@@ -57,21 +54,25 @@ public class Customer implements Serializable {
 		this.description = description;
 	}
 
+	// Method to add reservation to the customer
 	public void addReservation(int roomId, int roomNumber, RoomLocation roomLocation, LocalDate checkInDate,
 			LocalDate checkOutDate, float roomPrice, float discount, int guestsNumber, String description) {
 		Reservation reservation = new Reservation(ReservationStatus.PENDING, this.getCustomerId(), this.getName(),
 				roomId, roomNumber, roomLocation, checkInDate, checkOutDate, roomPrice, discount, guestsNumber,
 				description);
 		reservationsList.add(reservation);
-		/*
-		 * reservationsCounter ++ ; if (reservationsCounter == 1 ) setRooms(getRooms() +
-		 * Integer.toString(roomNumber)) ; else setRooms(getRooms() +
-		 * Integer.toString(roomNumber) +", ") ;
-		 */
+	}
+	
+	// Method to edit the customer info depending on another customer
+	public void updateFrom(Customer customer) {
+		updateCustomerInfo(customer.getName(), customer.birthDateToLocaleDate(), customer.getGender(), customer.getPhoneNum(),
+				customer.getIdentificationType(), customer.getIdentificationNumber(), customer.getCreditCardNum(), customer.getAddress(), customer.getNationality(),
+				customer.getEmail(), customer.getDescription());
 	}
 
+	// Method to edit the customer info
 	public void updateCustomerInfo(String name, LocalDate birthDate, Gender gender, String mobileNum,
-			IdentificationType identificationType, String identificationNumber, String address, String nationality,
+			IdentificationType identificationType, String identificationNumber, String creditCardNum, String address, String nationality,
 			String email, String description) {
 		this.name = name;
 		this.setBirthDate(birthDate);
@@ -79,11 +80,13 @@ public class Customer implements Serializable {
 		this.phoneNum = mobileNum;
 		this.identificationType = identificationType;
 		this.identificationNumber = identificationNumber;
+		this.creditCardNum = creditCardNum;
 		this.address = address;
 		this.nationality = nationality;
 		this.email = email;
 		this.description = description;
 
+		// Correct the customer-ID and customer-name for customer's reservations
 		for (Reservation r : reservationsList) {
 			r.setCustomerId(this.customerId);
 			r.setCustomerName(this.name);
@@ -212,21 +215,9 @@ public class Customer implements Serializable {
 
 	public void setReservationsList(ArrayList<Reservation> reservationsList) {
 		this.reservationsList = reservationsList;
-		// this.setReservationsCounter();
 	}
 
-	public void updateFrom(Customer customer) {
-		this.setAddress(customer.getAddress());
-		this.setName(customer.getName());
-		this.setBirthDate(customer.getBirthDate());
-		this.setCreditCardNum(customer.getCreditCardNum());
-		this.setDescription(customer.getDescription());
-		this.setEmail(customer.getEmail());
-		this.setGender(customer.getGender());
-		this.setIdentificationNumber(customer.getIdentificationNumber());
-		this.setIdentificationType(customer.getIdentificationType());
-	}
-
+	// Method to get the pending and checked in reserved rooms-numbers
 	public String getCurrentReservedRooms() {
 		String rooms = "";
 		int reservationsCounter = 0;
@@ -240,6 +231,7 @@ public class Customer implements Serializable {
 		return rooms;
 	}
 
+	// Method to get the total number of the pending and checked in reservations
 	public int getCurrentReservedNumbers() {
 		int reservationsCounter = 0;
 		for (Reservation res : reservationsList) {
@@ -250,25 +242,5 @@ public class Customer implements Serializable {
 		}
 		return reservationsCounter;
 	}
-
-	/*
-	 * public int getReservationsCounter() { return reservationsCounter; }
-	 * 
-	 * public void setReservationsCounter() { this.reservationsCounter =
-	 * getReservationsList().size(); }
-	 */
-
-	/*
-	 * public String getRooms() { return rooms; }
-	 * 
-	 * public void setRooms(String rooms) { this.rooms = rooms; }
-	 */
-
-	/*
-	 * public ArrayList<Bill> getBillsList() { return billsList; }
-	 * 
-	 * public void setBillsList(ArrayList<Bill> billsList) { this.billsList =
-	 * billsList; }
-	 */
 
 }

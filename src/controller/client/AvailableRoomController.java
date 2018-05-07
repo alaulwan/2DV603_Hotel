@@ -52,7 +52,7 @@ public class AvailableRoomController extends Controller {
 	public AvailableRoomController(RootLayoutController rootLayoutController) {
 		super.rootLayoutController = rootLayoutController;
 		super.serverAPI = rootLayoutController.serverAPI;
-		super.urlPath = getClass().getResource(AVAILABLE_ROOM_LAYOUT);
+		super.fxmlURL = getClass().getResource(AVAILABLE_ROOM_LAYOUT);
 	}
 
 	@FXML

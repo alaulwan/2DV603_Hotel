@@ -15,7 +15,10 @@ public class BillsListResponse extends Response {
 
 	public BillsListResponse(Hotel hotel, SavingThread savingThread, ArrayList<BillsFilter> billsFilterList) {
 		super (hotel, savingThread);
+		// Get all bills in the hotel
 		billsList = new ArrayList<Bill>(hotel.getBillsList());
+		
+		// Apply the received-filters from the client on the bills-list
 		if (billsFilterList != null) {
 			for (BillsFilter filter : billsFilterList) {
 				filter.applyBillsFilter(billsList);

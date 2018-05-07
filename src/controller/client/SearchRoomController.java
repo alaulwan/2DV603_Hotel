@@ -83,7 +83,7 @@ public class SearchRoomController extends Controller {
 	public SearchRoomController(RootLayoutController rootLayoutController) {
 		super.rootLayoutController = rootLayoutController;
 		super.serverAPI = rootLayoutController.serverAPI;
-		super.urlPath = getClass().getResource(SEARCH_ROOM_LAYOUT);
+		super.fxmlURL = getClass().getResource(SEARCH_ROOM_LAYOUT);
 	}
 
 	@FXML
@@ -96,6 +96,9 @@ public class SearchRoomController extends Controller {
 		locationBox.setValue(serverAPI.location);
 		arrivalDateBox.setValue(LocalDate.now());
 		departureDateBox.setValue(LocalDate.now().plusDays(1));
+		// If selectedReservation is null,
+		// then this controller to create new reservation
+		// Else this controller to update an existing reservation
 		if (selectedReservation != null) {
 			nextButton.setText("Save");
 		}

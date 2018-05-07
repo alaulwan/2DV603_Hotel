@@ -11,7 +11,9 @@ public class CancelReservationResponse extends Response {
 
 	public CancelReservationResponse(Hotel hotel, SavingThread savingThread, int reservationId) {
 		super (hotel, savingThread);
+		// Cancel the reservation that the client sent its ID
 		cancelReservation(reservationId);
+		// If success, save to the database
 		if ((boolean) super.object)
 			super.updateDataBase();
 	}

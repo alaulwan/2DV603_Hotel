@@ -2,6 +2,7 @@ package model.shared;
 
 import java.util.ArrayList;
 
+// The suite is adjacent rooms
 public class Suite extends Room {
 	private static final long serialVersionUID = 1L;
 	private ArrayList<Room> roomsList = new ArrayList<Room>();
@@ -91,6 +92,7 @@ public class Suite extends Room {
 		}
 	}
 
+	// Calculate the size of the suite depending on the quality of its rooms
 	private void CalculateRoomSize() {
 		int size = 0;
 		for (Room room : roomsList) {
@@ -106,6 +108,7 @@ public class Suite extends Room {
 		}
 	}
 
+	// Calculate the quality of the suite depending on the quality of its rooms
 	@Override
 	public void calculateQualityLev() {
 		if (roomsList.size() > 0) {

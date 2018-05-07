@@ -138,7 +138,6 @@ public class Room implements Serializable {
 
 	// set the quality level depends on the room size , air conditioner, balcony,
 	// and view
-	// TODO should modify it for the adjoin ability
 	public void calculateQualityLev() {
 		qualityLev = 3;
 		if (roomSize == RoomSize.MEDIUM)

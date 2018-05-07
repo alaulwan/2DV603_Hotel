@@ -16,10 +16,13 @@ public class HotelServerThread extends Thread {
 	public Hotel hotel;
 	public SavingThread savingThread;
 	public static int counter = 0;
-	private final int clientId;
+	@SuppressWarnings("unused")
+	private final int clientId; // This will be used if you enable the printing in the console when close the
+								// connection
 	private ObjectInputStream objectInputStream;
 	private ObjectOutputStream objectOutputStream;
 
+	// This thread is to serve an client-request (one thread for each request)
 	public HotelServerThread(Hotel hotel, SavingThread savingThread, Socket socket, int BUFSIZE) {
 		this.socket = socket;
 		this.hotel = hotel;
@@ -44,19 +47,14 @@ public class HotelServerThread extends Thread {
 		}
 
 		if (recievedRequest != null) {
-
-			// Print information about the client and the request's header in the console
-			// printRequestSummary(recievedRequest.getRequestAsString());
-
 			// Create a response factory to generate a suitable response according to the
 			// request
 			ResponseFactory responseFactory = new ResponseFactory(hotel, savingThread, recievedRequest);
 
-			// Generate the response. ()
+			// Generate the response.
 			Response response = responseFactory.getResponse();
 
 			// Send the response to the client
-			// response.send(objectOutputStream);
 			response.sendObject(objectOutputStream);
 		}
 
@@ -65,23 +63,12 @@ public class HotelServerThread extends Thread {
 
 	}
 
-	// Method to print a request-summary
-	@SuppressWarnings("unused")
-	private void printRequestSummary(String recievedHeader) {
-		if (recievedHeader != null && !recievedHeader.isEmpty()) {
-			System.out.printf("\n[Client " + clientId + "] TCP echo request from %s",
-					socket.getInetAddress().getHostName());
-			System.out.printf(" using port %d\n", socket.getPort());
-			System.out.println("Recieved(" + recievedHeader.length() + " bytes):\n" + "Header:\n" + recievedHeader);
-
-		}
-	}
-
-	// Method to close the socket and print a tip in the console
+	// Method to close the socket. You can enable the printing client-id at the end
+	// of the connection and confirm the closing
 	private void closeSoket() {
 		try {
 			socket.close();
-			System.out.println("\n******* Client " + clientId + ": connection is closed *******\n");
+//			System.out.println("\n******* Client " + clientId + ": connection is closed *******\n");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

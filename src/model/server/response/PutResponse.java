@@ -7,6 +7,7 @@ import model.shared.Hotel;
 import model.shared.Reservation;
 import model.shared.Room.RoomStatus;
 
+//This response to create and add a new customer
 public class PutResponse extends Response {
 	/**
 	 * 
@@ -17,6 +18,8 @@ public class PutResponse extends Response {
 	public PutResponse(Hotel hotel, SavingThread savingThread, Object Object) {
 		super (hotel, savingThread);
 		this.receivedObject = Object;
+		
+		// If the received object from the client is a customer or reservation, then invoke the corresponding method
 		if (receivedObject instanceof Customer) {
 			addCustomer();
 		} else if (receivedObject instanceof Reservation) {
@@ -26,6 +29,7 @@ public class PutResponse extends Response {
 			super.updateDataBase();
 	}
 
+	// Method to create and add a new reservation
 	private void addReservation() {
 		try {
 			Reservation receivedReservation = (Reservation) receivedObject;
@@ -42,6 +46,7 @@ public class PutResponse extends Response {
 
 	}
 
+	// Method to create and add a new customer
 	private void addCustomer() {
 		try {
 			Customer receivedCustomer = (Customer) receivedObject;

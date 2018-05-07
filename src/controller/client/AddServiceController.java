@@ -38,7 +38,7 @@ public class AddServiceController extends Controller {
 	
 	public AddServiceController(ServerAPI serverAPI) {
 		this.serverAPI = serverAPI;
-		super.urlPath = getClass().getResource(ADD_SERVICE_LAYOUT);
+		super.fxmlURL = getClass().getResource(ADD_SERVICE_LAYOUT);
 	}
 	
 	@FXML

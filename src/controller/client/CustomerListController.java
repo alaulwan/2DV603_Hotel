@@ -63,7 +63,7 @@ public class CustomerListController extends Controller{
 	public CustomerListController(RootLayoutController rootLayoutController) {
 		super.rootLayoutController = rootLayoutController;
 		super.serverAPI = rootLayoutController.serverAPI;
-		super.urlPath = getClass().getResource(CUSTOMER_LIST_LAYOUT);
+		super.fxmlURL = getClass().getResource(CUSTOMER_LIST_LAYOUT);
 	}
 	
 	@FXML

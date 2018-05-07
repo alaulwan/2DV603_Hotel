@@ -77,13 +77,16 @@ public class AddCustomerController extends Controller {
 
 	public AddCustomerController(ServerAPI serverAPI) {
 		this.serverAPI = serverAPI;
-		super.urlPath = getClass().getResource(ADD_CUSTOMER_LAYOUT);
+		super.fxmlURL = getClass().getResource(ADD_CUSTOMER_LAYOUT);
 	}
 
 	@FXML
 	public void initialize() {
 		saveButton.setDisable(true);
 		identificationType.setItems(FXCollections.observableList(Arrays.asList(IdentificationType.values())));
+		// If currentCustomer is null,
+		// then this controller to create new customer
+		// Else this controller to update an existing customer
 		if (currentCustomer == null) {
 			setComboBoxFactory();
 			importAllCustomers();
@@ -177,6 +180,7 @@ public class AddCustomerController extends Controller {
 
 	}
 
+	// If this controller is to edit exist customer, then this method will be used to load the selected customer-details
 	private void loadCustomer() {
 		nationalityBox.setText(currentCustomer.getNationality());
 		creditCardNumberBox.setText(currentCustomer.getCreditCardNum());

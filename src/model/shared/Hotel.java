@@ -22,8 +22,8 @@ public class Hotel implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private ArrayList<Customer> customersList = new ArrayList<Customer>();
 	private ArrayList<Room> roomsList = new ArrayList<Room>();
-	private ArrayList<Suite> suitesList = new ArrayList<Suite>();
-	private ArrayList<Service> servicesList = new ArrayList<Service>();
+	private ArrayList<Suite> suitesList = new ArrayList<Suite>();	// The suite in adjacent rooms
+	private ArrayList<Service> servicesList = new ArrayList<Service>(); // A list of services that can the hotel offer
 
 	public Hotel() {
 
@@ -60,6 +60,7 @@ public class Hotel implements Serializable {
 		return null;
 	}
 
+	// Method to check-in an reservation. This can only be executed on an pending reservations
 	public boolean chekInReservation(int reservationId) {
 		Reservation res = this.getReservationById(reservationId);
 		if (res != null && res.checkIn()) {
@@ -69,6 +70,7 @@ public class Hotel implements Serializable {
 		return false;
 	}
 
+	// Method to check-out an reservation. This can only be executed on an checked-in reservations
 	public boolean chekOutReservation(int reservationId) {
 		Reservation res = this.getReservationById(reservationId);
 		Room room = this.getRoomById(res.getRoomId());
@@ -83,6 +85,7 @@ public class Hotel implements Serializable {
 		return false;
 	}
 
+	// Method to cancel an reservation. This can only be executed on the pending reservations
 	public boolean cancelReservation(int reservationId) {
 		Reservation res = this.getReservationById(reservationId);
 		if (res != null && res.getReservationStatus().equals(ReservationStatus.PENDING)) {
@@ -99,6 +102,7 @@ public class Hotel implements Serializable {
 		return false;
 	}
 
+	// Method to delete an reservation completely. This can only be executed on the pending or checked-out reservations
 	public boolean deleteReservation(int reservationId) {
 		boolean canceled = false;
 		boolean deleted = false;

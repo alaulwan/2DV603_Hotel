@@ -14,34 +14,25 @@ import model.shared.Room;
 
 public class HotelDAO {
 
+	// Save all information in the hotel to XML file
 	public void xmlSave(Hotel hotel) {
-		xmlSave(hotel, "hotel.xml");
-	}
-
-	public void xmlSave(Hotel hotel, String fileName) {
+		String fileName = "hotel.xml";
 		try {
 			JAXBContext context = JAXBContext.newInstance(Hotel.class);
 			Marshaller m = context.createMarshaller();
 			// for pretty-print XML in JAXB
 			m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
-
-			// Write to System.out for debugging
-			// m.marshal(dao, System.out);
 			File file = new File("res/DataBase/" + fileName);
-			// Write to File
-			// File file = new File(url.toURI());
 			m.marshal(hotel, file);
-			System.out.println("Saved successfully to: " + file.getAbsolutePath());
+			// System.out.println("Saved successfully to: " + file.getAbsolutePath());
 		} catch (JAXBException e) {
 			e.printStackTrace();
 		}
 	}
 
+	// Load all information about the hotel from XML file
 	public Hotel xmlLoad() {
-		return xmlLoad("hotel.xml");
-	}
-
-	public Hotel xmlLoad(String fileName) {
+		String fileName = "hotel.xml";
 		try {
 			JAXBContext context = JAXBContext.newInstance(Hotel.class);
 			Unmarshaller un = context.createUnmarshaller();
@@ -54,6 +45,8 @@ public class HotelDAO {
 		return null;
 	}
 
+	// This method will be executed after loading the hotel from the database
+	// Set the counters that are responsible to generate the IDs of a new customer, reservation, room
 	private void setCounter(Hotel hotel) {
 		for (Customer customer : hotel.getCustomersList()) {
 			if (customer.getCustomerId() > Customer.getCount())

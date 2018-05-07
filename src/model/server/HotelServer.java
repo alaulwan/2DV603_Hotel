@@ -44,11 +44,14 @@ public class HotelServer {
 		}
 	}
 
+	// Method to load the hotel from XML file
 	public void load() {
 		hotel = DAO.xmlLoad();
 	}
 
+	// This method to save the hotel-information silently to the database after each editing to the information
 	public class SavingThread extends Thread {
+		// Request queue to save hotel-information
 		public ArrayList<Boolean> saveRequestList = new ArrayList<Boolean>();
 
 		public SavingThread() {
@@ -57,13 +60,16 @@ public class HotelServer {
 
 		@Override
 		public void run() {
+			// Loop for ever
 			while (true) {
+				// While there is save-request, do new save
 				while (!saveRequestList.isEmpty()) {
 					if (saveRequestList.remove(0)) {
 						DAO.xmlSave(hotel);
 					}
 				}
 				try {
+					// Sleep until an interrupting
 					Thread.sleep(Long.MAX_VALUE);
 				} catch (InterruptedException e) {
 				}

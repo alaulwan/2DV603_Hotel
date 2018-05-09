@@ -12,9 +12,16 @@ import model.shared.Hotel;
 import model.shared.Reservation;
 import model.shared.Room;
 
+/**
+ * The Class HotelDAO.
+ */
 public class HotelDAO {
 
-	// Save all information in the hotel to XML file
+	/**
+	 * Save all information in the hotel to XML file
+	 *
+	 * @param hotel the hotel
+	 */
 	public void xmlSave(Hotel hotel) {
 		String fileName = "hotel.xml";
 		try {
@@ -30,7 +37,11 @@ public class HotelDAO {
 		}
 	}
 
-	// Load all information about the hotel from XML file
+	/**
+	 * Load all information about the hotel from XML file
+	 *
+	 * @return the hotel
+	 */
 	public Hotel xmlLoad() {
 		String fileName = "hotel.xml";
 		try {

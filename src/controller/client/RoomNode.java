@@ -17,7 +17,7 @@ public class RoomNode extends StackPane {
 
 	Room room = new Room();
 	Color color = Color.LIGHTGREEN;
-	private Tooltip tooltip = new Tooltip();
+	public Tooltip tooltip = new Tooltip();
 	public Rectangle rectangle;
 
 	public RoomNode(Room room) {
@@ -77,12 +77,12 @@ public class RoomNode extends StackPane {
 		String inf_balcony = "Balcony: " + (room.isBalcony() == true ? "Yes" : "No");
 		String inf_view = "View: " + (room.isView() == true ? "Yes" : "No");
 		String inf_smoking = "Smoking: " + (room.isSmoking() == true ? "Yes" : "No");
-		String roomType = (room.isSuite() == true ? "\nSuite " : "\nRoom ");
+		String roomType = (room.isSuite() == true ? "Suite " : "Room ");
 		String suitRoomNum = "";
 		if (room.isSuite())
 			suitRoomNum = "\nSuite Rooms No.: " + ((Suite) room).getNumberOfRooms() ; 
 		
-		String inf_string = roomType + " Number: " + room.getRoomNum()  + suitRoomNum + roomType + " Size: "
+		String inf_string = roomType + " Number: " + room.getRoomNum()  + suitRoomNum + "\n"+ roomType + " Size: "
 				+ room.getRoomSize().toString() + "\nBeds No.: " + room.getBedsNum() + "\nMax Guests No.: "
 				+ room.getMaxGuestCapacity() + "\nQuality Level: " + room.getQualityLev() + "\n" + inf_smoking + "\n"
 				+ inf_airCon + "\n" + inf_view + "\n" + inf_balcony;

@@ -1,7 +1,9 @@
 package controller.client;
 
 import java.io.IOException;
+import java.time.Duration;
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -230,9 +232,14 @@ public class SearchRoomController extends Controller {
 	}
 
 	private void viewRooms() {
+		
+		int duration = (int) ChronoUnit.DAYS.between(this.arrivalDateBox.getValue(), this.departureDateBox.getValue());
 		roomGrid.getChildren().removeAll(roomGrid.getChildren());
+
 		for (int i = 0; i < roomsList.size(); i++) {
 			RoomNode roomNode = new RoomNode(roomsList.get(i));
+			String tooltiptext = "The total cost: " + roomsList.get(i).getRate() * duration + "\n" + roomNode.tooltip.getText();
+			roomNode.tooltip.setText(tooltiptext);
 			roomGrid.add(roomNode, i % 2, i / 2);
 			setRoomNodemouseAction(roomNode);
 		}

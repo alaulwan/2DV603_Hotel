@@ -283,14 +283,17 @@ public class Hotel implements Serializable {
 				true, true, true, false, true);
 		Suite suite3 = new Suite(119, new ArrayList<Room>(Arrays.asList(S3R1, S3R2)));
 
-		Bed bed1S4R1 = new Bed(BedSize.DOUBLE);
-		Room S4R1 = new Room(new ArrayList<Bed>(Arrays.asList(bed1S4R1)), RoomLocation.VAXJO, 0, RoomSize.BIG,
-				true, true, true, true, true);
+		Bed bed1S4R1 = new Bed(BedSize.SINGLE);
+		Room S4R1 = new Room(new ArrayList<Bed>(Arrays.asList(bed1S4R1)), RoomLocation.VAXJO, 0, RoomSize.MEDIUM,
+				true, false, true, true, true);
 		Bed bed1S4R2 = new Bed(BedSize.DOUBLE);
-		Bed bed2S4R2 = new Bed(BedSize.DOUBLE);
-		Room S4R2 = new Room(new ArrayList<Bed>(Arrays.asList(bed1S4R2, bed2S4R2)), RoomLocation.VAXJO, 0, RoomSize.BIG,
+		Room S4R2 = new Room(new ArrayList<Bed>(Arrays.asList(bed1S4R2)), RoomLocation.VAXJO, 0, RoomSize.MEDIUM,
+				true, false, true, true, true);
+		Bed bed1S4R3 = new Bed(BedSize.DOUBLE);
+		Bed bed2S4R3 = new Bed(BedSize.DOUBLE);
+		Room S4R3 = new Room(new ArrayList<Bed>(Arrays.asList(bed1S4R3, bed2S4R3)), RoomLocation.VAXJO, 0, RoomSize.BIG,
 				true, true, true, true, true);
-		Suite suite4 = new Suite(120, new ArrayList<Room>(Arrays.asList(S4R1, S4R2)));
+		Suite suite4 = new Suite(120, new ArrayList<Room>(Arrays.asList(S4R1, S4R2, S4R3)));
 		
 		Customer customer1 = new Customer("Alaa Al", LocalDate.of(1982, 01, 01), Gender.MALE, "076970",
 				IdentificationType.PASS_NUMBER, "1111111", "Card5555555", "Vaxjo", "Syr", "a@a.a", "student");
@@ -423,21 +426,26 @@ public class Hotel implements Serializable {
 
 		Bed bed1S3R1 = new Bed(BedSize.DOUBLE);
 		Room S3R1 = new Room(new ArrayList<Bed>(Arrays.asList(bed1S3R1)), RoomLocation.KALMAR, 0, RoomSize.MEDIUM,
-				true, false, true, false, true);
+				true, false, true, true, true);
 		Bed bed1S3R2 = new Bed(BedSize.SINGLE);
 		Bed bed2S3R2 = new Bed(BedSize.DOUBLE);
 		Room S3R2 = new Room(new ArrayList<Bed>(Arrays.asList(bed1S3R2, bed2S3R2)), RoomLocation.KALMAR, 0, RoomSize.BIG,
-				true, true, true, false, true);
+				true, true, true, true, true);
 		Suite suite3 = new Suite(119, new ArrayList<Room>(Arrays.asList(S3R1, S3R2)));
 
-		Bed bed1S4R1 = new Bed(BedSize.DOUBLE);
-		Room S4R1 = new Room(new ArrayList<Bed>(Arrays.asList(bed1S4R1)), RoomLocation.KALMAR, 0, RoomSize.BIG,
-				true, true, true, true, true);
+		Bed bed1S4R1 = new Bed(BedSize.SINGLE);
+		Room S4R1 = new Room(new ArrayList<Bed>(Arrays.asList(bed1S4R1)), RoomLocation.KALMAR, 0, RoomSize.MEDIUM,
+				true, false, true, true, true);
 		Bed bed1S4R2 = new Bed(BedSize.DOUBLE);
-		Bed bed2S4R2 = new Bed(BedSize.DOUBLE);
-		Room S4R2 = new Room(new ArrayList<Bed>(Arrays.asList(bed1S4R2, bed2S4R2)), RoomLocation.KALMAR, 0, RoomSize.BIG,
+		Room S4R2 = new Room(new ArrayList<Bed>(Arrays.asList(bed1S4R2)), RoomLocation.KALMAR, 0, RoomSize.MEDIUM,
+				true, false, true, true, true);
+		Bed bed1S4R3 = new Bed(BedSize.DOUBLE);
+		Bed bed2S4R3 = new Bed(BedSize.DOUBLE);
+		Room S4R3 = new Room(new ArrayList<Bed>(Arrays.asList(bed1S4R3, bed2S4R3)), RoomLocation.KALMAR, 0, RoomSize.BIG,
 				true, true, true, true, true);
-		Suite suite4 = new Suite(120, new ArrayList<Room>(Arrays.asList(S4R1, S4R2)));
+		
+		Suite suite4 = new Suite(120, new ArrayList<Room>(Arrays.asList(S4R1, S4R2, S4R3)));
+		
 		roomsList.addAll(new ArrayList<Room>(Arrays.asList(R1, R2, R3, R4, R5, R6, R7, R8, R9, R10, R11, R12, R13, R14, R15, R16)));
 		suitesList.addAll(new ArrayList<Suite>(Arrays.asList(suite1, suite2, suite3, suite4)));
 

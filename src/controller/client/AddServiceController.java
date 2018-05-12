@@ -46,7 +46,7 @@ public class AddServiceController extends Controller {
 		serviceList = serverAPI.getServicesList();
 		ObservableList<Service> TypeArr = FXCollections.observableArrayList(serviceList) ;
 		servicesBox.setItems(TypeArr);
-				
+
 		SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 15, 1);
 		quantity.setValueFactory(valueFactory);
 		quantity.getEditor().setDisable(true);
@@ -59,7 +59,7 @@ public class AddServiceController extends Controller {
 	public void servicesBoxChange(){
 		selectedService = servicesBox.getValue();
 		quantity.getValueFactory().setValue(1);
-		serviceTypeField.setText(selectedService.getDescraption());
+		serviceTypeField.setText(selectedService.getServiceType().toString());
 		totalPriceField.setText(selectedService.getPrice()*quantity.getValue()+"");
 	}
 	

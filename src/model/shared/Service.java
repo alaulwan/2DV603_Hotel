@@ -62,5 +62,10 @@ public class Service implements Serializable {
 	public float getTotalPrice() {
 		return price * piecesNumber;
 	}
+	
+	@Override
+	public String toString() {
+		return this.descraption;
+	}
 
 }

@@ -6,7 +6,7 @@ public class Service implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	public enum ServiceType {
-		RESERVATION, MEAL, ITEM, GYM, PARKING
+		RESERVATION, RESTAURANT, GYM, PARKING
 	}
 
 	private ServiceType serviceType;

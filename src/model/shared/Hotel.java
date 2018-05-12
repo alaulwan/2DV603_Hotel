@@ -258,41 +258,41 @@ public class Hotel implements Serializable {
 		
 		Bed bed1S1R1 = new Bed(BedSize.SINGLE);
 		Room S1R1 = new Room(new ArrayList<Bed>(Arrays.asList(bed1S1R1)), RoomLocation.VAXJO, 0, RoomSize.SMALL,
-				true, false, false, false, true);
+				true, false, false, false, false);
 		Bed bed1S1R2 = new Bed(BedSize.SINGLE);
 		Bed bed2S1R2 = new Bed(BedSize.SINGLE);
 		Room S1R2 = new Room(new ArrayList<Bed>(Arrays.asList(bed1S1R2, bed2S1R2)), RoomLocation.VAXJO, 0, RoomSize.MEDIUM,
-				true, false, false, false, true);
+				true, false, false, false, false);
 		Suite suite1 = new Suite(117, new ArrayList<Room>(Arrays.asList(S1R1, S1R2)));
 
 		Bed bed1S2R1 = new Bed(BedSize.DOUBLE);
 		Room S2R1 = new Room(new ArrayList<Bed>(Arrays.asList(bed1S2R1)), RoomLocation.VAXJO, 0, RoomSize.MEDIUM,
-				false, false, true, true, true);
+				false, false, true, true, false);
 		Bed bed1S2R2 = new Bed(BedSize.SINGLE);
 		Bed bed2S2R2 = new Bed(BedSize.DOUBLE);
 		Room S2R2 = new Room(new ArrayList<Bed>(Arrays.asList(bed1S2R2, bed2S2R2)), RoomLocation.VAXJO, 0, RoomSize.MEDIUM,
-				false, true, true, true, true);
+				false, true, true, true, false);
 		Suite suite2 = new Suite(118, new ArrayList<Room>(Arrays.asList(S2R1, S2R2)));
 
 		Bed bed1S3R1 = new Bed(BedSize.DOUBLE);
 		Room S3R1 = new Room(new ArrayList<Bed>(Arrays.asList(bed1S3R1)), RoomLocation.VAXJO, 0, RoomSize.MEDIUM,
-				true, false, true, false, true);
+				true, false, true, false, false);
 		Bed bed1S3R2 = new Bed(BedSize.SINGLE);
 		Bed bed2S3R2 = new Bed(BedSize.DOUBLE);
 		Room S3R2 = new Room(new ArrayList<Bed>(Arrays.asList(bed1S3R2, bed2S3R2)), RoomLocation.VAXJO, 0, RoomSize.BIG,
-				true, true, true, false, true);
+				true, true, true, false, false);
 		Suite suite3 = new Suite(119, new ArrayList<Room>(Arrays.asList(S3R1, S3R2)));
 
 		Bed bed1S4R1 = new Bed(BedSize.SINGLE);
 		Room S4R1 = new Room(new ArrayList<Bed>(Arrays.asList(bed1S4R1)), RoomLocation.VAXJO, 0, RoomSize.MEDIUM,
-				true, false, true, true, true);
+				true, false, true, true, false);
 		Bed bed1S4R2 = new Bed(BedSize.DOUBLE);
 		Room S4R2 = new Room(new ArrayList<Bed>(Arrays.asList(bed1S4R2)), RoomLocation.VAXJO, 0, RoomSize.MEDIUM,
-				true, false, true, true, true);
+				true, false, true, true, false);
 		Bed bed1S4R3 = new Bed(BedSize.DOUBLE);
 		Bed bed2S4R3 = new Bed(BedSize.DOUBLE);
 		Room S4R3 = new Room(new ArrayList<Bed>(Arrays.asList(bed1S4R3, bed2S4R3)), RoomLocation.VAXJO, 0, RoomSize.BIG,
-				true, true, true, true, true);
+				true, true, true, true, false);
 		Suite suite4 = new Suite(120, new ArrayList<Room>(Arrays.asList(S4R1, S4R2, S4R3)));
 		
 		Customer customer1 = new Customer("Alaa Al", LocalDate.of(1982, 01, 01), Gender.MALE, "076970",
@@ -309,9 +309,9 @@ public class Hotel implements Serializable {
 		customer1.addReservation(R1.getRoomId(), R1.getRoomNum(), R1.getRoomLocation(), LocalDate.now().minusDays(10),
 				LocalDate.now().minusDays(5), R1.getRate(), 0, 2, "Old Al reservation");
 		customer1.getReservationsList().get(1).setReservationStatus(ReservationStatus.CHECKED_OUT);
-		customer1.getReservationsList().get(0).getBill().addService(ServiceType.ITEM, 1, 2, "Coca cola");
+		customer1.getReservationsList().get(0).getBill().addService(ServiceType.RESERVATION, 1, 2, "Coca cola");
 		;
-		customer1.getReservationsList().get(1).getBill().addService(ServiceType.ITEM, 2, 2, "Pepsi");
+		customer1.getReservationsList().get(1).getBill().addService(ServiceType.RESTAURANT, 2, 2, "Pepsi");
 		;
 		customer1.getReservationsList().get(1).getBill().setPayStatus(PayStatus.PAID);
 		customer2.addReservation(R2.getRoomId(), R2.getRoomNum(), R2.getRoomLocation(), LocalDate.now().minusDays(1),
@@ -408,54 +408,57 @@ public class Hotel implements Serializable {
 		
 		Bed bed1S1R1 = new Bed(BedSize.SINGLE);
 		Room S1R1 = new Room(new ArrayList<Bed>(Arrays.asList(bed1S1R1)), RoomLocation.KALMAR, 0, RoomSize.SMALL,
-				true, false, false, false, true);
+				true, false, false, false, false);
 		Bed bed1S1R2 = new Bed(BedSize.SINGLE);
 		Bed bed2S1R2 = new Bed(BedSize.SINGLE);
 		Room S1R2 = new Room(new ArrayList<Bed>(Arrays.asList(bed1S1R2, bed2S1R2)), RoomLocation.KALMAR, 0, RoomSize.MEDIUM,
-				true, false, false, false, true);
+				true, false, false, false, false);
 		Suite suite1 = new Suite(117, new ArrayList<Room>(Arrays.asList(S1R1, S1R2)));
 
 		Bed bed1S2R1 = new Bed(BedSize.DOUBLE);
 		Room S2R1 = new Room(new ArrayList<Bed>(Arrays.asList(bed1S2R1)), RoomLocation.KALMAR, 0, RoomSize.MEDIUM,
-				false, false, true, true, true);
+				false, false, true, true, false);
 		Bed bed1S2R2 = new Bed(BedSize.SINGLE);
 		Bed bed2S2R2 = new Bed(BedSize.DOUBLE);
 		Room S2R2 = new Room(new ArrayList<Bed>(Arrays.asList(bed1S2R2, bed2S2R2)), RoomLocation.KALMAR, 0, RoomSize.MEDIUM,
-				false, true, true, true, true);
+				false, true, true, true, false);
 		Suite suite2 = new Suite(118, new ArrayList<Room>(Arrays.asList(S2R1, S2R2)));
 
 		Bed bed1S3R1 = new Bed(BedSize.DOUBLE);
 		Room S3R1 = new Room(new ArrayList<Bed>(Arrays.asList(bed1S3R1)), RoomLocation.KALMAR, 0, RoomSize.MEDIUM,
-				true, false, true, true, true);
+				true, false, true, true, false);
 		Bed bed1S3R2 = new Bed(BedSize.SINGLE);
 		Bed bed2S3R2 = new Bed(BedSize.DOUBLE);
 		Room S3R2 = new Room(new ArrayList<Bed>(Arrays.asList(bed1S3R2, bed2S3R2)), RoomLocation.KALMAR, 0, RoomSize.BIG,
-				true, true, true, true, true);
+				true, true, true, true, false);
 		Suite suite3 = new Suite(119, new ArrayList<Room>(Arrays.asList(S3R1, S3R2)));
 
 		Bed bed1S4R1 = new Bed(BedSize.SINGLE);
 		Room S4R1 = new Room(new ArrayList<Bed>(Arrays.asList(bed1S4R1)), RoomLocation.KALMAR, 0, RoomSize.MEDIUM,
-				true, false, true, true, true);
+				true, false, true, true, false);
 		Bed bed1S4R2 = new Bed(BedSize.DOUBLE);
 		Room S4R2 = new Room(new ArrayList<Bed>(Arrays.asList(bed1S4R2)), RoomLocation.KALMAR, 0, RoomSize.MEDIUM,
-				true, false, true, true, true);
+				true, false, true, true, false);
 		Bed bed1S4R3 = new Bed(BedSize.DOUBLE);
 		Bed bed2S4R3 = new Bed(BedSize.DOUBLE);
 		Room S4R3 = new Room(new ArrayList<Bed>(Arrays.asList(bed1S4R3, bed2S4R3)), RoomLocation.KALMAR, 0, RoomSize.BIG,
-				true, true, true, true, true);
+				true, true, true, true, false);
 		
 		Suite suite4 = new Suite(120, new ArrayList<Room>(Arrays.asList(S4R1, S4R2, S4R3)));
 		
 		roomsList.addAll(new ArrayList<Room>(Arrays.asList(R1, R2, R3, R4, R5, R6, R7, R8, R9, R10, R11, R12, R13, R14, R15, R16)));
 		suitesList.addAll(new ArrayList<Suite>(Arrays.asList(suite1, suite2, suite3, suite4)));
-
 		}
 		
-
 		
-		servicesList.add(new Service(ServiceType.ITEM, 1, 2, "Coca cola"));
-		servicesList.add(new Service(ServiceType.ITEM, 2, 2, "Pepsi"));
-	
+		servicesList.add(new Service(ServiceType.RESTAURANT, 1, 2, "Soft Drink"));
+		servicesList.add(new Service(ServiceType.RESTAURANT, 1, 2, "Beer"));
+		servicesList.add(new Service(ServiceType.RESTAURANT, 1, 2, "Breakfast"));
+		servicesList.add(new Service(ServiceType.RESTAURANT, 1, 2, "Lunch"));
+		servicesList.add(new Service(ServiceType.RESTAURANT, 1, 2, "Dinner"));
+		servicesList.add(new Service(ServiceType.GYM, 1, 2, "One day GYM entrance"));
+		servicesList.add(new Service(ServiceType.PARKING, 1, 2, "One day Parking"));
+
 	}
 
 }

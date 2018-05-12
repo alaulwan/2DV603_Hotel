@@ -53,7 +53,18 @@
             </CheckBox>
             <Spinner fx:id="guestNumberBox" onMouseClicked="#disableNextButton" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <CheckBox fx:id="suiteBox" mnemonicParsing="false" onAction="#suiteCheckBox" onMouseClicked="#disableNextButton" text="Suite" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
-            <Spinner fx:id="suiteRoomsNumberBox" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <Spinner fx:id="suiteRoomsNumberBox" GridPane.columnIndex="1" GridPane.rowIndex="4">
+               <GridPane.margin>
+                  <Insets top="30.0" />
+               </GridPane.margin></Spinner>
+            <Label fx:id="adjacentRoomsLabel" alignment="TOP_LEFT" prefHeight="17.0" prefWidth="170.0" text="Adjacent rooms Number" GridPane.columnIndex="1" GridPane.rowIndex="4">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <GridPane.margin>
+                  <Insets bottom="25.0" />
+               </GridPane.margin>
+            </Label>
          </children>
       </GridPane>
       <Button fx:id="searchButton" layoutX="553.0" layoutY="529.0" mnemonicParsing="false" onAction="#searchRooms" text="Search" />

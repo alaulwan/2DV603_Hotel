@@ -68,6 +68,8 @@ public class SearchRoomController extends Controller {
 	@FXML
 	private CheckBox suiteBox;
 	@FXML
+	private Label adjacentRoomsLabel;
+	@FXML
 	private Spinner<Integer> suiteRoomsNumberBox;
 	@FXML
 	private Button searchButton;
@@ -93,6 +95,7 @@ public class SearchRoomController extends Controller {
 		guestNumberBox.setValueFactory(new IntegerSpinnerValueFactory(1, 12, 1));
 		suiteRoomsNumberBox.setValueFactory(new IntegerSpinnerValueFactory(2, 3, 2));
 		suiteRoomsNumberBox.setDisable(true);
+		adjacentRoomsLabel.setDisable(true);
 		nextButton.setDisable(true);
 		locationBox.setItems(FXCollections.observableList(Arrays.asList(RoomLocation.values())));
 		locationBox.setValue(serverAPI.location);
@@ -112,6 +115,7 @@ public class SearchRoomController extends Controller {
 	@FXML
 	public void suiteCheckBox() {
 		suiteRoomsNumberBox.setDisable(!suiteBox.isSelected());
+		adjacentRoomsLabel.setDisable(!suiteBox.isSelected());
 	}
 
 	@FXML

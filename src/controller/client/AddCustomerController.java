@@ -104,6 +104,7 @@ public class AddCustomerController extends Controller {
 
 	@FXML
 	public void newCustomerBtn() {
+		// Clear all fields in the interface
 		clearFields();
 		currentCustomer = null;
 		setEditable(newCustomerButton.isSelected());
@@ -118,19 +119,26 @@ public class AddCustomerController extends Controller {
 
 	@FXML
 	public void saveCustomerBtn() {
+		// If not all inputs are correct, then show error message
 		if (!verifyInputs()) {
 			alertWindow(AlertType.ERROR, "Add customer",
 					"The required fields are empty, please fill them to add a customer and complete the reservation!",
 					"", "error.png", null);
+		// Else If all inputs are correct, then add new customer or edit the selected customer
 		} else {
+			// Firstly, Create new customer object from the inputs
 			Customer newCustomer = new Customer(this.nameBox.getText(), this.birthDateBox.getValue(),
 					this.maleBox.isSelected() ? Gender.MALE : Gender.FEMALE, this.phoneNumberBox.getText(),
 					this.identificationType.getValue(), this.idNumberBox.getText(), this.creditCardNumberBox.getText(),
 					this.addressBox.getText(), this.nationalityBox.getText(), this.emailBox.getText(),
 					this.descriptionBox.getText());
+			// If the current Customer is null, this mean this window is to create reservation and new customer
 			if (currentCustomer == null) {
+				reservation.getBill().setCustomerName(newCustomer.getName());
+				reservation.getBill().setCustomerId(newCustomer.getCustomerId());
 				newCustomer.getReservationsList().add(reservation);
 				serverAPI.put(newCustomer);
+			// Else If the current Customer is not null, this mean this window is to edit an existing customer
 			} else {
 				serverAPI.post(newCustomer, currentCustomer.getCustomerId());
 				if (reservation != null) {
@@ -196,6 +204,7 @@ public class AddCustomerController extends Controller {
 		femaleBox.setSelected(currentCustomer.getGender() == Gender.FEMALE);
 	}
 
+	// Clear all fields in the interface
 	private void clearFields() {
 		nationalityBox.setText("");
 		creditCardNumberBox.setText("");
@@ -211,6 +220,7 @@ public class AddCustomerController extends Controller {
 		maleBox.setSelected(true);
 	}
 
+	// Change the editable status for the text-fields according to the status of (New-Customer button)
 	private void setEditable(boolean editable) {
 		nationalityBox.setDisable(!editable);
 		creditCardNumberBox.setDisable(!editable);
@@ -258,6 +268,7 @@ public class AddCustomerController extends Controller {
 		});
 	}
 
+	// Verify that all inputs in the text-fields are correct
 	private boolean verifyInputs() {
 		if (this.nameBox.getText().equals("") || this.birthDateBox.getValue() == null
 				|| this.phoneNumberBox.getText().equals("") || this.identificationType.getValue() == null

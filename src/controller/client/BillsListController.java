@@ -95,7 +95,7 @@ public class BillsListController extends Controller {
 		applyCustomerNameFilter(billsArray);
 	}
 
-	// Event Listener on CheckBox[#viewAllBox].onAction
+	// View bills history (i.e Paid bills)
 	@FXML
 	public void viewPaidChecked() {
 		ArrayList<BillsFilter> billsFilterList = new ArrayList<BillsFilter>();
@@ -110,6 +110,7 @@ public class BillsListController extends Controller {
 		apllyAllChosenFilters();
 	}
 
+	// View bills according to the customer name
 	public void applyCustomerNameFilter(ArrayList<Bill> billsArray) {
 		String customerName = searchName.getText();
 		CustomerNameBillsFilter customerNameBillsFilter = new CustomerNameBillsFilter(customerName);
@@ -118,6 +119,7 @@ public class BillsListController extends Controller {
 		billsTable.setItems(data);
 	}
 
+	// Mark the bill as paid
 	protected void markBillAsPaid() {
 		Optional<ButtonType> result = alertWindow(AlertType.CONFIRMATION, "Mark bill as paid...",
 				"Are you sure you want to pay this bill", "", "warning.png", "bill.png");
@@ -129,6 +131,7 @@ public class BillsListController extends Controller {
 		}
 	}
 
+	// Convert the bill to PDF file and open it by the default PDF reader
 	@SuppressWarnings("unused")
 	public void billToPdf() {
 		try {

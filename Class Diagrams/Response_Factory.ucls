@@ -3,7 +3,7 @@
   associations="true" dependencies="true" nesting-relationships="false" router="FAN">  
   <class id="1" language="java" name="model.server.response.ReservationsListResponse" project="2DV603_Hotel" 
     file="/2DV603_Hotel/src/model/server/response/ReservationsListResponse.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="73" width="257" x="1235" y="271"/>    
+    <position height="73" width="257" x="48" y="333"/>    
     <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="false" package="false" protected="false" private="false" static="false"/>      
@@ -12,7 +12,7 @@
   </class>  
   <class id="2" language="java" name="model.server.response.DeleteResponse" project="2DV603_Hotel" 
     file="/2DV603_Hotel/src/model/server/response/DeleteResponse.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="73" width="199" x="1210" y="349"/>    
+    <position height="73" width="199" x="23" y="411"/>    
     <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="false" package="false" protected="false" private="false" static="false"/>      
@@ -21,7 +21,7 @@
   </class>  
   <class id="3" language="java" name="model.server.response.PutResponse" project="2DV603_Hotel" 
     file="/2DV603_Hotel/src/model/server/response/PutResponse.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="73" width="189" x="1241" y="433"/>    
+    <position height="73" width="189" x="54" y="495"/>    
     <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="false" package="false" protected="false" private="false" static="false"/>      
@@ -30,7 +30,7 @@
   </class>  
   <class id="4" language="java" name="model.server.response.CheckOutResponse" project="2DV603_Hotel" 
     file="/2DV603_Hotel/src/model/server/response/CheckOutResponse.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="73" width="217" x="1293" y="510"/>    
+    <position height="73" width="217" x="106" y="572"/>    
     <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="false" package="false" protected="false" private="false" static="false"/>      
@@ -39,7 +39,7 @@
   </class>  
   <class id="5" language="java" name="model.server.response.Response" project="2DV603_Hotel" 
     file="/2DV603_Hotel/src/model/server/response/Response.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1670" y="315"/>    
+    <position height="-1" width="-1" x="483" y="377"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="false" package="false" protected="false" private="false" static="false"/>      
@@ -48,7 +48,7 @@
   </class>  
   <class id="6" language="java" name="model.server.response.RoomsListResponse" project="2DV603_Hotel" 
     file="/2DV603_Hotel/src/model/server/response/RoomsListResponse.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="73" width="232" x="1435" y="590"/>    
+    <position height="73" width="232" x="248" y="652"/>    
     <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="false" package="false" protected="false" private="false" static="false"/>      
@@ -57,7 +57,7 @@
   </class>  
   <class id="7" language="java" name="model.server.response.BillsListResponse" project="2DV603_Hotel" 
     file="/2DV603_Hotel/src/model/server/response/BillsListResponse.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="73" width="214" x="1578" y="670"/>    
+    <position height="73" width="214" x="391" y="732"/>    
     <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="false" package="false" protected="false" private="false" static="false"/>      
@@ -66,7 +66,7 @@
   </class>  
   <class id="8" language="java" name="model.server.response.CancelReservationResponse" project="2DV603_Hotel" 
     file="/2DV603_Hotel/src/model/server/response/CancelReservationResponse.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="73" width="240" x="1692" y="592"/>    
+    <position height="73" width="240" x="505" y="654"/>    
     <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="false" package="false" protected="false" private="false" static="false"/>      
@@ -75,7 +75,7 @@
   </class>  
   <class id="9" language="java" name="model.server.response.ServicesListResponse" project="2DV603_Hotel" 
     file="/2DV603_Hotel/src/model/server/response/ServicesListResponse.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="73" width="221" x="1822" y="506"/>    
+    <position height="73" width="221" x="635" y="568"/>    
     <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="false" package="false" protected="false" private="false" static="false"/>      
@@ -84,7 +84,7 @@
   </class>  
   <class id="10" language="java" name="model.server.response.CustomersListResponse" project="2DV603_Hotel" 
     file="/2DV603_Hotel/src/model/server/response/CustomersListResponse.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="73" width="216" x="1895" y="422"/>    
+    <position height="73" width="216" x="708" y="484"/>    
     <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="false" package="false" protected="false" private="false" static="false"/>      
@@ -93,7 +93,7 @@
   </class>  
   <class id="11" language="java" name="model.server.response.CheckInResponse" project="2DV603_Hotel" 
     file="/2DV603_Hotel/src/model/server/response/CheckInResponse.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="73" width="197" x="1958" y="340"/>    
+    <position height="73" width="197" x="771" y="402"/>    
     <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="false" package="false" protected="false" private="false" static="false"/>      
@@ -102,7 +102,7 @@
   </class>  
   <class id="12" language="java" name="model.server.response.ResponseFactory" project="2DV603_Hotel" 
     file="/2DV603_Hotel/src/model/server/response/ResponseFactory.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1670" y="177"/>    
+    <position height="-1" width="-1" x="483" y="239"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="false" package="false" protected="false" private="false" static="false"/>      
@@ -111,7 +111,7 @@
   </class>  
   <class id="13" language="java" name="model.server.response.PostResponse" project="2DV603_Hotel" 
     file="/2DV603_Hotel/src/model/server/response/PostResponse.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="73" width="168" x="1953" y="252"/>    
+    <position height="73" width="168" x="766" y="314"/>    
     <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="false" package="false" protected="false" private="false" static="false"/>      
@@ -120,7 +120,7 @@
   </class>  
   <class id="14" language="java" name="model.server.HotelServerThread" project="2DV603_Hotel" 
     file="/2DV603_Hotel/src/model/server/HotelServerThread.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1669" y="44"/>    
+    <position height="-1" width="-1" x="482" y="106"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="false" package="false" protected="false" private="false" static="false"/>      
@@ -128,59 +128,63 @@
     </display>  
   </class>  
   <generalization id="15">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="5"/>  
+  </generalization>  
+  <generalization id="16">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="5"/>  
+  </generalization>  
+  <generalization id="17">    
+    <end type="SOURCE" refId="11"/>    
+    <end type="TARGET" refId="5"/>  
+  </generalization>  
+  <generalization id="18">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="5"/>  
+  </generalization>  
+  <generalization id="19">    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="5"/>  
+  </generalization>  
+  <dependency id="20">    
+    <end type="SOURCE" refId="14"/>    
+    <end type="TARGET" refId="12"/>  
+  </dependency>  
+  <generalization id="21">    
     <end type="SOURCE" refId="9"/>    
     <end type="TARGET" refId="5"/>  
   </generalization>  
-  <association id="16">    
+  <generalization id="22">    
+    <end type="SOURCE" refId="13"/>    
+    <end type="TARGET" refId="5"/>  
+  </generalization>  
+  <generalization id="23">    
+    <end type="SOURCE" refId="10"/>    
+    <end type="TARGET" refId="5"/>  
+  </generalization>  
+  <association id="24">    
     <end type="SOURCE" refId="12" navigable="false">      
-      <attribute id="17" name="response"/>      
-      <multiplicity id="18" minimum="0" maximum="1"/>    
+      <attribute id="25" name="response">        
+        <position height="0" width="0" x="-1187" y="62"/>      
+      </attribute>      
+      <multiplicity id="26" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-1187" y="62"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="5" navigable="true"/>    
     <display labels="false" multiplicity="true"/>  
   </association>  
-  <generalization id="19">    
-    <end type="SOURCE" refId="3"/>    
-    <end type="TARGET" refId="5"/>  
-  </generalization>  
-  <generalization id="20">    
-    <end type="SOURCE" refId="13"/>    
-    <end type="TARGET" refId="5"/>  
-  </generalization>  
-  <generalization id="21">    
-    <end type="SOURCE" refId="10"/>    
-    <end type="TARGET" refId="5"/>  
-  </generalization>  
-  <generalization id="22">    
+  <generalization id="27">    
     <end type="SOURCE" refId="8"/>    
     <end type="TARGET" refId="5"/>  
   </generalization>  
-  <generalization id="23">    
-    <end type="SOURCE" refId="7"/>    
-    <end type="TARGET" refId="5"/>  
-  </generalization>  
-  <dependency id="24">    
-    <end type="SOURCE" refId="14"/>    
-    <end type="TARGET" refId="12"/>  
-  </dependency>  
-  <generalization id="25">    
-    <end type="SOURCE" refId="2"/>    
-    <end type="TARGET" refId="5"/>  
-  </generalization>  
-  <generalization id="26">    
-    <end type="SOURCE" refId="11"/>    
-    <end type="TARGET" refId="5"/>  
-  </generalization>  
-  <generalization id="27">    
-    <end type="SOURCE" refId="1"/>    
-    <end type="TARGET" refId="5"/>  
-  </generalization>  
   <generalization id="28">    
-    <end type="SOURCE" refId="4"/>    
+    <end type="SOURCE" refId="3"/>    
     <end type="TARGET" refId="5"/>  
   </generalization>  
   <generalization id="29">    
-    <end type="SOURCE" refId="6"/>    
+    <end type="SOURCE" refId="7"/>    
     <end type="TARGET" refId="5"/>  
   </generalization>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 

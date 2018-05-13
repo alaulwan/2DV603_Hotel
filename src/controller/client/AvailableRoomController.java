@@ -22,7 +22,6 @@ import model.shared.filters.reservationsFilters.LocationReservationsFilter;
 import model.shared.filters.reservationsFilters.ReservationsFilter;
 import model.shared.filters.reservationsFilters.RoomNumReservationsFilter;
 import model.shared.filters.reservationsFilters.StatusReservationsFilter;
-import model.shared.filters.roomsFilters.RoomsFilter;
 
 public class AvailableRoomController extends Controller {
 	@FXML
@@ -44,7 +43,6 @@ public class AvailableRoomController extends Controller {
 
 
 	private final String AVAILABLE_ROOM_LAYOUT = "/view/client/AvailableRoom.fxml";
-	private ArrayList<RoomsFilter> roomsFilterList;
 	public ArrayList<Room> roomsList;
 	public RoomNode selectedRoomNode;
 	private String imageURL ;
@@ -60,13 +58,11 @@ public class AvailableRoomController extends Controller {
 		super.rootLayoutController.checkinButton.setDisable(true);
 		super.rootLayoutController.checkoutButton.setDisable(true);
 		
-		if (roomsFilterList == null)
-			roomsList = serverAPI.getAllRooms();
-		else {
-			roomsList = serverAPI.getRoomsList(roomsFilterList);
-		}
+		// Import all rooms and suits in the current location from the server
+		roomsList = serverAPI.getAllRooms();
 		
-		if (roomsList.get(0).getRoomLocation() == RoomLocation.VAXJO)
+		// Change the icon in the first window according to the location
+		if (serverAPI.location == RoomLocation.VAXJO)
 			imageURL = getClass().getResource("/view/client/icons/vaxjologo.png").toString() ;
 		else {
 			imageURL = getClass().getResource("/view/client/icons/kalmarlogo.png").toString() ;
@@ -87,6 +83,7 @@ public class AvailableRoomController extends Controller {
 		fillCounters();
 	}
 
+	// Make a statistic to the rooms-status and view the results in the main window
 	private void fillCounters() {
 		totalRoomsCounter.setText(Integer.toString(roomsList.size()));
 		int occupiedRoomCount = 0;
@@ -110,6 +107,7 @@ public class AvailableRoomController extends Controller {
 		}
 	}
 
+	// Import reservations from the server depending on the room-ID
 	private ArrayList<Reservation> importReservationsListByRoomNum(int roomNum) {
 		ArrayList<ReservationsFilter> reservationsFilterList = new ArrayList<ReservationsFilter>();
 		LocationReservationsFilter locationReservationsFilter = new LocationReservationsFilter(serverAPI.location);
@@ -165,6 +163,7 @@ public class AvailableRoomController extends Controller {
 
 	}
 
+	// Change the status of checkIn and checkOut buttons according to the selected room
 	private void updateCheckInOutBtnStatus() {
 		Room room = selectedRoomNode.room;
 		boolean checkInStatus = room.getRoomStatus().equals(RoomStatus.CHECKIN_TODAY);

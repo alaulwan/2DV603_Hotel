@@ -72,8 +72,6 @@ public class CustomerListController extends Controller{
 		setContextMenu();
 	}
 	
-	
-
 	private void setData() {
 		if (customersArray!= null) {
 			LocationReservationsFilter locationReservationsFilter = new LocationReservationsFilter(serverAPI.location);
@@ -93,6 +91,7 @@ public class CustomerListController extends Controller{
 		}		
 	}
 	
+	// View all customers included those that have a previous reservations
 	@FXML
 	public void viewHistoryChecked() {
 		ArrayList<CustomersFilter> customersFilterList = new ArrayList<CustomersFilter> ();
@@ -119,6 +118,7 @@ public class CustomerListController extends Controller{
 		apllyAllChosenFilters();
 	}
 	
+	// Filter the customers list according to the enabled filters
 	@FXML
 	public void apllyAllChosenFilters() {
 		ArrayList<Customer> customorsArray = new ArrayList<Customer> (this.customersArray);
@@ -215,6 +215,7 @@ public class CustomerListController extends Controller{
 		
 	}
 	
+	// Delete an customer. 
 	private boolean deleteCustomer() {
 		boolean deleteCustomerSuccess = false;
 		Optional<ButtonType> result = alertWindow(AlertType.CONFIRMATION, "Delete Customer", "Are you sure you want to delete this customer", "", "warning.png", "customer.png");

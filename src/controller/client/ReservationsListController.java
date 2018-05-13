@@ -81,6 +81,7 @@ public class ReservationsListController extends Controller {
 		setContextMenu();
 	}
 
+	// View all reservations included the previous reservations
 	@FXML
 	public void viewHistoryChecked() {
 		ArrayList<ReservationsFilter> reservationsFilterList = new ArrayList<ReservationsFilter>();
@@ -97,6 +98,7 @@ public class ReservationsListController extends Controller {
 		apllyAllChosenFilters();
 	}
 
+	// Filter the reservations list according to the enabled filters
 	@FXML
 	public void apllyAllChosenFilters() {
 		ArrayList<Reservation> reservationsArray = new ArrayList<Reservation>(this.reservationArray);
@@ -132,8 +134,8 @@ public class ReservationsListController extends Controller {
 
 	}
 
+	// set the data to the table
 	public void setData() {
-
 		if (reservationArray != null) {
 			ObservableList<Reservation> data = FXCollections.observableList(reservationArray);
 			reservationsList.setItems(data);
@@ -231,6 +233,7 @@ public class ReservationsListController extends Controller {
 		});
 	}
 
+	// Check in an reservation
 	public boolean chekInReservation(int reservationId) {
 		boolean checkInSuccess = serverAPI.checkIn(reservationId);
 		if (checkInSuccess) {
@@ -242,6 +245,7 @@ public class ReservationsListController extends Controller {
 		return checkInSuccess;
 	}
 
+	// Check out an reservation
 	public boolean chekOutReservation(int reservationId) {
 		boolean checkOutSuccess = serverAPI.checkOut(reservationId);
 		if (checkOutSuccess) {
@@ -259,6 +263,7 @@ public class ReservationsListController extends Controller {
 		return checkOutSuccess;
 	}
 	
+	// Cancel an reservation
 	public boolean cancelReservation(int reservationId) {
 		boolean cancelReservationSuccess = false;
 		Optional<ButtonType> result = alertWindow(AlertType.CONFIRMATION, "Cancel Reservation", "Are you sure you want to cancel this reservation",
@@ -275,6 +280,8 @@ public class ReservationsListController extends Controller {
 		} 
 		return cancelReservationSuccess;
 	}
+	
+	// Delete an reservation
 	private boolean deleteReservation() {
 		boolean deleteReservationSuccess = false;
 		Optional<ButtonType> result = alertWindow(AlertType.CONFIRMATION, "Delete Reservation", "Are you sure you want to delete this reservation",
@@ -308,6 +315,7 @@ public class ReservationsListController extends Controller {
 		super.rootLayoutController.update();
 	}
 
+	// Update an reservation
 	private void editReservation() {
 		try {
 			SearchRoomController searchRoomController = new SearchRoomController(rootLayoutController);
@@ -325,6 +333,7 @@ public class ReservationsListController extends Controller {
 		}
 	}
 
+	// Add service to an existing reservation. e.g. Drink or breakfast
 	private void addService() {
 		try {
 			AddServiceController addServiceController = new AddServiceController(serverAPI);
@@ -337,7 +346,7 @@ public class ReservationsListController extends Controller {
 			stage.setMaxWidth(410);
 			stage.setScene(mainScene);
 			stage.setTitle("Add Service");
-			stage.getIcons().add(new Image("file:res/icons/service.png"));
+			stage.getIcons().add(new Image(getClass().getResource("/view/client/icons/service.png").toString()));
 			stage.initModality(Modality.APPLICATION_MODAL);
 			stage.showAndWait();
 			reservationsList.refresh();
@@ -352,12 +361,14 @@ public class ReservationsListController extends Controller {
 		super.rootLayoutController.update();
 	}
 
+	// View the bill of existing reservation
 	private void viewBill() {
 		BillsListController BillsListController = new BillsListController(rootLayoutController);
 		BillsListController.selectedBill = this.selectedReservation.getBill();
 		BillsListController.billToPdf();
 	}
 
+	// Mark the bill as paid
 	private void markBillAsPaid() {
 		BillsListController BillsListController = new BillsListController(rootLayoutController);
 		BillsListController.selectedBill = this.selectedReservation.getBill();

@@ -49,6 +49,10 @@ public class Reservation implements Serializable {
 		this.setPrice(roomPrice);
 		this.setGuestsNumber(guestsNumber);
 		this.setDiscription(description);
+		
+		// generate a reservation description to add it to the bill
+		// The reservation will added to the bill as service, and it will be the first
+		// service in the bill
 		String reservationDescription = roomLocation + " Room: " + roomNumber + " Days: " + getTotalDays();
 		this.setBill(new Bill(this.getReservationId(), this.customerId, this.customerName, price * getTotalDays(),
 				reservationDescription));
@@ -62,11 +66,13 @@ public class Reservation implements Serializable {
 		return false;
 	}
 
-	// Method to check-out an reservation. This can only be executed on an pending reservations
+	// Method to check-out an reservation. This can only be executed on an pending
+	// reservations
 	public boolean checkOut() {
 		this.setReservationStatus(ReservationStatus.CHECKED_OUT);
 		if (LocalDate.now().isBefore(this.checkOutDateAsLocalDate())) {
 			this.setCheckOutDate(LocalDate.now().plusDays(1));
+			// generate a reservation description to add it to the bill
 			String reservationDescription = roomLocation + " Room: " + roomNumber + " Days: " + getTotalDays();
 			bill.getServiceList().get(0).setDescraption(reservationDescription);
 			bill.getServiceList().get(0).setPrice(price * this.getTotalDays());
@@ -74,11 +80,13 @@ public class Reservation implements Serializable {
 		return true;
 	}
 
-	// Method to cancel an reservation. This can only be executed on the pending reservations
+	// Method to cancel an reservation. This can only be executed on the pending
+	// reservations
 	public boolean cancel() {
 		this.setReservationStatus(ReservationStatus.CANCELED);
 		String reservationDescription = "";
-		// Check how long time the reservation canceled before the check-in day to calculate the bill
+		// Check how long time the reservation canceled before the check-in day to
+		// calculate the bill
 		// and update the bill description
 		int cancelPeriod = Period.between(LocalDate.now(), this.checkInDateAsLocalDate()).getDays();
 		if (cancelPeriod > 1) {
@@ -87,10 +95,12 @@ public class Reservation implements Serializable {
 			return true;
 		} else if (cancelPeriod == 1) {
 			this.setCheckOutDate(this.checkInDateAsLocalDate().plusDays(1));
+			// generate a reservation description to add it to the bill
 			reservationDescription = roomLocation + " Room: " + roomNumber + " ,Canceled less than 24H. Billed for "
 					+ this.getTotalDays() + " days";
 		} else if (cancelPeriod < 1) {
 			this.setCheckOutDate(this.checkInDateAsLocalDate().plusDays(2));
+			// generate a reservation description to add it to the bill
 			reservationDescription = roomLocation + " Room: " + roomNumber
 					+ " ,Canceled less than 24H, or customer did not chekin. Billed for " + this.getTotalDays()
 					+ " days";
@@ -249,8 +259,11 @@ public class Reservation implements Serializable {
 		this.bill = bill;
 	}
 
+	// This method will update the bill information according to the new reservation
+	// information
 	private void updateBill() {
 		if (this.bill != null && this.bill.getServiceList() != null) {
+			// generate a reservation description to add it to the bill
 			String reservationDescription = roomLocation + " Room: " + roomNumber + " Days: " + getTotalDays();
 			Service reserveService = new Service(ServiceType.RESERVATION, price * getTotalDays(), 1,
 					reservationDescription);

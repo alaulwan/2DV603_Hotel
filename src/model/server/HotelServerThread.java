@@ -23,7 +23,7 @@ public class HotelServerThread extends Thread {
 	private ObjectOutputStream objectOutputStream;
 
 	// This thread is to serve an client-request (one thread for each request)
-	public HotelServerThread(Hotel hotel, SavingThread savingThread, Socket socket, int BUFSIZE) {
+	public HotelServerThread(Hotel hotel, SavingThread savingThread, Socket socket) {
 		this.socket = socket;
 		this.hotel = hotel;
 		this.savingThread = savingThread;

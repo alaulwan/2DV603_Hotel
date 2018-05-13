@@ -14,7 +14,7 @@ import model.shared.Room.RoomStatus;
 import model.shared.filters.reservationsFilters.ReservationsFilter;
 import model.shared.filters.reservationsFilters.StatusReservationsFilter;
 
-// Thread to update the status of the reservatons and the room everyday at 00:00:00 O'clock
+// Thread to update the status of the reservations and the room everyday at 00:00:00 O'clock
 public class RoomsStatusUpdaterThread extends Thread {
 	public Hotel hotel;
 
@@ -37,34 +37,41 @@ public class RoomsStatusUpdaterThread extends Thread {
 			}
 		}
 	}
-	
-	// Update the reservation-status. For example, cancel all pending reservations if the guest did not check within the defined time
+
+	// Update the reservation-status. For example, cancel all pending reservations
+	// if the guest did not check within the defined time
 	public void updateAllReservationsInfo() {
 		ArrayList<Reservation> reservationsList = new ArrayList<Reservation>(hotel.getReservationsList());
 		for (Reservation res : reservationsList) {
-			if (res.getReservationStatus().equals(ReservationStatus.PENDING) && res.checkInDateAsLocalDate().isBefore(LocalDate.now())) {
+			if (res.getReservationStatus().equals(ReservationStatus.PENDING)
+					&& res.checkInDateAsLocalDate().isBefore(LocalDate.now())) {
 				hotel.cancelReservation(res.getReservationId());
-			}
-			else if (res.getReservationStatus().equals(ReservationStatus.CHECKED_IN) && res.checkOutDateAsLocalDate().isBefore(LocalDate.now())) {
+			} else if (res.getReservationStatus().equals(ReservationStatus.CHECKED_IN)
+					&& res.checkOutDateAsLocalDate().isBefore(LocalDate.now())) {
 				res.setCheckOutDate(LocalDate.now());
 			}
 		}
 	}
 
-	// Update the reservation-status. For example, define which rooms should checked out today
+	// Update the reservation-status. For example, define which rooms should checked
+	// out today
 	public void updateAllRoomsStatus() {
 		LocalDate todayDate = LocalDate.now();
+
+		// Reset all rooms status to available
 		ArrayList<Room> roomsList = new ArrayList<Room>(hotel.getRoomsAndSuitesList());
 		for (Room r : roomsList) {
 			r.setRoomStatus(RoomStatus.AVAILABLE);
 		}
 
-		ArrayList<Reservation> pindingCheckedInReservationsList = new ArrayList<Reservation>(
+		// Generate Reservation-List with all pending and checkedIn reservations
+		ArrayList<Reservation> pendingCheckedInReservationsList = new ArrayList<Reservation>(
 				hotel.getReservationsList());
 		ReservationsFilter reservationsFilter = new StatusReservationsFilter(true, true, false, false);
-		reservationsFilter.applyReservationsFilter(pindingCheckedInReservationsList);
+		reservationsFilter.applyReservationsFilter(pendingCheckedInReservationsList);
 
-		for (Reservation res : pindingCheckedInReservationsList) {
+		// change the state of each room that belong to an pending or checkedIn reservations according to the date
+		for (Reservation res : pendingCheckedInReservationsList) {
 			Room r = hotel.getRoomById(res.getRoomId());
 			if (todayDate.equals(res.checkInDateAsLocalDate())) {
 				if (r.getRoomStatus().equals(RoomStatus.CHECKOUT_TODAY))

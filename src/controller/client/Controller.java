@@ -18,6 +18,7 @@ public class Controller {
 	protected RootLayoutController rootLayoutController;
 	public ServerAPI serverAPI;
 
+	// Load the fxml file of the controller
 	public Parent getParentPane() throws IOException {
 		FXMLLoader loader = new FXMLLoader();
 		loader.setController(this);
@@ -26,15 +27,16 @@ public class Controller {
 		Parent rootLayout = (Parent) loader.load();
 		return rootLayout;
 	}
-
+	
 	/**
 	 * Warning popUp
 	 * 
 	 * @param type
-	 *            of alert
-	 * @param Title
+	 * @param title
 	 * @param headText
 	 * @param contentText
+	 * @param imageName
+	 * @param iconName
 	 * @return
 	 */
 	public Optional<ButtonType> alertWindow(AlertType type, String title, String headText, String contentText, String imageName, String iconName) {

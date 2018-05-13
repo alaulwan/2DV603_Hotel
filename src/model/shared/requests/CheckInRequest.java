@@ -1,5 +1,6 @@
 package model.shared.requests;
 
+//For explanation, see the super class
 public class CheckInRequest extends Request {
 	/**
 	 * 

@@ -43,6 +43,7 @@ public class AddServiceController extends Controller {
 	
 	@FXML
 	public void initialize() throws IOException {
+		// Get all services that can be offered from the server
 		serviceList = serverAPI.getServicesList();
 		ObservableList<Service> TypeArr = FXCollections.observableArrayList(serviceList) ;
 		servicesBox.setItems(TypeArr);

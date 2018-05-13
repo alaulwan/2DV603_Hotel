@@ -6,20 +6,21 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 
-import com.google.gson.*;
-
 public class HotelServer {
 	public HotelDAO DAO = new HotelDAO();
 	public Hotel hotel = new Hotel();
 	public RoomsStatusUpdaterThread RoomsStatusUpdaterThread;
 	public SavingThread savingThread;
 
-	public final int BUFSIZE = 1024;
 	public final int MYPORT = 4444;
 	
 	@SuppressWarnings("resource")
 	public void startServer() {
-		this.test();
+		load();
+		RoomsStatusUpdaterThread = new RoomsStatusUpdaterThread(hotel);
+		RoomsStatusUpdaterThread.start();
+		savingThread = new SavingThread();
+		savingThread.start();
 
 		/* Create Server Socket */
 		ServerSocket serverSocket = null;
@@ -29,7 +30,7 @@ public class HotelServer {
 			System.err.println("The port is token.");
 			System.exit(0);
 		}
-		System.out.println("Hotel Server is Running on the port: " + MYPORT + ", Buffer Size: " + BUFSIZE);
+		System.out.println("Hotel Server is Running on the port: " + MYPORT);
 		while (true) {
 			/* Create Socket and wait for a client */
 			Socket socket;
@@ -39,7 +40,7 @@ public class HotelServer {
 				continue;
 			}
 			/* Create a thread for each client */
-			HotelServerThread httpServerThread = new HotelServerThread(hotel, savingThread, socket, BUFSIZE);
+			HotelServerThread httpServerThread = new HotelServerThread(hotel, savingThread, socket);
 			httpServerThread.start();
 		}
 	}
@@ -77,26 +78,4 @@ public class HotelServer {
 
 		}
 	}
-
-	public void test() {
-		hotel.defaultHotel();
-		DAO.xmlSave(hotel);
-		
-
-		Gson gson = new GsonBuilder().create();
-		String j = gson.toJson(hotel);
-		// System.out.println(j);
-
-		Hotel hotel2 = DAO.xmlLoad();
-		String j2 = gson.toJson(hotel2);
-		// System.out.println(j2);
-
-		System.out.println(j2.equals(j));
-
-		RoomsStatusUpdaterThread = new RoomsStatusUpdaterThread(hotel);
-		RoomsStatusUpdaterThread.start();
-		savingThread = new SavingThread();
-		savingThread.start();
-	}
-
 }

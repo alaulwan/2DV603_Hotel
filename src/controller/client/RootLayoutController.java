@@ -97,6 +97,7 @@ public class RootLayoutController extends Controller {
 		update();
 	}
 
+	// Search for the reservation that belong to the selected room and checked it in
 	@FXML
 	public void checkIn() {
 		Optional<ButtonType> result = alertWindow(AlertType.CONFIRMATION, "Check-in",
@@ -129,6 +130,7 @@ public class RootLayoutController extends Controller {
 		}
 	}
 
+	// Search for the reservation that belong to the selected room and checked it out
 	@FXML
 	public void checkOut() {
 		Optional<ButtonType> result = alertWindow(AlertType.CONFIRMATION, "Check-out",
@@ -165,6 +167,7 @@ public class RootLayoutController extends Controller {
 		}
 	}
 
+	
 	@FXML
 	private void imprtReservationsList() {
 		this.checkinButton.setDisable(true);
@@ -212,6 +215,7 @@ public class RootLayoutController extends Controller {
 		}
 	}
 
+	// Update the tables
 	public void update() {
 		imprtRoomsList();
 		imprtReservationsList();

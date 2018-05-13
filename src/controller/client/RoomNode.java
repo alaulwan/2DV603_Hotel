@@ -13,11 +13,13 @@ import javafx.scene.text.Text;
 import model.shared.Room;
 import model.shared.Suite;
 
+// This RoomNode is to represent the rooms in the main window and search room window 
 public class RoomNode extends StackPane {
 
 	Room room = new Room();
 	Color color = Color.LIGHTGREEN;
 	public Tooltip tooltip = new Tooltip();
+	public Text text;
 	public Rectangle rectangle;
 
 	public RoomNode(Room room) {
@@ -25,10 +27,7 @@ public class RoomNode extends StackPane {
 		setRoomLayout();
 
 	}
-
-	private void setRoomLayout() {
-
-		Text text;
+	private void setRoomLayout() {		
 		String roomType = (room.isSuite() == true ? "Suite " : "Room ");
 		String roomStatus ;
 

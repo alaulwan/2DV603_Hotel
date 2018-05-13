@@ -56,6 +56,8 @@ public class HotelClientStart extends Application{
 		RootLayoutController root = new RootLayoutController(serverAPI);
 		Scene mainScene = new Scene(root.getParentPane());
 		primaryStage.setOnCloseRequest(onExitCloseEverything -> System.exit(0));
+		primaryStage.setMinWidth(1050);
+		primaryStage.setMinHeight(700);
 		primaryStage.setScene(mainScene);
 		imgUrl = getClass().getResource("/view/client/icons/hotel1.png");
 		primaryStage.getIcons().add(new Image(imgUrl.toString()));

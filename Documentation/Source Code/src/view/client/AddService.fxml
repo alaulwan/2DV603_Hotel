@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="280.0" prefWidth="387.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ChoiceBox fx:id="servicesBox" layoutX="118.0" layoutY="37.0" onAction="#servicesBoxChange" onScrollFinished="#servicesBoxChange" prefWidth="150.0" />
+      <Label layoutX="25.0" layoutY="41.0" text="Service" />
+      <Label layoutX="25.0" layoutY="83.0" text="Service Type" />
+      <Label layoutX="30.0" layoutY="122.0" text="Quantity" />
+      <Label layoutX="33.0" layoutY="178.0" text="Total Price" />
+      <TextField fx:id="serviceTypeField" editable="false" layoutX="119.0" layoutY="78.0" prefHeight="26.0" prefWidth="150.0" />
+      <Spinner fx:id="quantity" editable="true" layoutX="119.0" layoutY="118.0" onMouseClicked="#quantityChange" prefHeight="26.0" prefWidth="150.0" />
+      <Button fx:id="addButton" layoutX="334.0" layoutY="240.0" mnemonicParsing="false" onAction="#addClicked" text="Add" />
+      <Button fx:id="cancelButton" layoutX="269.0" layoutY="240.0" mnemonicParsing="false" onAction="#cancelClicked" text="Cancel" />
+      <TextField fx:id="totalPriceField" editable="false" layoutX="119.0" layoutY="174.0" prefHeight="26.0" prefWidth="150.0" />
+   </children>
+</AnchorPane>

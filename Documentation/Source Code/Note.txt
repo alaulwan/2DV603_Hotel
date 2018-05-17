@@ -1,0 +1,3 @@
+The code has depedencies to the library:
+- itextpdf 5.4.1
+You can use the attached pom.xml file to run it as maven project.

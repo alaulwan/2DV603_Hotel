@@ -77,32 +77,6 @@
             <roomLocation>VAXJO</roomLocation>
             <roomNumber>101</roomNumber>
         </reservationsList>
-        <reservationsList>
-            <bill>
-                <billId>8</billId>
-                <customerId>1</customerId>
-                <customerName>Alaa Al</customerName>
-                <payStatus>UNPAID</payStatus>
-                <serviceList>
-                    <descraption>KALMAR Room: 101 Days: 1</descraption>
-                    <piecesNumber>1</piecesNumber>
-                    <price>30.0</price>
-                    <serviceType>RESERVATION</serviceType>
-                </serviceList>
-            </bill>
-            <checkInDate>2018-05-13</checkInDate>
-            <checkOutDate>2018-05-14</checkOutDate>
-            <customerId>1</customerId>
-            <customerName>Alaa Al</customerName>
-            <discription></discription>
-            <guestsNumber>1</guestsNumber>
-            <price>30.0</price>
-            <reservationId>8</reservationId>
-            <reservationStatus>PENDING</reservationStatus>
-            <roomId>30</roomId>
-            <roomLocation>KALMAR</roomLocation>
-            <roomNumber>101</roomNumber>
-        </reservationsList>
     </customersList>
     <customersList>
         <address>Vaxjo</address>
@@ -190,21 +164,21 @@
                 <customerName>Maurio</customerName>
                 <payStatus>UNPAID</payStatus>
                 <serviceList>
-                    <descraption>VAXJO Room: 117 Days: 2</descraption>
+                    <descraption>VAXJO Room: 117 Days: 1</descraption>
                     <piecesNumber>1</piecesNumber>
-                    <price>135.0</price>
+                    <price>67.5</price>
                     <serviceType>RESERVATION</serviceType>
                 </serviceList>
             </bill>
             <checkInDate>2018-05-12</checkInDate>
-            <checkOutDate>2018-05-14</checkOutDate>
+            <checkOutDate>2018-05-13</checkOutDate>
             <customerId>3</customerId>
             <customerName>Maurio</customerName>
             <discription>Ma reservation kalmar</discription>
             <guestsNumber>4</guestsNumber>
             <price>67.5</price>
             <reservationId>5</reservationId>
-            <reservationStatus>CANCELED</reservationStatus>
+            <reservationStatus>PENDING</reservationStatus>
             <roomId>19</roomId>
             <roomLocation>VAXJO</roomLocation>
             <roomNumber>117</roomNumber>
@@ -262,126 +236,6 @@
             <roomNumber>118</roomNumber>
         </reservationsList>
     </customersList>
-    <customersList>
-        <address>dfbg</address>
-        <birthDate>2018-05-04</birthDate>
-        <creditCardNum>445</creditCardNum>
-        <customerId>4</customerId>
-        <description>fvdfvb</description>
-        <email>dfgb@fg.vjf</email>
-        <gender>MALE</gender>
-        <identificationNumber>67865</identificationNumber>
-        <identificationType>PERSONAL_NUMBER</identificationType>
-        <name>new</name>
-        <nationality>sfv</nationality>
-        <phoneNum>45635</phoneNum>
-        <reservationsList>
-            <bill>
-                <billId>9</billId>
-                <customerId>4</customerId>
-                <customerName></customerName>
-                <payStatus>UNPAID</payStatus>
-                <serviceList>
-                    <descraption>VAXJO Room: 106 Days: 1</descraption>
-                    <piecesNumber>1</piecesNumber>
-                    <price>60.0</price>
-                    <serviceType>RESERVATION</serviceType>
-                </serviceList>
-            </bill>
-            <checkInDate>2018-05-13</checkInDate>
-            <checkOutDate>2018-05-14</checkOutDate>
-            <customerId>4</customerId>
-            <customerName></customerName>
-            <discription></discription>
-            <guestsNumber>1</guestsNumber>
-            <price>60.0</price>
-            <reservationId>9</reservationId>
-            <reservationStatus>PENDING</reservationStatus>
-            <roomId>6</roomId>
-            <roomLocation>VAXJO</roomLocation>
-            <roomNumber>106</roomNumber>
-        </reservationsList>
-    </customersList>
-    <customersList>
-        <address>fdg</address>
-        <birthDate>2018-05-18</birthDate>
-        <creditCardNum>fsg</creditCardNum>
-        <customerId>5</customerId>
-        <description>fdgdf</description>
-        <email>sfg</email>
-        <gender>MALE</gender>
-        <identificationNumber>fdg</identificationNumber>
-        <identificationType>PERSONAL_NUMBER</identificationType>
-        <name>sdfs</name>
-        <nationality>dsfgdf</nationality>
-        <phoneNum>fsg</phoneNum>
-        <reservationsList>
-            <bill>
-                <billId>10</billId>
-                <customerId>5</customerId>
-                <customerName></customerName>
-                <payStatus>UNPAID</payStatus>
-                <serviceList>
-                    <descraption>KALMAR Room: 107 Days: 1</descraption>
-                    <piecesNumber>1</piecesNumber>
-                    <price>60.0</price>
-                    <serviceType>RESERVATION</serviceType>
-                </serviceList>
-            </bill>
-            <checkInDate>2018-05-13</checkInDate>
-            <checkOutDate>2018-05-14</checkOutDate>
-            <customerId>5</customerId>
-            <customerName></customerName>
-            <discription></discription>
-            <guestsNumber>1</guestsNumber>
-            <price>60.0</price>
-            <reservationId>10</reservationId>
-            <reservationStatus>PENDING</reservationStatus>
-            <roomId>36</roomId>
-            <roomLocation>KALMAR</roomLocation>
-            <roomNumber>107</roomNumber>
-        </reservationsList>
-    </customersList>
-    <customersList>
-        <address>dsgh</address>
-        <birthDate>2018-05-04</birthDate>
-        <creditCardNum>dfg</creditCardNum>
-        <customerId>6</customerId>
-        <description>fdgdfg</description>
-        <email>rthgh</email>
-        <gender>MALE</gender>
-        <identificationNumber>dfgdfg</identificationNumber>
-        <identificationType>PERSONAL_NUMBER</identificationType>
-        <name>nooooooooooo</name>
-        <nationality>fdgh</nationality>
-        <phoneNum>4535</phoneNum>
-        <reservationsList>
-            <bill>
-                <billId>11</billId>
-                <customerId>6</customerId>
-                <customerName>nooooooooooo</customerName>
-                <payStatus>UNPAID</payStatus>
-                <serviceList>
-                    <descraption>KALMAR Room: 104 Days: 1</descraption>
-                    <piecesNumber>1</piecesNumber>
-                    <price>70.0</price>
-                    <serviceType>RESERVATION</serviceType>
-                </serviceList>
-            </bill>
-            <checkInDate>2018-05-13</checkInDate>
-            <checkOutDate>2018-05-14</checkOutDate>
-            <customerId>6</customerId>
-            <customerName></customerName>
-            <discription></discription>
-            <guestsNumber>1</guestsNumber>
-            <price>70.0</price>
-            <reservationId>11</reservationId>
-            <reservationStatus>PENDING</reservationStatus>
-            <roomId>33</roomId>
-            <roomLocation>KALMAR</roomLocation>
-            <roomNumber>104</roomNumber>
-        </reservationsList>
-    </customersList>
     <roomsList>
         <airCon>false</airCon>
         <balcony>false</balcony>
@@ -396,7 +250,6 @@
         <roomLocation>VAXJO</roomLocation>
         <roomNum>101</roomNum>
         <roomSize>SMALL</roomSize>
-        <roomStatus>CHECKIN_TODAY</roomStatus>
         <smoking>false</smoking>
         <suite>false</suite>
         <view>false</view>
@@ -415,7 +268,6 @@
         <roomLocation>VAXJO</roomLocation>
         <roomNum>102</roomNum>
         <roomSize>SMALL</roomSize>
-        <roomStatus>OCCUPIED</roomStatus>
         <smoking>false</smoking>
         <suite>false</suite>
         <view>true</view>
@@ -434,7 +286,6 @@
         <roomLocation>VAXJO</roomLocation>
         <roomNum>103</roomNum>
         <roomSize>MEDIUM</roomSize>
-        <roomStatus>CHECKOUT_TODAY</roomStatus>
         <smoking>true</smoking>
         <suite>false</suite>
         <view>true</view>
@@ -453,7 +304,6 @@
         <roomLocation>VAXJO</roomLocation>
         <roomNum>104</roomNum>
         <roomSize>MEDIUM</roomSize>
-        <roomStatus>AVAILABLE</roomStatus>
         <smoking>true</smoking>
         <suite>false</suite>
         <view>true</view>
@@ -472,7 +322,6 @@
         <roomLocation>VAXJO</roomLocation>
         <roomNum>105</roomNum>
         <roomSize>SMALL</roomSize>
-        <roomStatus>AVAILABLE</roomStatus>
         <smoking>false</smoking>
         <suite>false</suite>
         <view>false</view>
@@ -491,7 +340,6 @@
         <roomLocation>VAXJO</roomLocation>
         <roomNum>106</roomNum>
         <roomSize>SMALL</roomSize>
-        <roomStatus>CHECKIN_TODAY</roomStatus>
         <smoking>false</smoking>
         <suite>false</suite>
         <view>true</view>
@@ -510,7 +358,6 @@
         <roomLocation>VAXJO</roomLocation>
         <roomNum>107</roomNum>
         <roomSize>MEDIUM</roomSize>
-        <roomStatus>AVAILABLE</roomStatus>
         <smoking>true</smoking>
         <suite>false</suite>
         <view>true</view>
@@ -529,7 +376,6 @@
         <roomLocation>VAXJO</roomLocation>
         <roomNum>108</roomNum>
         <roomSize>BIG</roomSize>
-        <roomStatus>AVAILABLE</roomStatus>
         <smoking>true</smoking>
         <suite>false</suite>
         <view>true</view>
@@ -552,7 +398,6 @@
         <roomLocation>VAXJO</roomLocation>
         <roomNum>109</roomNum>
         <roomSize>MEDIUM</roomSize>
-        <roomStatus>AVAILABLE</roomStatus>
         <smoking>false</smoking>
         <suite>false</suite>
         <view>false</view>
@@ -575,7 +420,6 @@
         <roomLocation>VAXJO</roomLocation>
         <roomNum>110</roomNum>
         <roomSize>MEDIUM</roomSize>
-        <roomStatus>AVAILABLE</roomStatus>
         <smoking>false</smoking>
         <suite>false</suite>
         <view>true</view>
@@ -598,7 +442,6 @@
         <roomLocation>VAXJO</roomLocation>
         <roomNum>111</roomNum>
         <roomSize>MEDIUM</roomSize>
-        <roomStatus>AVAILABLE</roomStatus>
         <smoking>true</smoking>
         <suite>false</suite>
         <view>true</view>
@@ -621,7 +464,6 @@
         <roomLocation>VAXJO</roomLocation>
         <roomNum>112</roomNum>
         <roomSize>BIG</roomSize>
-        <roomStatus>AVAILABLE</roomStatus>
         <smoking>true</smoking>
         <suite>false</suite>
         <view>true</view>
@@ -644,7 +486,6 @@
         <roomLocation>VAXJO</roomLocation>
         <roomNum>113</roomNum>
         <roomSize>MEDIUM</roomSize>
-        <roomStatus>AVAILABLE</roomStatus>
         <smoking>false</smoking>
         <suite>false</suite>
         <view>false</view>
@@ -667,7 +508,6 @@
         <roomLocation>VAXJO</roomLocation>
         <roomNum>114</roomNum>
         <roomSize>MEDIUM</roomSize>
-        <roomStatus>AVAILABLE</roomStatus>
         <smoking>false</smoking>
         <suite>false</suite>
         <view>true</view>
@@ -690,7 +530,6 @@
         <roomLocation>VAXJO</roomLocation>
         <roomNum>115</roomNum>
         <roomSize>MEDIUM</roomSize>
-        <roomStatus>AVAILABLE</roomStatus>
         <smoking>true</smoking>
         <suite>false</suite>
         <view>true</view>
@@ -713,7 +552,6 @@
         <roomLocation>VAXJO</roomLocation>
         <roomNum>116</roomNum>
         <roomSize>BIG</roomSize>
-        <roomStatus>AVAILABLE</roomStatus>
         <smoking>true</smoking>
         <suite>false</suite>
         <view>true</view>
@@ -732,7 +570,6 @@
         <roomLocation>KALMAR</roomLocation>
         <roomNum>101</roomNum>
         <roomSize>SMALL</roomSize>
-        <roomStatus>CHECKIN_TODAY</roomStatus>
         <smoking>false</smoking>
         <suite>false</suite>
         <view>false</view>
@@ -751,7 +588,6 @@
         <roomLocation>KALMAR</roomLocation>
         <roomNum>102</roomNum>
         <roomSize>SMALL</roomSize>
-        <roomStatus>AVAILABLE</roomStatus>
         <smoking>false</smoking>
         <suite>false</suite>
         <view>true</view>
@@ -770,7 +606,6 @@
         <roomLocation>KALMAR</roomLocation>
         <roomNum>103</roomNum>
         <roomSize>MEDIUM</roomSize>
-        <roomStatus>AVAILABLE</roomStatus>
         <smoking>true</smoking>
         <suite>false</suite>
         <view>true</view>
@@ -789,7 +624,6 @@
         <roomLocation>KALMAR</roomLocation>
         <roomNum>104</roomNum>
         <roomSize>MEDIUM</roomSize>
-        <roomStatus>CHECKIN_TODAY</roomStatus>
         <smoking>true</smoking>
         <suite>false</suite>
         <view>true</view>
@@ -808,7 +642,6 @@
         <roomLocation>KALMAR</roomLocation>
         <roomNum>105</roomNum>
         <roomSize>SMALL</roomSize>
-        <roomStatus>AVAILABLE</roomStatus>
         <smoking>false</smoking>
         <suite>false</suite>
         <view>false</view>
@@ -827,7 +660,6 @@
         <roomLocation>KALMAR</roomLocation>
         <roomNum>106</roomNum>
         <roomSize>SMALL</roomSize>
-        <roomStatus>AVAILABLE</roomStatus>
         <smoking>false</smoking>
         <suite>false</suite>
         <view>true</view>
@@ -846,7 +678,6 @@
         <roomLocation>KALMAR</roomLocation>
         <roomNum>107</roomNum>
         <roomSize>MEDIUM</roomSize>
-        <roomStatus>CHECKIN_TODAY</roomStatus>
         <smoking>true</smoking>
         <suite>false</suite>
         <view>true</view>
@@ -865,7 +696,6 @@
         <roomLocation>KALMAR</roomLocation>
         <roomNum>108</roomNum>
         <roomSize>BIG</roomSize>
-        <roomStatus>AVAILABLE</roomStatus>
         <smoking>true</smoking>
         <suite>false</suite>
         <view>true</view>
@@ -888,7 +718,6 @@
         <roomLocation>KALMAR</roomLocation>
         <roomNum>109</roomNum>
         <roomSize>MEDIUM</roomSize>
-        <roomStatus>AVAILABLE</roomStatus>
         <smoking>false</smoking>
         <suite>false</suite>
         <view>false</view>
@@ -911,7 +740,6 @@
         <roomLocation>KALMAR</roomLocation>
         <roomNum>110</roomNum>
         <roomSize>MEDIUM</roomSize>
-        <roomStatus>AVAILABLE</roomStatus>
         <smoking>false</smoking>
         <suite>false</suite>
         <view>true</view>
@@ -934,7 +762,6 @@
         <roomLocation>KALMAR</roomLocation>
         <roomNum>111</roomNum>
         <roomSize>MEDIUM</roomSize>
-        <roomStatus>AVAILABLE</roomStatus>
         <smoking>true</smoking>
         <suite>false</suite>
         <view>true</view>
@@ -957,7 +784,6 @@
         <roomLocation>KALMAR</roomLocation>
         <roomNum>112</roomNum>
         <roomSize>BIG</roomSize>
-        <roomStatus>AVAILABLE</roomStatus>
         <smoking>true</smoking>
         <suite>false</suite>
         <view>true</view>
@@ -980,7 +806,6 @@
         <roomLocation>KALMAR</roomLocation>
         <roomNum>113</roomNum>
         <roomSize>MEDIUM</roomSize>
-        <roomStatus>AVAILABLE</roomStatus>
         <smoking>false</smoking>
         <suite>false</suite>
         <view>false</view>
@@ -1003,7 +828,6 @@
         <roomLocation>KALMAR</roomLocation>
         <roomNum>114</roomNum>
         <roomSize>MEDIUM</roomSize>
-        <roomStatus>AVAILABLE</roomStatus>
         <smoking>false</smoking>
         <suite>false</suite>
         <view>true</view>
@@ -1026,7 +850,6 @@
         <roomLocation>KALMAR</roomLocation>
         <roomNum>115</roomNum>
         <roomSize>MEDIUM</roomSize>
-        <roomStatus>AVAILABLE</roomStatus>
         <smoking>true</smoking>
         <suite>false</suite>
         <view>true</view>
@@ -1049,7 +872,6 @@
         <roomLocation>KALMAR</roomLocation>
         <roomNum>116</roomNum>
         <roomSize>BIG</roomSize>
-        <roomStatus>AVAILABLE</roomStatus>
         <smoking>true</smoking>
         <suite>false</suite>
         <view>true</view>
@@ -1118,7 +940,6 @@
         <roomLocation>VAXJO</roomLocation>
         <roomNum>117</roomNum>
         <roomSize>SMALL</roomSize>
-        <roomStatus>AVAILABLE</roomStatus>
         <smoking>false</smoking>
         <suite>true</suite>
         <view>false</view>
@@ -1185,7 +1006,6 @@
         <roomLocation>VAXJO</roomLocation>
         <roomNum>118</roomNum>
         <roomSize>MEDIUM</roomSize>
-        <roomStatus>CHECK_OUT_IN</roomStatus>
         <smoking>true</smoking>
         <suite>true</suite>
         <view>true</view>
@@ -1252,7 +1072,6 @@
         <roomLocation>VAXJO</roomLocation>
         <roomNum>119</roomNum>
         <roomSize>MEDIUM</roomSize>
-        <roomStatus>AVAILABLE</roomStatus>
         <smoking>false</smoking>
         <suite>true</suite>
         <view>true</view>
@@ -1323,7 +1142,6 @@
         <roomLocation>VAXJO</roomLocation>
         <roomNum>120</roomNum>
         <roomSize>MEDIUM</roomSize>
-        <roomStatus>AVAILABLE</roomStatus>
         <smoking>true</smoking>
         <suite>true</suite>
         <view>true</view>
@@ -1408,7 +1226,6 @@
         <roomLocation>KALMAR</roomLocation>
         <roomNum>117</roomNum>
         <roomSize>SMALL</roomSize>
-        <roomStatus>AVAILABLE</roomStatus>
         <smoking>false</smoking>
         <suite>true</suite>
         <view>false</view>
@@ -1475,7 +1292,6 @@
         <roomLocation>KALMAR</roomLocation>
         <roomNum>118</roomNum>
         <roomSize>MEDIUM</roomSize>
-        <roomStatus>AVAILABLE</roomStatus>
         <smoking>true</smoking>
         <suite>true</suite>
         <view>true</view>
@@ -1542,7 +1358,6 @@
         <roomLocation>KALMAR</roomLocation>
         <roomNum>119</roomNum>
         <roomSize>MEDIUM</roomSize>
-        <roomStatus>AVAILABLE</roomStatus>
         <smoking>true</smoking>
         <suite>true</suite>
         <view>true</view>
@@ -1613,7 +1428,6 @@
         <roomLocation>KALMAR</roomLocation>
         <roomNum>120</roomNum>
         <roomSize>MEDIUM</roomSize>
-        <roomStatus>AVAILABLE</roomStatus>
         <smoking>true</smoking>
         <suite>true</suite>
         <view>true</view>

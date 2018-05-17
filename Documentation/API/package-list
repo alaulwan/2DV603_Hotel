@@ -1,0 +1,12 @@
+
+controller.client
+model.client
+model.server
+model.server.response
+model.shared
+model.shared.filters.billsFilters
+model.shared.filters.customersFilters
+model.shared.filters.reservationsFilters
+model.shared.filters.roomsFilters
+model.shared.requests
+view.server

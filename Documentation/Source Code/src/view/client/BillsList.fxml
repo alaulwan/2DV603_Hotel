@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TableView fx:id="billsTable" layoutY="28.0" prefHeight="423.0" prefWidth="641.0" tableMenuButtonVisible="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="28.0">
+        <columns>
+          <TableColumn fx:id="idCol" prefWidth="79.19998323917389" text="ID" />
+          <TableColumn fx:id="customerIdCol" prefWidth="138.39998626708984" text="Customer ID" />
+            <TableColumn fx:id="customerNameCol" prefWidth="186.39996337890625" text="Customer Name" />
+            <TableColumn fx:id="totlaPriceCol" minWidth="0.0" prefWidth="108.80001831054688" text="Total Price" />
+            <TableColumn fx:id="statusCol" prefWidth="124.79998779296875" text="Payment Status" />
+        </columns>
+      </TableView>
+      <HBox layoutX="393.0" layoutY="1.0" prefHeight="30.0" prefWidth="246.0">
+         <children>
+            <TextField fx:id="searchName" onKeyReleased="#apllyAllChosenFilters" prefHeight="25.0" prefWidth="150.0" promptText=" Search By Name">
+               <padding>
+                  <Insets top="2.0" />
+               </padding>
+            </TextField>
+            <CheckBox fx:id="viewAllBox" mnemonicParsing="false" onAction="#viewPaidChecked" prefHeight="22.0" prefWidth="104.0" text="View Paid">
+               <padding>
+                  <Insets left="5.0" top="5.0" />
+               </padding>
+            </CheckBox>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>
